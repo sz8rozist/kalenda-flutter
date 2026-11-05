@@ -47,6 +47,32 @@ class AppLocalizationsHu extends AppLocalizations {
   String get updateNow => 'Frissítés';
 
   @override
+  String get settingsTitle => 'Beállítások';
+
+  @override
+  String get appLockTitle => 'Zárolás biometrikus azonosítással';
+
+  @override
+  String get appLockSubtitle =>
+      'Az app megnyitásához ujjlenyomat, arcfelismerés vagy az eszköz zárja kell.';
+
+  @override
+  String get appLockUnavailable =>
+      'Az eszközön nincs beállított biometrikus azonosító vagy képernyőzár.';
+
+  @override
+  String get unlockTitle => 'Az alkalmazás zárolva van';
+
+  @override
+  String get unlockButton => 'Feloldás';
+
+  @override
+  String get unlockReason => 'Told fel a Kalenda zárolását';
+
+  @override
+  String get unlockFailed => 'Az azonosítás nem sikerült.';
+
+  @override
   String get ownerNewBooking => 'Új foglalás';
 
   @override

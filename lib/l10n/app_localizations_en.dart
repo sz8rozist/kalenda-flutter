@@ -47,6 +47,32 @@ class AppLocalizationsEn extends AppLocalizations {
   String get updateNow => 'Update';
 
   @override
+  String get settingsTitle => 'Settings';
+
+  @override
+  String get appLockTitle => 'Lock with biometrics';
+
+  @override
+  String get appLockSubtitle =>
+      'Opening the app requires your fingerprint, face or device lock.';
+
+  @override
+  String get appLockUnavailable =>
+      'This device has no biometrics or screen lock set up.';
+
+  @override
+  String get unlockTitle => 'The app is locked';
+
+  @override
+  String get unlockButton => 'Unlock';
+
+  @override
+  String get unlockReason => 'Unlock Kalenda';
+
+  @override
+  String get unlockFailed => 'Authentication failed.';
+
+  @override
   String get ownerNewBooking => 'New booking';
 
   @override

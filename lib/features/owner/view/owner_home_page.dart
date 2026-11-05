@@ -7,6 +7,7 @@ import '../../../l10n/app_localizations.dart';
 import '../../../shared/async_view.dart';
 import '../../../shared/format.dart';
 import '../../../shared/week_header.dart';
+import '../../app_lock/view/app_lock_settings.dart';
 import '../../staff/model/staff_models.dart';
 import '../../staff/view/staff_home_page.dart' show AppointmentTile;
 import '../../staff/viewmodel/staff_session_viewmodel.dart';
@@ -29,6 +30,7 @@ class OwnerHomePage extends ConsumerWidget {
       appBar: AppBar(
         title: Text(user.businessName ?? l10n.appTitle),
         actions: [
+          const SettingsButton(),
           IconButton(
             tooltip: l10n.signOut,
             icon: const Icon(Icons.logout),

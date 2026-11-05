@@ -53,3 +53,10 @@ a publikus kulccsal és a `stripe_account_id`-val nyitja a lapot, majd a `…/pa
 - **Android:** a `MainActivity` `FlutterFragmentActivity`, a téma MaterialComponents (kész). Google Pay-hez a Stripe-fiókban és az éles appban engedélyezés kell.
 - **iOS (teendő, Mac/CI-n):** minimum deployment target 13.0 a `Podfile`-ban; Apple Pay-hez Merchant ID az Apple Developer-fiókban és a *Apple Pay* capability az Xcode-ban.
 - Teszteléshez Stripe teszt-kulcsok és a `4242 4242 4242 4242` tesztkártya.
+
+## Alkalmazászár (biometrikus azonosítás)
+A „Zárolás biometrikus azonosítással" kapcsoló az ügyfél **Fiókom** fülén, munkatársnak / vállalkozónak a **Beállítások** (fogaskerék) lapon van.
+Bekapcsolva belépett fiók mellett az app indításkor és a háttérből való visszatéréskor (30 mp türelmi idő után) zárolt: ujjlenyomat / arcfelismerés,
+ennek hiányában az eszköz képernyőzára oldja fel. Ha az azonosítás nem működik, a zárképernyőről kijelentkezéssel lehet továbblépni.
+Bekapcsolás előtt egy próba-azonosítás fut. Android: `USE_BIOMETRIC` engedély, a `MainActivity` `FlutterFragmentActivity`; iOS: `NSFaceIDUsageDescription` az `Info.plist`-ben.
+Architektúra: `features/app_lock` (`AppLockViewModel`, `AppLockGate` az egész app fölött a `MaterialApp.builder`-ben).

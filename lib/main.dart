@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'core/router.dart';
 import 'features/app_gate/view/update_required_page.dart';
+import 'features/app_lock/view/app_lock_gate.dart';
 import 'features/app_gate/viewmodel/app_gate_viewmodel.dart';
 import 'l10n/app_localizations.dart';
 
@@ -30,7 +31,10 @@ class KalendaApp extends ConsumerWidget {
       ],
       supportedLocales: AppLocalizations.supportedLocales,
       // Elavult verziónál minden képernyő helyett a kötelező frissítés oldal jelenik meg.
-      builder: (context, child) => update != null ? UpdateRequiredPage(requirement: update) : (child ?? const SizedBox.shrink()),
+      // A zár (biometrikus azonosítás) az egész app fölött van, a frissítés-kényszer pedig a tartalom helyén.
+      builder: (context, child) => AppLockGate(
+        child: update != null ? UpdateRequiredPage(requirement: update) : (child ?? const SizedBox.shrink()),
+      ),
     );
   }
 }

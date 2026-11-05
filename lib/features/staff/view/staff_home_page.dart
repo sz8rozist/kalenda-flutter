@@ -6,6 +6,7 @@ import '../../../shared/async_view.dart';
 import '../../../shared/flash.dart';
 import '../../../shared/format.dart';
 import '../../../shared/week_header.dart';
+import '../../app_lock/view/app_lock_settings.dart';
 import '../../owner/view/owner_home_page.dart';
 import '../model/staff_models.dart';
 import '../viewmodel/staff_session_viewmodel.dart';
@@ -33,7 +34,7 @@ class StaffHomePage extends ConsumerWidget {
 
     if (!user.isStaff) {
       return Scaffold(
-        appBar: AppBar(actions: const [_SignOutButton()]),
+        appBar: AppBar(actions: const [SettingsButton(), _SignOutButton()]),
         body: Center(
           child: Padding(padding: const EdgeInsets.all(24), child: Text(l10n.staffNoProfile, textAlign: TextAlign.center)),
         ),
@@ -42,7 +43,7 @@ class StaffHomePage extends ConsumerWidget {
 
     final index = ref.watch(staffTabProvider);
     return Scaffold(
-      appBar: AppBar(title: Text(user.businessName ?? l10n.appTitle), actions: const [_SignOutButton()]),
+      appBar: AppBar(title: Text(user.businessName ?? l10n.appTitle), actions: const [SettingsButton(), _SignOutButton()]),
       body: IndexedStack(index: index, children: const [_TodayTab(), _CalendarTab(), _LeavesTab()]),
       bottomNavigationBar: NavigationBar(
         selectedIndex: index,

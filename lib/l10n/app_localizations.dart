@@ -164,6 +164,54 @@ abstract class AppLocalizations {
   /// **'Frissítés'**
   String get updateNow;
 
+  /// No description provided for @settingsTitle.
+  ///
+  /// In hu, this message translates to:
+  /// **'Beállítások'**
+  String get settingsTitle;
+
+  /// No description provided for @appLockTitle.
+  ///
+  /// In hu, this message translates to:
+  /// **'Zárolás biometrikus azonosítással'**
+  String get appLockTitle;
+
+  /// No description provided for @appLockSubtitle.
+  ///
+  /// In hu, this message translates to:
+  /// **'Az app megnyitásához ujjlenyomat, arcfelismerés vagy az eszköz zárja kell.'**
+  String get appLockSubtitle;
+
+  /// No description provided for @appLockUnavailable.
+  ///
+  /// In hu, this message translates to:
+  /// **'Az eszközön nincs beállított biometrikus azonosító vagy képernyőzár.'**
+  String get appLockUnavailable;
+
+  /// No description provided for @unlockTitle.
+  ///
+  /// In hu, this message translates to:
+  /// **'Az alkalmazás zárolva van'**
+  String get unlockTitle;
+
+  /// No description provided for @unlockButton.
+  ///
+  /// In hu, this message translates to:
+  /// **'Feloldás'**
+  String get unlockButton;
+
+  /// No description provided for @unlockReason.
+  ///
+  /// In hu, this message translates to:
+  /// **'Told fel a Kalenda zárolását'**
+  String get unlockReason;
+
+  /// No description provided for @unlockFailed.
+  ///
+  /// In hu, this message translates to:
+  /// **'Az azonosítás nem sikerült.'**
+  String get unlockFailed;
+
   /// No description provided for @ownerNewBooking.
   ///
   /// In hu, this message translates to:

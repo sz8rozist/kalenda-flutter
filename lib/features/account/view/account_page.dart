@@ -6,6 +6,7 @@ import '../../../l10n/app_localizations.dart';
 import '../../../shared/async_view.dart';
 import '../../../shared/flash.dart';
 import '../../../shared/format.dart';
+import '../../app_lock/view/app_lock_settings.dart';
 import '../../auth/viewmodel/customer_session_viewmodel.dart';
 import '../model/account_models.dart';
 import '../viewmodel/account_viewmodel.dart';
@@ -53,6 +54,8 @@ class AccountPage extends ConsumerWidget {
                 for (final consent in data.consents) _ConsentTile(consent: consent),
               ],
               const SizedBox(height: 24),
+              const AppLockTile(),
+              const SizedBox(height: 8),
               TextButton.icon(
                 icon: const Icon(Icons.delete_outline),
                 label: Text(l10n.deleteAccount),
