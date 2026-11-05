@@ -164,6 +164,42 @@ abstract class AppLocalizations {
   /// **'Frissítés'**
   String get updateNow;
 
+  /// No description provided for @ownerNewBooking.
+  ///
+  /// In hu, this message translates to:
+  /// **'Új foglalás'**
+  String get ownerNewBooking;
+
+  /// No description provided for @ownerCreateBooking.
+  ///
+  /// In hu, this message translates to:
+  /// **'Foglalás felvitele'**
+  String get ownerCreateBooking;
+
+  /// No description provided for @ownerCustomerLabel.
+  ///
+  /// In hu, this message translates to:
+  /// **'Ügyfél'**
+  String get ownerCustomerLabel;
+
+  /// No description provided for @newCustomerOption.
+  ///
+  /// In hu, this message translates to:
+  /// **'Új ügyfél'**
+  String get newCustomerOption;
+
+  /// No description provided for @serviceLabel.
+  ///
+  /// In hu, this message translates to:
+  /// **'Szolgáltatás'**
+  String get serviceLabel;
+
+  /// No description provided for @sendEmailLabel.
+  ///
+  /// In hu, this message translates to:
+  /// **'Értesítő e-mail az ügyfélnek'**
+  String get sendEmailLabel;
+
   /// No description provided for @backToStart.
   ///
   /// In hu, this message translates to:

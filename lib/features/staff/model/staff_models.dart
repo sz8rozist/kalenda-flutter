@@ -5,7 +5,9 @@ List<T> _list<T>(Object? raw, T Function(Map<String, dynamic>) from) =>
 
 /// A bejelentkezett felhasználó (`GET /me`): szerepkörök és a vállalkozás.
 class StaffUser {
-  StaffUser({required this.name, required this.email, required this.isStaff, required this.isOwner, this.businessName, this.businessId});
+  StaffUser({required this.name, required this.email, required this.isStaff, required this.isOwner, this.businessName, this.businessId, this.businessSlug});
+
+  final String? businessSlug;
 
   final int? businessId;
 
@@ -27,6 +29,7 @@ class StaffUser {
       isOwner: roles['business_owner'] as bool? ?? false,
       businessName: (business?['name'] ?? staffBusiness?['name']) as String?,
       businessId: ((business?['id'] ?? staffBusiness?['id']) as num?)?.toInt(),
+      businessSlug: (business?['slug'] ?? staffBusiness?['slug']) as String?,
     );
   }
 }

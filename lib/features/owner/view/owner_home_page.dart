@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../../l10n/app_localizations.dart';
@@ -35,6 +36,13 @@ class OwnerHomePage extends ConsumerWidget {
           ),
         ],
       ),
+      floatingActionButton: index == 2
+          ? null
+          : FloatingActionButton.extended(
+              onPressed: () => context.push('/owner/new-booking'),
+              icon: const Icon(Icons.add),
+              label: Text(l10n.ownerNewBooking),
+            ),
       body: IndexedStack(index: index, children: [
         _OverviewTab(businessId: businessId),
         _CalendarTab(businessId: businessId),

@@ -47,6 +47,24 @@ class AppLocalizationsHu extends AppLocalizations {
   String get updateNow => 'Frissítés';
 
   @override
+  String get ownerNewBooking => 'Új foglalás';
+
+  @override
+  String get ownerCreateBooking => 'Foglalás felvitele';
+
+  @override
+  String get ownerCustomerLabel => 'Ügyfél';
+
+  @override
+  String get newCustomerOption => 'Új ügyfél';
+
+  @override
+  String get serviceLabel => 'Szolgáltatás';
+
+  @override
+  String get sendEmailLabel => 'Értesítő e-mail az ügyfélnek';
+
+  @override
   String get backToStart => 'Vissza a kezdőlapra';
 
   @override

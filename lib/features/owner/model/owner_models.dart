@@ -126,3 +126,58 @@ class CustomerItem {
         lastVisitAt: j['last_visit_at'] == null ? null : DateTime.parse(j['last_visit_at'] as String),
       );
 }
+
+/// Meglévő ügyfél a foglalás felviteléhez (`GET /businesses/{id}/appointment-customers`).
+class CustomerOption {
+  CustomerOption({required this.id, required this.name, this.email, this.phone});
+
+  final int id;
+  final String name;
+  final String? email;
+  final String? phone;
+
+  factory CustomerOption.fromJson(Map<String, dynamic> j) => CustomerOption(
+        id: (j['id'] as num).toInt(),
+        name: j['name'] as String? ?? '',
+        email: j['email'] as String?,
+        phone: j['phone'] as String?,
+      );
+}
+
+/// A vállalkozó által felvitt foglalás (`POST /businesses/{id}/appointments`). Meglévő ügyfélnél a `customerId`,
+/// újnál a név (e-mail, telefon elhagyható).
+class OwnerBookingRequest {
+  OwnerBookingRequest({
+    required this.serviceId,
+    required this.staffId,
+    required this.date,
+    required this.time,
+    this.customerId,
+    this.customerName,
+    this.customerEmail,
+    this.customerPhone,
+    this.notes,
+    this.sendEmail = false,
+  });
+
+  final int serviceId;
+  final int staffId;
+  final DateTime date;
+  final String time;
+  final int? customerId;
+  final String? customerName;
+  final String? customerEmail;
+  final String? customerPhone;
+  final String? notes;
+  final bool sendEmail;
+}
+
+/// A felvitt foglalás űrlapjának szövegmezői (új ügyfélnél a név / e-mail / telefon).
+class OwnerBookingDetails {
+  const OwnerBookingDetails({this.name, this.email, this.phone, this.notes});
+
+  final String? name;
+  final String? email;
+  final String? phone;
+  final String? notes;
+}

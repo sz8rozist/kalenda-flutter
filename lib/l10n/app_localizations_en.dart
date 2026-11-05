@@ -47,6 +47,24 @@ class AppLocalizationsEn extends AppLocalizations {
   String get updateNow => 'Update';
 
   @override
+  String get ownerNewBooking => 'New booking';
+
+  @override
+  String get ownerCreateBooking => 'Create booking';
+
+  @override
+  String get ownerCustomerLabel => 'Customer';
+
+  @override
+  String get newCustomerOption => 'New customer';
+
+  @override
+  String get serviceLabel => 'Service';
+
+  @override
+  String get sendEmailLabel => 'Email the customer a confirmation';
+
+  @override
   String get backToStart => 'Back to start';
 
   @override
