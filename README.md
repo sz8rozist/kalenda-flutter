@@ -1,17 +1,25 @@
-# kalenda_mobile
+# Kalenda – mobilalkalmazás
 
-A new Flutter project.
+Flutter-alkalmazás a Kalenda időpontfoglalóhoz (iOS + Android). Backend:
+[kalenda-java-backend](https://github.com/sz8rozist/kalenda-java-backend) REST API (`/api/v1`).
+Terv, funkciók, backend-teendők: [docs/PLAN.md](docs/PLAN.md).
 
-## Getting Started
+## Állapot
+Alap: Riverpod + go_router + Dio, hu/en lokalizáció, ügyfél-belépés e-mailes linkkel
+(`/customer/login-link` → `/customer/login`), tárolt token (Keychain/Keystore),
+„Foglalásaim" (`/customer/account`).
 
-This project is a starting point for a Flutter application.
+## Fejlesztés
+```bash
+flutter pub get
+flutter run --dart-define=API_BASE_URL=http://10.0.2.2:8080   # Android emulátor -> a gép localhostja
+flutter analyze && flutter test
+```
 
-A few resources to get you started if this is your first Flutter project:
+Flutter nélkül, Dockerből:
 
-- [Learn Flutter](https://docs.flutter.dev/get-started/learn-flutter)
-- [Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Flutter learning resources](https://docs.flutter.dev/reference/learning-resources)
+```bash
+docker run --rm -v "$PWD:/w" -w /w ghcr.io/cirruslabs/flutter:stable sh -c "flutter pub get && flutter analyze && flutter test"
+```
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Az iOS-build Windowson nem megy (Xcode): felhős CI (Codemagic / GitHub Actions macOS) kell hozzá.
