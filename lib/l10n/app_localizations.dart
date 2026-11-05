@@ -164,6 +164,120 @@ abstract class AppLocalizations {
   /// **'Frissítés'**
   String get updateNow;
 
+  /// No description provided for @ownerReports.
+  ///
+  /// In hu, this message translates to:
+  /// **'Riportok'**
+  String get ownerReports;
+
+  /// No description provided for @previousMonth.
+  ///
+  /// In hu, this message translates to:
+  /// **'Előző hónap'**
+  String get previousMonth;
+
+  /// No description provided for @nextMonth.
+  ///
+  /// In hu, this message translates to:
+  /// **'Következő hónap'**
+  String get nextMonth;
+
+  /// No description provided for @reportRevenue.
+  ///
+  /// In hu, this message translates to:
+  /// **'Bevétel'**
+  String get reportRevenue;
+
+  /// No description provided for @reportServices.
+  ///
+  /// In hu, this message translates to:
+  /// **'Szolgáltatások'**
+  String get reportServices;
+
+  /// No description provided for @reportProducts.
+  ///
+  /// In hu, this message translates to:
+  /// **'Termékek'**
+  String get reportProducts;
+
+  /// No description provided for @reportPasses.
+  ///
+  /// In hu, this message translates to:
+  /// **'Bérletek'**
+  String get reportPasses;
+
+  /// No description provided for @reportVouchers.
+  ///
+  /// In hu, this message translates to:
+  /// **'Utalványok'**
+  String get reportVouchers;
+
+  /// No description provided for @reportRevenueTotal.
+  ///
+  /// In hu, this message translates to:
+  /// **'Bevétel összesen'**
+  String get reportRevenueTotal;
+
+  /// No description provided for @reportExpenses.
+  ///
+  /// In hu, this message translates to:
+  /// **'Költségek'**
+  String get reportExpenses;
+
+  /// No description provided for @reportPayroll.
+  ///
+  /// In hu, this message translates to:
+  /// **'Bérköltség (becslés)'**
+  String get reportPayroll;
+
+  /// No description provided for @reportMaterials.
+  ///
+  /// In hu, this message translates to:
+  /// **'Anyagköltség'**
+  String get reportMaterials;
+
+  /// No description provided for @reportExpensesTotal.
+  ///
+  /// In hu, this message translates to:
+  /// **'Költség összesen'**
+  String get reportExpensesTotal;
+
+  /// No description provided for @reportResult.
+  ///
+  /// In hu, this message translates to:
+  /// **'Eredmény'**
+  String get reportResult;
+
+  /// No description provided for @reportReceivables.
+  ///
+  /// In hu, this message translates to:
+  /// **'Kintlévőség a hónap végén'**
+  String get reportReceivables;
+
+  /// No description provided for @cashflowTitle.
+  ///
+  /// In hu, this message translates to:
+  /// **'Cash flow előrejelzés'**
+  String get cashflowTitle;
+
+  /// No description provided for @cashflowPartial.
+  ///
+  /// In hu, this message translates to:
+  /// **'folyamatban'**
+  String get cashflowPartial;
+
+  /// No description provided for @cashflowIn.
+  ///
+  /// In hu, this message translates to:
+  /// **'Bevétel'**
+  String get cashflowIn;
+
+  /// No description provided for @cashflowOut.
+  ///
+  /// In hu, this message translates to:
+  /// **'Kiadás'**
+  String get cashflowOut;
+
   /// No description provided for @ownerInvoices.
   ///
   /// In hu, this message translates to:

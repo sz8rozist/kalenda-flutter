@@ -13,6 +13,7 @@ import '../../staff/view/staff_home_page.dart' show AppointmentTile;
 import '../../staff/viewmodel/staff_session_viewmodel.dart';
 import '../model/owner_models.dart';
 import 'owner_invoices_tab.dart';
+import 'owner_reports_tab.dart';
 import '../viewmodel/owner_viewmodels.dart';
 
 /// A vállalkozói felület (View): áttekintés, naptár, ügyfelek. Az adatokat a ViewModel-ek adják.
@@ -51,6 +52,7 @@ class OwnerHomePage extends ConsumerWidget {
         _CalendarTab(businessId: businessId),
         _CustomersTab(businessId: businessId),
         OwnerInvoicesTab(businessId: businessId),
+        OwnerReportsTab(businessId: businessId),
       ]),
       bottomNavigationBar: NavigationBar(
         selectedIndex: index,
@@ -60,6 +62,7 @@ class OwnerHomePage extends ConsumerWidget {
           NavigationDestination(icon: const Icon(Icons.calendar_month_outlined), label: l10n.staffCalendar),
           NavigationDestination(icon: const Icon(Icons.people_outline), label: l10n.ownerCustomers),
           NavigationDestination(icon: const Icon(Icons.receipt_long_outlined), label: l10n.ownerInvoices),
+          NavigationDestination(icon: const Icon(Icons.insights_outlined), label: l10n.ownerReports),
         ],
       ),
     );

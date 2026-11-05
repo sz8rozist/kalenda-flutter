@@ -229,3 +229,80 @@ class InvoiceItem {
     );
   }
 }
+
+/// Havi könyvelői összesítő (`GET /businesses/{id}/reports/accounting?month=ÉÉÉÉ-HH`) – a megjelenített mezők.
+class AccountingReport {
+  AccountingReport({
+    required this.grossTotalHuf,
+    required this.servicesHuf,
+    required this.productsHuf,
+    required this.passesSoldHuf,
+    required this.vouchersSoldHuf,
+    required this.expensesTotalHuf,
+    required this.expensesByCategory,
+    required this.materialCostHuf,
+    required this.receivablesAtMonthEndHuf,
+    required this.resultHuf,
+    required this.documentsTotalHuf,
+    required this.documentsCancelledCount,
+    this.payrollEstimateHuf,
+  });
+
+  final int grossTotalHuf;
+  final int servicesHuf;
+  final int productsHuf;
+  final int passesSoldHuf;
+  final int vouchersSoldHuf;
+  final int expensesTotalHuf;
+  final Map<String, int> expensesByCategory;
+  final int? payrollEstimateHuf;
+  final int materialCostHuf;
+  final int receivablesAtMonthEndHuf;
+  final int resultHuf;
+  final int documentsTotalHuf;
+  final int documentsCancelledCount;
+
+  factory AccountingReport.fromJson(Map<String, dynamic> j) {
+    int n(Object? v) => (v as num?)?.toInt() ?? 0;
+    final revenue = (j['revenue'] as Map<String, dynamic>?) ?? const {};
+
+    return AccountingReport(
+      grossTotalHuf: n(revenue['gross_total_huf']),
+      servicesHuf: n(revenue['services_huf']),
+      productsHuf: n(revenue['products_huf']),
+      passesSoldHuf: n(revenue['passes_sold_huf']),
+      vouchersSoldHuf: n(revenue['vouchers_sold_huf']),
+      expensesTotalHuf: n(j['expenses_total_huf']),
+      expensesByCategory: {
+        for (final e in ((j['expenses_by_category'] as Map<String, dynamic>?) ?? const {}).entries) e.key: n(e.value),
+      },
+      payrollEstimateHuf: (j['payroll_estimate_huf'] as num?)?.toInt(),
+      materialCostHuf: n(j['material_cost_huf']),
+      receivablesAtMonthEndHuf: n(j['receivables_at_month_end_huf']),
+      resultHuf: n(j['result_huf']),
+      documentsTotalHuf: n(j['documents_total_huf']),
+      documentsCancelledCount: n(j['documents_cancelled_count']),
+    );
+  }
+}
+
+/// A cash flow előrejelzés egy időszaka (`GET /businesses/{id}/reports/cashflow`).
+class CashflowPeriod {
+  CashflowPeriod({required this.label, required this.partial, required this.inflowHuf, required this.outflowHuf, required this.netHuf});
+
+  final String label;
+
+  /// Még nem teljes időszak (folyamatban van).
+  final bool partial;
+  final int inflowHuf;
+  final int outflowHuf;
+  final int netHuf;
+
+  factory CashflowPeriod.fromJson(Map<String, dynamic> j) => CashflowPeriod(
+        label: j['label'] as String? ?? '',
+        partial: j['partial'] as bool? ?? false,
+        inflowHuf: ((j['inflow'] as Map<String, dynamic>?)?['total_huf'] as num?)?.toInt() ?? 0,
+        outflowHuf: ((j['outflow'] as Map<String, dynamic>?)?['total_huf'] as num?)?.toInt() ?? 0,
+        netHuf: (j['net_huf'] as num?)?.toInt() ?? 0,
+      );
+}

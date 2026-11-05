@@ -47,6 +47,63 @@ class AppLocalizationsEn extends AppLocalizations {
   String get updateNow => 'Update';
 
   @override
+  String get ownerReports => 'Reports';
+
+  @override
+  String get previousMonth => 'Previous month';
+
+  @override
+  String get nextMonth => 'Next month';
+
+  @override
+  String get reportRevenue => 'Revenue';
+
+  @override
+  String get reportServices => 'Services';
+
+  @override
+  String get reportProducts => 'Products';
+
+  @override
+  String get reportPasses => 'Passes';
+
+  @override
+  String get reportVouchers => 'Vouchers';
+
+  @override
+  String get reportRevenueTotal => 'Total revenue';
+
+  @override
+  String get reportExpenses => 'Expenses';
+
+  @override
+  String get reportPayroll => 'Payroll (estimate)';
+
+  @override
+  String get reportMaterials => 'Materials';
+
+  @override
+  String get reportExpensesTotal => 'Total expenses';
+
+  @override
+  String get reportResult => 'Result';
+
+  @override
+  String get reportReceivables => 'Receivables at month end';
+
+  @override
+  String get cashflowTitle => 'Cash flow forecast';
+
+  @override
+  String get cashflowPartial => 'in progress';
+
+  @override
+  String get cashflowIn => 'Inflow';
+
+  @override
+  String get cashflowOut => 'Outflow';
+
+  @override
   String get ownerInvoices => 'Invoices';
 
   @override

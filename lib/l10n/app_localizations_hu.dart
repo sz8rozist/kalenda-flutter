@@ -47,6 +47,63 @@ class AppLocalizationsHu extends AppLocalizations {
   String get updateNow => 'Frissítés';
 
   @override
+  String get ownerReports => 'Riportok';
+
+  @override
+  String get previousMonth => 'Előző hónap';
+
+  @override
+  String get nextMonth => 'Következő hónap';
+
+  @override
+  String get reportRevenue => 'Bevétel';
+
+  @override
+  String get reportServices => 'Szolgáltatások';
+
+  @override
+  String get reportProducts => 'Termékek';
+
+  @override
+  String get reportPasses => 'Bérletek';
+
+  @override
+  String get reportVouchers => 'Utalványok';
+
+  @override
+  String get reportRevenueTotal => 'Bevétel összesen';
+
+  @override
+  String get reportExpenses => 'Költségek';
+
+  @override
+  String get reportPayroll => 'Bérköltség (becslés)';
+
+  @override
+  String get reportMaterials => 'Anyagköltség';
+
+  @override
+  String get reportExpensesTotal => 'Költség összesen';
+
+  @override
+  String get reportResult => 'Eredmény';
+
+  @override
+  String get reportReceivables => 'Kintlévőség a hónap végén';
+
+  @override
+  String get cashflowTitle => 'Cash flow előrejelzés';
+
+  @override
+  String get cashflowPartial => 'folyamatban';
+
+  @override
+  String get cashflowIn => 'Bevétel';
+
+  @override
+  String get cashflowOut => 'Kiadás';
+
+  @override
   String get ownerInvoices => 'Számlák';
 
   @override

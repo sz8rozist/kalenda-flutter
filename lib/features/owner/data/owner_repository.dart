@@ -60,6 +60,19 @@ class OwnerRepository {
         'send_email': r.sendEmail,
       }));
 
+  /// Havi könyvelői összesítő (a hónap bármelyik napjával).
+  Future<AccountingReport> accountingReport(int businessId, DateTime month) async {
+    final key = '${month.year.toString().padLeft(4, '0')}-${month.month.toString().padLeft(2, '0')}';
+    final response = await _api.call((d) => d.get('/businesses/$businessId/reports/accounting', queryParameters: {'month': key}));
+    return AccountingReport.fromJson(response.data as Map<String, dynamic>);
+  }
+
+  Future<List<CashflowPeriod>> cashflow(int businessId) async {
+    final response = await _api.call((d) => d.get('/businesses/$businessId/reports/cashflow'));
+    final periods = (response.data as Map<String, dynamic>)['periods'] as List? ?? const [];
+    return periods.map((e) => CashflowPeriod.fromJson(e as Map<String, dynamic>)).toList();
+  }
+
   /// A számlák első oldala (legfeljebb 50); `payment`: unpaid | overdue | paid, null = mind.
   Future<List<InvoiceItem>> invoices(int businessId, {String? payment}) async {
     final response = await _api.call((d) => d.get('/businesses/$businessId/invoices', queryParameters: {
