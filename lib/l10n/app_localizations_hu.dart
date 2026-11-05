@@ -47,6 +47,59 @@ class AppLocalizationsHu extends AppLocalizations {
   String get updateNow => 'Frissítés';
 
   @override
+  String get ownerInvoices => 'Számlák';
+
+  @override
+  String get invoiceAll => 'Mind';
+
+  @override
+  String get invoiceUnpaid => 'Nyitott';
+
+  @override
+  String get invoiceOverdue => 'Lejárt';
+
+  @override
+  String get invoicePaid => 'Kifizetve';
+
+  @override
+  String get invoiceCancelled => 'Sztornózva';
+
+  @override
+  String paidOn(String date) {
+    return 'Kifizetve: $date';
+  }
+
+  @override
+  String dueOn(String date) {
+    return 'Esedékes: $date';
+  }
+
+  @override
+  String remindersSent(int count) {
+    return '$count emlékeztető elküldve';
+  }
+
+  @override
+  String get payMethodCash => 'készpénz';
+
+  @override
+  String get payMethodCard => 'kártya';
+
+  @override
+  String get payMethodTransfer => 'átutalás';
+
+  @override
+  String markPaidWith(String method) {
+    return 'Kifizetve – $method';
+  }
+
+  @override
+  String get markUnpaid => 'Kifizetés visszavonása';
+
+  @override
+  String get sendReminder => 'Fizetési emlékeztető küldése';
+
+  @override
   String get scanQr => 'QR-kód beolvasása';
 
   @override

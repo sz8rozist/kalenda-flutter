@@ -60,6 +60,30 @@ class OwnerRepository {
         'send_email': r.sendEmail,
       }));
 
+  /// A számlák első oldala (legfeljebb 50); `payment`: unpaid | overdue | paid, null = mind.
+  Future<List<InvoiceItem>> invoices(int businessId, {String? payment}) async {
+    final response = await _api.call((d) => d.get('/businesses/$businessId/invoices', queryParameters: {
+          'payment': ?payment,
+          'size': 50,
+        }));
+    final content = ((response.data as Map<String, dynamic>)['invoices'] as Map<String, dynamic>)['content'] as List;
+    return content.map((e) => InvoiceItem.fromJson(e as Map<String, dynamic>)).toList();
+  }
+
+  /// Kifizetettnek jelölés; a `method`: cash | card | transfer | other, a dátum a mai nap.
+  Future<void> markInvoicePaid(int businessId, int invoiceId, {required String method, required DateTime date}) =>
+      _api.call((d) => d.post('/businesses/$businessId/invoices/$invoiceId/paid', data: {
+            'payment_method': method,
+            'paid_date': dateParam(date),
+          }));
+
+  Future<void> markInvoiceUnpaid(int businessId, int invoiceId) =>
+      _api.call((d) => d.post('/businesses/$businessId/invoices/$invoiceId/unpaid'));
+
+  /// Fizetési emlékeztető küldése az ügyfélnek.
+  Future<void> remindInvoice(int businessId, int invoiceId) =>
+      _api.call((d) => d.post('/businesses/$businessId/invoices/$invoiceId/remind'));
+
   Future<void> setStatus(int businessId, int appointmentId, String status) =>
       _api.call((d) => d.patch('/businesses/$businessId/appointments/$appointmentId/status', data: {'status': status}));
 }

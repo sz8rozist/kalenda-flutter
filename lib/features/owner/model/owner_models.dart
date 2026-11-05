@@ -181,3 +181,51 @@ class OwnerBookingDetails {
   final String? phone;
   final String? notes;
 }
+
+/// Egy számla a vállalkozói listában (`GET /businesses/{id}/invoices`).
+class InvoiceItem {
+  InvoiceItem({
+    required this.id,
+    required this.number,
+    required this.totalHuf,
+    required this.paymentState,
+    required this.reminderCount,
+    this.customerName,
+    this.issuedAt,
+    this.dueDate,
+    this.paidAt,
+    this.cancelled = false,
+  });
+
+  final int id;
+  final String number;
+  final String? customerName;
+  final int totalHuf;
+  final DateTime? issuedAt;
+  final DateTime? dueDate;
+  final DateTime? paidAt;
+
+  /// `unpaid` (nyitott) | `overdue` (lejárt) | `paid` (kifizetve).
+  final String paymentState;
+  final int reminderCount;
+  final bool cancelled;
+
+  bool get isPaid => paymentState == 'paid';
+
+  factory InvoiceItem.fromJson(Map<String, dynamic> j) {
+    DateTime? date(String key) => j[key] == null ? null : DateTime.tryParse(j[key] as String);
+
+    return InvoiceItem(
+      id: (j['id'] as num).toInt(),
+      number: j['number'] as String? ?? '',
+      customerName: (j['customer'] as Map<String, dynamic>?)?['name'] as String?,
+      totalHuf: (j['total_huf'] as num?)?.toInt() ?? 0,
+      issuedAt: date('issued_at'),
+      dueDate: date('due_date'),
+      paidAt: date('paid_at'),
+      paymentState: j['payment_state'] as String? ?? 'unpaid',
+      reminderCount: (j['reminder_count'] as num?)?.toInt() ?? 0,
+      cancelled: j['cancelled_at'] != null,
+    );
+  }
+}

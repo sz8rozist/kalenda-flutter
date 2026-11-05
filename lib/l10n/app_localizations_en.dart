@@ -47,6 +47,59 @@ class AppLocalizationsEn extends AppLocalizations {
   String get updateNow => 'Update';
 
   @override
+  String get ownerInvoices => 'Invoices';
+
+  @override
+  String get invoiceAll => 'All';
+
+  @override
+  String get invoiceUnpaid => 'Open';
+
+  @override
+  String get invoiceOverdue => 'Overdue';
+
+  @override
+  String get invoicePaid => 'Paid';
+
+  @override
+  String get invoiceCancelled => 'Cancelled';
+
+  @override
+  String paidOn(String date) {
+    return 'Paid: $date';
+  }
+
+  @override
+  String dueOn(String date) {
+    return 'Due: $date';
+  }
+
+  @override
+  String remindersSent(int count) {
+    return '$count reminders sent';
+  }
+
+  @override
+  String get payMethodCash => 'cash';
+
+  @override
+  String get payMethodCard => 'card';
+
+  @override
+  String get payMethodTransfer => 'transfer';
+
+  @override
+  String markPaidWith(String method) {
+    return 'Paid – $method';
+  }
+
+  @override
+  String get markUnpaid => 'Undo payment';
+
+  @override
+  String get sendReminder => 'Send payment reminder';
+
+  @override
   String get scanQr => 'Scan QR code';
 
   @override

@@ -164,6 +164,96 @@ abstract class AppLocalizations {
   /// **'Frissítés'**
   String get updateNow;
 
+  /// No description provided for @ownerInvoices.
+  ///
+  /// In hu, this message translates to:
+  /// **'Számlák'**
+  String get ownerInvoices;
+
+  /// No description provided for @invoiceAll.
+  ///
+  /// In hu, this message translates to:
+  /// **'Mind'**
+  String get invoiceAll;
+
+  /// No description provided for @invoiceUnpaid.
+  ///
+  /// In hu, this message translates to:
+  /// **'Nyitott'**
+  String get invoiceUnpaid;
+
+  /// No description provided for @invoiceOverdue.
+  ///
+  /// In hu, this message translates to:
+  /// **'Lejárt'**
+  String get invoiceOverdue;
+
+  /// No description provided for @invoicePaid.
+  ///
+  /// In hu, this message translates to:
+  /// **'Kifizetve'**
+  String get invoicePaid;
+
+  /// No description provided for @invoiceCancelled.
+  ///
+  /// In hu, this message translates to:
+  /// **'Sztornózva'**
+  String get invoiceCancelled;
+
+  /// No description provided for @paidOn.
+  ///
+  /// In hu, this message translates to:
+  /// **'Kifizetve: {date}'**
+  String paidOn(String date);
+
+  /// No description provided for @dueOn.
+  ///
+  /// In hu, this message translates to:
+  /// **'Esedékes: {date}'**
+  String dueOn(String date);
+
+  /// No description provided for @remindersSent.
+  ///
+  /// In hu, this message translates to:
+  /// **'{count} emlékeztető elküldve'**
+  String remindersSent(int count);
+
+  /// No description provided for @payMethodCash.
+  ///
+  /// In hu, this message translates to:
+  /// **'készpénz'**
+  String get payMethodCash;
+
+  /// No description provided for @payMethodCard.
+  ///
+  /// In hu, this message translates to:
+  /// **'kártya'**
+  String get payMethodCard;
+
+  /// No description provided for @payMethodTransfer.
+  ///
+  /// In hu, this message translates to:
+  /// **'átutalás'**
+  String get payMethodTransfer;
+
+  /// No description provided for @markPaidWith.
+  ///
+  /// In hu, this message translates to:
+  /// **'Kifizetve – {method}'**
+  String markPaidWith(String method);
+
+  /// No description provided for @markUnpaid.
+  ///
+  /// In hu, this message translates to:
+  /// **'Kifizetés visszavonása'**
+  String get markUnpaid;
+
+  /// No description provided for @sendReminder.
+  ///
+  /// In hu, this message translates to:
+  /// **'Fizetési emlékeztető küldése'**
+  String get sendReminder;
+
   /// No description provided for @scanQr.
   ///
   /// In hu, this message translates to:
