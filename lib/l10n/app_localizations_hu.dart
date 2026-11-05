@@ -45,6 +45,9 @@ class AppLocalizationsHu extends AppLocalizations {
   String get myAppointments => 'Foglalásaim';
 
   @override
+  String get newBooking => 'Új foglalás';
+
+  @override
   String get upcoming => 'Közelgő';
 
   @override
@@ -69,4 +72,131 @@ class AppLocalizationsHu extends AppLocalizations {
   String priceHuf(String amount) {
     return '$amount Ft';
   }
+
+  @override
+  String minutes(int count) {
+    return '$count perc';
+  }
+
+  @override
+  String get findBusinessTitle => 'Vállalkozás keresése';
+
+  @override
+  String get findBusinessIntro =>
+      'Írd be a vállalkozás foglalási címét (azonosítóját), vagy másold be a foglalási linket.';
+
+  @override
+  String get businessSlug => 'Azonosító vagy link';
+
+  @override
+  String get open => 'Megnyitás';
+
+  @override
+  String get services => 'Szolgáltatások';
+
+  @override
+  String get book => 'Foglalás';
+
+  @override
+  String get bookingTitle => 'Időpontfoglalás';
+
+  @override
+  String get staffLabel => 'Munkatárs';
+
+  @override
+  String get addons => 'Kiegészítők';
+
+  @override
+  String get dateLabel => 'Dátum';
+
+  @override
+  String get pickDate => 'Válassz napot';
+
+  @override
+  String get timeLabel => 'Időpont';
+
+  @override
+  String get noSlots => 'Ezen a napon nincs szabad időpont.';
+
+  @override
+  String get yourDetails => 'Adataid';
+
+  @override
+  String get name => 'Név';
+
+  @override
+  String get phone => 'Telefonszám';
+
+  @override
+  String get notes => 'Megjegyzés';
+
+  @override
+  String get passCode => 'Bérletkód (ha van)';
+
+  @override
+  String get marketingConsent => 'Hírlevelet kérek';
+
+  @override
+  String get confirmBooking => 'Foglalás megerősítése';
+
+  @override
+  String get payDeposit => 'Fizetés';
+
+  @override
+  String get bookingDone => 'Sikeres foglalás';
+
+  @override
+  String get bookingDoneText => 'A visszaigazolást elküldtük e-mailben.';
+
+  @override
+  String get paymentRequired =>
+      'A foglalás véglegesítéséhez fizetés szükséges.';
+
+  @override
+  String get payNow => 'Fizetés most';
+
+  @override
+  String get manageBooking => 'Foglalás kezelése';
+
+  @override
+  String get reschedule => 'Áthelyezés';
+
+  @override
+  String get cancelBooking => 'Lemondás';
+
+  @override
+  String get cancelConfirmTitle => 'Biztosan lemondod?';
+
+  @override
+  String get cancelConfirmText => 'A lemondás nem vonható vissza.';
+
+  @override
+  String get yes => 'Igen';
+
+  @override
+  String get no => 'Nem';
+
+  @override
+  String get saved => 'Mentve.';
+
+  @override
+  String get cancelled => 'A foglalást lemondtad.';
+
+  @override
+  String get status => 'Állapot';
+
+  @override
+  String get total => 'Összesen';
+
+  @override
+  String get call => 'Hívás';
+
+  @override
+  String get backToBookings => 'Vissza a foglalásokhoz';
+
+  @override
+  String get required => 'A mező megadása kötelező.';
+
+  @override
+  String get invalidEmail => 'Érvénytelen e-mail-cím.';
 }

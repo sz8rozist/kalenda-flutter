@@ -45,6 +45,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get myAppointments => 'My bookings';
 
   @override
+  String get newBooking => 'New booking';
+
+  @override
   String get upcoming => 'Upcoming';
 
   @override
@@ -69,4 +72,130 @@ class AppLocalizationsEn extends AppLocalizations {
   String priceHuf(String amount) {
     return '$amount HUF';
   }
+
+  @override
+  String minutes(int count) {
+    return '$count min';
+  }
+
+  @override
+  String get findBusinessTitle => 'Find a business';
+
+  @override
+  String get findBusinessIntro =>
+      'Enter the business booking address (slug) or paste its booking link.';
+
+  @override
+  String get businessSlug => 'Slug or link';
+
+  @override
+  String get open => 'Open';
+
+  @override
+  String get services => 'Services';
+
+  @override
+  String get book => 'Book';
+
+  @override
+  String get bookingTitle => 'Book an appointment';
+
+  @override
+  String get staffLabel => 'Staff';
+
+  @override
+  String get addons => 'Extras';
+
+  @override
+  String get dateLabel => 'Date';
+
+  @override
+  String get pickDate => 'Pick a day';
+
+  @override
+  String get timeLabel => 'Time';
+
+  @override
+  String get noSlots => 'No free times on this day.';
+
+  @override
+  String get yourDetails => 'Your details';
+
+  @override
+  String get name => 'Name';
+
+  @override
+  String get phone => 'Phone';
+
+  @override
+  String get notes => 'Notes';
+
+  @override
+  String get passCode => 'Pass code (if any)';
+
+  @override
+  String get marketingConsent => 'I would like the newsletter';
+
+  @override
+  String get confirmBooking => 'Confirm booking';
+
+  @override
+  String get payDeposit => 'Payment';
+
+  @override
+  String get bookingDone => 'Booking confirmed';
+
+  @override
+  String get bookingDoneText => 'We have emailed you the confirmation.';
+
+  @override
+  String get paymentRequired => 'Payment is required to confirm the booking.';
+
+  @override
+  String get payNow => 'Pay now';
+
+  @override
+  String get manageBooking => 'Manage booking';
+
+  @override
+  String get reschedule => 'Reschedule';
+
+  @override
+  String get cancelBooking => 'Cancel booking';
+
+  @override
+  String get cancelConfirmTitle => 'Cancel this booking?';
+
+  @override
+  String get cancelConfirmText => 'This cannot be undone.';
+
+  @override
+  String get yes => 'Yes';
+
+  @override
+  String get no => 'No';
+
+  @override
+  String get saved => 'Saved.';
+
+  @override
+  String get cancelled => 'The booking was cancelled.';
+
+  @override
+  String get status => 'Status';
+
+  @override
+  String get total => 'Total';
+
+  @override
+  String get call => 'Call';
+
+  @override
+  String get backToBookings => 'Back to bookings';
+
+  @override
+  String get required => 'This field is required.';
+
+  @override
+  String get invalidEmail => 'Invalid email address.';
 }

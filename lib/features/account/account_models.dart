@@ -22,7 +22,18 @@ class AccountAppointment {
     required this.status,
     this.staff,
     this.priceHuf,
+    this.manageUrl,
   });
+
+  final String? manageUrl;
+
+  /// A foglalás-kezelő token a `manage_url` utolsó szakasza (`…/booking/manage/{token}`); null, ha nem kezelhető.
+  String? get manageToken {
+    final url = manageUrl;
+    if (url == null || url.isEmpty) return null;
+    final segments = Uri.parse(url).pathSegments.where((s) => s.isNotEmpty);
+    return segments.isEmpty ? null : segments.last;
+  }
 
   final int id;
   final String business;
@@ -41,6 +52,7 @@ class AccountAppointment {
         startsAt: DateTime.parse(json['starts_at'] as String),
         status: json['status'] as String? ?? '',
         priceHuf: (json['price_huf'] as num?)?.toInt(),
+        manageUrl: json['manage_url'] as String?,
       );
 }
 

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 
 import '../../core/api/api_exception.dart';
@@ -83,6 +84,7 @@ class _Section extends StatelessWidget {
               title: Text('${item.business} – ${item.service}'),
               subtitle: Text([dateFormat.format(item.startsAt), if (item.staff != null) item.staff!].join(' · ')),
               trailing: Text(item.status),
+              onTap: item.manageToken == null ? null : () => context.push('/manage/${item.manageToken}'),
             ),
           ),
       ],

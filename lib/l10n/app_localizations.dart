@@ -164,6 +164,12 @@ abstract class AppLocalizations {
   /// **'Foglalásaim'**
   String get myAppointments;
 
+  /// No description provided for @newBooking.
+  ///
+  /// In hu, this message translates to:
+  /// **'Új foglalás'**
+  String get newBooking;
+
   /// No description provided for @upcoming.
   ///
   /// In hu, this message translates to:
@@ -211,6 +217,252 @@ abstract class AppLocalizations {
   /// In hu, this message translates to:
   /// **'{amount} Ft'**
   String priceHuf(String amount);
+
+  /// No description provided for @minutes.
+  ///
+  /// In hu, this message translates to:
+  /// **'{count} perc'**
+  String minutes(int count);
+
+  /// No description provided for @findBusinessTitle.
+  ///
+  /// In hu, this message translates to:
+  /// **'Vállalkozás keresése'**
+  String get findBusinessTitle;
+
+  /// No description provided for @findBusinessIntro.
+  ///
+  /// In hu, this message translates to:
+  /// **'Írd be a vállalkozás foglalási címét (azonosítóját), vagy másold be a foglalási linket.'**
+  String get findBusinessIntro;
+
+  /// No description provided for @businessSlug.
+  ///
+  /// In hu, this message translates to:
+  /// **'Azonosító vagy link'**
+  String get businessSlug;
+
+  /// No description provided for @open.
+  ///
+  /// In hu, this message translates to:
+  /// **'Megnyitás'**
+  String get open;
+
+  /// No description provided for @services.
+  ///
+  /// In hu, this message translates to:
+  /// **'Szolgáltatások'**
+  String get services;
+
+  /// No description provided for @book.
+  ///
+  /// In hu, this message translates to:
+  /// **'Foglalás'**
+  String get book;
+
+  /// No description provided for @bookingTitle.
+  ///
+  /// In hu, this message translates to:
+  /// **'Időpontfoglalás'**
+  String get bookingTitle;
+
+  /// No description provided for @staffLabel.
+  ///
+  /// In hu, this message translates to:
+  /// **'Munkatárs'**
+  String get staffLabel;
+
+  /// No description provided for @addons.
+  ///
+  /// In hu, this message translates to:
+  /// **'Kiegészítők'**
+  String get addons;
+
+  /// No description provided for @dateLabel.
+  ///
+  /// In hu, this message translates to:
+  /// **'Dátum'**
+  String get dateLabel;
+
+  /// No description provided for @pickDate.
+  ///
+  /// In hu, this message translates to:
+  /// **'Válassz napot'**
+  String get pickDate;
+
+  /// No description provided for @timeLabel.
+  ///
+  /// In hu, this message translates to:
+  /// **'Időpont'**
+  String get timeLabel;
+
+  /// No description provided for @noSlots.
+  ///
+  /// In hu, this message translates to:
+  /// **'Ezen a napon nincs szabad időpont.'**
+  String get noSlots;
+
+  /// No description provided for @yourDetails.
+  ///
+  /// In hu, this message translates to:
+  /// **'Adataid'**
+  String get yourDetails;
+
+  /// No description provided for @name.
+  ///
+  /// In hu, this message translates to:
+  /// **'Név'**
+  String get name;
+
+  /// No description provided for @phone.
+  ///
+  /// In hu, this message translates to:
+  /// **'Telefonszám'**
+  String get phone;
+
+  /// No description provided for @notes.
+  ///
+  /// In hu, this message translates to:
+  /// **'Megjegyzés'**
+  String get notes;
+
+  /// No description provided for @passCode.
+  ///
+  /// In hu, this message translates to:
+  /// **'Bérletkód (ha van)'**
+  String get passCode;
+
+  /// No description provided for @marketingConsent.
+  ///
+  /// In hu, this message translates to:
+  /// **'Hírlevelet kérek'**
+  String get marketingConsent;
+
+  /// No description provided for @confirmBooking.
+  ///
+  /// In hu, this message translates to:
+  /// **'Foglalás megerősítése'**
+  String get confirmBooking;
+
+  /// No description provided for @payDeposit.
+  ///
+  /// In hu, this message translates to:
+  /// **'Fizetés'**
+  String get payDeposit;
+
+  /// No description provided for @bookingDone.
+  ///
+  /// In hu, this message translates to:
+  /// **'Sikeres foglalás'**
+  String get bookingDone;
+
+  /// No description provided for @bookingDoneText.
+  ///
+  /// In hu, this message translates to:
+  /// **'A visszaigazolást elküldtük e-mailben.'**
+  String get bookingDoneText;
+
+  /// No description provided for @paymentRequired.
+  ///
+  /// In hu, this message translates to:
+  /// **'A foglalás véglegesítéséhez fizetés szükséges.'**
+  String get paymentRequired;
+
+  /// No description provided for @payNow.
+  ///
+  /// In hu, this message translates to:
+  /// **'Fizetés most'**
+  String get payNow;
+
+  /// No description provided for @manageBooking.
+  ///
+  /// In hu, this message translates to:
+  /// **'Foglalás kezelése'**
+  String get manageBooking;
+
+  /// No description provided for @reschedule.
+  ///
+  /// In hu, this message translates to:
+  /// **'Áthelyezés'**
+  String get reschedule;
+
+  /// No description provided for @cancelBooking.
+  ///
+  /// In hu, this message translates to:
+  /// **'Lemondás'**
+  String get cancelBooking;
+
+  /// No description provided for @cancelConfirmTitle.
+  ///
+  /// In hu, this message translates to:
+  /// **'Biztosan lemondod?'**
+  String get cancelConfirmTitle;
+
+  /// No description provided for @cancelConfirmText.
+  ///
+  /// In hu, this message translates to:
+  /// **'A lemondás nem vonható vissza.'**
+  String get cancelConfirmText;
+
+  /// No description provided for @yes.
+  ///
+  /// In hu, this message translates to:
+  /// **'Igen'**
+  String get yes;
+
+  /// No description provided for @no.
+  ///
+  /// In hu, this message translates to:
+  /// **'Nem'**
+  String get no;
+
+  /// No description provided for @saved.
+  ///
+  /// In hu, this message translates to:
+  /// **'Mentve.'**
+  String get saved;
+
+  /// No description provided for @cancelled.
+  ///
+  /// In hu, this message translates to:
+  /// **'A foglalást lemondtad.'**
+  String get cancelled;
+
+  /// No description provided for @status.
+  ///
+  /// In hu, this message translates to:
+  /// **'Állapot'**
+  String get status;
+
+  /// No description provided for @total.
+  ///
+  /// In hu, this message translates to:
+  /// **'Összesen'**
+  String get total;
+
+  /// No description provided for @call.
+  ///
+  /// In hu, this message translates to:
+  /// **'Hívás'**
+  String get call;
+
+  /// No description provided for @backToBookings.
+  ///
+  /// In hu, this message translates to:
+  /// **'Vissza a foglalásokhoz'**
+  String get backToBookings;
+
+  /// No description provided for @required.
+  ///
+  /// In hu, this message translates to:
+  /// **'A mező megadása kötelező.'**
+  String get required;
+
+  /// No description provided for @invalidEmail.
+  ///
+  /// In hu, this message translates to:
+  /// **'Érvénytelen e-mail-cím.'**
+  String get invalidEmail;
 }
 
 class _AppLocalizationsDelegate

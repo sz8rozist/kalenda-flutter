@@ -2,31 +2,31 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-import '../features/account/appointments_page.dart';
-import '../features/account/login_page.dart';
-import 'auth/auth_controller.dart';
+import '../features/booking/booking_page.dart';
+import '../features/booking/business_page.dart';
+import '../features/booking/manage_booking_page.dart';
+import '../shared/home_page.dart';
 
-/// Router: belépés nélkül a belépő oldal, belépve a foglalások. Az auth-állapot változására újraértékel.
+/// Útvonalak. A foglalás nyilvános (belépés nélkül is megy), csak a „Foglalásaim" fül kér belépést –
+/// azt a [HomePage] kezeli.
 final routerProvider = Provider<GoRouter>((ref) {
-  final refresh = ValueNotifier<int>(0);
-  ref.listen(authControllerProvider, (_, _) => refresh.value++);
-  ref.onDispose(refresh.dispose);
-
   return GoRouter(
     initialLocation: '/',
-    refreshListenable: refresh,
-    redirect: (context, state) {
-      final auth = ref.read(authControllerProvider);
-      if (auth.isLoading) return null;
-      final signedIn = auth.value ?? false;
-      final atLogin = state.matchedLocation == '/login';
-      if (!signedIn && !atLogin) return '/login';
-      if (signedIn && atLogin) return '/';
-      return null;
-    },
     routes: [
-      GoRoute(path: '/', builder: (_, _) => const AppointmentsPage()),
-      GoRoute(path: '/login', builder: (_, _) => const LoginPage()),
+      GoRoute(path: '/', builder: (_, _) => const HomePage()),
+      GoRoute(path: '/b/:slug', builder: (_, state) => BusinessPage(slug: state.pathParameters['slug']!)),
+      GoRoute(
+        path: '/b/:slug/book/:serviceId',
+        builder: (_, state) => BookingPage(
+          slug: state.pathParameters['slug']!,
+          serviceId: int.parse(state.pathParameters['serviceId']!),
+        ),
+      ),
+      GoRoute(path: '/manage/:token', builder: (_, state) => ManageBookingPage(token: state.pathParameters['token']!)),
+      GoRoute(
+        path: '/booked/:token',
+        builder: (_, state) => ManageBookingPage(token: state.pathParameters['token']!, justBooked: true),
+      ),
     ],
     errorBuilder: (_, _) => const Scaffold(body: Center(child: Icon(Icons.error_outline))),
   );
