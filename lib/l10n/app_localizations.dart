@@ -757,6 +757,90 @@ abstract class AppLocalizations {
   /// In hu, this message translates to:
   /// **'Szabadság'**
   String get leaveDay;
+
+  /// No description provided for @ownerLoginLink.
+  ///
+  /// In hu, this message translates to:
+  /// **'Vállalkozóként lépek be'**
+  String get ownerLoginLink;
+
+  /// No description provided for @ownerOverview.
+  ///
+  /// In hu, this message translates to:
+  /// **'Áttekintés'**
+  String get ownerOverview;
+
+  /// No description provided for @ownerCustomers.
+  ///
+  /// In hu, this message translates to:
+  /// **'Ügyfelek'**
+  String get ownerCustomers;
+
+  /// No description provided for @ownerNoBusiness.
+  ///
+  /// In hu, this message translates to:
+  /// **'Ehhez a fiókhoz nem tartozik vállalkozás.'**
+  String get ownerNoBusiness;
+
+  /// No description provided for @weekRevenueTitle.
+  ///
+  /// In hu, this message translates to:
+  /// **'Heti bevétel'**
+  String get weekRevenueTitle;
+
+  /// No description provided for @weekRevenueSoFar.
+  ///
+  /// In hu, this message translates to:
+  /// **'Eddig: {amount}'**
+  String weekRevenueSoFar(String amount);
+
+  /// No description provided for @weekRevenueChange.
+  ///
+  /// In hu, this message translates to:
+  /// **'{percent}% az előző héthez képest'**
+  String weekRevenueChange(String percent);
+
+  /// No description provided for @receivablesTitle.
+  ///
+  /// In hu, this message translates to:
+  /// **'Kintlévőségek'**
+  String get receivablesTitle;
+
+  /// No description provided for @receivablesOutstanding.
+  ///
+  /// In hu, this message translates to:
+  /// **'Nyitott: {amount} ({count} db)'**
+  String receivablesOutstanding(String amount, int count);
+
+  /// No description provided for @receivablesOverdue.
+  ///
+  /// In hu, this message translates to:
+  /// **'Lejárt: {amount} ({count} db)'**
+  String receivablesOverdue(String amount, int count);
+
+  /// No description provided for @lowStock.
+  ///
+  /// In hu, this message translates to:
+  /// **'{count} termék fogy'**
+  String lowStock(int count);
+
+  /// No description provided for @todaysBookings.
+  ///
+  /// In hu, this message translates to:
+  /// **'Mai foglalások'**
+  String get todaysBookings;
+
+  /// No description provided for @searchCustomers.
+  ///
+  /// In hu, this message translates to:
+  /// **'Keresés név, e-mail vagy telefon szerint'**
+  String get searchCustomers;
+
+  /// No description provided for @customerStats.
+  ///
+  /// In hu, this message translates to:
+  /// **'{total} foglalás · {spent} · {noShow} meg nem jelenés'**
+  String customerStats(int total, String spent, int noShow);
 }
 
 class _AppLocalizationsDelegate

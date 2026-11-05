@@ -31,3 +31,16 @@ Az app Firebase-konfiguráció nélkül is épül és fut (a push ilyenkor ki va
 3. iOS-hez: APNs-hitelesítési kulcs feltöltése a Firebase-projektben.
 4. A backenden `FCM_CREDENTIALS_FILE` a Firebase service account JSON útvonalával (ld. a backend `env.docker.example`).
 Az értesítés-engedélyt az app az első foglalás után kéri; belépés után az eszköz-token a `/customer/devices` végponton regisztrálódik.
+
+## Architektúra: Riverpod + MVVM
+Állapotkezelés: **Riverpod**. Tervezési minta: **MVVM**, funkciónként (`lib/features/<funkció>/`):
+
+| Réteg | Mappa | Mi van benne |
+| --- | --- | --- |
+| **Model** | `model/`, `data/` | adatmodellek (JSON ↔ osztály) és repository-k (a HTTP-hívás csak itt van, `ApiClient`-en át) |
+| **ViewModel** | `viewmodel/` | Riverpod `Notifier` / `AsyncNotifier`: az adat betöltése (`AsyncNotifier`), a műveletek és a képernyő állapota (`ActionNotifier` → `ActionState`: busy + visszajelzés), a form választásai és a küldés |
+| **View** | `view/` | widgetek: csak megjelenítés és eseménykiváltás; a szövegmezők controllerei, párbeszédek és a navigáció itt vannak, üzleti állapot és repository-hívás nincs |
+
+Szabályok: a View nem hív repository-t / Dio-t, és üzleti állapotot nem tart `setState`-tel; a ViewModel nem ismeri a `BuildContext`-et (a visszajelzést `Flash`-ként adja, a szöveget a View állítja össze – `shared/flash.dart`);
+közös segédek: `core/viewmodel/` (`ActionNotifier`, fül-/hét-/dátumválasztó ViewModel-ek), `shared/` (`AsyncView`, `WeekHeader`, formázók).
+Új képernyő = `view` + `viewmodel` (+ `model`/`data`, ha új adat kell).

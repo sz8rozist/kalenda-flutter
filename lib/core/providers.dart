@@ -1,10 +1,12 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../features/staff/staff_auth.dart';
+import '../features/auth/viewmodel/customer_session_viewmodel.dart';
+import '../features/staff/viewmodel/staff_session_viewmodel.dart';
 import 'api/api_client.dart';
-import 'auth/auth_controller.dart';
 import 'auth/token_store.dart';
+import 'push/device_repository.dart';
 
+/// Közös (Model-réteg) providerek: a token-tár és az API-kliens. A repository-k ezekre épülnek.
 final tokenStoreProvider = Provider<TokenStore>((ref) => TokenStore());
 
 final apiClientProvider = Provider<ApiClient>((ref) {
@@ -15,10 +17,12 @@ final apiClientProvider = Provider<ApiClient>((ref) {
     // Lejárt vagy visszavont token: a megfelelő fióktípus kilép, a felület a belépéshez irányít.
     onUnauthorized: (path) {
       if (path.startsWith('/customer/')) {
-        ref.read(authControllerProvider.notifier).sessionExpired();
+        ref.read(customerSessionProvider.notifier).sessionExpired();
       } else {
-        ref.read(staffAuthProvider.notifier).sessionExpired();
+        ref.read(staffSessionProvider.notifier).sessionExpired();
       }
     },
   );
 });
+
+final deviceRepositoryProvider = Provider<DeviceRepository>((ref) => DeviceRepository(ref.watch(apiClientProvider)));

@@ -45,12 +45,3 @@ String statusLabel(BuildContext context, String status) {
 String formatTime(BuildContext context, DateTime value) =>
     DateFormat.Hm(Localizations.localeOf(context).toString()).format(value);
 
-/// A foglalási link végéről az azonosító (slug): `https://…/foglalas/szalon` → `szalon`.
-String slugFromInput(String input) {
-  final text = input.trim();
-  final uri = Uri.tryParse(text);
-  if (uri != null && uri.hasScheme && uri.pathSegments.isNotEmpty) {
-    return uri.pathSegments.where((s) => s.isNotEmpty).last;
-  }
-  return text.replaceAll('/', '');
-}

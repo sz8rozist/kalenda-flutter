@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-import '../features/booking/booking_page.dart';
-import '../features/staff/staff_home_page.dart';
+import '../features/booking/view/booking_page.dart';
+import '../features/booking/view/business_page.dart';
+import '../features/booking/view/manage_booking_page.dart';
+import '../features/home/view/home_page.dart';
+import '../features/staff/view/staff_home_page.dart';
 import 'push/push_service.dart';
-import '../features/booking/business_page.dart';
-import '../features/booking/manage_booking_page.dart';
-import '../shared/home_page.dart';
 
 /// Útvonalak. A foglalás nyilvános (belépés nélkül is megy), csak a „Foglalásaim" fül kér belépést –
 /// azt a [HomePage] kezeli.

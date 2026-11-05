@@ -363,4 +363,58 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get leaveDay => 'Szabadság';
+
+  @override
+  String get ownerLoginLink => 'Vállalkozóként lépek be';
+
+  @override
+  String get ownerOverview => 'Áttekintés';
+
+  @override
+  String get ownerCustomers => 'Ügyfelek';
+
+  @override
+  String get ownerNoBusiness => 'Ehhez a fiókhoz nem tartozik vállalkozás.';
+
+  @override
+  String get weekRevenueTitle => 'Heti bevétel';
+
+  @override
+  String weekRevenueSoFar(String amount) {
+    return 'Eddig: $amount';
+  }
+
+  @override
+  String weekRevenueChange(String percent) {
+    return '$percent% az előző héthez képest';
+  }
+
+  @override
+  String get receivablesTitle => 'Kintlévőségek';
+
+  @override
+  String receivablesOutstanding(String amount, int count) {
+    return 'Nyitott: $amount ($count db)';
+  }
+
+  @override
+  String receivablesOverdue(String amount, int count) {
+    return 'Lejárt: $amount ($count db)';
+  }
+
+  @override
+  String lowStock(int count) {
+    return '$count termék fogy';
+  }
+
+  @override
+  String get todaysBookings => 'Mai foglalások';
+
+  @override
+  String get searchCustomers => 'Keresés név, e-mail vagy telefon szerint';
+
+  @override
+  String customerStats(int total, String spent, int noShow) {
+    return '$total foglalás · $spent · $noShow meg nem jelenés';
+  }
 }

@@ -362,4 +362,58 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get leaveDay => 'Time off';
+
+  @override
+  String get ownerLoginLink => 'I am signing in as a business owner';
+
+  @override
+  String get ownerOverview => 'Overview';
+
+  @override
+  String get ownerCustomers => 'Customers';
+
+  @override
+  String get ownerNoBusiness => 'This account has no business.';
+
+  @override
+  String get weekRevenueTitle => 'Revenue this week';
+
+  @override
+  String weekRevenueSoFar(String amount) {
+    return 'So far: $amount';
+  }
+
+  @override
+  String weekRevenueChange(String percent) {
+    return '$percent% vs last week';
+  }
+
+  @override
+  String get receivablesTitle => 'Receivables';
+
+  @override
+  String receivablesOutstanding(String amount, int count) {
+    return 'Outstanding: $amount ($count)';
+  }
+
+  @override
+  String receivablesOverdue(String amount, int count) {
+    return 'Overdue: $amount ($count)';
+  }
+
+  @override
+  String lowStock(int count) {
+    return '$count products running low';
+  }
+
+  @override
+  String get todaysBookings => 'Today\'s bookings';
+
+  @override
+  String get searchCustomers => 'Search by name, email or phone';
+
+  @override
+  String customerStats(int total, String spent, int noShow) {
+    return '$total bookings · $spent · $noShow no-shows';
+  }
 }

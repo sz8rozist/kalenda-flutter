@@ -7,12 +7,12 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-import '../auth/auth_controller.dart';
-import '../config.dart';
+import '../../features/auth/viewmodel/customer_session_viewmodel.dart';
 import '../providers.dart';
 
-/// Push értesítések (FCM). Firebase-konfiguráció nélkül (nincs google-services.json / GoogleService-Info.plist)
-/// az egész szolgáltatás csendben kikapcsolt marad – az app így Firebase nélkül is fut és épül.
+/// Push értesítések (FCM) – szolgáltatás a ViewModel-ek alatt. Firebase-konfiguráció nélkül (nincs
+/// google-services.json / GoogleService-Info.plist) az egész csendben kikapcsolt marad – az app így Firebase nélkül
+/// is fut és épül.
 ///
 /// Az engedélyt NEM indításkor kérjük, hanem az első foglalás után ([enableAfterBooking]); belépett ügyfélnél
 /// a már megadott engedéllyel a token belépéskor regisztrálódik ([registerIfAllowed]).
@@ -25,6 +25,8 @@ class PushService {
   int? _deviceId;
   StreamSubscription<String>? _refreshSubscription;
   StreamSubscription<RemoteMessage>? _openedSubscription;
+
+  int? get deviceId => _deviceId;
 
   /// A Firebase indítása; false, ha nincs konfigurálva.
   Future<bool> _ensureInitialized() async {
@@ -73,7 +75,7 @@ class PushService {
 
   Future<void> _register() async {
     // Az eszköz-regisztráció ügyfél-tokent kér: belépés előtt csak az engedélyt kértük, a token belépéskor megy fel.
-    if (!(_ref.read(authControllerProvider).value ?? false)) return;
+    if (!(_ref.read(customerSessionProvider).value ?? false)) return;
 
     // ignore: deprecated_member_use
     final token = await FirebaseMessaging.instance.getToken();
@@ -86,26 +88,21 @@ class PushService {
 
   Future<void> _send(String token) async {
     try {
-      final api = _ref.read(apiClientProvider);
-      final response = await api.call((d) => d.post('/customer/devices', data: {
-            'push_token': token,
-            'platform': Platform.isIOS ? 'ios' : 'android',
-            'app_version': AppConfig.appVersion,
-          }));
-      _deviceId = (response.data['id'] as num?)?.toInt();
+      _deviceId = await _ref.read(deviceRepositoryProvider).register(
+            pushToken: token,
+            platform: Platform.isIOS ? 'ios' : 'android',
+          );
     } catch (e) {
       debugPrint('Az eszköz regisztrálása sikertelen: $e');
     }
   }
 
-  /// Kijelentkezés előtt: a szerver törli az eszközt a logouttal, itt csak a helyi állapotot nullázzuk.
+  /// Kijelentkezéskor: a szerver törli az eszközt a logouttal, itt csak a helyi állapotot nullázzuk.
   void reset() {
     _deviceId = null;
     _refreshSubscription?.cancel();
     _refreshSubscription = null;
   }
-
-  int? get deviceId => _deviceId;
 }
 
 final pushServiceProvider = Provider<PushService>(PushService.new);
