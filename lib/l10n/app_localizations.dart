@@ -164,6 +164,24 @@ abstract class AppLocalizations {
   /// **'Frissítés'**
   String get updateNow;
 
+  /// No description provided for @orSignInWith.
+  ///
+  /// In hu, this message translates to:
+  /// **'vagy'**
+  String get orSignInWith;
+
+  /// No description provided for @continueWithApple.
+  ///
+  /// In hu, this message translates to:
+  /// **'Folytatás Apple-fiókkal'**
+  String get continueWithApple;
+
+  /// No description provided for @continueWithGoogle.
+  ///
+  /// In hu, this message translates to:
+  /// **'Folytatás Google-fiókkal'**
+  String get continueWithGoogle;
+
   /// No description provided for @settingsTitle.
   ///
   /// In hu, this message translates to:

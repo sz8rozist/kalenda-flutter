@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../core/auth/social_sign_in_gateway.dart';
 import '../../../l10n/app_localizations.dart';
+import '../../app_gate/model/app_config.dart';
+import '../../app_gate/viewmodel/app_gate_viewmodel.dart';
 import '../../../shared/format.dart';
 import '../viewmodel/login_viewmodel.dart';
 
@@ -30,6 +33,9 @@ class _LoginPageState extends ConsumerState<LoginPage> {
     final l10n = AppLocalizations.of(context);
     final state = ref.watch(loginViewModelProvider);
     final viewModel = ref.read(loginViewModelProvider.notifier);
+    // A szerver jelzi, melyik közösségi belépés van beállítva; az Apple csak Apple-eszközön érhető el.
+    final config = ref.watch(remoteConfigProvider).value ?? const RemoteAppConfig();
+    final gateway = ref.read(socialSignInGatewayProvider);
 
     return Scaffold(
       appBar: AppBar(title: Text(l10n.loginTitle)),
@@ -68,6 +74,29 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                 onPressed: state.busy ? null : () => viewModel.signIn(_code.text),
                 child: Text(l10n.signIn),
               ),
+            ],
+            if (config.googleLogin || (config.appleLogin && gateway.appleSupported)) ...[
+              const SizedBox(height: 24),
+              Row(children: [
+                const Expanded(child: Divider()),
+                Padding(padding: const EdgeInsets.symmetric(horizontal: 12), child: Text(l10n.orSignInWith)),
+                const Expanded(child: Divider()),
+              ]),
+              const SizedBox(height: 12),
+              if (config.appleLogin && gateway.appleSupported)
+                OutlinedButton.icon(
+                  icon: const Icon(Icons.apple),
+                  label: Text(l10n.continueWithApple),
+                  onPressed: state.busy ? null : viewModel.signInWithApple,
+                ),
+              if (config.googleLogin) ...[
+                const SizedBox(height: 8),
+                OutlinedButton.icon(
+                  icon: const Icon(Icons.g_mobiledata, size: 28),
+                  label: Text(l10n.continueWithGoogle),
+                  onPressed: state.busy ? null : viewModel.signInWithGoogle,
+                ),
+              ],
             ],
             if (state.error != null) ...[
               const SizedBox(height: 16),

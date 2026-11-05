@@ -47,6 +47,15 @@ class AppLocalizationsHu extends AppLocalizations {
   String get updateNow => 'Frissítés';
 
   @override
+  String get orSignInWith => 'vagy';
+
+  @override
+  String get continueWithApple => 'Folytatás Apple-fiókkal';
+
+  @override
+  String get continueWithGoogle => 'Folytatás Google-fiókkal';
+
+  @override
   String get settingsTitle => 'Beállítások';
 
   @override

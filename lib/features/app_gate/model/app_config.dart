@@ -1,6 +1,10 @@
 /// A szerver indításkori beállításai az apphoz (`GET /app-config`).
 class RemoteAppConfig {
-  const RemoteAppConfig({this.minVersion, this.androidStoreUrl, this.iosStoreUrl});
+  const RemoteAppConfig({this.minVersion, this.androidStoreUrl, this.iosStoreUrl, this.googleLogin = false, this.appleLogin = false});
+
+  /// A közösségi belépés elérhető-e (a szerveren be van állítva a kliensazonosító).
+  final bool googleLogin;
+  final bool appleLogin;
 
   /// Az ennél régebbi app frissítésre kényszerül; null = nincs kényszer.
   final String? minVersion;
@@ -11,6 +15,8 @@ class RemoteAppConfig {
         minVersion: j['min_version'] as String?,
         androidStoreUrl: j['android_store_url'] as String?,
         iosStoreUrl: j['ios_store_url'] as String?,
+        googleLogin: j['google_login'] as bool? ?? false,
+        appleLogin: j['apple_login'] as bool? ?? false,
       );
 }
 

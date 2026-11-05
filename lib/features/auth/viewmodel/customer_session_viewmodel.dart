@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../core/auth/social_sign_in_gateway.dart';
 import '../../../core/auth/token_store.dart';
 import '../../../core/providers.dart';
 import '../../../core/push/push_service.dart';
@@ -20,8 +21,18 @@ class CustomerSessionViewModel extends AsyncNotifier<bool> {
   }
 
   /// A levélben kapott kóddal belép; a token a biztonságos tárba kerül.
-  Future<void> signIn(String code) async {
-    final token = await ref.read(customerAuthRepositoryProvider).login(code);
+  Future<void> signIn(String code) async => _adopt(await ref.read(customerAuthRepositoryProvider).login(code));
+
+  /// Google-fiókkal belép (a Google id-tokenjét a szerver ellenőrzi).
+  Future<void> signInWithGoogle(SocialCredential credential) async =>
+      _adopt(await ref.read(customerAuthRepositoryProvider).loginWithGoogle(credential.idToken));
+
+  /// Apple-fiókkal belép (az Apple id-tokenjét a szerver ellenőrzi).
+  Future<void> signInWithApple(SocialCredential credential) async =>
+      _adopt(await ref.read(customerAuthRepositoryProvider).loginWithApple(credential.idToken, name: credential.name));
+
+  /// A kapott ügyfél-token elmentése és a munkamenet átállítása.
+  Future<void> _adopt(String token) async {
     await ref.read(tokenStoreProvider).write(token, TokenKind.customer);
     state = const AsyncData(true);
     unawaited(ref.read(pushServiceProvider).registerIfAllowed());

@@ -60,3 +60,13 @@ Bekapcsolva belépett fiók mellett az app indításkor és a háttérből való
 ennek hiányában az eszköz képernyőzára oldja fel. Ha az azonosítás nem működik, a zárképernyőről kijelentkezéssel lehet továbblépni.
 Bekapcsolás előtt egy próba-azonosítás fut. Android: `USE_BIOMETRIC` engedély, a `MainActivity` `FlutterFragmentActivity`; iOS: `NSFaceIDUsageDescription` az `Info.plist`-ben.
 Architektúra: `features/app_lock` (`AppLockViewModel`, `AppLockGate` az egész app fölött a `MaterialApp.builder`-ben).
+
+## Közösségi belépés (Google, Apple) – ügyfélfiók
+A belépő képernyőn a „Folytatás Google-/Apple-fiókkal" gombok csak akkor látszanak, ha a szerver jelzi (`GET /app-config` → `google_login` / `apple_login`).
+Az app a szolgáltató id-tokenjét küldi a `/customer/login/google|apple` végpontra; a szerver ellenőrzi, és ugyanazt az ügyfél-tokent adja, mint a belépő link.
+A munkatársi / vállalkozói belépés továbbra is e-mail + jelszó.
+
+Beállítás (a fejlesztői fiókokból):
+- **Google:** Google Cloud Console → OAuth-kliensek: egy *Web* típusú (ennek az azonosítója a `--dart-define=GOOGLE_SERVER_CLIENT_ID=…` és a backend `GOOGLE_CLIENT_IDS`-e), egy *Android* (csomagnév `hu.kalenda.kalenda_mobile` + az aláíró SHA-1) és egy *iOS* (bundle ID). iOS-en az `Info.plist`-be a `GIDClientID` és a fordított kliensazonosító URL-séma is kell.
+- **Apple:** az Apple Developer-fiókban az App ID-n a *Sign in with Apple* képesség, Xcode-ban a *Sign in with Apple* capability; a backend `APPLE_CLIENT_IDS`-e az iOS bundle azonosító.
+- Az iOS-store megköveteli a Sign in with Apple-t, ha más külső belépés is van (ezért az Apple gomb az iOS-en mindig megjelenik, ha a szerver be van állítva).
