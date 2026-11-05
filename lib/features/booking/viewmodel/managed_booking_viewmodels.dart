@@ -1,5 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../core/calendar/device_calendar_gateway.dart';
 import '../../../core/payment/stripe_payment_gateway.dart';
 import '../../../core/viewmodel/action_state.dart';
 import '../../account/viewmodel/account_viewmodel.dart';
@@ -27,6 +28,17 @@ class ManagedBookingActionsViewModel extends ActionNotifier {
   final String token;
 
   Future<void> cancel() => _changed(() => ref.read(bookingRepositoryProvider).cancel(token), FlashKind.cancelled);
+
+  /// A foglalás mentése az eszköz naptárába (a rendszer naptár-párbeszédével).
+  Future<void> addToCalendar(ManagedBooking booking) => perform(() async {
+        await ref.read(deviceCalendarGatewayProvider).addEvent(
+              title: '${booking.serviceName} – ${booking.businessName}',
+              start: booking.startsAt,
+              end: booking.endsAt,
+              location: booking.address,
+              description: booking.staffName,
+            );
+      });
 
   Future<void> reschedule(DateTime date, String time) =>
       _changed(() => ref.read(bookingRepositoryProvider).reschedule(token, date, time), FlashKind.saved);

@@ -47,6 +47,22 @@ class AppLocalizationsEn extends AppLocalizations {
   String get updateNow => 'Update';
 
   @override
+  String get scanQr => 'Scan QR code';
+
+  @override
+  String get scanQrTitle => 'Scan QR code';
+
+  @override
+  String get scanQrHint => 'Point the camera at the business booking QR code.';
+
+  @override
+  String get cameraUnavailable =>
+      'The camera is not available. Allow camera access in the settings.';
+
+  @override
+  String get addToCalendar => 'Add to calendar';
+
+  @override
   String get passesAndVouchers => 'Passes and vouchers';
 
   @override

@@ -47,6 +47,23 @@ class AppLocalizationsHu extends AppLocalizations {
   String get updateNow => 'Frissítés';
 
   @override
+  String get scanQr => 'QR-kód beolvasása';
+
+  @override
+  String get scanQrTitle => 'QR-kód beolvasása';
+
+  @override
+  String get scanQrHint =>
+      'Irányítsd a kamerát a vállalkozás foglalási QR-kódjára.';
+
+  @override
+  String get cameraUnavailable =>
+      'A kamera nem érhető el. Engedélyezd a kamera használatát a beállításokban.';
+
+  @override
+  String get addToCalendar => 'Mentés a naptárba';
+
+  @override
   String get passesAndVouchers => 'Bérletek és utalványok';
 
   @override

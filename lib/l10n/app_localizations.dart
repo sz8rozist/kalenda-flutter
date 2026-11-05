@@ -164,6 +164,36 @@ abstract class AppLocalizations {
   /// **'Frissítés'**
   String get updateNow;
 
+  /// No description provided for @scanQr.
+  ///
+  /// In hu, this message translates to:
+  /// **'QR-kód beolvasása'**
+  String get scanQr;
+
+  /// No description provided for @scanQrTitle.
+  ///
+  /// In hu, this message translates to:
+  /// **'QR-kód beolvasása'**
+  String get scanQrTitle;
+
+  /// No description provided for @scanQrHint.
+  ///
+  /// In hu, this message translates to:
+  /// **'Irányítsd a kamerát a vállalkozás foglalási QR-kódjára.'**
+  String get scanQrHint;
+
+  /// No description provided for @cameraUnavailable.
+  ///
+  /// In hu, this message translates to:
+  /// **'A kamera nem érhető el. Engedélyezd a kamera használatát a beállításokban.'**
+  String get cameraUnavailable;
+
+  /// No description provided for @addToCalendar.
+  ///
+  /// In hu, this message translates to:
+  /// **'Mentés a naptárba'**
+  String get addToCalendar;
+
   /// No description provided for @passesAndVouchers.
   ///
   /// In hu, this message translates to:

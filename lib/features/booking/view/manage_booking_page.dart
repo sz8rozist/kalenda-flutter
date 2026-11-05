@@ -55,6 +55,11 @@ class ManageBookingPage extends ConsumerWidget {
                 ),
                 const SizedBox(height: 8),
               ],
+              OutlinedButton.icon(
+                icon: const Icon(Icons.event_available_outlined),
+                label: Text(l10n.addToCalendar),
+                onPressed: () => ref.read(managedBookingActionsProvider(token).notifier).addToCalendar(data),
+              ),
               if (data.canModify)
                 FilledButton.tonalIcon(
                   icon: const Icon(Icons.edit_calendar_outlined),

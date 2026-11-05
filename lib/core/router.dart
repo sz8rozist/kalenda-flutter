@@ -8,6 +8,7 @@ import '../features/booking/view/business_page.dart';
 import '../features/booking/view/group_booking_page.dart';
 import '../features/booking/view/manage_booking_page.dart';
 import '../features/booking/view/pass_purchase_page.dart';
+import '../features/booking/view/scan_qr_page.dart';
 import '../features/home/view/home_page.dart';
 import '../features/owner/view/owner_booking_page.dart';
 import '../features/review/view/review_page.dart';
@@ -22,6 +23,7 @@ final routerProvider = Provider<GoRouter>((ref) {
     routes: [
       GoRoute(path: '/', builder: (_, _) => const HomePage()),
       GoRoute(path: '/staff', builder: (_, _) => const StaffHomePage()),
+      GoRoute(path: '/scan', builder: (_, _) => const ScanQrPage()),
       GoRoute(path: '/owner/new-booking', builder: (_, _) => const OwnerBookingPage()),
       // A levélben kapott belépő link (univerzális link / app link ide érkezik).
       GoRoute(path: '/fiokom/belepes/:code', builder: (_, state) => LoginLinkPage(code: state.pathParameters['code']!)),

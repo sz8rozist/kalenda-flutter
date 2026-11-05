@@ -48,6 +48,12 @@ class _FindBusinessPageState extends ConsumerState<FindBusinessPage> {
           ),
           const SizedBox(height: 12),
           FilledButton(onPressed: _open, child: Text(l10n.open)),
+          const SizedBox(height: 12),
+          OutlinedButton.icon(
+            icon: const Icon(Icons.qr_code_scanner),
+            label: Text(l10n.scanQr),
+            onPressed: () => context.push('/scan'),
+          ),
         ],
       ),
     );

@@ -4,6 +4,12 @@
 <dict>
 	<key>CADisableMinimumFrameDurationOnPhone</key>
 	<true/>
+	<key>NSCameraUsageDescription</key>
+	<string>A kamerát a vállalkozások foglalási QR-kódjának beolvasásához használjuk.</string>
+	<key>NSCalendarsWriteOnlyAccessUsageDescription</key>
+	<string>A foglalásaidat az általad kért esetben a naptáradba mentjük.</string>
+	<key>NSCalendarsUsageDescription</key>
+	<string>A foglalásaidat az általad kért esetben a naptáradba mentjük.</string>
 	<key>NSFaceIDUsageDescription</key>
 	<string>A Kalenda zárolásának feloldásához Face ID-t használunk.</string>
 	<key>CFBundleDevelopmentRegion</key>

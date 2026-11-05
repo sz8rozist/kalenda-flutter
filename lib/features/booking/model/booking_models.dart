@@ -160,6 +160,7 @@ class TimeSlot {
 class ManagedBooking {
   ManagedBooking({
     required this.startsAt,
+    required this.endsAt,
     required this.status,
     required this.serviceName,
     required this.businessName,
@@ -174,6 +175,7 @@ class ManagedBooking {
   });
 
   final DateTime startsAt;
+  final DateTime endsAt;
   final String status;
   final String serviceName;
   final String? staffName;
@@ -194,6 +196,7 @@ class ManagedBooking {
     return ManagedBooking(
       // Helyi falióra-idő, "Z" nélkül.
       startsAt: DateTime.parse(j['starts_at'] as String),
+      endsAt: DateTime.parse(j['ends_at'] as String),
       status: j['status'] as String? ?? '',
       serviceName: (j['service'] as Map<String, dynamic>?)?['name'] as String? ?? '',
       staffName: (j['staff'] as Map<String, dynamic>?)?['name'] as String?,

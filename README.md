@@ -70,3 +70,9 @@ Beállítás (a fejlesztői fiókokból):
 - **Google:** Google Cloud Console → OAuth-kliensek: egy *Web* típusú (ennek az azonosítója a `--dart-define=GOOGLE_SERVER_CLIENT_ID=…` és a backend `GOOGLE_CLIENT_IDS`-e), egy *Android* (csomagnév `hu.kalenda.kalenda_mobile` + az aláíró SHA-1) és egy *iOS* (bundle ID). iOS-en az `Info.plist`-be a `GIDClientID` és a fordított kliensazonosító URL-séma is kell.
 - **Apple:** az Apple Developer-fiókban az App ID-n a *Sign in with Apple* képesség, Xcode-ban a *Sign in with Apple* capability; a backend `APPLE_CLIENT_IDS`-e az iOS bundle azonosító.
 - Az iOS-store megköveteli a Sign in with Apple-t, ha más külső belépés is van (ezért az Apple gomb az iOS-en mindig megjelenik, ha a szerver be van állítva).
+
+## Ügyfél-funkciók (összefoglaló)
+Vállalkozás megnyitása azonosítóval / linkkel / **QR-kóddal**; foglalás (munkatárs, kiegészítők, időpont), **várólista** a betelt napokra, **csoportos alkalmakra jelentkezés**,
+**bérlet- és ajándékutalvány-vásárlás** (Stripe Checkout böngészőben), előleg fizetése PaymentSheettel, foglalás kezelése (áthelyezés, lemondás, **mentés az eszköz naptárába**),
+**értékelés** a levélből (`/velemeny/{token}`), Fiókom (profil, hűségpont, bérletek, hozzájárulások, fióktörlés), push, biometrikus zár, Google/Apple belépés.
+Engedélyek: kamera (QR), naptár (mentés) – Android `CAMERA`, iOS `NSCameraUsageDescription` / `NSCalendars…UsageDescription`.

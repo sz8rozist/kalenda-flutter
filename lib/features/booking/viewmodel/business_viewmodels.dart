@@ -30,20 +30,37 @@ class SlotsViewModel extends AsyncNotifier<List<TimeSlot>> {
 final slotsViewModelProvider =
     AsyncNotifierProvider.autoDispose.family<SlotsViewModel, List<TimeSlot>, SlotQuery>(SlotsViewModel.new);
 
-/// A „Vállalkozás keresése" képernyő logikája: a beírt szövegből (azonosító vagy link) a slug.
+/// A beírt vagy beolvasott szövegből (azonosító vagy foglalási link) a vállalkozás azonosítója (slug):
+/// `https://…/booking/szalon` → `szalon`; sima azonosítót változatlanul ad. Üres bevitelre null.
+String? slugFromBusinessLink(String input) {
+  final text = input.trim();
+  final uri = Uri.tryParse(text);
+  final slug = (uri != null && uri.hasScheme && uri.pathSegments.isNotEmpty)
+      ? uri.pathSegments.where((s) => s.isNotEmpty).last
+      : text.replaceAll('/', '');
+  return slug.isEmpty ? null : slug;
+}
+
+/// A „Vállalkozás keresése" képernyő logikája.
 class FindBusinessViewModel extends Notifier<void> {
   @override
   void build() {}
 
-  /// `https://…/foglalas/szalon` → `szalon`; sima azonosítót változatlanul ad. Üres bevitelre null.
-  String? resolveSlug(String input) {
-    final text = input.trim();
-    final uri = Uri.tryParse(text);
-    final slug = (uri != null && uri.hasScheme && uri.pathSegments.isNotEmpty)
-        ? uri.pathSegments.where((s) => s.isNotEmpty).last
-        : text.replaceAll('/', '');
-    return slug.isEmpty ? null : slug;
+  String? resolveSlug(String input) => slugFromBusinessLink(input);
+}
+
+/// QR-kód beolvasás: az első érvényes, foglalási oldalra mutató kód eredménye (a többit figyelmen kívül hagyja,
+/// mert a kamera másodpercenként többször ugyanazt a kódot jelenti).
+class ScanViewModel extends Notifier<String?> {
+  @override
+  String? build() => null;
+
+  void onCode(String? raw) {
+    if (state != null || raw == null) return;
+    state = slugFromBusinessLink(raw);
   }
 }
+
+final scanViewModelProvider = NotifierProvider.autoDispose<ScanViewModel, String?>(ScanViewModel.new);
 
 final findBusinessViewModelProvider = NotifierProvider.autoDispose<FindBusinessViewModel, void>(FindBusinessViewModel.new);
