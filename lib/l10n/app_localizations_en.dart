@@ -47,6 +47,53 @@ class AppLocalizationsEn extends AppLocalizations {
   String get updateNow => 'Update';
 
   @override
+  String get passesAndVouchers => 'Passes and vouchers';
+
+  @override
+  String get passPurchaseTitle => 'Buy a pass / voucher';
+
+  @override
+  String sessionsCountLabel(int count) {
+    return '$count sessions';
+  }
+
+  @override
+  String valueLabel(String value) {
+    return 'Value: $value';
+  }
+
+  @override
+  String validityDaysLabel(int days) {
+    return 'valid for $days days';
+  }
+
+  @override
+  String get passBuyerEmail =>
+      'Your email (the receipt and code are sent here)';
+
+  @override
+  String get passGift => 'It is a gift';
+
+  @override
+  String get recipientName => 'Recipient name';
+
+  @override
+  String get recipientEmail => 'Recipient email';
+
+  @override
+  String get senderName => 'Your name (sender)';
+
+  @override
+  String get giftMessage => 'Gift message';
+
+  @override
+  String get passBuy => 'Continue to payment';
+
+  @override
+  String get passAfterPayment =>
+      'Payment happens in the browser. Afterwards the pass appears under My account (sign in with the email used for the purchase).';
+
+  @override
   String get reviewTitle => 'Review';
 
   @override

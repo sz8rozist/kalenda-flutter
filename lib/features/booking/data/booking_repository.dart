@@ -45,6 +45,21 @@ class BookingRepository {
     return BookedResult.fromJson(response.data as Map<String, dynamic>);
   }
 
+  /// Bérlet / utalvány vásárlása: a Stripe Checkout címe (böngészőben fizet az ügyfél).
+  Future<String> passCheckoutUrl(String slug, PassPurchaseRequest r) async {
+    final response = await _api.call((d) => d.post('/public/businesses/$slug/passes/checkout', data: {
+          'pass_type_id': r.passTypeId,
+          'email': r.email,
+          if (r.recipientEmail != null && r.recipientEmail!.isNotEmpty) ...{
+            'recipient_name': r.recipientName,
+            'recipient_email': r.recipientEmail,
+            'sender_name': r.senderName,
+            'gift_message': r.giftMessage,
+          },
+        }));
+    return (response.data as Map<String, dynamic>)['checkout_url'] as String;
+  }
+
   /// A vállalkozás meghirdetett csoportos alkalmai (üres, ha a vállalkozás nem használ ilyet).
   Future<List<GroupSession>> groupSessions(String slug) async {
     final response = await _api.call((d) => d.get('/public/businesses/$slug/group-sessions'));

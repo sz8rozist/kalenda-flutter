@@ -90,6 +90,7 @@ class PublicBusiness {
     this.hasCampaigns = false,
     this.hasPasses = false,
     this.hasWaitlist = false,
+    this.passTypes = const [],
   });
 
   final String name;
@@ -105,6 +106,7 @@ class PublicBusiness {
   final bool hasCampaigns;
   final bool hasPasses;
   final bool hasWaitlist;
+  final List<PassType> passTypes;
   final List<PublicService> services;
   final List<PublicStaff> staff;
   final Map<int, List<PublicAddon>> addonsByService;
@@ -136,6 +138,7 @@ class PublicBusiness {
       hasCampaigns: j['has_campaigns'] as bool? ?? false,
       hasPasses: j['has_passes'] as bool? ?? false,
       hasWaitlist: j['has_waitlist'] as bool? ?? false,
+      passTypes: _list(j['pass_types'], PassType.fromJson),
       services: _list(j['services'], PublicService.fromJson),
       staff: _list(j['staff'], PublicStaff.fromJson),
       addonsByService: addons,
@@ -278,4 +281,42 @@ class GroupSession {
       staffName: j['staff_name'] as String?,
     );
   }
+}
+
+/// Megvásárolható bérlet / ajándékutalvány (a vállalkozás nyilvános adatlapján).
+class PassType {
+  PassType({
+    required this.id,
+    required this.kind,
+    required this.name,
+    required this.priceHuf,
+    required this.validityDays,
+    this.serviceName,
+    this.sessionsCount,
+    this.valueHuf,
+  });
+
+  final int id;
+
+  /// `voucher` = ajándékutalvány (értékkel), különben alkalmas bérlet.
+  final String kind;
+  final String name;
+  final String? serviceName;
+  final int? sessionsCount;
+  final int? valueHuf;
+  final int priceHuf;
+  final int validityDays;
+
+  bool get isVoucher => kind == 'voucher';
+
+  factory PassType.fromJson(Map<String, dynamic> j) => PassType(
+        id: _int(j['id'])!,
+        kind: j['kind'] as String? ?? '',
+        name: j['name'] as String? ?? '',
+        serviceName: j['service_name'] as String?,
+        sessionsCount: _int(j['sessions_count']),
+        valueHuf: _int(j['value_huf']),
+        priceHuf: _int(j['price_huf']) ?? 0,
+        validityDays: _int(j['validity_days']) ?? 0,
+      );
 }

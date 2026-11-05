@@ -88,3 +88,15 @@ class GroupBookRequest {
   final String? passCode;
   final bool? marketingConsent;
 }
+
+/// Bérlet / utalvány vásárlása (`POST /public/businesses/{slug}/passes/checkout`); ajándéknál a címzett adataival.
+class PassPurchaseRequest {
+  PassPurchaseRequest({required this.passTypeId, required this.email, this.recipientName, this.recipientEmail, this.senderName, this.giftMessage});
+
+  final int passTypeId;
+  final String email;
+  final String? recipientName;
+  final String? recipientEmail;
+  final String? senderName;
+  final String? giftMessage;
+}

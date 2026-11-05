@@ -7,6 +7,7 @@ import '../features/booking/view/booking_page.dart';
 import '../features/booking/view/business_page.dart';
 import '../features/booking/view/group_booking_page.dart';
 import '../features/booking/view/manage_booking_page.dart';
+import '../features/booking/view/pass_purchase_page.dart';
 import '../features/home/view/home_page.dart';
 import '../features/owner/view/owner_booking_page.dart';
 import '../features/review/view/review_page.dart';
@@ -46,6 +47,13 @@ final routerProvider = Provider<GoRouter>((ref) {
         builder: (_, state) => ReviewPage(
           token: state.pathParameters['token']!,
           initialRating: int.tryParse(state.uri.queryParameters['r'] ?? '') ?? 0,
+        ),
+      ),
+      GoRoute(
+        path: '/b/:slug/pass/:passTypeId',
+        builder: (_, state) => PassPurchasePage(
+          slug: state.pathParameters['slug']!,
+          passTypeId: int.parse(state.pathParameters['passTypeId']!),
         ),
       ),
       GoRoute(path: '/booking/manage/:token', builder: (_, state) => ManageBookingPage(token: state.pathParameters['token']!)),

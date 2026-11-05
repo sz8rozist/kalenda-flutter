@@ -119,6 +119,21 @@ class _Content extends StatelessWidget {
             ),
           ),
         _GroupSessionsSection(slug: business.slug),
+        if (business.hasPasses && business.passTypes.isNotEmpty) ...[
+          const SizedBox(height: 16),
+          Text(l10n.passesAndVouchers, style: theme.textTheme.titleMedium),
+          const SizedBox(height: 8),
+          for (final type in business.passTypes)
+            Card(
+              child: ListTile(
+                leading: Icon(type.isVoucher ? Icons.card_giftcard : Icons.confirmation_number_outlined),
+                title: Text(type.name),
+                subtitle: Text(formatHuf(context, type.priceHuf)),
+                trailing: const Icon(Icons.chevron_right),
+                onTap: () => context.push('/b/${business.slug}/pass/${type.id}'),
+              ),
+            ),
+        ],
         if (business.extraInfo != null && business.extraInfo!.isNotEmpty) ...[
           const SizedBox(height: 16),
           Text(business.extraInfo!, style: theme.textTheme.bodySmall),

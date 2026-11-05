@@ -164,6 +164,84 @@ abstract class AppLocalizations {
   /// **'Frissítés'**
   String get updateNow;
 
+  /// No description provided for @passesAndVouchers.
+  ///
+  /// In hu, this message translates to:
+  /// **'Bérletek és utalványok'**
+  String get passesAndVouchers;
+
+  /// No description provided for @passPurchaseTitle.
+  ///
+  /// In hu, this message translates to:
+  /// **'Bérlet / utalvány vásárlása'**
+  String get passPurchaseTitle;
+
+  /// No description provided for @sessionsCountLabel.
+  ///
+  /// In hu, this message translates to:
+  /// **'{count} alkalom'**
+  String sessionsCountLabel(int count);
+
+  /// No description provided for @valueLabel.
+  ///
+  /// In hu, this message translates to:
+  /// **'Érték: {value}'**
+  String valueLabel(String value);
+
+  /// No description provided for @validityDaysLabel.
+  ///
+  /// In hu, this message translates to:
+  /// **'{days} napig érvényes'**
+  String validityDaysLabel(int days);
+
+  /// No description provided for @passBuyerEmail.
+  ///
+  /// In hu, this message translates to:
+  /// **'Az e-mail-címed (ide megy a bizonylat és a kód)'**
+  String get passBuyerEmail;
+
+  /// No description provided for @passGift.
+  ///
+  /// In hu, this message translates to:
+  /// **'Ajándékba veszem'**
+  String get passGift;
+
+  /// No description provided for @recipientName.
+  ///
+  /// In hu, this message translates to:
+  /// **'A megajándékozott neve'**
+  String get recipientName;
+
+  /// No description provided for @recipientEmail.
+  ///
+  /// In hu, this message translates to:
+  /// **'A megajándékozott e-mail-címe'**
+  String get recipientEmail;
+
+  /// No description provided for @senderName.
+  ///
+  /// In hu, this message translates to:
+  /// **'A te neved (ajándékozó)'**
+  String get senderName;
+
+  /// No description provided for @giftMessage.
+  ///
+  /// In hu, this message translates to:
+  /// **'Üzenet az ajándékhoz'**
+  String get giftMessage;
+
+  /// No description provided for @passBuy.
+  ///
+  /// In hu, this message translates to:
+  /// **'Tovább a fizetéshez'**
+  String get passBuy;
+
+  /// No description provided for @passAfterPayment.
+  ///
+  /// In hu, this message translates to:
+  /// **'A fizetés a böngészőben történik. Utána a bérleted a Fiókom fülön jelenik meg (a vásárláskor megadott e-mail-címmel belépve).'**
+  String get passAfterPayment;
+
   /// No description provided for @reviewTitle.
   ///
   /// In hu, this message translates to:

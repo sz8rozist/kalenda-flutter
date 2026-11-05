@@ -47,6 +47,53 @@ class AppLocalizationsHu extends AppLocalizations {
   String get updateNow => 'Frissítés';
 
   @override
+  String get passesAndVouchers => 'Bérletek és utalványok';
+
+  @override
+  String get passPurchaseTitle => 'Bérlet / utalvány vásárlása';
+
+  @override
+  String sessionsCountLabel(int count) {
+    return '$count alkalom';
+  }
+
+  @override
+  String valueLabel(String value) {
+    return 'Érték: $value';
+  }
+
+  @override
+  String validityDaysLabel(int days) {
+    return '$days napig érvényes';
+  }
+
+  @override
+  String get passBuyerEmail =>
+      'Az e-mail-címed (ide megy a bizonylat és a kód)';
+
+  @override
+  String get passGift => 'Ajándékba veszem';
+
+  @override
+  String get recipientName => 'A megajándékozott neve';
+
+  @override
+  String get recipientEmail => 'A megajándékozott e-mail-címe';
+
+  @override
+  String get senderName => 'A te neved (ajándékozó)';
+
+  @override
+  String get giftMessage => 'Üzenet az ajándékhoz';
+
+  @override
+  String get passBuy => 'Tovább a fizetéshez';
+
+  @override
+  String get passAfterPayment =>
+      'A fizetés a böngészőben történik. Utána a bérleted a Fiókom fülön jelenik meg (a vásárláskor megadott e-mail-címmel belépve).';
+
+  @override
   String get reviewTitle => 'Értékelés';
 
   @override
