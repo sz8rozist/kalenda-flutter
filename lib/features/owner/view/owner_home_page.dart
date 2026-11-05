@@ -32,6 +32,11 @@ class OwnerHomePage extends ConsumerWidget {
       appBar: AppBar(
         title: Text(user.businessName ?? l10n.appTitle),
         actions: [
+          IconButton(
+            tooltip: l10n.ownerServices,
+            icon: const Icon(Icons.content_cut),
+            onPressed: () => context.push('/owner/services'),
+          ),
           const SettingsButton(),
           IconButton(
             tooltip: l10n.signOut,

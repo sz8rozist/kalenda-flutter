@@ -306,3 +306,34 @@ class CashflowPeriod {
         netHuf: (j['net_huf'] as num?)?.toInt() ?? 0,
       );
 }
+
+/// Egy szolgáltatás a vállalkozói kezelőben (`GET /businesses/{id}/services`).
+class OwnerService {
+  OwnerService({
+    required this.id,
+    required this.name,
+    required this.durationMinutes,
+    required this.isActive,
+    this.priceHuf,
+    this.isGroup = false,
+    this.isRental = false,
+  });
+
+  final int id;
+  final String name;
+  final int durationMinutes;
+  final int? priceHuf;
+  final bool isActive;
+  final bool isGroup;
+  final bool isRental;
+
+  factory OwnerService.fromJson(Map<String, dynamic> j) => OwnerService(
+        id: (j['id'] as num).toInt(),
+        name: j['name'] as String? ?? '',
+        durationMinutes: (j['duration_minutes'] as num?)?.toInt() ?? 0,
+        priceHuf: (j['price_huf'] as num?)?.toInt(),
+        isActive: j['is_active'] as bool? ?? true,
+        isGroup: j['is_group'] as bool? ?? false,
+        isRental: j['is_rental'] as bool? ?? false,
+      );
+}

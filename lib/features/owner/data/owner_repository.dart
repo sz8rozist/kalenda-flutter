@@ -60,6 +60,27 @@ class OwnerRepository {
         'send_email': r.sendEmail,
       }));
 
+  Future<List<OwnerService>> services(int businessId) async {
+    final response = await _api.call((d) => d.get('/businesses/$businessId/services'));
+    return (response.data as List).map((e) => OwnerService.fromJson(e as Map<String, dynamic>)).toList();
+  }
+
+  /// Részleges módosítás (PATCH): csak a megadott mezők változnak.
+  Future<void> patchService(
+    int businessId,
+    int serviceId, {
+    String? name,
+    int? durationMinutes,
+    int? priceHuf,
+    bool? isActive,
+  }) =>
+      _api.call((d) => d.patch('/businesses/$businessId/services/$serviceId', data: {
+            'name': ?name,
+            'duration_minutes': ?durationMinutes,
+            'price_huf': ?priceHuf,
+            'is_active': ?isActive,
+          }));
+
   /// Havi könyvelői összesítő (a hónap bármelyik napjával).
   Future<AccountingReport> accountingReport(int businessId, DateTime month) async {
     final key = '${month.year.toString().padLeft(4, '0')}-${month.month.toString().padLeft(2, '0')}';

@@ -47,6 +47,18 @@ class AppLocalizationsEn extends AppLocalizations {
   String get updateNow => 'Update';
 
   @override
+  String get ownerServices => 'Services';
+
+  @override
+  String get serviceRental => 'Rental';
+
+  @override
+  String get serviceDurationMinutes => 'Duration (minutes)';
+
+  @override
+  String get servicePriceHuf => 'Price (HUF)';
+
+  @override
   String get ownerReports => 'Reports';
 
   @override

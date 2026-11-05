@@ -164,6 +164,30 @@ abstract class AppLocalizations {
   /// **'Frissítés'**
   String get updateNow;
 
+  /// No description provided for @ownerServices.
+  ///
+  /// In hu, this message translates to:
+  /// **'Szolgáltatások'**
+  String get ownerServices;
+
+  /// No description provided for @serviceRental.
+  ///
+  /// In hu, this message translates to:
+  /// **'Bérlés'**
+  String get serviceRental;
+
+  /// No description provided for @serviceDurationMinutes.
+  ///
+  /// In hu, this message translates to:
+  /// **'Időtartam (perc)'**
+  String get serviceDurationMinutes;
+
+  /// No description provided for @servicePriceHuf.
+  ///
+  /// In hu, this message translates to:
+  /// **'Ár (Ft)'**
+  String get servicePriceHuf;
+
   /// No description provided for @ownerReports.
   ///
   /// In hu, this message translates to:

@@ -47,6 +47,18 @@ class AppLocalizationsHu extends AppLocalizations {
   String get updateNow => 'Frissítés';
 
   @override
+  String get ownerServices => 'Szolgáltatások';
+
+  @override
+  String get serviceRental => 'Bérlés';
+
+  @override
+  String get serviceDurationMinutes => 'Időtartam (perc)';
+
+  @override
+  String get servicePriceHuf => 'Ár (Ft)';
+
+  @override
   String get ownerReports => 'Riportok';
 
   @override
