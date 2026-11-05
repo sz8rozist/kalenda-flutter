@@ -541,6 +541,24 @@ abstract class AppLocalizations {
   /// In hu, this message translates to:
   /// **'Még nincs itt semmi.'**
   String get nothingYet;
+
+  /// No description provided for @deleteAccount.
+  ///
+  /// In hu, this message translates to:
+  /// **'Fiók törlése'**
+  String get deleteAccount;
+
+  /// No description provided for @deleteAccountTitle.
+  ///
+  /// In hu, this message translates to:
+  /// **'Biztosan törlöd a fiókod?'**
+  String get deleteAccountTitle;
+
+  /// No description provided for @deleteAccountText.
+  ///
+  /// In hu, this message translates to:
+  /// **'A személyes adataid törlődnek, a belépésed és az eszközeid megszűnnek. Ez nem vonható vissza. Közelgő foglalással nem törölhető a fiók.'**
+  String get deleteAccountText;
 }
 
 class _AppLocalizationsDelegate

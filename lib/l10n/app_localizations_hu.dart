@@ -248,4 +248,14 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get nothingYet => 'Még nincs itt semmi.';
+
+  @override
+  String get deleteAccount => 'Fiók törlése';
+
+  @override
+  String get deleteAccountTitle => 'Biztosan törlöd a fiókod?';
+
+  @override
+  String get deleteAccountText =>
+      'A személyes adataid törlődnek, a belépésed és az eszközeid megszűnnek. Ez nem vonható vissza. Közelgő foglalással nem törölhető a fiók.';
 }

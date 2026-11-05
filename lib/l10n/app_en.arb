@@ -80,5 +80,8 @@
   "@expiresOn": { "placeholders": { "date": { "type": "String" } } },
   "expired": "Expired",
   "consentsTitle": "Newsletter consents",
-  "nothingYet": "Nothing here yet."
+  "nothingYet": "Nothing here yet.",
+  "deleteAccount": "Delete account",
+  "deleteAccountTitle": "Delete your account?",
+  "deleteAccountText": "Your personal data will be erased and your sign-in and devices removed. This cannot be undone. The account cannot be deleted while you have upcoming bookings."
 }

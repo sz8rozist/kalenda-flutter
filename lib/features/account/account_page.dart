@@ -50,11 +50,42 @@ class AccountPage extends ConsumerWidget {
                 _Heading(l10n.consentsTitle),
                 for (final consent in data.consents) _ConsentTile(consent: consent),
               ],
+              const SizedBox(height: 24),
+              TextButton.icon(
+                icon: const Icon(Icons.delete_outline),
+                label: Text(l10n.deleteAccount),
+                style: TextButton.styleFrom(foregroundColor: Theme.of(context).colorScheme.error),
+                onPressed: () => _deleteAccount(context, ref),
+              ),
             ],
           ),
         ),
       ),
     );
+  }
+}
+
+/// Fiók törlése megerősítéssel. Közelgő foglalásnál a szerver 422-t ad: az üzenetét mutatjuk.
+Future<void> _deleteAccount(BuildContext context, WidgetRef ref) async {
+  final l10n = AppLocalizations.of(context);
+  final messenger = ScaffoldMessenger.of(context);
+  final confirmed = await showDialog<bool>(
+    context: context,
+    builder: (context) => AlertDialog(
+      title: Text(l10n.deleteAccountTitle),
+      content: Text(l10n.deleteAccountText),
+      actions: [
+        TextButton(onPressed: () => Navigator.pop(context, false), child: Text(l10n.no)),
+        FilledButton(onPressed: () => Navigator.pop(context, true), child: Text(l10n.deleteAccount)),
+      ],
+    ),
+  );
+  if (confirmed != true) return;
+
+  try {
+    await ref.read(authControllerProvider.notifier).deleteAccount();
+  } catch (e) {
+    if (context.mounted) messenger.showSnackBar(SnackBar(content: Text(errorText(context, e))));
   }
 }
 

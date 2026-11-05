@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../features/booking/booking_page.dart';
+import 'push/push_service.dart';
 import '../features/booking/business_page.dart';
 import '../features/booking/manage_booking_page.dart';
 import '../shared/home_page.dart';
@@ -10,7 +11,7 @@ import '../shared/home_page.dart';
 /// Útvonalak. A foglalás nyilvános (belépés nélkül is megy), csak a „Foglalásaim" fül kér belépést –
 /// azt a [HomePage] kezeli.
 final routerProvider = Provider<GoRouter>((ref) {
-  return GoRouter(
+  final router = GoRouter(
     initialLocation: '/',
     routes: [
       GoRoute(path: '/', builder: (_, _) => const HomePage()),
@@ -30,4 +31,8 @@ final routerProvider = Provider<GoRouter>((ref) {
     ],
     errorBuilder: (_, _) => const Scaffold(body: Center(child: Icon(Icons.error_outline))),
   );
+
+  // Értesítésre koppintás: a foglalás megnyitása (Firebase nélkül nem csinál semmit).
+  ref.read(pushServiceProvider).listenForTaps(router);
+  return router;
 });

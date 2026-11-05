@@ -247,4 +247,14 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get nothingYet => 'Nothing here yet.';
+
+  @override
+  String get deleteAccount => 'Delete account';
+
+  @override
+  String get deleteAccountTitle => 'Delete your account?';
+
+  @override
+  String get deleteAccountText =>
+      'Your personal data will be erased and your sign-in and devices removed. This cannot be undone. The account cannot be deleted while you have upcoming bookings.';
 }

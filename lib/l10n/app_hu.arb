@@ -80,5 +80,8 @@
   "@expiresOn": { "placeholders": { "date": { "type": "String" } } },
   "expired": "Lejárt",
   "consentsTitle": "Hírlevél-hozzájárulások",
-  "nothingYet": "Még nincs itt semmi."
+  "nothingYet": "Még nincs itt semmi.",
+  "deleteAccount": "Fiók törlése",
+  "deleteAccountTitle": "Biztosan törlöd a fiókod?",
+  "deleteAccountText": "A személyes adataid törlődnek, a belépésed és az eszközeid megszűnnek. Ez nem vonható vissza. Közelgő foglalással nem törölhető a fiók."
 }

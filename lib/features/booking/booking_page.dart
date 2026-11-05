@@ -1,9 +1,12 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../core/auth/auth_controller.dart';
+import '../../core/push/push_service.dart';
 import '../../l10n/app_localizations.dart';
 import '../../shared/async_view.dart';
 import '../../shared/format.dart';
@@ -139,6 +142,8 @@ class _BookingFormState extends ConsumerState<_BookingForm> {
             addonIds: _addonIds.toList(),
           );
       ref.invalidate(accountOverviewProvider);
+      // Az első foglalás után kérünk értesítés-engedélyt (nem indításkor).
+      unawaited(ref.read(pushServiceProvider).enableAfterBooking());
       if (!mounted) return;
       if (result.requiresPayment && result.checkoutUrl != null) {
         // Előleg: a Stripe Checkout böngészőben nyílik, a fizetés után a foglalás-kezelő oldalra tér vissza.

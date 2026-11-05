@@ -23,3 +23,11 @@ docker run --rm -v "$PWD:/w" -w /w ghcr.io/cirruslabs/flutter:stable sh -c "flut
 ```
 
 Az iOS-build Windowson nem megy (Xcode): felhős CI (Codemagic / GitHub Actions macOS) kell hozzá.
+
+## Push értesítések (Firebase)
+Az app Firebase-konfiguráció nélkül is épül és fut (a push ilyenkor ki van kapcsolva). Bekapcsolás:
+1. Firebase-projekt létrehozása, Android- és iOS-alkalmazás felvétele (`hu.kalenda.kalenda_mobile`).
+2. `dart pub global activate flutterfire_cli`, majd `flutterfire configure` – ez felveszi a `google-services.json` / `GoogleService-Info.plist` fájlokat és a Gradle/Xcode beállítást.
+3. iOS-hez: APNs-hitelesítési kulcs feltöltése a Firebase-projektben.
+4. A backenden `FCM_CREDENTIALS_FILE` a Firebase service account JSON útvonalával (ld. a backend `env.docker.example`).
+Az értesítés-engedélyt az app az első foglalás után kéri; belépés után az eszköz-token a `/customer/devices` végponton regisztrálódik.
