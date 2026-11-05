@@ -224,3 +224,58 @@ class BookedResult {
         paymentNotice: j['payment_notice'] as String?,
       );
 }
+
+/// Egy csoportos alkalom (`GET /public/businesses/{slug}/group-sessions`): férőhelyes óra, amelyre jelentkezni lehet.
+class GroupSession {
+  GroupSession({
+    required this.id,
+    required this.startsAt,
+    required this.endsAt,
+    required this.capacity,
+    required this.placesLeft,
+    required this.full,
+    required this.serviceName,
+    required this.durationMinutes,
+    this.priceHuf,
+    this.requiresPayment = false,
+    this.depositLabel,
+    this.notes,
+    this.serviceDescription,
+    this.staffName,
+  });
+
+  final int id;
+  final DateTime startsAt;
+  final DateTime endsAt;
+  final int capacity;
+  final int placesLeft;
+  final bool full;
+  final int? priceHuf;
+  final bool requiresPayment;
+  final String? depositLabel;
+  final String? notes;
+  final String serviceName;
+  final String? serviceDescription;
+  final int durationMinutes;
+  final String? staffName;
+
+  factory GroupSession.fromJson(Map<String, dynamic> j) {
+    final service = (j['service'] as Map<String, dynamic>?) ?? const {};
+    return GroupSession(
+      id: _int(j['id'])!,
+      startsAt: DateTime.parse(j['starts_at'] as String),
+      endsAt: DateTime.parse(j['ends_at'] as String),
+      capacity: _int(j['capacity']) ?? 0,
+      placesLeft: _int(j['places_left']) ?? 0,
+      full: j['full'] as bool? ?? false,
+      priceHuf: _int(j['price_huf']),
+      requiresPayment: j['requires_payment'] as bool? ?? false,
+      depositLabel: j['deposit_label'] as String?,
+      notes: j['notes'] as String?,
+      serviceName: service['name'] as String? ?? '',
+      serviceDescription: service['description'] as String?,
+      durationMinutes: _int(service['duration_minutes']) ?? 0,
+      staffName: j['staff_name'] as String?,
+    );
+  }
+}

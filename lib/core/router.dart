@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import '../features/auth/view/login_link_page.dart';
 import '../features/booking/view/booking_page.dart';
 import '../features/booking/view/business_page.dart';
+import '../features/booking/view/group_booking_page.dart';
 import '../features/booking/view/manage_booking_page.dart';
 import '../features/home/view/home_page.dart';
 import '../features/owner/view/owner_booking_page.dart';
@@ -31,6 +32,13 @@ final routerProvider = Provider<GoRouter>((ref) {
         ),
       ),
       // A levelekben és a weben használt útvonalak is megnyílnak az appban (univerzális link).
+      GoRoute(
+        path: '/b/:slug/group/:sessionId',
+        builder: (_, state) => GroupBookingPage(
+          slug: state.pathParameters['slug']!,
+          sessionId: int.parse(state.pathParameters['sessionId']!),
+        ),
+      ),
       GoRoute(path: '/booking/manage/:token', builder: (_, state) => ManageBookingPage(token: state.pathParameters['token']!)),
       GoRoute(path: '/booking/:slug', builder: (_, state) => BusinessPage(slug: state.pathParameters['slug']!)),
       GoRoute(path: '/manage/:token', builder: (_, state) => ManageBookingPage(token: state.pathParameters['token']!)),

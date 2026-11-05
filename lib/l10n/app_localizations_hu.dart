@@ -47,6 +47,23 @@ class AppLocalizationsHu extends AppLocalizations {
   String get updateNow => 'Frissítés';
 
   @override
+  String get groupSessions => 'Csoportos alkalmak';
+
+  @override
+  String get groupSessionTitle => 'Jelentkezés alkalomra';
+
+  @override
+  String placesLeft(int count) {
+    return '$count szabad hely';
+  }
+
+  @override
+  String get sessionFull => 'Betelt';
+
+  @override
+  String get joinSession => 'Jelentkezem';
+
+  @override
   String get joinWaitlist => 'Várólistára iratkozom';
 
   @override

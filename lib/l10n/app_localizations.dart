@@ -164,6 +164,36 @@ abstract class AppLocalizations {
   /// **'Frissítés'**
   String get updateNow;
 
+  /// No description provided for @groupSessions.
+  ///
+  /// In hu, this message translates to:
+  /// **'Csoportos alkalmak'**
+  String get groupSessions;
+
+  /// No description provided for @groupSessionTitle.
+  ///
+  /// In hu, this message translates to:
+  /// **'Jelentkezés alkalomra'**
+  String get groupSessionTitle;
+
+  /// No description provided for @placesLeft.
+  ///
+  /// In hu, this message translates to:
+  /// **'{count} szabad hely'**
+  String placesLeft(int count);
+
+  /// No description provided for @sessionFull.
+  ///
+  /// In hu, this message translates to:
+  /// **'Betelt'**
+  String get sessionFull;
+
+  /// No description provided for @joinSession.
+  ///
+  /// In hu, this message translates to:
+  /// **'Jelentkezem'**
+  String get joinSession;
+
   /// No description provided for @joinWaitlist.
   ///
   /// In hu, this message translates to:

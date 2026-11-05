@@ -45,6 +45,24 @@ class BookingRepository {
     return BookedResult.fromJson(response.data as Map<String, dynamic>);
   }
 
+  /// A vállalkozás meghirdetett csoportos alkalmai (üres, ha a vállalkozás nem használ ilyet).
+  Future<List<GroupSession>> groupSessions(String slug) async {
+    final response = await _api.call((d) => d.get('/public/businesses/$slug/group-sessions'));
+    return (response.data as List).map((e) => GroupSession.fromJson(e as Map<String, dynamic>)).toList();
+  }
+
+  Future<BookedResult> bookGroupSession(String slug, int sessionId, GroupBookRequest r) async {
+    final response = await _api.call((d) => d.post('/public/businesses/$slug/group-sessions/$sessionId/bookings', data: {
+          'customer_name': r.name,
+          'customer_email': r.email,
+          if (r.phone != null && r.phone!.isNotEmpty) 'customer_phone': r.phone,
+          if (r.notes != null && r.notes!.isNotEmpty) 'notes': r.notes,
+          if (r.passCode != null && r.passCode!.isNotEmpty) 'pass_code': r.passCode,
+          'marketing_consent': ?r.marketingConsent,
+        }));
+    return BookedResult.fromJson(response.data as Map<String, dynamic>);
+  }
+
   /// Feliratkozás a várólistára; a válasz a szerver üzenete.
   Future<String> joinWaitlist(String slug, WaitlistRequest r) async {
     final response = await _api.call((d) => d.post('/public/businesses/$slug/waitlist', data: {

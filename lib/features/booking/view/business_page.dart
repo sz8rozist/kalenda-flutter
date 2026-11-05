@@ -8,6 +8,7 @@ import '../../../shared/async_view.dart';
 import '../../../shared/format.dart';
 import '../model/booking_models.dart';
 import '../viewmodel/business_viewmodels.dart';
+import '../viewmodel/group_session_viewmodels.dart';
 
 /// A vállalkozás nyilvános oldala: adatok és szolgáltatások, innen indul a foglalás (View).
 class BusinessPage extends ConsumerWidget {
@@ -26,6 +27,42 @@ class BusinessPage extends ConsumerWidget {
         onRetry: () => ref.invalidate(businessViewModelProvider(slug)),
         builder: (context, data) => _Content(business: data),
       ),
+    );
+  }
+}
+
+/// A meghirdetett csoportos alkalmak (ha a vállalkozás használ ilyet); koppintásra jelentkezés.
+class _GroupSessionsSection extends ConsumerWidget {
+  const _GroupSessionsSection({required this.slug});
+
+  final String slug;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context);
+    final sessions = ref.watch(groupSessionsViewModelProvider(slug)).value ?? const <GroupSession>[];
+    if (sessions.isEmpty) return const SizedBox.shrink();
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const SizedBox(height: 16),
+        Text(l10n.groupSessions, style: Theme.of(context).textTheme.titleMedium),
+        const SizedBox(height: 8),
+        for (final s in sessions)
+          Card(
+            child: ListTile(
+              title: Text(s.serviceName),
+              subtitle: Text([
+                formatDateTime(context, s.startsAt),
+                s.full ? l10n.sessionFull : l10n.placesLeft(s.placesLeft),
+                if (s.priceHuf != null) formatHuf(context, s.priceHuf!),
+              ].join(' · ')),
+              trailing: const Icon(Icons.chevron_right),
+              onTap: () => context.push('/b/$slug/group/${s.id}'),
+            ),
+          ),
+      ],
     );
   }
 }
@@ -81,6 +118,7 @@ class _Content extends StatelessWidget {
               ),
             ),
           ),
+        _GroupSessionsSection(slug: business.slug),
         if (business.extraInfo != null && business.extraInfo!.isNotEmpty) ...[
           const SizedBox(height: 16),
           Text(business.extraInfo!, style: theme.textTheme.bodySmall),

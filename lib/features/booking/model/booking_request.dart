@@ -76,3 +76,15 @@ class BookingDetails {
   final String? notes;
   final String? passCode;
 }
+
+/// Jelentkezés egy csoportos alkalomra (`POST /public/businesses/{slug}/group-sessions/{id}/bookings`).
+class GroupBookRequest {
+  GroupBookRequest({required this.name, required this.email, this.phone, this.notes, this.passCode, this.marketingConsent});
+
+  final String name;
+  final String email;
+  final String? phone;
+  final String? notes;
+  final String? passCode;
+  final bool? marketingConsent;
+}

@@ -47,6 +47,23 @@ class AppLocalizationsEn extends AppLocalizations {
   String get updateNow => 'Update';
 
   @override
+  String get groupSessions => 'Group sessions';
+
+  @override
+  String get groupSessionTitle => 'Join a session';
+
+  @override
+  String placesLeft(int count) {
+    return '$count places left';
+  }
+
+  @override
+  String get sessionFull => 'Full';
+
+  @override
+  String get joinSession => 'Sign up';
+
+  @override
   String get joinWaitlist => 'Join the waitlist';
 
   @override
