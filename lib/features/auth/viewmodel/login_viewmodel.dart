@@ -26,11 +26,21 @@ class LoginViewModel extends Notifier<LoginState> {
     }
   }
 
+  /// A beírt kód vagy a levélből beillesztett teljes link (`…/fiokom/belepes/{kód}`) → a belépő kód.
+  static String extractCode(String input) {
+    final text = input.trim();
+    final uri = Uri.tryParse(text);
+    if (uri != null && uri.hasScheme && uri.pathSegments.isNotEmpty) {
+      return uri.pathSegments.where((s) => s.isNotEmpty).last;
+    }
+    return text;
+  }
+
   /// Siker esetén a munkamenet-ViewModel frissül, és a felület magától továbblép.
-  Future<void> signIn(String code) async {
+  Future<void> signIn(String codeOrLink) async {
     state = LoginState(busy: true, linkSent: state.linkSent);
     try {
-      await ref.read(customerSessionProvider.notifier).signIn(code);
+      await ref.read(customerSessionProvider.notifier).signIn(extractCode(codeOrLink));
       state = const LoginState(linkSent: true);
     } catch (e) {
       state = LoginState(linkSent: state.linkSent, error: e);

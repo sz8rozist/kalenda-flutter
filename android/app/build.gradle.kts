@@ -23,6 +23,8 @@ android {
         targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode
         versionName = flutter.versionName
+        // Az univerzális linkek hosztja (a levelekben szereplő domain): ./gradlew -PdeepLinkHost=kalenda.hu
+        manifestPlaceholders["deepLinkHost"] = (project.findProperty("deepLinkHost") as String?) ?: "kalenda.example"
     }
 
     buildTypes {

@@ -33,7 +33,21 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get tokenHelp =>
-      'Másold be a levélben kapott linkből a kódot (a /belepes/ utáni rész).';
+      'Másold be a levélben kapott linket (vagy a kódot a /belepes/ után).';
+
+  @override
+  String get updateRequiredTitle => 'Frissítés szükséges';
+
+  @override
+  String updateRequiredText(String version) {
+    return 'Ez a verzió már nem támogatott. Kérjük, frissítsd az alkalmazást legalább a(z) $version verzióra.';
+  }
+
+  @override
+  String get updateNow => 'Frissítés';
+
+  @override
+  String get backToStart => 'Vissza a kezdőlapra';
 
   @override
   String get signIn => 'Belépés';

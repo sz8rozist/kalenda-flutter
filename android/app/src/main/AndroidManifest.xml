@@ -24,6 +24,17 @@
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
+            <!-- Univerzális (app) linkek: a levelekben és a weben használt címek az appban nyílnak meg.
+                 A host a build-ből jön: -PdeepLinkHost=kalenda.hu (alapérték: kalenda.example).
+                 A https://<host>/.well-known/assetlinks.json fájlt a szervernek ki kell szolgálnia (ld. README). -->
+            <meta-data android:name="flutter_deeplinking_enabled" android:value="true"/>
+            <intent-filter android:autoVerify="true">
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:scheme="https" android:host="${deepLinkHost}" android:pathPrefix="/fiokom/belepes"/>
+                <data android:scheme="https" android:host="${deepLinkHost}" android:pathPrefix="/booking/manage"/>
+            </intent-filter>
         </activity>
         <!-- Don't delete the meta-data below.
              This is used by the Flutter tool to generate GeneratedPluginRegistrant.java -->

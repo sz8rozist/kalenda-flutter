@@ -143,8 +143,32 @@ abstract class AppLocalizations {
   /// No description provided for @tokenHelp.
   ///
   /// In hu, this message translates to:
-  /// **'Másold be a levélben kapott linkből a kódot (a /belepes/ utáni rész).'**
+  /// **'Másold be a levélben kapott linket (vagy a kódot a /belepes/ után).'**
   String get tokenHelp;
+
+  /// No description provided for @updateRequiredTitle.
+  ///
+  /// In hu, this message translates to:
+  /// **'Frissítés szükséges'**
+  String get updateRequiredTitle;
+
+  /// No description provided for @updateRequiredText.
+  ///
+  /// In hu, this message translates to:
+  /// **'Ez a verzió már nem támogatott. Kérjük, frissítsd az alkalmazást legalább a(z) {version} verzióra.'**
+  String updateRequiredText(String version);
+
+  /// No description provided for @updateNow.
+  ///
+  /// In hu, this message translates to:
+  /// **'Frissítés'**
+  String get updateNow;
+
+  /// No description provided for @backToStart.
+  ///
+  /// In hu, this message translates to:
+  /// **'Vissza a kezdőlapra'**
+  String get backToStart;
 
   /// No description provided for @signIn.
   ///

@@ -33,7 +33,21 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get tokenHelp =>
-      'Paste the code from the link in the email (the part after /belepes/).';
+      'Paste the link from the email (or the code after /belepes/).';
+
+  @override
+  String get updateRequiredTitle => 'Update required';
+
+  @override
+  String updateRequiredText(String version) {
+    return 'This version is no longer supported. Please update the app to version $version or newer.';
+  }
+
+  @override
+  String get updateNow => 'Update';
+
+  @override
+  String get backToStart => 'Back to start';
 
   @override
   String get signIn => 'Sign in';

@@ -3,6 +3,8 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'core/router.dart';
+import 'features/app_gate/view/update_required_page.dart';
+import 'features/app_gate/viewmodel/app_gate_viewmodel.dart';
 import 'l10n/app_localizations.dart';
 
 void main() {
@@ -14,6 +16,8 @@ class KalendaApp extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final update = ref.watch(appGateProvider).value;
+
     return MaterialApp.router(
       onGenerateTitle: (context) => AppLocalizations.of(context).appTitle,
       routerConfig: ref.watch(routerProvider),
@@ -25,6 +29,8 @@ class KalendaApp extends ConsumerWidget {
         GlobalCupertinoLocalizations.delegate,
       ],
       supportedLocales: AppLocalizations.supportedLocales,
+      // Elavult verziónál minden képernyő helyett a kötelező frissítés oldal jelenik meg.
+      builder: (context, child) => update != null ? UpdateRequiredPage(requirement: update) : (child ?? const SizedBox.shrink()),
     );
   }
 }

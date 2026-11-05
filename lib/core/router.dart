@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../features/auth/view/login_link_page.dart';
 import '../features/booking/view/booking_page.dart';
 import '../features/booking/view/business_page.dart';
 import '../features/booking/view/manage_booking_page.dart';
@@ -17,6 +18,8 @@ final routerProvider = Provider<GoRouter>((ref) {
     routes: [
       GoRoute(path: '/', builder: (_, _) => const HomePage()),
       GoRoute(path: '/staff', builder: (_, _) => const StaffHomePage()),
+      // A levélben kapott belépő link (univerzális link / app link ide érkezik).
+      GoRoute(path: '/fiokom/belepes/:code', builder: (_, state) => LoginLinkPage(code: state.pathParameters['code']!)),
       GoRoute(path: '/b/:slug', builder: (_, state) => BusinessPage(slug: state.pathParameters['slug']!)),
       GoRoute(
         path: '/b/:slug/book/:serviceId',
@@ -25,6 +28,9 @@ final routerProvider = Provider<GoRouter>((ref) {
           serviceId: int.parse(state.pathParameters['serviceId']!),
         ),
       ),
+      // A levelekben és a weben használt útvonalak is megnyílnak az appban (univerzális link).
+      GoRoute(path: '/booking/manage/:token', builder: (_, state) => ManageBookingPage(token: state.pathParameters['token']!)),
+      GoRoute(path: '/booking/:slug', builder: (_, state) => BusinessPage(slug: state.pathParameters['slug']!)),
       GoRoute(path: '/manage/:token', builder: (_, state) => ManageBookingPage(token: state.pathParameters['token']!)),
       GoRoute(
         path: '/booked/:token',
