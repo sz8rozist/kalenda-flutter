@@ -10,12 +10,11 @@ import '../data/booking_repository.dart';
 import '../model/booking_request.dart';
 import 'business_viewmodels.dart';
 
-/// A foglalás sikeres beküldése után: a foglalás-kezelő token, és (előlegnél) a fizetési oldal címe.
+/// A foglalás sikeres beküldése után: a foglalás-kezelő token. Előlegnél a fizetés a visszaigazoló képernyőn indul.
 class BookingOutcome {
-  const BookingOutcome({required this.manageToken, this.checkoutUrl});
+  const BookingOutcome({required this.manageToken});
 
   final String manageToken;
-  final String? checkoutUrl;
 }
 
 /// A foglalási űrlap állapota. A szövegmezők (név, e-mail…) a View-ban élnek, ez a választásokat és a küldést követi.
@@ -167,10 +166,7 @@ class BookingFormViewModel extends Notifier<BookingFormState> {
       if (!ref.mounted) return;
       state = state.copyWith(
         busy: false,
-        outcome: BookingOutcome(
-          manageToken: result.manageToken,
-          checkoutUrl: result.requiresPayment ? result.checkoutUrl : null,
-        ),
+        outcome: BookingOutcome(manageToken: result.manageToken),
       );
     } catch (e) {
       if (ref.mounted) state = state.copyWith(busy: false, error: e);

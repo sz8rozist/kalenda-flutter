@@ -5,6 +5,7 @@ import '../../../core/api/date_param.dart';
 import '../../../core/providers.dart';
 import '../model/booking_models.dart';
 import '../model/booking_request.dart';
+import '../model/payment_sheet.dart';
 
 /// A nyilvános foglalás és a foglalás-kezelő token alapú műveletei (`/public/…`).
 class BookingRepository {
@@ -53,6 +54,19 @@ class BookingRepository {
   Future<List<String>> rescheduleSlots(String token, DateTime date) async {
     final response = await _api.call((d) => d.get('/public/bookings/$token/slots', queryParameters: {'date': dateParam(date)}));
     return (response.data as List).map((e) => '$e').toList();
+  }
+
+  /// PaymentIntent a még ki nem fizetett előleghez (mobil PaymentSheet).
+  Future<PaymentSheetData> paymentSheet(String token) async {
+    final response = await _api.call((d) => d.post('/public/bookings/$token/payment/sheet'));
+    return PaymentSheetData.fromJson(response.data as Map<String, dynamic>);
+  }
+
+  /// A sikeres fizetés visszaigazolása; a szerver a Stripe-nál ellenőrzi. Igaz, ha a foglalás ki van fizetve.
+  Future<bool> confirmPaymentIntent(String token, String paymentIntentId) async {
+    final response = await _api.call((d) => d.post('/public/bookings/$token/payment/confirm-intent',
+        data: {'payment_intent_id': paymentIntentId}));
+    return (response.data as Map<String, dynamic>)['paid'] as bool? ?? false;
   }
 
   Future<void> cancel(String token) => _api.call((d) => d.post('/public/bookings/$token/cancel'));

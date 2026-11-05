@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 import '../../../l10n/app_localizations.dart';
 import '../../../shared/async_view.dart';
@@ -101,12 +100,9 @@ class _BookingFormState extends ConsumerState<_BookingForm> {
       if (_phone.text.isEmpty) _phone.text = profile.phone ?? '';
     });
 
-    // Sikeres foglalás: előlegnél a fizetési oldal megnyitása, majd a visszaigazoló képernyő.
-    ref.listen(provider.select((s) => s.outcome), (_, outcome) async {
-      if (outcome == null) return;
-      final checkout = outcome.checkoutUrl;
-      if (checkout != null) await launchUrl(Uri.parse(checkout), mode: LaunchMode.externalApplication);
-      if (context.mounted) context.go('/booked/${outcome.manageToken}');
+    // Sikeres foglalás: a visszaigazoló képernyő (előlegnél itt indítható a fizetés).
+    ref.listen(provider.select((s) => s.outcome), (_, outcome) {
+      if (outcome != null) context.go('/booked/${outcome.manageToken}');
     });
 
     final service = widget.business.service(widget.serviceId);

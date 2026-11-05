@@ -44,3 +44,12 @@ Az értesítés-engedélyt az app az első foglalás után kéri; belépés utá
 Szabályok: a View nem hív repository-t / Dio-t, és üzleti állapotot nem tart `setState`-tel; a ViewModel nem ismeri a `BuildContext`-et (a visszajelzést `Flash`-ként adja, a szöveget a View állítja össze – `shared/flash.dart`);
 közös segédek: `core/viewmodel/` (`ActionNotifier`, fül-/hét-/dátumválasztó ViewModel-ek), `shared/` (`AsyncView`, `WeekHeader`, formázók).
 Új képernyő = `view` + `viewmodel` (+ `model`/`data`, ha új adat kell).
+
+## Fizetés (Stripe PaymentSheet)
+Előleges foglalásnál a visszaigazoló képernyőn „Fizetés most" gomb indítja a Stripe PaymentSheetet (kártya, Apple Pay, Google Pay).
+A backend (`POST /public/bookings/{token}/payment/sheet`) készíti a PaymentIntentet a vállalkozó Connect-fiókján; az app a `client_secret`-tel,
+a publikus kulccsal és a `stripe_account_id`-val nyitja a lapot, majd a `…/payment/confirm-intent`-tel igazol vissza.
+- **Backend beállítás:** `STRIPE_PUBLISHABLE_KEY`; a Connect webhook-végponton kapcsold be a `payment_intent.succeeded` eseményt.
+- **Android:** a `MainActivity` `FlutterFragmentActivity`, a téma MaterialComponents (kész). Google Pay-hez a Stripe-fiókban és az éles appban engedélyezés kell.
+- **iOS (teendő, Mac/CI-n):** minimum deployment target 13.0 a `Podfile`-ban; Apple Pay-hez Merchant ID az Apple Developer-fiókban és a *Apple Pay* capability az Xcode-ban.
+- Teszteléshez Stripe teszt-kulcsok és a `4242 4242 4242 4242` tesztkártya.

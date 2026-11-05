@@ -1,9 +1,11 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../core/payment/stripe_payment_gateway.dart';
 import '../../../core/viewmodel/action_state.dart';
 import '../../account/viewmodel/account_viewmodel.dart';
 import '../data/booking_repository.dart';
 import '../model/booking_models.dart';
+import '../model/payment_sheet.dart';
 
 /// Egy foglalás a foglalás-kezelő token alapján; a kulcs a token.
 class ManagedBookingViewModel extends AsyncNotifier<ManagedBooking> {
@@ -40,6 +42,34 @@ class ManagedBookingActionsViewModel extends ActionNotifier {
 
 final managedBookingActionsProvider =
     NotifierProvider.autoDispose.family<ManagedBookingActionsViewModel, ActionState, String>(ManagedBookingActionsViewModel.new);
+
+/// A foglalási előleg fizetése a mobil PaymentSheet-tel (kártya, Apple Pay, Google Pay).
+/// A szerver a PaymentIntentet készíti, az SDK fizet, a szerver a Stripe-nál ellenőrzi a végeredményt.
+class PaymentViewModel extends ActionNotifier {
+  PaymentViewModel(this.token);
+
+  final String token;
+
+  Future<void> pay() async {
+    await perform(() async {
+      final repository = ref.read(bookingRepositoryProvider);
+      final data = await repository.paymentSheet(token);
+      final merchant = ref.read(managedBookingViewModelProvider(token)).value?.businessName ?? 'Kalenda';
+
+      final outcome = await ref.read(stripePaymentGatewayProvider).pay(data, merchantName: merchant);
+      if (outcome == PaymentOutcome.paid) await repository.confirmPaymentIntent(token, data.paymentIntentId);
+    });
+
+    // Akár sikerült, akár megszakították: a foglalás állapota frissüljön (a webhook közben is rögzíthette).
+    if (ref.mounted) {
+      ref.invalidate(managedBookingViewModelProvider(token));
+      ref.invalidate(accountViewModelProvider);
+    }
+  }
+}
+
+final paymentViewModelProvider =
+    NotifierProvider.autoDispose.family<PaymentViewModel, ActionState, String>(PaymentViewModel.new);
 
 /// Szabad időpontok áthelyezéshez ("HH:mm") egy napra.
 typedef RescheduleQuery = ({String token, DateTime date});

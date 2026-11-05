@@ -23,7 +23,9 @@ class ManageBookingPage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = AppLocalizations.of(context);
     listenFlash(ref, context, managedBookingActionsProvider(token).select((s) => s.flash));
-    final busy = ref.watch(managedBookingActionsProvider(token).select((s) => s.busy));
+    listenFlash(ref, context, paymentViewModelProvider(token).select((s) => s.flash));
+    final paying = ref.watch(paymentViewModelProvider(token).select((s) => s.busy));
+    final busy = ref.watch(managedBookingActionsProvider(token).select((s) => s.busy)) || paying;
 
     return Scaffold(
       appBar: AppBar(title: Text(justBooked ? l10n.bookingDone : l10n.manageBooking)),
@@ -43,6 +45,16 @@ class ManageBookingPage extends ConsumerWidget {
               ],
               _Details(booking: data),
               const SizedBox(height: 16),
+              if (data.paymentRequired && data.paymentStatus == 'pending') ...[
+                Text(l10n.paymentRequired),
+                const SizedBox(height: 8),
+                FilledButton.icon(
+                  icon: const Icon(Icons.payment),
+                  label: Text(l10n.payNow),
+                  onPressed: busy ? null : () => ref.read(paymentViewModelProvider(token).notifier).pay(),
+                ),
+                const SizedBox(height: 8),
+              ],
               if (data.canModify)
                 FilledButton.tonalIcon(
                   icon: const Icon(Icons.edit_calendar_outlined),
