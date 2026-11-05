@@ -47,6 +47,13 @@ class AppLocalizationsEn extends AppLocalizations {
   String get updateNow => 'Update';
 
   @override
+  String get joinWaitlist => 'Join the waitlist';
+
+  @override
+  String get waitlistJoined =>
+      'You are on the waitlist; we will notify you when a time frees up.';
+
+  @override
   String get orSignInWith => 'or';
 
   @override

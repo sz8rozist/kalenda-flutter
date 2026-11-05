@@ -47,6 +47,13 @@ class AppLocalizationsHu extends AppLocalizations {
   String get updateNow => 'Frissítés';
 
   @override
+  String get joinWaitlist => 'Várólistára iratkozom';
+
+  @override
+  String get waitlistJoined =>
+      'Feliratkoztál a várólistára, értesítünk, ha felszabadul egy időpont.';
+
+  @override
   String get orSignInWith => 'vagy';
 
   @override

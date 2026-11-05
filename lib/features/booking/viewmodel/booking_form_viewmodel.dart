@@ -30,6 +30,7 @@ class BookingFormState {
     this.error,
     this.outcome,
     this.prefill,
+    this.waitlistMessage,
   });
 
   final int? staffId;
@@ -47,6 +48,9 @@ class BookingFormState {
   /// Belépett ügyfél adatai az űrlap előtöltéséhez.
   final AccountProfile? prefill;
 
+  /// A várólistára feliratkozás visszaigazolása (a szerver üzenete); a View egyszer megmutatja.
+  final String? waitlistMessage;
+
   BookingFormState copyWith({
     int? staffId,
     Set<int>? addonIds,
@@ -60,6 +64,7 @@ class BookingFormState {
     bool clearError = false,
     BookingOutcome? outcome,
     AccountProfile? prefill,
+    String? waitlistMessage,
   }) =>
       BookingFormState(
         staffId: staffId ?? this.staffId,
@@ -72,6 +77,7 @@ class BookingFormState {
         error: clearError ? null : (error ?? this.error),
         outcome: outcome ?? this.outcome,
         prefill: prefill ?? this.prefill,
+        waitlistMessage: waitlistMessage,
       );
 }
 
@@ -130,6 +136,28 @@ class BookingFormViewModel extends Notifier<BookingFormState> {
   void selectTime(String time) => state = state.copyWith(time: time);
 
   void setMarketing(bool value) => state = state.copyWith(marketing: value);
+
+  /// Feliratkozás a várólistára arra a napra, amelyre nincs szabad időpont. Siker esetén a `waitlistMessage` kitöltődik.
+  Future<void> joinWaitlist(BookingDetails details) async {
+    final date = state.date;
+    state = state.copyWith(busy: true, clearError: true);
+    try {
+      final message = await ref.read(bookingRepositoryProvider).joinWaitlist(
+            args.slug,
+            WaitlistRequest(
+              serviceId: args.serviceId,
+              staffId: state.staffId,
+              name: details.name,
+              email: details.email,
+              phone: details.phone,
+              preferredDate: date,
+            ),
+          );
+      if (ref.mounted) state = state.copyWith(busy: false, waitlistMessage: message.isEmpty ? ' ' : message);
+    } catch (e) {
+      if (ref.mounted) state = state.copyWith(busy: false, error: e);
+    }
+  }
 
   /// A foglalás beküldése. Siker esetén az `outcome` kitöltődik (a View navigál / megnyitja a fizetést).
   Future<void> submit(BookingDetails details) async {

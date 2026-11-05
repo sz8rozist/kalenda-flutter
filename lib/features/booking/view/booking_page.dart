@@ -73,6 +73,16 @@ class _BookingFormState extends ConsumerState<_BookingForm> {
     if (picked != null) viewModel.pickDate(picked);
   }
 
+  /// A várólistához a név és az e-mail kell (a mezők a lenti „Adataid" részben vannak).
+  void _joinWaitlist() {
+    if (!_formKey.currentState!.validate()) return;
+    ref.read(bookingFormViewModelProvider(_args).notifier).joinWaitlist(BookingDetails(
+          name: _name.text.trim(),
+          email: _email.text.trim(),
+          phone: _phone.text.trim(),
+        ));
+  }
+
   void _submit() {
     if (!_formKey.currentState!.validate()) return;
     ref.read(bookingFormViewModelProvider(_args).notifier).submit(BookingDetails(
@@ -98,6 +108,12 @@ class _BookingFormState extends ConsumerState<_BookingForm> {
       if (_name.text.isEmpty) _name.text = profile.name;
       if (_email.text.isEmpty) _email.text = profile.email;
       if (_phone.text.isEmpty) _phone.text = profile.phone ?? '';
+    });
+
+    // Várólistára feliratkozva: a szerver üzenetét mutatjuk.
+    ref.listen(provider.select((s) => s.waitlistMessage), (_, message) {
+      if (message == null) return;
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(message.trim().isEmpty ? l10n.waitlistJoined : message)));
     });
 
     // Sikeres foglalás: a visszaigazoló képernyő (előlegnél itt indítható a fizetés).
@@ -155,6 +171,17 @@ class _BookingFormState extends ConsumerState<_BookingForm> {
           if (query != null) ...[
             const SizedBox(height: 12),
             _SlotPicker(query: query, selected: state.time, onSelected: viewModel.selectTime),
+            // Ha erre a napra minden időpont foglalt, és a vállalkozásnál van várólista: feliratkozás.
+            if (widget.business.hasWaitlist &&
+                (ref.watch(slotsViewModelProvider(query)).value?.every((s) => !s.available) ?? false))
+              Padding(
+                padding: const EdgeInsets.only(top: 8),
+                child: OutlinedButton.icon(
+                  icon: const Icon(Icons.notifications_active_outlined),
+                  label: Text(l10n.joinWaitlist),
+                  onPressed: state.busy ? null : _joinWaitlist,
+                ),
+              ),
           ],
           const SizedBox(height: 24),
           Text(l10n.yourDetails, style: theme.textTheme.titleMedium),

@@ -12,6 +12,8 @@
   "updateRequiredText": "This version is no longer supported. Please update the app to version {version} or newer.",
   "@updateRequiredText": { "placeholders": { "version": { "type": "String" } } },
   "updateNow": "Update",
+  "joinWaitlist": "Join the waitlist",
+  "waitlistJoined": "You are on the waitlist; we will notify you when a time frees up.",
   "orSignInWith": "or",
   "continueWithApple": "Continue with Apple",
   "continueWithGoogle": "Continue with Google",

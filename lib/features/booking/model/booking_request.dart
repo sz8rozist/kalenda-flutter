@@ -54,6 +54,18 @@ class BookingRequest {
   final List<int> addonIds;
 }
 
+/// Feliratkozás a várólistára (`POST /public/businesses/{slug}/waitlist`).
+class WaitlistRequest {
+  WaitlistRequest({required this.serviceId, required this.name, required this.email, this.staffId, this.phone, this.preferredDate});
+
+  final int serviceId;
+  final int? staffId;
+  final String name;
+  final String email;
+  final String? phone;
+  final DateTime? preferredDate;
+}
+
 /// A form mezői, ahogy a View beírta őket (a ViewModel ebből és a saját állapotából állítja össze a kérést).
 class BookingDetails {
   const BookingDetails({required this.name, required this.email, this.phone, this.notes, this.passCode});

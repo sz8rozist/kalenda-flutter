@@ -164,6 +164,18 @@ abstract class AppLocalizations {
   /// **'Frissítés'**
   String get updateNow;
 
+  /// No description provided for @joinWaitlist.
+  ///
+  /// In hu, this message translates to:
+  /// **'Várólistára iratkozom'**
+  String get joinWaitlist;
+
+  /// No description provided for @waitlistJoined.
+  ///
+  /// In hu, this message translates to:
+  /// **'Feliratkoztál a várólistára, értesítünk, ha felszabadul egy időpont.'**
+  String get waitlistJoined;
+
   /// No description provided for @orSignInWith.
   ///
   /// In hu, this message translates to:

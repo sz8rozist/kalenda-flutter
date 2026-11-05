@@ -89,6 +89,7 @@ class PublicBusiness {
     this.extraInfo,
     this.hasCampaigns = false,
     this.hasPasses = false,
+    this.hasWaitlist = false,
   });
 
   final String name;
@@ -103,6 +104,7 @@ class PublicBusiness {
   final String? extraInfo;
   final bool hasCampaigns;
   final bool hasPasses;
+  final bool hasWaitlist;
   final List<PublicService> services;
   final List<PublicStaff> staff;
   final Map<int, List<PublicAddon>> addonsByService;
@@ -133,6 +135,7 @@ class PublicBusiness {
       extraInfo: j['extra_info'] as String?,
       hasCampaigns: j['has_campaigns'] as bool? ?? false,
       hasPasses: j['has_passes'] as bool? ?? false,
+      hasWaitlist: j['has_waitlist'] as bool? ?? false,
       services: _list(j['services'], PublicService.fromJson),
       staff: _list(j['staff'], PublicStaff.fromJson),
       addonsByService: addons,

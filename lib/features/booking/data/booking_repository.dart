@@ -45,6 +45,19 @@ class BookingRepository {
     return BookedResult.fromJson(response.data as Map<String, dynamic>);
   }
 
+  /// Feliratkozás a várólistára; a válasz a szerver üzenete.
+  Future<String> joinWaitlist(String slug, WaitlistRequest r) async {
+    final response = await _api.call((d) => d.post('/public/businesses/$slug/waitlist', data: {
+          'service_id': r.serviceId,
+          'staff_id': ?r.staffId,
+          'customer_name': r.name,
+          'customer_email': r.email,
+          if (r.phone != null && r.phone!.isNotEmpty) 'customer_phone': r.phone,
+          'preferred_date': ?(r.preferredDate == null ? null : dateParam(r.preferredDate!)),
+        }));
+    return (response.data as Map<String, dynamic>)['message'] as String? ?? '';
+  }
+
   Future<ManagedBooking> managed(String token) async {
     final response = await _api.call((d) => d.get('/public/bookings/$token'));
     return ManagedBooking.fromJson(response.data as Map<String, dynamic>);

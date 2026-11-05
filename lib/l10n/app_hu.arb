@@ -12,6 +12,8 @@
   "updateRequiredText": "Ez a verzió már nem támogatott. Kérjük, frissítsd az alkalmazást legalább a(z) {version} verzióra.",
   "@updateRequiredText": { "placeholders": { "version": { "type": "String" } } },
   "updateNow": "Frissítés",
+  "joinWaitlist": "Várólistára iratkozom",
+  "waitlistJoined": "Feliratkoztál a várólistára, értesítünk, ha felszabadul egy időpont.",
   "orSignInWith": "vagy",
   "continueWithApple": "Folytatás Apple-fiókkal",
   "continueWithGoogle": "Folytatás Google-fiókkal",
