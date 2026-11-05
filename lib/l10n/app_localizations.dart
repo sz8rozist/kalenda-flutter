@@ -559,6 +559,204 @@ abstract class AppLocalizations {
   /// In hu, this message translates to:
   /// **'A személyes adataid törlődnek, a belépésed és az eszközeid megszűnnek. Ez nem vonható vissza. Közelgő foglalással nem törölhető a fiók.'**
   String get deleteAccountText;
+
+  /// No description provided for @staffLoginLink.
+  ///
+  /// In hu, this message translates to:
+  /// **'Munkatárs vagy vállalkozó vagyok'**
+  String get staffLoginLink;
+
+  /// No description provided for @staffLoginTitle.
+  ///
+  /// In hu, this message translates to:
+  /// **'Belépés munkatársként'**
+  String get staffLoginTitle;
+
+  /// No description provided for @staffLoginIntro.
+  ///
+  /// In hu, this message translates to:
+  /// **'Lépj be a Kalenda-fiókod e-mail-címével és jelszavával.'**
+  String get staffLoginIntro;
+
+  /// No description provided for @password.
+  ///
+  /// In hu, this message translates to:
+  /// **'Jelszó'**
+  String get password;
+
+  /// No description provided for @staffToday.
+  ///
+  /// In hu, this message translates to:
+  /// **'Ma'**
+  String get staffToday;
+
+  /// No description provided for @staffCalendar.
+  ///
+  /// In hu, this message translates to:
+  /// **'Naptár'**
+  String get staffCalendar;
+
+  /// No description provided for @staffLeaves.
+  ///
+  /// In hu, this message translates to:
+  /// **'Szabadság'**
+  String get staffLeaves;
+
+  /// No description provided for @staffNoProfile.
+  ///
+  /// In hu, this message translates to:
+  /// **'Ehhez a fiókhoz nincs munkatársi profil. A vállalkozói felület egyelőre a weben érhető el.'**
+  String get staffNoProfile;
+
+  /// No description provided for @todayCount.
+  ///
+  /// In hu, this message translates to:
+  /// **'{count} foglalás ma'**
+  String todayCount(int count);
+
+  /// No description provided for @upcomingAppointments.
+  ///
+  /// In hu, this message translates to:
+  /// **'Következő foglalások'**
+  String get upcomingAppointments;
+
+  /// No description provided for @noAppointments.
+  ///
+  /// In hu, this message translates to:
+  /// **'Nincs foglalás.'**
+  String get noAppointments;
+
+  /// No description provided for @clockIn.
+  ///
+  /// In hu, this message translates to:
+  /// **'Munkakezdés'**
+  String get clockIn;
+
+  /// No description provided for @clockOut.
+  ///
+  /// In hu, this message translates to:
+  /// **'Munkavégzés vége'**
+  String get clockOut;
+
+  /// No description provided for @clockedInSince.
+  ///
+  /// In hu, this message translates to:
+  /// **'Bent vagy {time} óta'**
+  String clockedInSince(String time);
+
+  /// No description provided for @breakMinutes.
+  ///
+  /// In hu, this message translates to:
+  /// **'Szünet (perc)'**
+  String get breakMinutes;
+
+  /// No description provided for @statusPending.
+  ///
+  /// In hu, this message translates to:
+  /// **'Függő'**
+  String get statusPending;
+
+  /// No description provided for @statusConfirmed.
+  ///
+  /// In hu, this message translates to:
+  /// **'Megerősítve'**
+  String get statusConfirmed;
+
+  /// No description provided for @statusCancelled.
+  ///
+  /// In hu, this message translates to:
+  /// **'Lemondva'**
+  String get statusCancelled;
+
+  /// No description provided for @statusCompleted.
+  ///
+  /// In hu, this message translates to:
+  /// **'Lezárva'**
+  String get statusCompleted;
+
+  /// No description provided for @statusNoShow.
+  ///
+  /// In hu, this message translates to:
+  /// **'Nem jelent meg'**
+  String get statusNoShow;
+
+  /// No description provided for @statusApproved.
+  ///
+  /// In hu, this message translates to:
+  /// **'Jóváhagyva'**
+  String get statusApproved;
+
+  /// No description provided for @statusRejected.
+  ///
+  /// In hu, this message translates to:
+  /// **'Elutasítva'**
+  String get statusRejected;
+
+  /// No description provided for @actionConfirm.
+  ///
+  /// In hu, this message translates to:
+  /// **'Megerősítés'**
+  String get actionConfirm;
+
+  /// No description provided for @actionComplete.
+  ///
+  /// In hu, this message translates to:
+  /// **'Megjelent / lezárás'**
+  String get actionComplete;
+
+  /// No description provided for @actionNoShow.
+  ///
+  /// In hu, this message translates to:
+  /// **'Nem jelent meg'**
+  String get actionNoShow;
+
+  /// No description provided for @actionCancel.
+  ///
+  /// In hu, this message translates to:
+  /// **'Lemondás'**
+  String get actionCancel;
+
+  /// No description provided for @newLeave.
+  ///
+  /// In hu, this message translates to:
+  /// **'Szabadság kérése'**
+  String get newLeave;
+
+  /// No description provided for @leaveReason.
+  ///
+  /// In hu, this message translates to:
+  /// **'Indok (nem kötelező)'**
+  String get leaveReason;
+
+  /// No description provided for @withdraw.
+  ///
+  /// In hu, this message translates to:
+  /// **'Visszavonás'**
+  String get withdraw;
+
+  /// No description provided for @pickDates.
+  ///
+  /// In hu, this message translates to:
+  /// **'Válaszd ki az időszakot'**
+  String get pickDates;
+
+  /// No description provided for @previousWeek.
+  ///
+  /// In hu, this message translates to:
+  /// **'Előző hét'**
+  String get previousWeek;
+
+  /// No description provided for @nextWeek.
+  ///
+  /// In hu, this message translates to:
+  /// **'Következő hét'**
+  String get nextWeek;
+
+  /// No description provided for @leaveDay.
+  ///
+  /// In hu, this message translates to:
+  /// **'Szabadság'**
+  String get leaveDay;
 }
 
 class _AppLocalizationsDelegate

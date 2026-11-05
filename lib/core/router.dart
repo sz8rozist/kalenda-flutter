@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../features/booking/booking_page.dart';
+import '../features/staff/staff_home_page.dart';
 import 'push/push_service.dart';
 import '../features/booking/business_page.dart';
 import '../features/booking/manage_booking_page.dart';
@@ -15,6 +16,7 @@ final routerProvider = Provider<GoRouter>((ref) {
     initialLocation: '/',
     routes: [
       GoRoute(path: '/', builder: (_, _) => const HomePage()),
+      GoRoute(path: '/staff', builder: (_, _) => const StaffHomePage()),
       GoRoute(path: '/b/:slug', builder: (_, state) => BusinessPage(slug: state.pathParameters['slug']!)),
       GoRoute(
         path: '/b/:slug/book/:serviceId',

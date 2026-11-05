@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../core/api/api_exception.dart';
 import '../../core/auth/auth_controller.dart';
@@ -95,6 +96,8 @@ class _LoginPageState extends ConsumerState<LoginPage> {
               const SizedBox(height: 16),
               Text(_error!, style: TextStyle(color: Theme.of(context).colorScheme.error)),
             ],
+            const SizedBox(height: 32),
+            TextButton(onPressed: () => context.push('/staff'), child: Text(l10n.staffLoginLink)),
           ],
         ),
       ),

@@ -257,4 +257,109 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get deleteAccountText =>
       'Your personal data will be erased and your sign-in and devices removed. This cannot be undone. The account cannot be deleted while you have upcoming bookings.';
+
+  @override
+  String get staffLoginLink => 'I am staff or a business owner';
+
+  @override
+  String get staffLoginTitle => 'Staff sign-in';
+
+  @override
+  String get staffLoginIntro =>
+      'Sign in with your Kalenda account email and password.';
+
+  @override
+  String get password => 'Password';
+
+  @override
+  String get staffToday => 'Today';
+
+  @override
+  String get staffCalendar => 'Calendar';
+
+  @override
+  String get staffLeaves => 'Time off';
+
+  @override
+  String get staffNoProfile =>
+      'This account has no staff profile. The business tools are available on the web for now.';
+
+  @override
+  String todayCount(int count) {
+    return '$count bookings today';
+  }
+
+  @override
+  String get upcomingAppointments => 'Upcoming bookings';
+
+  @override
+  String get noAppointments => 'No bookings.';
+
+  @override
+  String get clockIn => 'Clock in';
+
+  @override
+  String get clockOut => 'Clock out';
+
+  @override
+  String clockedInSince(String time) {
+    return 'Clocked in since $time';
+  }
+
+  @override
+  String get breakMinutes => 'Break (minutes)';
+
+  @override
+  String get statusPending => 'Pending';
+
+  @override
+  String get statusConfirmed => 'Confirmed';
+
+  @override
+  String get statusCancelled => 'Cancelled';
+
+  @override
+  String get statusCompleted => 'Completed';
+
+  @override
+  String get statusNoShow => 'No-show';
+
+  @override
+  String get statusApproved => 'Approved';
+
+  @override
+  String get statusRejected => 'Rejected';
+
+  @override
+  String get actionConfirm => 'Confirm';
+
+  @override
+  String get actionComplete => 'Attended / complete';
+
+  @override
+  String get actionNoShow => 'No-show';
+
+  @override
+  String get actionCancel => 'Cancel';
+
+  @override
+  String get newLeave => 'Request time off';
+
+  @override
+  String get leaveReason => 'Reason (optional)';
+
+  @override
+  String get withdraw => 'Withdraw';
+
+  @override
+  String get pickDates => 'Pick the period';
+
+  @override
+  String get previousWeek => 'Previous week';
+
+  @override
+  String get nextWeek => 'Next week';
+
+  @override
+  String get leaveDay => 'Time off';
 }

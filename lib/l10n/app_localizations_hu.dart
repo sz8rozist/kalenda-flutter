@@ -258,4 +258,109 @@ class AppLocalizationsHu extends AppLocalizations {
   @override
   String get deleteAccountText =>
       'A személyes adataid törlődnek, a belépésed és az eszközeid megszűnnek. Ez nem vonható vissza. Közelgő foglalással nem törölhető a fiók.';
+
+  @override
+  String get staffLoginLink => 'Munkatárs vagy vállalkozó vagyok';
+
+  @override
+  String get staffLoginTitle => 'Belépés munkatársként';
+
+  @override
+  String get staffLoginIntro =>
+      'Lépj be a Kalenda-fiókod e-mail-címével és jelszavával.';
+
+  @override
+  String get password => 'Jelszó';
+
+  @override
+  String get staffToday => 'Ma';
+
+  @override
+  String get staffCalendar => 'Naptár';
+
+  @override
+  String get staffLeaves => 'Szabadság';
+
+  @override
+  String get staffNoProfile =>
+      'Ehhez a fiókhoz nincs munkatársi profil. A vállalkozói felület egyelőre a weben érhető el.';
+
+  @override
+  String todayCount(int count) {
+    return '$count foglalás ma';
+  }
+
+  @override
+  String get upcomingAppointments => 'Következő foglalások';
+
+  @override
+  String get noAppointments => 'Nincs foglalás.';
+
+  @override
+  String get clockIn => 'Munkakezdés';
+
+  @override
+  String get clockOut => 'Munkavégzés vége';
+
+  @override
+  String clockedInSince(String time) {
+    return 'Bent vagy $time óta';
+  }
+
+  @override
+  String get breakMinutes => 'Szünet (perc)';
+
+  @override
+  String get statusPending => 'Függő';
+
+  @override
+  String get statusConfirmed => 'Megerősítve';
+
+  @override
+  String get statusCancelled => 'Lemondva';
+
+  @override
+  String get statusCompleted => 'Lezárva';
+
+  @override
+  String get statusNoShow => 'Nem jelent meg';
+
+  @override
+  String get statusApproved => 'Jóváhagyva';
+
+  @override
+  String get statusRejected => 'Elutasítva';
+
+  @override
+  String get actionConfirm => 'Megerősítés';
+
+  @override
+  String get actionComplete => 'Megjelent / lezárás';
+
+  @override
+  String get actionNoShow => 'Nem jelent meg';
+
+  @override
+  String get actionCancel => 'Lemondás';
+
+  @override
+  String get newLeave => 'Szabadság kérése';
+
+  @override
+  String get leaveReason => 'Indok (nem kötelező)';
+
+  @override
+  String get withdraw => 'Visszavonás';
+
+  @override
+  String get pickDates => 'Válaszd ki az időszakot';
+
+  @override
+  String get previousWeek => 'Előző hét';
+
+  @override
+  String get nextWeek => 'Következő hét';
+
+  @override
+  String get leaveDay => 'Szabadság';
 }

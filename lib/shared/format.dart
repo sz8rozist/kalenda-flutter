@@ -27,6 +27,24 @@ String errorText(BuildContext context, Object error) {
   return l10n.genericError;
 }
 
+/// A foglalás / szabadság állapotának felirata.
+String statusLabel(BuildContext context, String status) {
+  final l10n = AppLocalizations.of(context);
+  return switch (status) {
+    'pending' => l10n.statusPending,
+    'confirmed' => l10n.statusConfirmed,
+    'cancelled' => l10n.statusCancelled,
+    'completed' => l10n.statusCompleted,
+    'no_show' => l10n.statusNoShow,
+    'approved' => l10n.statusApproved,
+    'rejected' => l10n.statusRejected,
+    _ => status,
+  };
+}
+
+String formatTime(BuildContext context, DateTime value) =>
+    DateFormat.Hm(Localizations.localeOf(context).toString()).format(value);
+
 /// A foglalási link végéről az azonosító (slug): `https://…/foglalas/szalon` → `szalon`.
 String slugFromInput(String input) {
   final text = input.trim();
