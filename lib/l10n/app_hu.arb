@@ -1,0 +1,23 @@
+{
+  "@@locale": "hu",
+  "appTitle": "Kalenda",
+  "loginTitle": "Belépés",
+  "loginIntro": "Add meg az e-mail-címed, és küldünk egy belépő linket.",
+  "email": "E-mail-cím",
+  "sendLink": "Belépő link küldése",
+  "linkSent": "Ha az e-mail-cím szerepel nálunk, elküldtük a belépő linket.",
+  "tokenLabel": "Kód a levélből",
+  "tokenHelp": "Másold be a levélben kapott linkből a kódot (a /belepes/ utáni rész).",
+  "signIn": "Belépés",
+  "signOut": "Kijelentkezés",
+  "myAppointments": "Foglalásaim",
+  "upcoming": "Közelgő",
+  "past": "Korábbi",
+  "noUpcoming": "Nincs közelgő foglalásod.",
+  "noPast": "Még nincs korábbi foglalásod.",
+  "retry": "Újra",
+  "genericError": "Hiba történt. Próbáld újra.",
+  "networkError": "Nincs kapcsolat a szerverrel.",
+  "priceHuf": "{amount} Ft",
+  "@priceHuf": { "placeholders": { "amount": { "type": "String" } } }
+}

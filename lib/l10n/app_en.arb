@@ -1,0 +1,23 @@
+{
+  "@@locale": "en",
+  "appTitle": "Kalenda",
+  "loginTitle": "Sign in",
+  "loginIntro": "Enter your email and we will send you a sign-in link.",
+  "email": "Email",
+  "sendLink": "Send sign-in link",
+  "linkSent": "If the address is known to us, we have sent a sign-in link.",
+  "tokenLabel": "Code from the email",
+  "tokenHelp": "Paste the code from the link in the email (the part after /belepes/).",
+  "signIn": "Sign in",
+  "signOut": "Sign out",
+  "myAppointments": "My bookings",
+  "upcoming": "Upcoming",
+  "past": "Past",
+  "noUpcoming": "You have no upcoming bookings.",
+  "noPast": "You have no past bookings yet.",
+  "retry": "Retry",
+  "genericError": "Something went wrong. Please try again.",
+  "networkError": "Cannot reach the server.",
+  "priceHuf": "{amount} HUF",
+  "@priceHuf": { "placeholders": { "amount": { "type": "String" } } }
+}
