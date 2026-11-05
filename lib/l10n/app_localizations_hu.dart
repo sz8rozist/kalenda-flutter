@@ -47,6 +47,24 @@ class AppLocalizationsHu extends AppLocalizations {
   String get updateNow => 'Frissítés';
 
   @override
+  String get reviewTitle => 'Értékelés';
+
+  @override
+  String get reviewQuestion => 'Hogy tetszett a szolgáltatás?';
+
+  @override
+  String get reviewFeedback => 'Szeretnél hozzáfűzni valamit? (nem kötelező)';
+
+  @override
+  String get reviewSubmit => 'Értékelés elküldése';
+
+  @override
+  String get reviewThanks => 'Köszönjük az értékelésed!';
+
+  @override
+  String get reviewOnGoogle => 'Értékelés a Google-on is';
+
+  @override
   String get groupSessions => 'Csoportos alkalmak';
 
   @override

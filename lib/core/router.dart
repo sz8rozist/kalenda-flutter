@@ -9,6 +9,7 @@ import '../features/booking/view/group_booking_page.dart';
 import '../features/booking/view/manage_booking_page.dart';
 import '../features/home/view/home_page.dart';
 import '../features/owner/view/owner_booking_page.dart';
+import '../features/review/view/review_page.dart';
 import '../features/staff/view/staff_home_page.dart';
 import 'push/push_service.dart';
 
@@ -37,6 +38,14 @@ final routerProvider = Provider<GoRouter>((ref) {
         builder: (_, state) => GroupBookingPage(
           slug: state.pathParameters['slug']!,
           sessionId: int.parse(state.pathParameters['sessionId']!),
+        ),
+      ),
+      // Értékelés a levélből (a csillag-linkek `?r=1..5`-tel előre kiválasztják az értékelést).
+      GoRoute(
+        path: '/velemeny/:token',
+        builder: (_, state) => ReviewPage(
+          token: state.pathParameters['token']!,
+          initialRating: int.tryParse(state.uri.queryParameters['r'] ?? '') ?? 0,
         ),
       ),
       GoRoute(path: '/booking/manage/:token', builder: (_, state) => ManageBookingPage(token: state.pathParameters['token']!)),

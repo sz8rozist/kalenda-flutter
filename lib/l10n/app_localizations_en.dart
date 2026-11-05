@@ -47,6 +47,24 @@ class AppLocalizationsEn extends AppLocalizations {
   String get updateNow => 'Update';
 
   @override
+  String get reviewTitle => 'Review';
+
+  @override
+  String get reviewQuestion => 'How did you like the service?';
+
+  @override
+  String get reviewFeedback => 'Anything to add? (optional)';
+
+  @override
+  String get reviewSubmit => 'Send review';
+
+  @override
+  String get reviewThanks => 'Thank you for your review!';
+
+  @override
+  String get reviewOnGoogle => 'Review on Google too';
+
+  @override
   String get groupSessions => 'Group sessions';
 
   @override

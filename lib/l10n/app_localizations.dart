@@ -164,6 +164,42 @@ abstract class AppLocalizations {
   /// **'Frissítés'**
   String get updateNow;
 
+  /// No description provided for @reviewTitle.
+  ///
+  /// In hu, this message translates to:
+  /// **'Értékelés'**
+  String get reviewTitle;
+
+  /// No description provided for @reviewQuestion.
+  ///
+  /// In hu, this message translates to:
+  /// **'Hogy tetszett a szolgáltatás?'**
+  String get reviewQuestion;
+
+  /// No description provided for @reviewFeedback.
+  ///
+  /// In hu, this message translates to:
+  /// **'Szeretnél hozzáfűzni valamit? (nem kötelező)'**
+  String get reviewFeedback;
+
+  /// No description provided for @reviewSubmit.
+  ///
+  /// In hu, this message translates to:
+  /// **'Értékelés elküldése'**
+  String get reviewSubmit;
+
+  /// No description provided for @reviewThanks.
+  ///
+  /// In hu, this message translates to:
+  /// **'Köszönjük az értékelésed!'**
+  String get reviewThanks;
+
+  /// No description provided for @reviewOnGoogle.
+  ///
+  /// In hu, this message translates to:
+  /// **'Értékelés a Google-on is'**
+  String get reviewOnGoogle;
+
   /// No description provided for @groupSessions.
   ///
   /// In hu, this message translates to:
