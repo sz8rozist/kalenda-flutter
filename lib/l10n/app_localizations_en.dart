@@ -198,4 +198,53 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get invalidEmail => 'Invalid email address.';
+
+  @override
+  String get accountTitle => 'My account';
+
+  @override
+  String get profile => 'Profile';
+
+  @override
+  String get save => 'Save';
+
+  @override
+  String get loyaltyTitle => 'Loyalty points';
+
+  @override
+  String loyaltyBalance(int points) {
+    return '$points points';
+  }
+
+  @override
+  String loyaltyReward(int points, String value) {
+    return '$value for $points points';
+  }
+
+  @override
+  String get passesTitle => 'Passes and vouchers';
+
+  @override
+  String sessionsLeft(int count) {
+    return '$count sessions left';
+  }
+
+  @override
+  String balanceLeft(String value) {
+    return 'Balance: $value';
+  }
+
+  @override
+  String expiresOn(String date) {
+    return 'Expires: $date';
+  }
+
+  @override
+  String get expired => 'Expired';
+
+  @override
+  String get consentsTitle => 'Newsletter consents';
+
+  @override
+  String get nothingYet => 'Nothing here yet.';
 }

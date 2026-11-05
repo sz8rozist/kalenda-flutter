@@ -463,6 +463,84 @@ abstract class AppLocalizations {
   /// In hu, this message translates to:
   /// **'Érvénytelen e-mail-cím.'**
   String get invalidEmail;
+
+  /// No description provided for @accountTitle.
+  ///
+  /// In hu, this message translates to:
+  /// **'Fiókom'**
+  String get accountTitle;
+
+  /// No description provided for @profile.
+  ///
+  /// In hu, this message translates to:
+  /// **'Profil'**
+  String get profile;
+
+  /// No description provided for @save.
+  ///
+  /// In hu, this message translates to:
+  /// **'Mentés'**
+  String get save;
+
+  /// No description provided for @loyaltyTitle.
+  ///
+  /// In hu, this message translates to:
+  /// **'Hűségpontok'**
+  String get loyaltyTitle;
+
+  /// No description provided for @loyaltyBalance.
+  ///
+  /// In hu, this message translates to:
+  /// **'{points} pont'**
+  String loyaltyBalance(int points);
+
+  /// No description provided for @loyaltyReward.
+  ///
+  /// In hu, this message translates to:
+  /// **'{points} pontért {value}'**
+  String loyaltyReward(int points, String value);
+
+  /// No description provided for @passesTitle.
+  ///
+  /// In hu, this message translates to:
+  /// **'Bérletek és utalványok'**
+  String get passesTitle;
+
+  /// No description provided for @sessionsLeft.
+  ///
+  /// In hu, this message translates to:
+  /// **'{count} alkalom van hátra'**
+  String sessionsLeft(int count);
+
+  /// No description provided for @balanceLeft.
+  ///
+  /// In hu, this message translates to:
+  /// **'Egyenleg: {value}'**
+  String balanceLeft(String value);
+
+  /// No description provided for @expiresOn.
+  ///
+  /// In hu, this message translates to:
+  /// **'Lejár: {date}'**
+  String expiresOn(String date);
+
+  /// No description provided for @expired.
+  ///
+  /// In hu, this message translates to:
+  /// **'Lejárt'**
+  String get expired;
+
+  /// No description provided for @consentsTitle.
+  ///
+  /// In hu, this message translates to:
+  /// **'Hírlevél-hozzájárulások'**
+  String get consentsTitle;
+
+  /// No description provided for @nothingYet.
+  ///
+  /// In hu, this message translates to:
+  /// **'Még nincs itt semmi.'**
+  String get nothingYet;
 }
 
 class _AppLocalizationsDelegate

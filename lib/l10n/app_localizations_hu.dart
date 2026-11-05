@@ -199,4 +199,53 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get invalidEmail => 'Érvénytelen e-mail-cím.';
+
+  @override
+  String get accountTitle => 'Fiókom';
+
+  @override
+  String get profile => 'Profil';
+
+  @override
+  String get save => 'Mentés';
+
+  @override
+  String get loyaltyTitle => 'Hűségpontok';
+
+  @override
+  String loyaltyBalance(int points) {
+    return '$points pont';
+  }
+
+  @override
+  String loyaltyReward(int points, String value) {
+    return '$points pontért $value';
+  }
+
+  @override
+  String get passesTitle => 'Bérletek és utalványok';
+
+  @override
+  String sessionsLeft(int count) {
+    return '$count alkalom van hátra';
+  }
+
+  @override
+  String balanceLeft(String value) {
+    return 'Egyenleg: $value';
+  }
+
+  @override
+  String expiresOn(String date) {
+    return 'Lejár: $date';
+  }
+
+  @override
+  String get expired => 'Lejárt';
+
+  @override
+  String get consentsTitle => 'Hírlevél-hozzájárulások';
+
+  @override
+  String get nothingYet => 'Még nincs itt semmi.';
 }
