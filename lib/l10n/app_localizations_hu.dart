@@ -802,4 +802,85 @@ class AppLocalizationsHu extends AppLocalizations {
   String customerStats(int total, String spent, int noShow) {
     return '$total foglalás · $spent · $noShow meg nem jelenés';
   }
+
+  @override
+  String get favorites => 'Kedvenceid';
+
+  @override
+  String get recentBusinesses => 'Legutóbb megnyitott';
+
+  @override
+  String get addFavorite => 'Hozzáadás a kedvencekhez';
+
+  @override
+  String get removeFavorite => 'Eltávolítás a kedvencek közül';
+
+  @override
+  String get offlineBanner => 'Nincs internetkapcsolat';
+
+  @override
+  String get next => 'Tovább';
+
+  @override
+  String get skip => 'Kihagyom';
+
+  @override
+  String get getStarted => 'Kezdjük';
+
+  @override
+  String get onboardingTitle1 => 'Találd meg a helyed';
+
+  @override
+  String get onboardingText1 =>
+      'Szalonok, stúdiók, edzők – keresd meg név szerint, link alapján vagy olvasd be a QR-kódot.';
+
+  @override
+  String get onboardingTitle2 => 'Foglalj pár koppintással';
+
+  @override
+  String get onboardingText2 =>
+      'Válassz szolgáltatást, szakembert és szabad időpontot, a visszaigazolás azonnal megvan.';
+
+  @override
+  String get onboardingTitle3 => 'Mindig tudsz róla';
+
+  @override
+  String get onboardingText3 =>
+      'Emlékeztetőt kapsz, a foglalásaidat egy helyen látod, és bármikor áthelyezheted vagy lemondhatod.';
+
+  @override
+  String get stepStaff => 'Kivel és mit?';
+
+  @override
+  String get stepDateTime => 'Mikor?';
+
+  @override
+  String get stepDetails => 'Adataid';
+
+  @override
+  String get pickAnotherDate => 'Másik nap';
+
+  @override
+  String get dayToday => 'Ma';
+
+  @override
+  String get dayTomorrow => 'Holnap';
+
+  @override
+  String get bookingDoneTitle => 'Sikeres foglalás!';
+
+  @override
+  String get statusLabelPrefix => 'Állapot';
+
+  @override
+  String get customerLabel => 'Ügyfél';
+
+  @override
+  String get offlineShowingSaved => 'Mentett adatok látszanak';
+
+  @override
+  String get remindersTitle => 'Értesítések';
+
+  @override
+  String get profileInitial => 'Profil';
 }

@@ -64,12 +64,9 @@ class _FormState extends ConsumerState<_Form> {
 
   void _submit() {
     if (!_formKey.currentState!.validate()) return;
-    ref.read(groupBookingViewModelProvider(_args).notifier).submit(BookingDetails(
-          name: _name.text.trim(),
-          email: _email.text.trim(),
-          phone: _phone.text.trim(),
-          notes: _notes.text.trim(),
-        ));
+    ref
+        .read(groupBookingViewModelProvider(_args).notifier)
+        .submit(BookingDetails(name: _name.text.trim(), email: _email.text.trim(), phone: _phone.text.trim(), notes: _notes.text.trim()));
   }
 
   @override
@@ -95,15 +92,9 @@ class _FormState extends ConsumerState<_Form> {
           const SizedBox(height: 4),
           Text('${formatDateTime(context, s.startsAt)} – ${formatTime(context, s.endsAt)}'),
           if (s.staffName != null) Text(s.staffName!),
-          Text([
-            l10n.placesLeft(s.placesLeft),
-            if (s.priceHuf != null) formatHuf(context, s.priceHuf!),
-          ].join(' · ')),
+          Text([l10n.placesLeft(s.placesLeft), if (s.priceHuf != null) formatHuf(context, s.priceHuf!)].join(' · ')),
           if (s.requiresPayment && s.depositLabel != null) Text(s.depositLabel!, style: theme.textTheme.bodySmall),
-          if (s.notes != null && s.notes!.isNotEmpty) ...[
-            const SizedBox(height: 8),
-            Text(s.notes!, style: theme.textTheme.bodySmall),
-          ],
+          if (s.notes != null && s.notes!.isNotEmpty) ...[const SizedBox(height: 8), Text(s.notes!, style: theme.textTheme.bodySmall)],
           const SizedBox(height: 24),
           Text(l10n.yourDetails, style: theme.textTheme.titleMedium),
           const SizedBox(height: 8),
@@ -111,7 +102,7 @@ class _FormState extends ConsumerState<_Form> {
             controller: _name,
             textCapitalization: TextCapitalization.words,
             autofillHints: const [AutofillHints.name],
-            decoration: InputDecoration(labelText: l10n.name, border: const OutlineInputBorder()),
+            decoration: InputDecoration(labelText: l10n.name),
             validator: (v) => (v == null || v.trim().isEmpty) ? l10n.required : null,
           ),
           const SizedBox(height: 12),
@@ -119,7 +110,7 @@ class _FormState extends ConsumerState<_Form> {
             controller: _email,
             keyboardType: TextInputType.emailAddress,
             autofillHints: const [AutofillHints.email],
-            decoration: InputDecoration(labelText: l10n.email, border: const OutlineInputBorder()),
+            decoration: InputDecoration(labelText: l10n.email),
             validator: (v) {
               final text = v?.trim() ?? '';
               if (text.isEmpty) return l10n.required;
@@ -130,13 +121,13 @@ class _FormState extends ConsumerState<_Form> {
           TextFormField(
             controller: _phone,
             keyboardType: TextInputType.phone,
-            decoration: InputDecoration(labelText: l10n.phone, border: const OutlineInputBorder()),
+            decoration: InputDecoration(labelText: l10n.phone),
           ),
           const SizedBox(height: 12),
           TextFormField(
             controller: _notes,
             maxLines: 3,
-            decoration: InputDecoration(labelText: l10n.notes, border: const OutlineInputBorder()),
+            decoration: InputDecoration(labelText: l10n.notes),
           ),
           if (hasCampaigns)
             CheckboxListTile(

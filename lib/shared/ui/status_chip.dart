@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 import '../../core/theme/app_theme.dart';
 import '../format.dart';
@@ -13,11 +14,11 @@ class StatusChip extends StatelessWidget {
   final String? label;
 
   static Color colorOf(String status) => switch (status) {
-        'confirmed' || 'approved' || 'paid' || 'completed' => AppColors.success,
-        'pending' || 'unpaid' => AppColors.warning,
-        'cancelled' || 'no_show' || 'rejected' || 'overdue' => AppColors.danger,
-        _ => AppColors.neutral,
-      };
+    'confirmed' || 'approved' || 'paid' || 'completed' => AppColors.success,
+    'pending' || 'unpaid' => AppColors.warning,
+    'cancelled' || 'no_show' || 'rejected' || 'overdue' => AppColors.danger,
+    _ => AppColors.neutral,
+  };
 
   @override
   Widget build(BuildContext context) {
@@ -45,16 +46,24 @@ class DateBadge extends StatelessWidget {
     final locale = Localizations.localeOf(context).toString();
     final month = _month(locale, date);
 
-    return Container(
-      width: 52,
-      padding: const EdgeInsets.symmetric(vertical: 8),
-      decoration: BoxDecoration(color: theme.colorScheme.primary.withValues(alpha: 0.10), borderRadius: BorderRadius.circular(14)),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Text('${date.day}', style: theme.textTheme.titleMedium?.copyWith(color: theme.colorScheme.primary, fontWeight: FontWeight.w800)),
-          Text(month, style: theme.textTheme.labelSmall?.copyWith(color: theme.colorScheme.primary)),
-        ],
+    return Semantics(
+      label: DateFormat.MMMd(locale).format(date),
+      child: ExcludeSemantics(
+        child: Container(
+          width: 52,
+          padding: const EdgeInsets.symmetric(vertical: 8),
+          decoration: BoxDecoration(color: theme.colorScheme.primary.withValues(alpha: 0.10), borderRadius: BorderRadius.circular(14)),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                '${date.day}',
+                style: theme.textTheme.titleMedium?.copyWith(color: theme.colorScheme.primary, fontWeight: FontWeight.w800),
+              ),
+              Text(month, style: theme.textTheme.labelSmall?.copyWith(color: theme.colorScheme.primary)),
+            ],
+          ),
+        ),
       ),
     );
   }

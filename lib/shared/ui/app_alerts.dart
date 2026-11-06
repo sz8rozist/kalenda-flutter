@@ -3,23 +3,24 @@ import 'package:flutter/material.dart';
 import '../../core/api/api_exception.dart';
 import '../../core/theme/app_theme.dart';
 import '../../l10n/app_localizations.dart';
+import 'haptics.dart';
 
 enum AlertKind { success, info, warning, error }
 
 extension on AlertKind {
   Color get color => switch (this) {
-        AlertKind.success => AppColors.success,
-        AlertKind.info => AppColors.brand,
-        AlertKind.warning => AppColors.warning,
-        AlertKind.error => AppColors.danger,
-      };
+    AlertKind.success => AppColors.success,
+    AlertKind.info => AppColors.brand,
+    AlertKind.warning => AppColors.warning,
+    AlertKind.error => AppColors.danger,
+  };
 
   IconData get icon => switch (this) {
-        AlertKind.success => Icons.check_circle_rounded,
-        AlertKind.info => Icons.info_rounded,
-        AlertKind.warning => Icons.warning_amber_rounded,
-        AlertKind.error => Icons.error_rounded,
-      };
+    AlertKind.success => Icons.check_circle_rounded,
+    AlertKind.info => Icons.info_rounded,
+    AlertKind.warning => Icons.warning_amber_rounded,
+    AlertKind.error => Icons.error_rounded,
+  };
 }
 
 /// A hiba felhasználónak szánt leírása: cím, szöveg és ikon. A szerver üzenetét (pl. 422) megtartja, a többit emberi
@@ -108,6 +109,11 @@ Future<void> showErrorAlert(BuildContext context, Object error, {VoidCallback? o
 
 /// Rövid, lebegő visszajelzés (toast): színes ikon + szöveg. Siker / információ / figyelmeztetés.
 void showToast(BuildContext context, String message, {AlertKind kind = AlertKind.success}) {
+  if (kind == AlertKind.error) {
+    Haptics.error();
+  } else if (kind == AlertKind.success) {
+    Haptics.light();
+  }
   final messenger = ScaffoldMessenger.maybeOf(context);
   if (messenger == null) return;
 
@@ -122,7 +128,9 @@ void showToast(BuildContext context, String message, {AlertKind kind = AlertKind
           children: [
             Icon(kind.icon, color: kind.color),
             const SizedBox(width: 12),
-            Expanded(child: Text(message, style: const TextStyle(color: Colors.white))),
+            Expanded(
+              child: Text(message, style: const TextStyle(color: Colors.white)),
+            ),
           ],
         ),
       ),

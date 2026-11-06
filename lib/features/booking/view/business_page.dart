@@ -7,7 +7,11 @@ import '../../../core/theme/app_theme.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../../shared/async_view.dart';
 import '../../../shared/format.dart';
+import '../../../shared/ui/app_image.dart';
 import '../../../shared/ui/empty_state.dart';
+import '../../../shared/ui/haptics.dart';
+import '../../favorites/model/saved_business.dart';
+import '../../favorites/viewmodel/saved_businesses_viewmodel.dart';
 import '../model/booking_models.dart';
 import '../viewmodel/business_viewmodels.dart';
 import '../viewmodel/group_session_viewmodels.dart';
@@ -34,10 +38,28 @@ class BusinessPage extends ConsumerWidget {
   }
 }
 
-class _Content extends StatelessWidget {
+class _Content extends ConsumerStatefulWidget {
   const _Content({required this.business});
 
   final PublicBusiness business;
+
+  @override
+  ConsumerState<_Content> createState() => _ContentState();
+}
+
+class _ContentState extends ConsumerState<_Content> {
+  PublicBusiness get business => widget.business;
+
+  SavedBusiness get _saved => SavedBusiness(slug: business.slug, name: business.name, logoUrl: business.logoUrl);
+
+  @override
+  void initState() {
+    super.initState();
+    // A megnyitott vállalkozás bekerül a „legutóbbiak" közé.
+    Future.microtask(() {
+      if (mounted) ref.read(savedBusinessesProvider.notifier).recordVisit(_saved);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -52,15 +74,13 @@ class _Content extends StatelessWidget {
           backgroundColor: AppColors.brandDark,
           foregroundColor: Colors.white,
           title: Text(business.name),
+          actions: [_FavoriteButton(business: _saved)],
           flexibleSpace: FlexibleSpaceBar(
             collapseMode: CollapseMode.parallax,
             background: Stack(
               fit: StackFit.expand,
               children: [
-                if (business.coverUrl != null)
-                  Image.network(business.coverUrl!, fit: BoxFit.cover, errorBuilder: (_, _, _) => const _CoverFallback())
-                else
-                  const _CoverFallback(),
+                AppImage(url: business.coverUrl, fallback: const _CoverFallback()),
                 // Sötétítés, hogy a cím és a vissza-nyíl mindig olvasható legyen.
                 const DecoratedBox(
                   decoration: BoxDecoration(
@@ -78,7 +98,10 @@ class _Content extends StatelessWidget {
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
-                      _LogoAvatar(url: business.logoUrl),
+                      Hero(
+                        tag: 'business-logo-${business.slug}',
+                        child: _LogoAvatar(url: business.logoUrl),
+                      ),
                       const SizedBox(width: 14),
                       Expanded(
                         child: Text(
@@ -161,9 +184,10 @@ class _LogoAvatar extends StatelessWidget {
         boxShadow: const [BoxShadow(color: Color(0x33000000), blurRadius: 8, offset: Offset(0, 2))],
       ),
       clipBehavior: Clip.antiAlias,
-      child: url == null
-          ? const Icon(Icons.storefront_rounded, color: AppColors.brand)
-          : Image.network(url!, fit: BoxFit.cover, errorBuilder: (_, _, _) => const Icon(Icons.storefront_rounded, color: AppColors.brand)),
+      child: AppImage(
+        url: url,
+        fallback: const Icon(Icons.storefront_rounded, color: AppColors.brand),
+      ),
     );
   }
 }
@@ -203,8 +227,10 @@ class _ContactCard extends StatelessWidget {
             ListTile(
               leading: const _IconTile(Icons.place_outlined),
               title: Text(business.fullAddress),
-              onTap: () => launchUrl(Uri.https('www.google.com', '/maps/search/', {'api': '1', 'query': business.fullAddress}),
-                  mode: LaunchMode.externalApplication),
+              onTap: () => launchUrl(
+                Uri.https('www.google.com', '/maps/search/', {'api': '1', 'query': business.fullAddress}),
+                mode: LaunchMode.externalApplication,
+              ),
             ),
           if (hasAddress && hasPhone) const Divider(indent: 16, endIndent: 16),
           if (hasPhone)
@@ -237,6 +263,17 @@ class _ServiceCard extends StatelessWidget {
           padding: const EdgeInsets.all(16),
           child: Row(
             children: [
+              if (service.imageUrl != null && service.imageUrl!.isNotEmpty) ...[
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(AppDimens.radiusSmall),
+                  child: SizedBox(
+                    width: 64,
+                    height: 64,
+                    child: AppImage(url: service.imageUrl, fallback: const SizedBox.shrink()),
+                  ),
+                ),
+                const SizedBox(width: 12),
+              ],
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -252,18 +289,20 @@ class _ServiceCard extends StatelessWidget {
                       ),
                     ],
                     const SizedBox(height: 8),
-                    Row(children: [
-                      Icon(Icons.schedule_rounded, size: 15, color: theme.colorScheme.onSurfaceVariant),
-                      const SizedBox(width: 4),
-                      Text(l10n.minutes(service.durationMinutes), style: theme.textTheme.bodySmall),
-                      if (service.priceHuf != null) ...[
-                        const SizedBox(width: 12),
-                        Text(
-                          formatHuf(context, service.priceHuf!),
-                          style: theme.textTheme.bodySmall?.copyWith(fontWeight: FontWeight.w700, color: theme.colorScheme.primary),
-                        ),
+                    Row(
+                      children: [
+                        Icon(Icons.schedule_rounded, size: 15, color: theme.colorScheme.onSurfaceVariant),
+                        const SizedBox(width: 4),
+                        Text(l10n.minutes(service.durationMinutes), style: theme.textTheme.bodySmall),
+                        if (service.priceHuf != null) ...[
+                          const SizedBox(width: 12),
+                          Text(
+                            formatHuf(context, service.priceHuf!),
+                            style: theme.textTheme.bodySmall?.copyWith(fontWeight: FontWeight.w700, color: theme.colorScheme.primary),
+                          ),
+                        ],
                       ],
-                    ]),
+                    ),
                   ],
                 ),
               ),
@@ -304,16 +343,40 @@ class _GroupSessionsSection extends ConsumerWidget {
             child: ListTile(
               leading: const _IconTile(Icons.groups_rounded),
               title: Text(s.serviceName),
-              subtitle: Text([
-                formatDateTime(context, s.startsAt),
-                s.full ? l10n.sessionFull : l10n.placesLeft(s.placesLeft),
-                if (s.priceHuf != null) formatHuf(context, s.priceHuf!),
-              ].join(' · ')),
+              subtitle: Text(
+                [
+                  formatDateTime(context, s.startsAt),
+                  s.full ? l10n.sessionFull : l10n.placesLeft(s.placesLeft),
+                  if (s.priceHuf != null) formatHuf(context, s.priceHuf!),
+                ].join(' · '),
+              ),
               trailing: const Icon(Icons.chevron_right_rounded),
               onTap: () => context.push('/b/$slug/group/${s.id}'),
             ),
           ),
       ],
+    );
+  }
+}
+
+/// Kedvenc-jelölő szív a fejlécben.
+class _FavoriteButton extends ConsumerWidget {
+  const _FavoriteButton({required this.business});
+
+  final SavedBusiness business;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context);
+    final favorite = ref.watch(savedBusinessesProvider).value?.isFavorite(business.slug) ?? false;
+
+    return IconButton(
+      tooltip: favorite ? l10n.removeFavorite : l10n.addFavorite,
+      icon: Icon(favorite ? Icons.favorite_rounded : Icons.favorite_border_rounded),
+      onPressed: () {
+        Haptics.light();
+        ref.read(savedBusinessesProvider.notifier).toggleFavorite(business);
+      },
     );
   }
 }

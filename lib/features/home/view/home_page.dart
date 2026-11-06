@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../l10n/app_localizations.dart';
+import '../../../shared/ui/haptics.dart';
 import '../../account/view/account_page.dart';
 import '../../account/view/appointments_page.dart';
 import '../../auth/view/login_page.dart';
@@ -23,17 +24,20 @@ class HomePage extends ConsumerWidget {
       const FindBusinessPage(),
       if (session.isLoading)
         const Center(child: CircularProgressIndicator())
-      else if (signedIn) ...const [AppointmentsPage(), AccountPage()]
-      else
+      else if (signedIn) ...const [AppointmentsPage(), AccountPage()] else
         const LoginPage(),
     ];
     final destinations = <NavigationDestination>[
-      NavigationDestination(icon: const Icon(Icons.add_circle_outline), label: l10n.newBooking),
+      NavigationDestination(icon: const Icon(Icons.add_circle_outline), selectedIcon: const Icon(Icons.add_circle), label: l10n.newBooking),
       if (signedIn) ...[
-        NavigationDestination(icon: const Icon(Icons.event_note_outlined), label: l10n.myAppointments),
-        NavigationDestination(icon: const Icon(Icons.person_outline), label: l10n.accountTitle),
+        NavigationDestination(
+          icon: const Icon(Icons.event_note_outlined),
+          selectedIcon: const Icon(Icons.event_note),
+          label: l10n.myAppointments,
+        ),
+        NavigationDestination(icon: const Icon(Icons.person_outline), selectedIcon: const Icon(Icons.person), label: l10n.accountTitle),
       ] else
-        NavigationDestination(icon: const Icon(Icons.login), label: l10n.signIn),
+        NavigationDestination(icon: const Icon(Icons.login), selectedIcon: const Icon(Icons.login), label: l10n.signIn),
     ];
     final index = ref.watch(homeTabProvider).clamp(0, pages.length - 1);
 
@@ -41,7 +45,10 @@ class HomePage extends ConsumerWidget {
       body: IndexedStack(index: index, children: pages),
       bottomNavigationBar: NavigationBar(
         selectedIndex: index,
-        onDestinationSelected: ref.read(homeTabProvider.notifier).select,
+        onDestinationSelected: (i) {
+          Haptics.select();
+          ref.read(homeTabProvider.notifier).select(i);
+        },
         destinations: destinations,
       ),
     );

@@ -800,4 +800,85 @@ class AppLocalizationsEn extends AppLocalizations {
   String customerStats(int total, String spent, int noShow) {
     return '$total bookings · $spent · $noShow no-shows';
   }
+
+  @override
+  String get favorites => 'Your favorites';
+
+  @override
+  String get recentBusinesses => 'Recently opened';
+
+  @override
+  String get addFavorite => 'Add to favorites';
+
+  @override
+  String get removeFavorite => 'Remove from favorites';
+
+  @override
+  String get offlineBanner => 'No internet connection';
+
+  @override
+  String get next => 'Next';
+
+  @override
+  String get skip => 'Skip';
+
+  @override
+  String get getStarted => 'Get started';
+
+  @override
+  String get onboardingTitle1 => 'Find your place';
+
+  @override
+  String get onboardingText1 =>
+      'Salons, studios, trainers – search by name, open a link or scan a QR code.';
+
+  @override
+  String get onboardingTitle2 => 'Book in a few taps';
+
+  @override
+  String get onboardingText2 =>
+      'Pick a service, a specialist and a free slot, and get your confirmation instantly.';
+
+  @override
+  String get onboardingTitle3 => 'Always in the loop';
+
+  @override
+  String get onboardingText3 =>
+      'Get reminders, see your bookings in one place and reschedule or cancel any time.';
+
+  @override
+  String get stepStaff => 'Who and what?';
+
+  @override
+  String get stepDateTime => 'When?';
+
+  @override
+  String get stepDetails => 'Your details';
+
+  @override
+  String get pickAnotherDate => 'Other date';
+
+  @override
+  String get dayToday => 'Today';
+
+  @override
+  String get dayTomorrow => 'Tomorrow';
+
+  @override
+  String get bookingDoneTitle => 'Booking confirmed!';
+
+  @override
+  String get statusLabelPrefix => 'Status';
+
+  @override
+  String get customerLabel => 'Customer';
+
+  @override
+  String get offlineShowingSaved => 'Showing saved data';
+
+  @override
+  String get remindersTitle => 'Notifications';
+
+  @override
+  String get profileInitial => 'Profile';
 }

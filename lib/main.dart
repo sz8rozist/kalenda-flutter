@@ -7,6 +7,8 @@ import 'core/theme/app_theme.dart';
 import 'features/app_gate/view/update_required_page.dart';
 import 'features/app_gate/viewmodel/app_gate_viewmodel.dart';
 import 'features/app_lock/view/app_lock_gate.dart';
+import 'features/connectivity/view/offline_banner.dart';
+import 'features/onboarding/view/onboarding_page.dart';
 import 'features/splash/view/splash_gate.dart';
 import 'l10n/app_localizations.dart';
 
@@ -34,10 +36,17 @@ class KalendaApp extends ConsumerWidget {
         GlobalCupertinoLocalizations.delegate,
       ],
       supportedLocales: AppLocalizations.supportedLocales,
-      // Kívülről befelé: splash → zár (biometrikus azonosítás) → a tartalom (vagy a kötelező frissítés oldal).
-      builder: (context, child) => SplashGate(
-        child: AppLockGate(
-          child: update != null ? UpdateRequiredPage(requirement: update) : (child ?? const SizedBox.shrink()),
+      // Kívülről befelé: splash → zár (biometrikus azonosítás) → bevezető és offline sáv → a tartalom
+      // (vagy a kötelező frissítés oldal). A betűméret-skálázást követjük, de ésszerű határok közt.
+      builder: (context, child) => MediaQuery.withClampedTextScaling(
+        minScaleFactor: 0.9,
+        maxScaleFactor: 1.4,
+        child: SplashGate(
+          child: AppLockGate(
+            child: update != null
+                ? UpdateRequiredPage(requirement: update)
+                : OnboardingGate(child: OfflineBanner(child: child ?? const SizedBox.shrink())),
+          ),
         ),
       ),
     );

@@ -71,6 +71,17 @@ Beállítás (a fejlesztői fiókokból):
 - **Apple:** az Apple Developer-fiókban az App ID-n a *Sign in with Apple* képesség, Xcode-ban a *Sign in with Apple* capability; a backend `APPLE_CLIENT_IDS`-e az iOS bundle azonosító.
 - Az iOS-store megköveteli a Sign in with Apple-t, ha más külső belépés is van (ezért az Apple gomb az iOS-en mindig megjelenik, ha a szerver be van állítva).
 
+## Felület és design
+
+- **Téma:** márka-kék Material 3 téma világos/sötét módban, Inter betűtípus (`lib/core/theme/app_theme.dart`); oldalátmenetek platformonként.
+- **Közös elemek** (`lib/shared/ui/`): `AppLogo`, `StatusChip`, `DateBadge`, `EmptyState`/`EmptyNote`, skeleton-betöltés, `StepSection`, `DayStrip`, `AppImage` (gyorsítótáras kép), `Haptics`.
+- **Hibák és visszajelzés:** `describeError` → barátságos hibaablak „Újra" gombbal (`showErrorAlert`), `showToast`, `showConfirmAlert`.
+- **Indulás:** natív splash + animált Flutter splash; első indításkor háromlépéses bevezető (`features/onboarding`).
+- **Kedvencek / legutóbbiak:** az eszközön tárolva (`features/favorites`, `shared_preferences`).
+- **Offline:** „nincs internet" sáv (`features/connectivity`); a Foglalásaim/Fiókom utolsó állapota gyorsítótárban, kijelentkezéskor törlődik.
+- **Értékelés kérése:** a második sikeres foglalás után egyszer, a rendszer saját ablakával (`in_app_review`).
+- **Akadálymentesség:** betűméret-skálázás 0,9–1,4 között, `Semantics` a választókon.
+
 ## Ügyfél-funkciók (összefoglaló)
 Vállalkozás megnyitása azonosítóval / linkkel / **QR-kóddal**; foglalás (munkatárs, kiegészítők, időpont), **várólista** a betelt napokra, **csoportos alkalmakra jelentkezés**,
 **bérlet- és ajándékutalvány-vásárlás** (Stripe Checkout böngészőben), előleg fizetése PaymentSheettel, foglalás kezelése (áthelyezés, lemondás, **mentés az eszköz naptárába**),
@@ -79,7 +90,7 @@ Engedélyek: kamera (QR), naptár (mentés) – Android `CAMERA`, iOS `NSCameraU
 
 ## Tesztek
 ```bash
-flutter test      # 63 teszt: modellek, ViewModel-ek, az app indulása (widget-tesztek)
+flutter test      # 67 teszt: modellek, ViewModel-ek, az app indulása (widget-tesztek)
 flutter analyze
 ```
 - `test/model` – JSON-értelmezés, verzió-összehasonlítás, `SlotQuery` egyenlőség, nyitvatartás/számla/foglalás modellek.

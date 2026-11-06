@@ -6,6 +6,7 @@ import '../../../core/auth/social_sign_in_gateway.dart';
 import '../../../core/auth/token_store.dart';
 import '../../../core/providers.dart';
 import '../../../core/push/push_service.dart';
+import '../../../core/storage/local_prefs.dart';
 import '../data/customer_auth_repository.dart';
 
 /// Az ügyfél munkamenete: be van-e lépve (van-e tárolt token). Betöltés közben `loading`.
@@ -56,6 +57,8 @@ class CustomerSessionViewModel extends AsyncNotifier<bool> {
   Future<void> sessionExpired() async {
     ref.read(pushServiceProvider).reset();
     await ref.read(tokenStoreProvider).clear(TokenKind.customer);
+    // A kijelentkezett eszközön ne maradjon meg a mentett fiókadat.
+    await (await ref.read(localPrefsProvider.future))?.remove('account_overview_cache');
     state = const AsyncData(false);
   }
 }

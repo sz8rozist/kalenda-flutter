@@ -11,7 +11,16 @@ class AppLogo extends StatelessWidget {
   final bool markOnly;
 
   @override
-  Widget build(BuildContext context) => CustomPaint(size: Size.square(size), painter: LogoPainter(markOnly: markOnly));
+  Widget build(BuildContext context) => Semantics(
+    label: 'Kalenda',
+    image: true,
+    child: ExcludeSemantics(
+      child: CustomPaint(
+        size: Size.square(size),
+        painter: LogoPainter(markOnly: markOnly),
+      ),
+    ),
+  );
 }
 
 class LogoPainter extends CustomPainter {

@@ -1549,6 +1549,162 @@ abstract class AppLocalizations {
   /// In hu, this message translates to:
   /// **'{total} foglalás · {spent} · {noShow} meg nem jelenés'**
   String customerStats(int total, String spent, int noShow);
+
+  /// No description provided for @favorites.
+  ///
+  /// In hu, this message translates to:
+  /// **'Kedvenceid'**
+  String get favorites;
+
+  /// No description provided for @recentBusinesses.
+  ///
+  /// In hu, this message translates to:
+  /// **'Legutóbb megnyitott'**
+  String get recentBusinesses;
+
+  /// No description provided for @addFavorite.
+  ///
+  /// In hu, this message translates to:
+  /// **'Hozzáadás a kedvencekhez'**
+  String get addFavorite;
+
+  /// No description provided for @removeFavorite.
+  ///
+  /// In hu, this message translates to:
+  /// **'Eltávolítás a kedvencek közül'**
+  String get removeFavorite;
+
+  /// No description provided for @offlineBanner.
+  ///
+  /// In hu, this message translates to:
+  /// **'Nincs internetkapcsolat'**
+  String get offlineBanner;
+
+  /// No description provided for @next.
+  ///
+  /// In hu, this message translates to:
+  /// **'Tovább'**
+  String get next;
+
+  /// No description provided for @skip.
+  ///
+  /// In hu, this message translates to:
+  /// **'Kihagyom'**
+  String get skip;
+
+  /// No description provided for @getStarted.
+  ///
+  /// In hu, this message translates to:
+  /// **'Kezdjük'**
+  String get getStarted;
+
+  /// No description provided for @onboardingTitle1.
+  ///
+  /// In hu, this message translates to:
+  /// **'Találd meg a helyed'**
+  String get onboardingTitle1;
+
+  /// No description provided for @onboardingText1.
+  ///
+  /// In hu, this message translates to:
+  /// **'Szalonok, stúdiók, edzők – keresd meg név szerint, link alapján vagy olvasd be a QR-kódot.'**
+  String get onboardingText1;
+
+  /// No description provided for @onboardingTitle2.
+  ///
+  /// In hu, this message translates to:
+  /// **'Foglalj pár koppintással'**
+  String get onboardingTitle2;
+
+  /// No description provided for @onboardingText2.
+  ///
+  /// In hu, this message translates to:
+  /// **'Válassz szolgáltatást, szakembert és szabad időpontot, a visszaigazolás azonnal megvan.'**
+  String get onboardingText2;
+
+  /// No description provided for @onboardingTitle3.
+  ///
+  /// In hu, this message translates to:
+  /// **'Mindig tudsz róla'**
+  String get onboardingTitle3;
+
+  /// No description provided for @onboardingText3.
+  ///
+  /// In hu, this message translates to:
+  /// **'Emlékeztetőt kapsz, a foglalásaidat egy helyen látod, és bármikor áthelyezheted vagy lemondhatod.'**
+  String get onboardingText3;
+
+  /// No description provided for @stepStaff.
+  ///
+  /// In hu, this message translates to:
+  /// **'Kivel és mit?'**
+  String get stepStaff;
+
+  /// No description provided for @stepDateTime.
+  ///
+  /// In hu, this message translates to:
+  /// **'Mikor?'**
+  String get stepDateTime;
+
+  /// No description provided for @stepDetails.
+  ///
+  /// In hu, this message translates to:
+  /// **'Adataid'**
+  String get stepDetails;
+
+  /// No description provided for @pickAnotherDate.
+  ///
+  /// In hu, this message translates to:
+  /// **'Másik nap'**
+  String get pickAnotherDate;
+
+  /// No description provided for @dayToday.
+  ///
+  /// In hu, this message translates to:
+  /// **'Ma'**
+  String get dayToday;
+
+  /// No description provided for @dayTomorrow.
+  ///
+  /// In hu, this message translates to:
+  /// **'Holnap'**
+  String get dayTomorrow;
+
+  /// No description provided for @bookingDoneTitle.
+  ///
+  /// In hu, this message translates to:
+  /// **'Sikeres foglalás!'**
+  String get bookingDoneTitle;
+
+  /// No description provided for @statusLabelPrefix.
+  ///
+  /// In hu, this message translates to:
+  /// **'Állapot'**
+  String get statusLabelPrefix;
+
+  /// No description provided for @customerLabel.
+  ///
+  /// In hu, this message translates to:
+  /// **'Ügyfél'**
+  String get customerLabel;
+
+  /// No description provided for @offlineShowingSaved.
+  ///
+  /// In hu, this message translates to:
+  /// **'Mentett adatok látszanak'**
+  String get offlineShowingSaved;
+
+  /// No description provided for @remindersTitle.
+  ///
+  /// In hu, this message translates to:
+  /// **'Értesítések'**
+  String get remindersTitle;
+
+  /// No description provided for @profileInitial.
+  ///
+  /// In hu, this message translates to:
+  /// **'Profil'**
+  String get profileInitial;
 }
 
 class _AppLocalizationsDelegate

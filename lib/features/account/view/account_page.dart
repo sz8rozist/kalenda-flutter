@@ -7,6 +7,8 @@ import '../../../shared/async_view.dart';
 import '../../../shared/flash.dart';
 import '../../../shared/ui/app_alerts.dart';
 import '../../../shared/format.dart';
+import '../../../shared/ui/empty_state.dart';
+import '../../../shared/ui/status_chip.dart';
 import '../../app_lock/view/app_lock_settings.dart';
 import '../../auth/viewmodel/customer_session_viewmodel.dart';
 import '../model/account_models.dart';
@@ -43,11 +45,11 @@ class AccountPage extends ConsumerWidget {
               _ProfileCard(profile: data.profile),
               const SizedBox(height: 24),
               _Heading(l10n.loyaltyTitle),
-              if (data.loyalty.isEmpty) Text(l10n.nothingYet),
+              if (data.loyalty.isEmpty) EmptyNote(l10n.nothingYet, icon: Icons.stars_rounded),
               for (final item in data.loyalty) _LoyaltyTile(item: item),
               const SizedBox(height: 24),
               _Heading(l10n.passesTitle),
-              if (data.passes.isEmpty) Text(l10n.nothingYet),
+              if (data.passes.isEmpty) EmptyNote(l10n.nothingYet, icon: Icons.confirmation_number_outlined),
               for (final pass in data.passes) _PassTile(pass: pass),
               const SizedBox(height: 24),
               if (data.consents.isNotEmpty) ...[
@@ -92,9 +94,9 @@ class _Heading extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Padding(
-        padding: const EdgeInsets.only(bottom: 8),
-        child: Text(text, style: Theme.of(context).textTheme.titleMedium),
-      );
+    padding: const EdgeInsets.only(bottom: 8),
+    child: Text(text, style: Theme.of(context).textTheme.titleMedium),
+  );
 }
 
 class _ProfileCard extends ConsumerStatefulWidget {
@@ -128,18 +130,39 @@ class _ProfileCardState extends ConsumerState<_ProfileCard> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            _Heading(l10n.profile),
-            Text(widget.profile.email),
+            Row(
+              children: [
+                CircleAvatar(
+                  radius: 26,
+                  backgroundColor: Theme.of(context).colorScheme.primary.withValues(alpha: 0.12),
+                  child: Text(
+                    widget.profile.name.isEmpty ? '?' : widget.profile.name.characters.first.toUpperCase(),
+                    style: Theme.of(context).textTheme.titleLarge?.copyWith(color: Theme.of(context).colorScheme.primary),
+                  ),
+                ),
+                const SizedBox(width: 14),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(widget.profile.name, style: Theme.of(context).textTheme.titleMedium),
+                      Text(widget.profile.email, style: Theme.of(context).textTheme.bodySmall),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 16),
             const SizedBox(height: 12),
             TextField(
               controller: _name,
-              decoration: InputDecoration(labelText: l10n.name, border: const OutlineInputBorder()),
+              decoration: InputDecoration(labelText: l10n.name),
             ),
             const SizedBox(height: 12),
             TextField(
               controller: _phone,
               keyboardType: TextInputType.phone,
-              decoration: InputDecoration(labelText: l10n.phone, border: const OutlineInputBorder()),
+              decoration: InputDecoration(labelText: l10n.phone),
             ),
             const SizedBox(height: 12),
             Align(
@@ -147,9 +170,7 @@ class _ProfileCardState extends ConsumerState<_ProfileCard> {
               child: FilledButton(
                 onPressed: busy
                     ? null
-                    : () => ref
-                        .read(accountActionsProvider.notifier)
-                        .updateProfile(name: _name.text.trim(), phone: _phone.text.trim()),
+                    : () => ref.read(accountActionsProvider.notifier).updateProfile(name: _name.text.trim(), phone: _phone.text.trim()),
                 child: Text(l10n.save),
               ),
             ),
@@ -174,6 +195,7 @@ class _LoyaltyTile extends StatelessWidget {
 
     return Card(
       child: ListTile(
+        leading: const _TileIcon(Icons.stars_rounded),
         title: Text(item.business),
         subtitle: reward == null ? null : Text(reward),
         trailing: Text(l10n.loyaltyBalance(item.balance)),
@@ -200,9 +222,10 @@ class _PassTile extends StatelessWidget {
 
     return Card(
       child: ListTile(
+        leading: const _TileIcon(Icons.confirmation_number_outlined),
         title: Text('${pass.business} – ${pass.name}'),
         subtitle: Text(details.join(' · ')),
-        trailing: pass.expired ? Text(l10n.expired) : null,
+        trailing: pass.expired ? StatusChip('cancelled', label: l10n.expired) : null,
       ),
     );
   }
@@ -220,6 +243,24 @@ class _ConsentTile extends ConsumerWidget {
       title: Text(consent.business),
       value: consent.marketingConsent,
       onChanged: (value) => ref.read(accountActionsProvider.notifier).setMarketingConsent(consent.businessId, value),
+    );
+  }
+}
+
+/// Lekerekített, halvány hátterű ikon a listaelemek elején.
+class _TileIcon extends StatelessWidget {
+  const _TileIcon(this.icon);
+
+  final IconData icon;
+
+  @override
+  Widget build(BuildContext context) {
+    final color = Theme.of(context).colorScheme.primary;
+    return Container(
+      width: 44,
+      height: 44,
+      decoration: BoxDecoration(color: color.withValues(alpha: 0.10), borderRadius: BorderRadius.circular(12)),
+      child: Icon(icon, color: color),
     );
   }
 }

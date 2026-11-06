@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart' show CupertinoPageTransitionsBuilder;
 import 'package:flutter/material.dart';
 
 /// A Kalenda színei. A márka a kék naptár-logóból jön (branding/profile.svg).
@@ -15,11 +16,7 @@ class AppColors {
   static const danger = Color(0xFFDC2626);
   static const neutral = Color(0xFF64748B);
 
-  static const heroGradient = LinearGradient(
-    begin: Alignment.topLeft,
-    end: Alignment.bottomRight,
-    colors: [brand, brandDark],
-  );
+  static const heroGradient = LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: [brand, brandDark]);
 }
 
 /// Közös méretek és lekerekítések, hogy minden képernyő egy nyelvet beszéljen.
@@ -35,10 +32,10 @@ class AppDimens {
 /// Világos és sötét téma a márkaszínből (Material 3), Inter betűtípussal.
 ThemeData buildAppTheme(Brightness brightness) {
   final dark = brightness == Brightness.dark;
-  final scheme = ColorScheme.fromSeed(seedColor: AppColors.brand, brightness: brightness).copyWith(
-    primary: dark ? const Color(0xFF8AB4FF) : AppColors.brand,
-    error: dark ? const Color(0xFFFF8A80) : AppColors.danger,
-  );
+  final scheme = ColorScheme.fromSeed(
+    seedColor: AppColors.brand,
+    brightness: brightness,
+  ).copyWith(primary: dark ? const Color(0xFF8AB4FF) : AppColors.brand, error: dark ? const Color(0xFFFF8A80) : AppColors.danger);
 
   final background = dark ? const Color(0xFF0B1220) : const Color(0xFFF6F8FC);
   final surface = dark ? const Color(0xFF121A2B) : Colors.white;
@@ -54,10 +51,15 @@ ThemeData buildAppTheme(Brightness brightness) {
     labelLarge: base.textTheme.labelLarge?.copyWith(fontWeight: FontWeight.w600),
   );
 
-  OutlineInputBorder inputBorder(Color color, [double width = 1]) =>
-      OutlineInputBorder(borderRadius: BorderRadius.circular(AppDimens.radiusSmall), borderSide: BorderSide(color: color, width: width));
+  OutlineInputBorder inputBorder(Color color, [double width = 1]) => OutlineInputBorder(
+    borderRadius: BorderRadius.circular(AppDimens.radiusSmall),
+    borderSide: BorderSide(color: color, width: width),
+  );
 
   return base.copyWith(
+    pageTransitionsTheme: const PageTransitionsTheme(
+      builders: {TargetPlatform.android: FadeForwardsPageTransitionsBuilder(), TargetPlatform.iOS: CupertinoPageTransitionsBuilder()},
+    ),
     scaffoldBackgroundColor: background,
     textTheme: text,
     appBarTheme: AppBarTheme(
@@ -73,7 +75,10 @@ ThemeData buildAppTheme(Brightness brightness) {
       surfaceTintColor: Colors.transparent,
       elevation: 0,
       margin: const EdgeInsets.only(bottom: AppDimens.gap),
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(AppDimens.radius), side: BorderSide(color: border)),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(AppDimens.radius),
+        side: BorderSide(color: border),
+      ),
       clipBehavior: Clip.antiAlias,
     ),
     listTileTheme: const ListTileThemeData(contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 4)),

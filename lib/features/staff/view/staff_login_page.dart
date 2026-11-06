@@ -44,7 +44,7 @@ class _StaffLoginPageState extends ConsumerState<StaffLoginPage> {
               controller: _email,
               keyboardType: TextInputType.emailAddress,
               autofillHints: const [AutofillHints.username, AutofillHints.email],
-              decoration: InputDecoration(labelText: l10n.email, border: const OutlineInputBorder()),
+              decoration: InputDecoration(labelText: l10n.email),
             ),
             const SizedBox(height: 12),
             TextField(
@@ -52,7 +52,7 @@ class _StaffLoginPageState extends ConsumerState<StaffLoginPage> {
               obscureText: true,
               autofillHints: const [AutofillHints.password],
               onSubmitted: (_) => _submit(),
-              decoration: InputDecoration(labelText: l10n.password, border: const OutlineInputBorder()),
+              decoration: InputDecoration(labelText: l10n.password),
             ),
             const SizedBox(height: 16),
             FilledButton(onPressed: busy ? null : _submit, child: Text(l10n.signIn)),

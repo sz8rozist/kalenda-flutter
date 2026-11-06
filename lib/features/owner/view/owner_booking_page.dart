@@ -79,12 +79,11 @@ class _FormState extends ConsumerState<_Form> {
     final state = ref.read(ownerBookingProvider(widget.businessId));
     // Új ügyfélnél a név kötelező; meglévőnél az ügyfél kiválasztása elég.
     if (state.customerId == null && !_formKey.currentState!.validate()) return;
-    ref.read(ownerBookingProvider(widget.businessId).notifier).submit(OwnerBookingDetails(
-          name: _name.text.trim(),
-          email: _email.text.trim(),
-          phone: _phone.text.trim(),
-          notes: _notes.text.trim(),
-        ));
+    ref
+        .read(ownerBookingProvider(widget.businessId).notifier)
+        .submit(
+          OwnerBookingDetails(name: _name.text.trim(), email: _email.text.trim(), phone: _phone.text.trim(), notes: _notes.text.trim()),
+        );
   }
 
   @override
@@ -119,7 +118,7 @@ class _FormState extends ConsumerState<_Form> {
         children: [
           DropdownButtonFormField<int>(
             initialValue: state.serviceId,
-            decoration: InputDecoration(labelText: l10n.serviceLabel, border: const OutlineInputBorder()),
+            decoration: InputDecoration(labelText: l10n.serviceLabel),
             items: [for (final s in business.services) DropdownMenuItem(value: s.id, child: Text(s.name))],
             onChanged: viewModel.selectService,
           ),
@@ -127,7 +126,7 @@ class _FormState extends ConsumerState<_Form> {
           DropdownButtonFormField<int>(
             key: ValueKey('staff-${state.serviceId}'),
             initialValue: state.staffId,
-            decoration: InputDecoration(labelText: l10n.staffLabel, border: const OutlineInputBorder()),
+            decoration: InputDecoration(labelText: l10n.staffLabel),
             items: [for (final s in staff) DropdownMenuItem(value: s.id, child: Text(s.name))],
             onChanged: viewModel.selectStaff,
           ),
@@ -137,10 +136,7 @@ class _FormState extends ConsumerState<_Form> {
             icon: const Icon(Icons.event),
             label: Text(state.date == null ? l10n.pickDate : formatDate(context, state.date!)),
           ),
-          if (query != null) ...[
-            const SizedBox(height: 12),
-            _Slots(query: query, selected: state.time, onSelected: viewModel.selectTime),
-          ],
+          if (query != null) ...[const SizedBox(height: 12), _Slots(query: query, selected: state.time, onSelected: viewModel.selectTime)],
           const SizedBox(height: 24),
           Text(l10n.ownerCustomerLabel, style: theme.textTheme.titleMedium),
           const SizedBox(height: 8),
@@ -149,7 +145,7 @@ class _FormState extends ConsumerState<_Form> {
             error: (_, _) => const SizedBox.shrink(),
             data: (options) => DropdownButtonFormField<int?>(
               initialValue: state.customerId,
-              decoration: InputDecoration(border: const OutlineInputBorder(), hintText: l10n.newCustomerOption),
+              decoration: InputDecoration(hintText: l10n.newCustomerOption),
               items: [
                 DropdownMenuItem<int?>(value: null, child: Text(l10n.newCustomerOption)),
                 for (final c in options) DropdownMenuItem<int?>(value: c.id, child: Text(c.name)),
@@ -162,27 +158,27 @@ class _FormState extends ConsumerState<_Form> {
             TextFormField(
               controller: _name,
               textCapitalization: TextCapitalization.words,
-              decoration: InputDecoration(labelText: l10n.name, border: const OutlineInputBorder()),
+              decoration: InputDecoration(labelText: l10n.name),
               validator: (v) => (v == null || v.trim().isEmpty) ? l10n.required : null,
             ),
             const SizedBox(height: 12),
             TextFormField(
               controller: _email,
               keyboardType: TextInputType.emailAddress,
-              decoration: InputDecoration(labelText: l10n.email, border: const OutlineInputBorder()),
+              decoration: InputDecoration(labelText: l10n.email),
             ),
             const SizedBox(height: 12),
             TextFormField(
               controller: _phone,
               keyboardType: TextInputType.phone,
-              decoration: InputDecoration(labelText: l10n.phone, border: const OutlineInputBorder()),
+              decoration: InputDecoration(labelText: l10n.phone),
             ),
           ],
           const SizedBox(height: 12),
           TextFormField(
             controller: _notes,
             maxLines: 3,
-            decoration: InputDecoration(labelText: l10n.notes, border: const OutlineInputBorder()),
+            decoration: InputDecoration(labelText: l10n.notes),
           ),
           SwitchListTile(
             contentPadding: EdgeInsets.zero,

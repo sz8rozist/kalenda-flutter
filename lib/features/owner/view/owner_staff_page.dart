@@ -53,12 +53,17 @@ class _StaffTile extends ConsumerWidget {
     return Card(
       child: ListTile(
         title: Text(staff.name),
-        subtitle: Text([
-          l10n.upcomingBookings(staff.upcomingCount),
-          if (staff.hasAccount) l10n.staffHasAccount,
-          if (staff.phone != null && staff.phone!.isNotEmpty) staff.phone!,
-        ].join(' · ')),
-        trailing: Switch(value: staff.isActive, onChanged: (v) => ref.read(staffManageProvider.notifier).setActive(businessId, staff.id, v)),
+        subtitle: Text(
+          [
+            l10n.upcomingBookings(staff.upcomingCount),
+            if (staff.hasAccount) l10n.staffHasAccount,
+            if (staff.phone != null && staff.phone!.isNotEmpty) staff.phone!,
+          ].join(' · '),
+        ),
+        trailing: Switch(
+          value: staff.isActive,
+          onChanged: (v) => ref.read(staffManageProvider.notifier).setActive(businessId, staff.id, v),
+        ),
         onTap: () => showModalBottomSheet<void>(
           context: context,
           isScrollControlled: true,
@@ -95,12 +100,9 @@ class _EditSheetState extends ConsumerState<_EditSheet> {
   Future<void> _save() async {
     if (!_formKey.currentState!.validate()) return;
     final navigator = Navigator.of(context);
-    final ok = await ref.read(staffManageProvider.notifier).update(
-          widget.businessId,
-          widget.staff.id,
-          name: _name.text.trim(),
-          phone: _phone.text.trim(),
-        );
+    final ok = await ref
+        .read(staffManageProvider.notifier)
+        .update(widget.businessId, widget.staff.id, name: _name.text.trim(), phone: _phone.text.trim());
     if (ok) navigator.pop();
   }
 
@@ -119,17 +121,20 @@ class _EditSheetState extends ConsumerState<_EditSheet> {
             children: [
               TextFormField(
                 controller: _name,
-                decoration: InputDecoration(labelText: l10n.name, border: const OutlineInputBorder()),
+                decoration: InputDecoration(labelText: l10n.name),
                 validator: (v) => (v == null || v.trim().isEmpty) ? l10n.required : null,
               ),
               const SizedBox(height: 12),
               TextFormField(
                 controller: _phone,
                 keyboardType: TextInputType.phone,
-                decoration: InputDecoration(labelText: l10n.phone, border: const OutlineInputBorder()),
+                decoration: InputDecoration(labelText: l10n.phone),
               ),
               const SizedBox(height: 16),
-              SizedBox(width: double.infinity, child: FilledButton(onPressed: busy ? null : _save, child: Text(l10n.save))),
+              SizedBox(
+                width: double.infinity,
+                child: FilledButton(onPressed: busy ? null : _save, child: Text(l10n.save)),
+              ),
             ],
           ),
         ),

@@ -3,9 +3,11 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../../../core/theme/app_theme.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../../shared/async_view.dart';
 import '../../../shared/format.dart';
+import '../../../shared/ui/empty_state.dart';
 import '../../../shared/week_header.dart';
 import '../../app_lock/view/app_lock_settings.dart';
 import '../../staff/model/staff_models.dart';
@@ -59,22 +61,41 @@ class OwnerHomePage extends ConsumerWidget {
               icon: const Icon(Icons.add),
               label: Text(l10n.ownerNewBooking),
             ),
-      body: IndexedStack(index: index, children: [
-        _OverviewTab(businessId: businessId),
-        _CalendarTab(businessId: businessId),
-        _CustomersTab(businessId: businessId),
-        OwnerInvoicesTab(businessId: businessId),
-        OwnerReportsTab(businessId: businessId),
-      ]),
+      body: IndexedStack(
+        index: index,
+        children: [
+          _OverviewTab(businessId: businessId),
+          _CalendarTab(businessId: businessId),
+          _CustomersTab(businessId: businessId),
+          OwnerInvoicesTab(businessId: businessId),
+          OwnerReportsTab(businessId: businessId),
+        ],
+      ),
       bottomNavigationBar: NavigationBar(
         selectedIndex: index,
         onDestinationSelected: ref.read(ownerTabProvider.notifier).select,
         destinations: [
-          NavigationDestination(icon: const Icon(Icons.dashboard_outlined), label: l10n.ownerOverview),
-          NavigationDestination(icon: const Icon(Icons.calendar_month_outlined), label: l10n.staffCalendar),
-          NavigationDestination(icon: const Icon(Icons.people_outline), label: l10n.ownerCustomers),
-          NavigationDestination(icon: const Icon(Icons.receipt_long_outlined), label: l10n.ownerInvoices),
-          NavigationDestination(icon: const Icon(Icons.insights_outlined), label: l10n.ownerReports),
+          NavigationDestination(
+            icon: const Icon(Icons.dashboard_outlined),
+            selectedIcon: const Icon(Icons.dashboard),
+            label: l10n.ownerOverview,
+          ),
+          NavigationDestination(
+            icon: const Icon(Icons.calendar_month_outlined),
+            selectedIcon: const Icon(Icons.calendar_month),
+            label: l10n.staffCalendar,
+          ),
+          NavigationDestination(icon: const Icon(Icons.people_outline), selectedIcon: const Icon(Icons.people), label: l10n.ownerCustomers),
+          NavigationDestination(
+            icon: const Icon(Icons.receipt_long_outlined),
+            selectedIcon: const Icon(Icons.receipt_long),
+            label: l10n.ownerInvoices,
+          ),
+          NavigationDestination(
+            icon: const Icon(Icons.insights_outlined),
+            selectedIcon: const Icon(Icons.insights),
+            label: l10n.ownerReports,
+          ),
         ],
       ),
     );
@@ -104,37 +125,69 @@ class _OverviewTab extends ConsumerWidget {
           child: ListView(
             padding: const EdgeInsets.all(16),
             children: [
-              Card(
-                child: Padding(
-                  padding: const EdgeInsets.all(16),
-                  child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                    Text(l10n.weekRevenueTitle, style: theme.textTheme.titleSmall),
-                    const SizedBox(height: 4),
-                    Text(formatHuf(context, data.weekRevenue.total), style: theme.textTheme.headlineSmall),
-                    Text(l10n.weekRevenueSoFar(formatHuf(context, data.weekRevenue.toDateTotal))),
-                    if (change != null) Text(l10n.weekRevenueChange(change.toStringAsFixed(0))),
-                  ]),
+              Container(
+                margin: const EdgeInsets.only(bottom: AppDimens.gap),
+                padding: const EdgeInsets.all(20),
+                decoration: BoxDecoration(gradient: AppColors.heroGradient, borderRadius: BorderRadius.circular(AppDimens.radius)),
+                child: DefaultTextStyle.merge(
+                  style: const TextStyle(color: Colors.white),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(l10n.weekRevenueTitle, style: theme.textTheme.titleSmall?.copyWith(color: Colors.white70)),
+                      const SizedBox(height: 6),
+                      Text(
+                        formatHuf(context, data.weekRevenue.total),
+                        style: theme.textTheme.headlineMedium?.copyWith(color: Colors.white),
+                      ),
+                      const SizedBox(height: 4),
+                      Text(l10n.weekRevenueSoFar(formatHuf(context, data.weekRevenue.toDateTotal))),
+                      if (change != null)
+                        Padding(
+                          padding: const EdgeInsets.only(top: 8),
+                          child: Row(
+                            children: [
+                              Icon(change >= 0 ? Icons.trending_up_rounded : Icons.trending_down_rounded, size: 18, color: Colors.white),
+                              const SizedBox(width: 6),
+                              Text(l10n.weekRevenueChange(change.toStringAsFixed(0))),
+                            ],
+                          ),
+                        ),
+                    ],
+                  ),
                 ),
               ),
               if (data.receivables.outstandingCount > 0 || data.receivables.overdueCount > 0)
                 Card(
                   child: Padding(
                     padding: const EdgeInsets.all(16),
-                    child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                      Text(l10n.receivablesTitle, style: theme.textTheme.titleSmall),
-                      Text(l10n.receivablesOutstanding(formatHuf(context, data.receivables.outstandingHuf), data.receivables.outstandingCount)),
-                      if (data.receivables.overdueCount > 0)
-                        Text(l10n.receivablesOverdue(formatHuf(context, data.receivables.overdueHuf), data.receivables.overdueCount),
-                            style: TextStyle(color: theme.colorScheme.error)),
-                    ]),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(l10n.receivablesTitle, style: theme.textTheme.titleSmall),
+                        Text(
+                          l10n.receivablesOutstanding(
+                            formatHuf(context, data.receivables.outstandingHuf),
+                            data.receivables.outstandingCount,
+                          ),
+                        ),
+                        if (data.receivables.overdueCount > 0)
+                          Text(
+                            l10n.receivablesOverdue(formatHuf(context, data.receivables.overdueHuf), data.receivables.overdueCount),
+                            style: TextStyle(color: theme.colorScheme.error),
+                          ),
+                      ],
+                    ),
                   ),
                 ),
               if (data.lowStockCount > 0)
-                Card(child: ListTile(leading: const Icon(Icons.inventory_2_outlined), title: Text(l10n.lowStock(data.lowStockCount)))),
+                Card(
+                  child: ListTile(leading: const Icon(Icons.inventory_2_outlined), title: Text(l10n.lowStock(data.lowStockCount))),
+                ),
               const SizedBox(height: 16),
               Text('${l10n.todaysBookings} (${data.appointmentsToday})', style: theme.textTheme.titleMedium),
               const SizedBox(height: 8),
-              if (data.today.isEmpty) Text(l10n.noAppointments),
+              if (data.today.isEmpty) EmptyNote(l10n.noAppointments, icon: Icons.event_available_outlined),
               for (final a in data.today) AppointmentTile(appointment: a, businessId: businessId),
             ],
           ),
@@ -167,9 +220,7 @@ class _CalendarTab extends ConsumerWidget {
               onRefresh: () => ref.refresh(ownerCalendarProvider(query).future),
               child: ListView(
                 padding: const EdgeInsets.all(16),
-                children: [
-                  for (var i = 0; i < 7; i++) ..._day(context, query.range.from.add(Duration(days: i)), calendar),
-                ],
+                children: [for (var i = 0; i < 7; i++) ..._day(context, query.range.from.add(Duration(days: i)), calendar)],
               ),
             ),
           ),
@@ -180,8 +231,7 @@ class _CalendarTab extends ConsumerWidget {
 
   List<Widget> _day(BuildContext context, DateTime day, OwnerCalendar calendar) {
     bool sameDay(DateTime d) => d.year == day.year && d.month == day.month && d.day == day.day;
-    final appointments = calendar.appointments.where((a) => sameDay(a.startsAt)).toList()
-      ..sort((a, b) => a.startsAt.compareTo(b.startsAt));
+    final appointments = calendar.appointments.where((a) => sameDay(a.startsAt)).toList()..sort((a, b) => a.startsAt.compareTo(b.startsAt));
 
     return [
       Padding(
@@ -227,11 +277,7 @@ class _CustomersTabState extends ConsumerState<_CustomersTab> {
             controller: _search,
             textInputAction: TextInputAction.search,
             onSubmitted: ref.read(customerSearchProvider.notifier).search,
-            decoration: InputDecoration(
-              prefixIcon: const Icon(Icons.search),
-              hintText: l10n.searchCustomers,
-              border: const OutlineInputBorder(),
-            ),
+            decoration: InputDecoration(prefixIcon: const Icon(Icons.search), hintText: l10n.searchCustomers),
           ),
         ),
         Expanded(
@@ -243,15 +289,21 @@ class _CustomersTabState extends ConsumerState<_CustomersTab> {
               child: ListView(
                 padding: const EdgeInsets.symmetric(horizontal: 16),
                 children: [
-                  if (customers.isEmpty) Text(l10n.nothingYet),
+                  if (customers.isEmpty) EmptyNote(l10n.nothingYet, icon: Icons.people_outline),
                   for (final c in customers)
                     Card(
                       child: ListTile(
+                        leading: CircleAvatar(
+                          backgroundColor: Theme.of(context).colorScheme.primary.withValues(alpha: 0.12),
+                          child: Text(c.name.isEmpty ? '?' : c.name.characters.first.toUpperCase()),
+                        ),
                         title: Text(c.name),
-                        subtitle: Text([
-                          l10n.customerStats(c.totalCount, formatHuf(context, c.totalSpentHuf), c.noShowCount),
-                          if (c.email != null && c.email!.isNotEmpty) c.email!,
-                        ].join('\n')),
+                        subtitle: Text(
+                          [
+                            l10n.customerStats(c.totalCount, formatHuf(context, c.totalSpentHuf), c.noShowCount),
+                            if (c.email != null && c.email!.isNotEmpty) c.email!,
+                          ].join('\n'),
+                        ),
                         isThreeLine: c.email != null && c.email!.isNotEmpty,
                         trailing: c.phone == null || c.phone!.isEmpty
                             ? null

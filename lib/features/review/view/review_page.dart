@@ -24,9 +24,8 @@ class ReviewPage extends ConsumerWidget {
       body: AsyncView<ReviewInfo>(
         value: ref.watch(reviewViewModelProvider(token)),
         onRetry: () => ref.invalidate(reviewViewModelProvider(token)),
-        builder: (context, info) => info.alreadySubmitted
-            ? _Thanks(info: info)
-            : _Form(token: token, initialRating: initialRating, info: info),
+        builder: (context, info) =>
+            info.alreadySubmitted ? _Thanks(info: info) : _Form(token: token, initialRating: initialRating, info: info),
       ),
     );
   }
@@ -120,7 +119,7 @@ class _FormState extends ConsumerState<_Form> {
         TextField(
           controller: _feedback,
           maxLines: 4,
-          decoration: InputDecoration(labelText: l10n.reviewFeedback, border: const OutlineInputBorder()),
+          decoration: InputDecoration(labelText: l10n.reviewFeedback),
         ),
         const SizedBox(height: 16),
         FilledButton(
@@ -139,9 +138,7 @@ class _Stars extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          for (var i = 1; i <= 5; i++) Icon(i <= rating ? Icons.star : Icons.star_border, color: Colors.amber.shade700),
-        ],
-      );
+    mainAxisSize: MainAxisSize.min,
+    children: [for (var i = 1; i <= 5; i++) Icon(i <= rating ? Icons.star : Icons.star_border, color: Colors.amber.shade700)],
+  );
 }

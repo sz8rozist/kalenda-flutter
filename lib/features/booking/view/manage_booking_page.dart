@@ -9,6 +9,8 @@ import '../../../shared/async_view.dart';
 import '../../../shared/flash.dart';
 import '../../../shared/ui/app_alerts.dart';
 import '../../../shared/format.dart';
+import '../../../shared/ui/status_chip.dart';
+import 'booking_success_header.dart';
 import '../model/booking_models.dart';
 import '../viewmodel/managed_booking_viewmodels.dart';
 
@@ -29,7 +31,7 @@ class ManageBookingPage extends ConsumerWidget {
     final busy = ref.watch(managedBookingActionsProvider(token).select((s) => s.busy)) || paying;
 
     return Scaffold(
-      appBar: AppBar(title: Text(justBooked ? l10n.bookingDone : l10n.manageBooking)),
+      appBar: AppBar(title: Text(justBooked ? l10n.bookingDone : l10n.manageBooking), automaticallyImplyLeading: !justBooked),
       body: AsyncView<ManagedBooking>(
         value: ref.watch(managedBookingViewModelProvider(token)),
         onRetry: () => ref.invalidate(managedBookingViewModelProvider(token)),
@@ -38,12 +40,7 @@ class ManageBookingPage extends ConsumerWidget {
           child: ListView(
             padding: const EdgeInsets.all(16),
             children: [
-              if (justBooked) ...[
-                const Icon(Icons.check_circle_outline, size: 48),
-                const SizedBox(height: 8),
-                Text(l10n.bookingDoneText),
-                const SizedBox(height: 16),
-              ],
+              if (justBooked) ...[const BookingSuccessHeader()],
               _Details(booking: data),
               const SizedBox(height: 16),
               if (data.paymentRequired && data.paymentStatus == 'pending') ...[
@@ -119,40 +116,69 @@ class _Details extends StatelessWidget {
 
     return Card(
       child: Padding(
-        padding: const EdgeInsets.all(16),
+        padding: const EdgeInsets.all(18),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(booking.businessName, style: theme.textTheme.titleMedium),
-            const SizedBox(height: 8),
-            Text(booking.serviceName, style: theme.textTheme.bodyLarge),
-            if (booking.staffName != null) Text(booking.staffName!),
-            const SizedBox(height: 8),
-            Row(children: [
-              const Icon(Icons.schedule, size: 18),
-              const SizedBox(width: 8),
-              Text(formatDateTime(context, booking.startsAt)),
-            ]),
-            if (booking.address != null)
-              Row(children: [
-                const Icon(Icons.place_outlined, size: 18),
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                DateBadge(booking.startsAt),
+                const SizedBox(width: 14),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(booking.serviceName, style: theme.textTheme.titleMedium),
+                      const SizedBox(height: 2),
+                      Text(booking.businessName, style: theme.textTheme.bodyMedium?.copyWith(color: theme.colorScheme.onSurfaceVariant)),
+                    ],
+                  ),
+                ),
                 const SizedBox(width: 8),
-                Flexible(child: Text(booking.address!)),
-              ]),
-            if (booking.totalPriceHuf != null) ...[
+                StatusChip(booking.status),
+              ],
+            ),
+            const Divider(height: 28),
+            _InfoRow(icon: Icons.schedule_rounded, text: formatDateTime(context, booking.startsAt)),
+            if (booking.staffName != null) _InfoRow(icon: Icons.person_outline_rounded, text: booking.staffName!),
+            if (booking.address != null) _InfoRow(icon: Icons.place_outlined, text: booking.address!),
+            if (booking.totalPriceHuf != null)
+              _InfoRow(icon: Icons.payments_outlined, text: '${l10n.total}: ${formatHuf(context, booking.totalPriceHuf!)}'),
+            if (booking.phone != null && booking.phone!.isNotEmpty) ...[
               const SizedBox(height: 8),
-              Text('${l10n.total}: ${formatHuf(context, booking.totalPriceHuf!)}'),
-            ],
-            const SizedBox(height: 8),
-            Text('${l10n.status}: ${booking.status}'),
-            if (booking.phone != null && booking.phone!.isNotEmpty)
-              TextButton.icon(
+              OutlinedButton.icon(
                 icon: const Icon(Icons.phone_outlined),
                 label: Text(l10n.call),
+                style: OutlinedButton.styleFrom(minimumSize: const Size.fromHeight(44)),
                 onPressed: () => launchUrl(Uri(scheme: 'tel', path: booking.phone)),
               ),
+            ],
           ],
         ),
+      ),
+    );
+  }
+}
+
+class _InfoRow extends StatelessWidget {
+  const _InfoRow({required this.icon, required this.text});
+
+  final IconData icon;
+  final String text;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 4),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Icon(icon, size: 18, color: theme.colorScheme.primary),
+          const SizedBox(width: 10),
+          Expanded(child: Text(text, style: theme.textTheme.bodyMedium)),
+        ],
       ),
     );
   }

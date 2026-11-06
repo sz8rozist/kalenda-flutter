@@ -100,47 +100,39 @@ class _FormState extends ConsumerState<_Form> {
             controller: _email,
             keyboardType: TextInputType.emailAddress,
             autofillHints: const [AutofillHints.email],
-            decoration: InputDecoration(labelText: l10n.passBuyerEmail, border: const OutlineInputBorder()),
+            decoration: InputDecoration(labelText: l10n.passBuyerEmail),
             validator: (v) {
               final text = v?.trim() ?? '';
               if (text.isEmpty) return l10n.required;
               return text.contains('@') ? null : l10n.invalidEmail;
             },
           ),
-          SwitchListTile(
-            contentPadding: EdgeInsets.zero,
-            title: Text(l10n.passGift),
-            value: state.gift,
-            onChanged: viewModel.setGift,
-          ),
+          SwitchListTile(contentPadding: EdgeInsets.zero, title: Text(l10n.passGift), value: state.gift, onChanged: viewModel.setGift),
           if (state.gift) ...[
             TextFormField(
               controller: _recipientName,
-              decoration: InputDecoration(labelText: l10n.recipientName, border: const OutlineInputBorder()),
+              decoration: InputDecoration(labelText: l10n.recipientName),
             ),
             const SizedBox(height: 12),
             TextFormField(
               controller: _recipientEmail,
               keyboardType: TextInputType.emailAddress,
-              decoration: InputDecoration(labelText: l10n.recipientEmail, border: const OutlineInputBorder()),
+              decoration: InputDecoration(labelText: l10n.recipientEmail),
               validator: (v) => (v == null || !v.contains('@')) ? l10n.invalidEmail : null,
             ),
             const SizedBox(height: 12),
             TextFormField(
               controller: _senderName,
-              decoration: InputDecoration(labelText: l10n.senderName, border: const OutlineInputBorder()),
+              decoration: InputDecoration(labelText: l10n.senderName),
             ),
             const SizedBox(height: 12),
             TextFormField(
               controller: _message,
               maxLines: 3,
-              decoration: InputDecoration(labelText: l10n.giftMessage, border: const OutlineInputBorder()),
+              decoration: InputDecoration(labelText: l10n.giftMessage),
             ),
           ],
-          if (state.checkoutUrl != null) ...[
-            const SizedBox(height: 12),
-            Text(l10n.passAfterPayment),
-          ],
+          if (state.checkoutUrl != null) ...[const SizedBox(height: 12), Text(l10n.passAfterPayment)],
           const SizedBox(height: 16),
           FilledButton(
             onPressed: state.busy

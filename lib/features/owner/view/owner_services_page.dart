@@ -55,12 +55,14 @@ class _ServiceTile extends ConsumerWidget {
     return Card(
       child: ListTile(
         title: Text(service.name),
-        subtitle: Text([
-          l10n.minutes(service.durationMinutes),
-          if (service.priceHuf != null) formatHuf(context, service.priceHuf!),
-          if (service.isGroup) l10n.groupSessions,
-          if (service.isRental) l10n.serviceRental,
-        ].join(' · ')),
+        subtitle: Text(
+          [
+            l10n.minutes(service.durationMinutes),
+            if (service.priceHuf != null) formatHuf(context, service.priceHuf!),
+            if (service.isGroup) l10n.groupSessions,
+            if (service.isRental) l10n.serviceRental,
+          ].join(' · '),
+        ),
         trailing: Switch(value: service.isActive, onChanged: (v) => actions.setActive(businessId, service.id, v)),
         onTap: () => showModalBottomSheet<void>(
           context: context,
@@ -100,7 +102,9 @@ class _EditSheetState extends ConsumerState<_EditSheet> {
   Future<void> _save() async {
     if (!_formKey.currentState!.validate()) return;
     final navigator = Navigator.of(context);
-    final ok = await ref.read(serviceActionsProvider.notifier).update(
+    final ok = await ref
+        .read(serviceActionsProvider.notifier)
+        .update(
           widget.businessId,
           widget.service.id,
           name: _name.text.trim(),
@@ -126,14 +130,14 @@ class _EditSheetState extends ConsumerState<_EditSheet> {
             children: [
               TextFormField(
                 controller: _name,
-                decoration: InputDecoration(labelText: l10n.name, border: const OutlineInputBorder()),
+                decoration: InputDecoration(labelText: l10n.name),
                 validator: (v) => (v == null || v.trim().isEmpty) ? l10n.required : null,
               ),
               const SizedBox(height: 12),
               TextFormField(
                 controller: _duration,
                 keyboardType: TextInputType.number,
-                decoration: InputDecoration(labelText: l10n.serviceDurationMinutes, border: const OutlineInputBorder()),
+                decoration: InputDecoration(labelText: l10n.serviceDurationMinutes),
                 validator: (v) {
                   final n = int.tryParse(v?.trim() ?? '');
                   return (n == null || n < 5 || n > 480) ? l10n.required : null;
@@ -143,10 +147,13 @@ class _EditSheetState extends ConsumerState<_EditSheet> {
               TextFormField(
                 controller: _price,
                 keyboardType: TextInputType.number,
-                decoration: InputDecoration(labelText: l10n.servicePriceHuf, border: const OutlineInputBorder()),
+                decoration: InputDecoration(labelText: l10n.servicePriceHuf),
               ),
               const SizedBox(height: 16),
-              SizedBox(width: double.infinity, child: FilledButton(onPressed: busy ? null : _save, child: Text(l10n.save))),
+              SizedBox(
+                width: double.infinity,
+                child: FilledButton(onPressed: busy ? null : _save, child: Text(l10n.save)),
+              ),
             ],
           ),
         ),
