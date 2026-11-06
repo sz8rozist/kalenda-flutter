@@ -86,3 +86,11 @@ flutter analyze
 - `test/viewmodel` – `ActionNotifier`, hét/fül ViewModel-ek, linkek értelmezése, alkalmazászár (türelmi idő, feloldás, bekapcsolás), ügyfél-munkamenet és belépés (kód, beillesztett link, Google/Apple, fióktörlés), foglalási űrlap és várólista.
 - `test/app_smoke_test.dart` – az app elindul magyar felülettel: fülek belépés előtt/után, közösségi gombok a szerver jelzése szerint, zárképernyő, kötelező frissítés.
 - `test/support` – fake repository-k, token-tár, alkalmazászár és push (a hálózat, a Keychain, a biometria és a Firebase nélkül futnak).
+
+## Android fejlesztői környezet (Windows)
+- SDK: `D:\dev\android-sdk` (platform 36, build-tools 36.0.0, emulátor, `system-images;android-36;google_apis;x86_64`), JDK 21: `D:\dev\jdk-21`.
+  Beállítás: `flutter config --android-sdk D:\dev\android-sdk --jdk-dir D:\dev\jdk-21`.
+- Emulátor: az AVD a `D:\dev\avd\kalenda.avd` mappában van; indítás: `$env:ANDROID_AVD_HOME = 'D:\dev\avd'; & 'D:\dev\android-sdk\emulator\emulator.exe' -avd kalenda`
+  (az `avdmanager create avd` a 36-os képpel `devices.xml`-hibát ad, ezért az AVD kézzel készült a `config.ini`-vel).
+- Futtatás: `flutter run -d emulator-5554 --dart-define=API_BASE_URL=http://10.0.2.2:8080` (a 10.0.2.2 az emulátorból a gép localhostja).
+- Az `android/gradle.properties`-ben a `kotlin.incremental=false` kell: a pub-gyorsítótár (C:) és a projekt (D:) külön meghajtón van.
