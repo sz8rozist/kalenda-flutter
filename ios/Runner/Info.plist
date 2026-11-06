@@ -6,6 +6,8 @@
 		<true/>
 		<key>NSCameraUsageDescription</key>
 		<string>A kamerát a vállalkozások foglalási QR-kódjának beolvasásához használjuk.</string>
+		<key>NSPhotoLibraryUsageDescription</key>
+		<string>A fényképeket a vállalkozás logójához, borítóképéhez és a szolgáltatások képeihez használjuk.</string>
 		<key>NSCalendarsWriteOnlyAccessUsageDescription</key>
 		<string>A foglalásaidat az általad kért esetben a naptáradba mentjük.</string>
 		<key>NSCalendarsUsageDescription</key>

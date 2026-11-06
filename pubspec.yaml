@@ -57,6 +57,7 @@ dependencies:
   in_app_review: ^2.0.12
   path_provider: ^2.1.6
   open_filex: ^5.0.0
+  image_picker: ^1.2.4
 
 dev_dependencies:
   flutter_test:

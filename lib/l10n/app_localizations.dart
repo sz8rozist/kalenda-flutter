@@ -3427,6 +3427,294 @@ abstract class AppLocalizations {
   /// In hu, this message translates to:
   /// **'Bent van: {time}'**
   String timesheetOpenSince(String time);
+
+  /// No description provided for @ownerSettings.
+  ///
+  /// In hu, this message translates to:
+  /// **'Beállítások'**
+  String get ownerSettings;
+
+  /// No description provided for @settingsBusiness.
+  ///
+  /// In hu, this message translates to:
+  /// **'Vállalkozás adatai'**
+  String get settingsBusiness;
+
+  /// No description provided for @settingsBookingPage.
+  ///
+  /// In hu, this message translates to:
+  /// **'Foglalási oldal'**
+  String get settingsBookingPage;
+
+  /// No description provided for @settingsPolicy.
+  ///
+  /// In hu, this message translates to:
+  /// **'Szabályzat'**
+  String get settingsPolicy;
+
+  /// No description provided for @settingsPayments.
+  ///
+  /// In hu, this message translates to:
+  /// **'Fizetés'**
+  String get settingsPayments;
+
+  /// No description provided for @settingsInvoicing.
+  ///
+  /// In hu, this message translates to:
+  /// **'Számlázás'**
+  String get settingsInvoicing;
+
+  /// No description provided for @settingsCalendarSync.
+  ///
+  /// In hu, this message translates to:
+  /// **'Naptár-szinkron'**
+  String get settingsCalendarSync;
+
+  /// No description provided for @settingsMode.
+  ///
+  /// In hu, this message translates to:
+  /// **'Szóló mód (egy munkatárs)'**
+  String get settingsMode;
+
+  /// No description provided for @businessCity.
+  ///
+  /// In hu, this message translates to:
+  /// **'Település'**
+  String get businessCity;
+
+  /// No description provided for @businessDescription.
+  ///
+  /// In hu, this message translates to:
+  /// **'Bemutatkozás'**
+  String get businessDescription;
+
+  /// No description provided for @bookingExtraInfo.
+  ///
+  /// In hu, this message translates to:
+  /// **'Kiegészítő információ a foglalási oldalon'**
+  String get bookingExtraInfo;
+
+  /// No description provided for @bookingGroupEnabled.
+  ///
+  /// In hu, this message translates to:
+  /// **'Csoportos alkalmak a foglalási oldalon'**
+  String get bookingGroupEnabled;
+
+  /// No description provided for @bookingRentalsEnabled.
+  ///
+  /// In hu, this message translates to:
+  /// **'Bérelhető erőforrások (pálya, terem)'**
+  String get bookingRentalsEnabled;
+
+  /// No description provided for @bookingLogo.
+  ///
+  /// In hu, this message translates to:
+  /// **'Logó'**
+  String get bookingLogo;
+
+  /// No description provided for @bookingCover.
+  ///
+  /// In hu, this message translates to:
+  /// **'Borítókép'**
+  String get bookingCover;
+
+  /// No description provided for @imageUpload.
+  ///
+  /// In hu, this message translates to:
+  /// **'Feltöltés'**
+  String get imageUpload;
+
+  /// No description provided for @imageRemove.
+  ///
+  /// In hu, this message translates to:
+  /// **'Törlés'**
+  String get imageRemove;
+
+  /// No description provided for @policyCancelHours.
+  ///
+  /// In hu, this message translates to:
+  /// **'Lemondási határidő (óra)'**
+  String get policyCancelHours;
+
+  /// No description provided for @policyReschedule.
+  ///
+  /// In hu, this message translates to:
+  /// **'Az ügyfél áthelyezheti a foglalást'**
+  String get policyReschedule;
+
+  /// No description provided for @policyNoShowThreshold.
+  ///
+  /// In hu, this message translates to:
+  /// **'Meg nem jelenés küszöb (alkalom)'**
+  String get policyNoShowThreshold;
+
+  /// No description provided for @policyNoShowDeposit.
+  ///
+  /// In hu, this message translates to:
+  /// **'Előleg a küszöb után (%)'**
+  String get policyNoShowDeposit;
+
+  /// No description provided for @paymentRefundCutoff.
+  ///
+  /// In hu, this message translates to:
+  /// **'Visszatérítés határideje (óra)'**
+  String get paymentRefundCutoff;
+
+  /// No description provided for @paymentOnline.
+  ///
+  /// In hu, this message translates to:
+  /// **'Online fizetés bekapcsolva'**
+  String get paymentOnline;
+
+  /// No description provided for @paymentStripeNotConnected.
+  ///
+  /// In hu, this message translates to:
+  /// **'A Stripe-fiók még nincs összekötve.'**
+  String get paymentStripeNotConnected;
+
+  /// No description provided for @paymentStripeConnect.
+  ///
+  /// In hu, this message translates to:
+  /// **'Stripe-fiók összekötése'**
+  String get paymentStripeConnect;
+
+  /// No description provided for @paymentStripeContinue.
+  ///
+  /// In hu, this message translates to:
+  /// **'Beállítás folytatása a Stripe-nál'**
+  String get paymentStripeContinue;
+
+  /// No description provided for @paymentStripeDashboard.
+  ///
+  /// In hu, this message translates to:
+  /// **'Stripe-irányítópult'**
+  String get paymentStripeDashboard;
+
+  /// No description provided for @paymentStripeSync.
+  ///
+  /// In hu, this message translates to:
+  /// **'Állapot frissítése'**
+  String get paymentStripeSync;
+
+  /// No description provided for @paymentStripeReady.
+  ///
+  /// In hu, this message translates to:
+  /// **'A Stripe-fiók készen áll a fogadásra.'**
+  String get paymentStripeReady;
+
+  /// No description provided for @paymentStripePending.
+  ///
+  /// In hu, this message translates to:
+  /// **'A Stripe-fiók beállítása még nem fejeződött be.'**
+  String get paymentStripePending;
+
+  /// No description provided for @paymentFee.
+  ///
+  /// In hu, this message translates to:
+  /// **'Platformdíj: {percent}%'**
+  String paymentFee(String percent);
+
+  /// No description provided for @invoicingEnabled.
+  ///
+  /// In hu, this message translates to:
+  /// **'Automatikus számlázás'**
+  String get invoicingEnabled;
+
+  /// No description provided for @invoicingProvider.
+  ///
+  /// In hu, this message translates to:
+  /// **'Szolgáltató'**
+  String get invoicingProvider;
+
+  /// No description provided for @invoicingDocType.
+  ///
+  /// In hu, this message translates to:
+  /// **'Bizonylat típusa'**
+  String get invoicingDocType;
+
+  /// No description provided for @invoicingVat.
+  ///
+  /// In hu, this message translates to:
+  /// **'ÁFA-kulcs'**
+  String get invoicingVat;
+
+  /// No description provided for @invoicingAutoSend.
+  ///
+  /// In hu, this message translates to:
+  /// **'Küldés az ügyfélnek'**
+  String get invoicingAutoSend;
+
+  /// No description provided for @invoicingApiKey.
+  ///
+  /// In hu, this message translates to:
+  /// **'API-kulcs'**
+  String get invoicingApiKey;
+
+  /// No description provided for @invoicingAgentKey.
+  ///
+  /// In hu, this message translates to:
+  /// **'Ügynök-kulcs (Számlázz.hu)'**
+  String get invoicingAgentKey;
+
+  /// No description provided for @invoicingKeySet.
+  ///
+  /// In hu, this message translates to:
+  /// **'Megadva (üresen hagyva marad)'**
+  String get invoicingKeySet;
+
+  /// No description provided for @invoicingBlock.
+  ///
+  /// In hu, this message translates to:
+  /// **'Számlatömb azonosítója'**
+  String get invoicingBlock;
+
+  /// No description provided for @invoicingReceiptBlock.
+  ///
+  /// In hu, this message translates to:
+  /// **'Nyugtatömb azonosítója'**
+  String get invoicingReceiptBlock;
+
+  /// No description provided for @calendarBusinessFeed.
+  ///
+  /// In hu, this message translates to:
+  /// **'A vállalkozás naptára'**
+  String get calendarBusinessFeed;
+
+  /// No description provided for @calendarCopy.
+  ///
+  /// In hu, this message translates to:
+  /// **'Hivatkozás másolása'**
+  String get calendarCopy;
+
+  /// No description provided for @calendarCopied.
+  ///
+  /// In hu, this message translates to:
+  /// **'A hivatkozás a vágólapon van.'**
+  String get calendarCopied;
+
+  /// No description provided for @calendarRegenerate.
+  ///
+  /// In hu, this message translates to:
+  /// **'Új hivatkozás'**
+  String get calendarRegenerate;
+
+  /// No description provided for @calendarRegenerateTitle.
+  ///
+  /// In hu, this message translates to:
+  /// **'Új hivatkozást generálsz?'**
+  String get calendarRegenerateTitle;
+
+  /// No description provided for @calendarRegenerateText.
+  ///
+  /// In hu, this message translates to:
+  /// **'A régi hivatkozás megszűnik, a naptáraidban újra fel kell venned az újat.'**
+  String get calendarRegenerateText;
+
+  /// No description provided for @settingsSaved.
+  ///
+  /// In hu, this message translates to:
+  /// **'Mentve'**
+  String get settingsSaved;
 }
 
 class _AppLocalizationsDelegate

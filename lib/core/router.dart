@@ -21,6 +21,7 @@ import '../features/owner/view/owner_invoice_form_page.dart';
 import '../features/owner/view/owner_inventory_pages.dart';
 import '../features/owner/view/owner_marketing_pages.dart';
 import '../features/owner/view/owner_more_page.dart';
+import '../features/owner/view/owner_settings_page.dart';
 import '../features/owner/view/owner_operations_pages.dart';
 import '../features/owner/view/owner_register_page.dart';
 import '../features/owner/view/owner_staff_form_page.dart';
@@ -48,6 +49,7 @@ final routerProvider = Provider<GoRouter>((ref) {
       ),
       GoRoute(path: '/owner/staff/new', builder: (_, _) => const OwnerStaffFormPage()),
       GoRoute(path: '/owner/more', builder: (_, _) => const OwnerMorePage()),
+      GoRoute(path: '/owner/settings', builder: (_, _) => const OwnerSettingsPage()),
       GoRoute(path: '/owner/group-sessions', builder: (_, _) => const OwnerGroupSessionsPage()),
       GoRoute(path: '/owner/breaks', builder: (_, _) => const OwnerBreaksPage()),
       GoRoute(path: '/owner/timesheet', builder: (_, _) => const OwnerTimesheetPage()),

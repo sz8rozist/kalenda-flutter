@@ -57,6 +57,7 @@ final ownerMenu = <OwnerMenuGroup>[
     OwnerMenuItem('/owner/activity', Icons.history_rounded, (l) => l.ownerActivityLog, feature: 'activity_log'),
   ]),
   OwnerMenuGroup((l) => l.menuGroupSettings, [
+    OwnerMenuItem('/owner/settings', Icons.settings_outlined, (l) => l.ownerSettings),
     OwnerMenuItem('/owner/hours', Icons.schedule_rounded, (l) => l.ownerHours),
     OwnerMenuItem('/owner/leaves', Icons.beach_access_outlined, (l) => l.ownerLeaves),
   ]),

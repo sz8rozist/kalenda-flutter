@@ -52,7 +52,7 @@ A webes felület (`kalenda/resources/js/Pages`) és a mobilapp összevetése. A 
 | Tevékenység-napló (ActivityLog) | ✅ |
 | Várólista (Waitlist): lista, értesítés, eltávolítás | ✅ · csoportos alkalmak (lista, létrehozás, résztvevő, lemondás) ✅ |
 | Értesítések (notifications) | ⬜ |
-| Beállítások: foglalási oldal, logó/borító/fotók, szabályzat, mód, fizetés (Stripe Connect), számlázás, naptár-szinkron | ⬜ |
+| Beállítások: vállalkozás adatai, mód, foglalási oldal + logó/borító feltöltés, szabályzat, fizetés (Stripe Connect böngészőben), számlázás, naptár-szinkron | ✅ · szolgáltatás- és munkatárs-fotó feltöltés ⬜ |
 | Vállalkozás szerkesztése, első beállítás (Setup), regisztráció | ⬜ |
 | Előfizetés | ✅ csak olvasható (csomag, állapot, funkciók; a menü a csomag szerint zárol) – a vásárlás szándékosan a weben marad |
 | Fiók: profil, jelszócsere, jelszó-visszaállítás, visszajelzés (Profile, Feedback, ForgotPassword) | ⬜ |

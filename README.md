@@ -90,7 +90,7 @@ Engedélyek: kamera (QR), naptár (mentés) – Android `CAMERA`, iOS `NSCameraU
 
 ## Tesztek
 ```bash
-flutter test      # 97 teszt: modellek, ViewModel-ek, az app indulása (widget-tesztek)
+flutter test      # 102 teszt: modellek, ViewModel-ek, az app indulása (widget-tesztek)
 flutter analyze
 ```
 - `test/model` – JSON-értelmezés, verzió-összehasonlítás, `SlotQuery` egyenlőség, nyitvatartás/számla/foglalás modellek.

@@ -1806,4 +1806,154 @@ class AppLocalizationsEn extends AppLocalizations {
   String timesheetOpenSince(String time) {
     return 'Clocked in: $time';
   }
+
+  @override
+  String get ownerSettings => 'Settings';
+
+  @override
+  String get settingsBusiness => 'Business details';
+
+  @override
+  String get settingsBookingPage => 'Booking page';
+
+  @override
+  String get settingsPolicy => 'Policy';
+
+  @override
+  String get settingsPayments => 'Payments';
+
+  @override
+  String get settingsInvoicing => 'Invoicing';
+
+  @override
+  String get settingsCalendarSync => 'Calendar sync';
+
+  @override
+  String get settingsMode => 'Solo mode (one team member)';
+
+  @override
+  String get businessCity => 'City';
+
+  @override
+  String get businessDescription => 'About';
+
+  @override
+  String get bookingExtraInfo => 'Extra information on the booking page';
+
+  @override
+  String get bookingGroupEnabled => 'Group sessions on the booking page';
+
+  @override
+  String get bookingRentalsEnabled => 'Rentable resources (court, room)';
+
+  @override
+  String get bookingLogo => 'Logo';
+
+  @override
+  String get bookingCover => 'Cover image';
+
+  @override
+  String get imageUpload => 'Upload';
+
+  @override
+  String get imageRemove => 'Remove';
+
+  @override
+  String get policyCancelHours => 'Cancellation deadline (hours)';
+
+  @override
+  String get policyReschedule => 'Customers can reschedule';
+
+  @override
+  String get policyNoShowThreshold => 'No-show threshold (times)';
+
+  @override
+  String get policyNoShowDeposit => 'Deposit after the threshold (%)';
+
+  @override
+  String get paymentRefundCutoff => 'Refund cutoff (hours)';
+
+  @override
+  String get paymentOnline => 'Online payments enabled';
+
+  @override
+  String get paymentStripeNotConnected =>
+      'The Stripe account is not connected yet.';
+
+  @override
+  String get paymentStripeConnect => 'Connect Stripe account';
+
+  @override
+  String get paymentStripeContinue => 'Continue setup on Stripe';
+
+  @override
+  String get paymentStripeDashboard => 'Stripe dashboard';
+
+  @override
+  String get paymentStripeSync => 'Refresh status';
+
+  @override
+  String get paymentStripeReady =>
+      'The Stripe account is ready to accept payments.';
+
+  @override
+  String get paymentStripePending =>
+      'The Stripe account setup is not finished yet.';
+
+  @override
+  String paymentFee(String percent) {
+    return 'Platform fee: $percent%';
+  }
+
+  @override
+  String get invoicingEnabled => 'Automatic invoicing';
+
+  @override
+  String get invoicingProvider => 'Provider';
+
+  @override
+  String get invoicingDocType => 'Document type';
+
+  @override
+  String get invoicingVat => 'VAT code';
+
+  @override
+  String get invoicingAutoSend => 'Send to the customer';
+
+  @override
+  String get invoicingApiKey => 'API key';
+
+  @override
+  String get invoicingAgentKey => 'Agent key (Számlázz.hu)';
+
+  @override
+  String get invoicingKeySet => 'Set (leave empty to keep)';
+
+  @override
+  String get invoicingBlock => 'Invoice block ID';
+
+  @override
+  String get invoicingReceiptBlock => 'Receipt block ID';
+
+  @override
+  String get calendarBusinessFeed => 'Business calendar';
+
+  @override
+  String get calendarCopy => 'Copy link';
+
+  @override
+  String get calendarCopied => 'The link is on the clipboard.';
+
+  @override
+  String get calendarRegenerate => 'New link';
+
+  @override
+  String get calendarRegenerateTitle => 'Generate a new link?';
+
+  @override
+  String get calendarRegenerateText =>
+      'The old link stops working; add the new one to your calendars again.';
+
+  @override
+  String get settingsSaved => 'Saved';
 }

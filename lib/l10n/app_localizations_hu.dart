@@ -1807,4 +1807,152 @@ class AppLocalizationsHu extends AppLocalizations {
   String timesheetOpenSince(String time) {
     return 'Bent van: $time';
   }
+
+  @override
+  String get ownerSettings => 'Beállítások';
+
+  @override
+  String get settingsBusiness => 'Vállalkozás adatai';
+
+  @override
+  String get settingsBookingPage => 'Foglalási oldal';
+
+  @override
+  String get settingsPolicy => 'Szabályzat';
+
+  @override
+  String get settingsPayments => 'Fizetés';
+
+  @override
+  String get settingsInvoicing => 'Számlázás';
+
+  @override
+  String get settingsCalendarSync => 'Naptár-szinkron';
+
+  @override
+  String get settingsMode => 'Szóló mód (egy munkatárs)';
+
+  @override
+  String get businessCity => 'Település';
+
+  @override
+  String get businessDescription => 'Bemutatkozás';
+
+  @override
+  String get bookingExtraInfo => 'Kiegészítő információ a foglalási oldalon';
+
+  @override
+  String get bookingGroupEnabled => 'Csoportos alkalmak a foglalási oldalon';
+
+  @override
+  String get bookingRentalsEnabled => 'Bérelhető erőforrások (pálya, terem)';
+
+  @override
+  String get bookingLogo => 'Logó';
+
+  @override
+  String get bookingCover => 'Borítókép';
+
+  @override
+  String get imageUpload => 'Feltöltés';
+
+  @override
+  String get imageRemove => 'Törlés';
+
+  @override
+  String get policyCancelHours => 'Lemondási határidő (óra)';
+
+  @override
+  String get policyReschedule => 'Az ügyfél áthelyezheti a foglalást';
+
+  @override
+  String get policyNoShowThreshold => 'Meg nem jelenés küszöb (alkalom)';
+
+  @override
+  String get policyNoShowDeposit => 'Előleg a küszöb után (%)';
+
+  @override
+  String get paymentRefundCutoff => 'Visszatérítés határideje (óra)';
+
+  @override
+  String get paymentOnline => 'Online fizetés bekapcsolva';
+
+  @override
+  String get paymentStripeNotConnected => 'A Stripe-fiók még nincs összekötve.';
+
+  @override
+  String get paymentStripeConnect => 'Stripe-fiók összekötése';
+
+  @override
+  String get paymentStripeContinue => 'Beállítás folytatása a Stripe-nál';
+
+  @override
+  String get paymentStripeDashboard => 'Stripe-irányítópult';
+
+  @override
+  String get paymentStripeSync => 'Állapot frissítése';
+
+  @override
+  String get paymentStripeReady => 'A Stripe-fiók készen áll a fogadásra.';
+
+  @override
+  String get paymentStripePending =>
+      'A Stripe-fiók beállítása még nem fejeződött be.';
+
+  @override
+  String paymentFee(String percent) {
+    return 'Platformdíj: $percent%';
+  }
+
+  @override
+  String get invoicingEnabled => 'Automatikus számlázás';
+
+  @override
+  String get invoicingProvider => 'Szolgáltató';
+
+  @override
+  String get invoicingDocType => 'Bizonylat típusa';
+
+  @override
+  String get invoicingVat => 'ÁFA-kulcs';
+
+  @override
+  String get invoicingAutoSend => 'Küldés az ügyfélnek';
+
+  @override
+  String get invoicingApiKey => 'API-kulcs';
+
+  @override
+  String get invoicingAgentKey => 'Ügynök-kulcs (Számlázz.hu)';
+
+  @override
+  String get invoicingKeySet => 'Megadva (üresen hagyva marad)';
+
+  @override
+  String get invoicingBlock => 'Számlatömb azonosítója';
+
+  @override
+  String get invoicingReceiptBlock => 'Nyugtatömb azonosítója';
+
+  @override
+  String get calendarBusinessFeed => 'A vállalkozás naptára';
+
+  @override
+  String get calendarCopy => 'Hivatkozás másolása';
+
+  @override
+  String get calendarCopied => 'A hivatkozás a vágólapon van.';
+
+  @override
+  String get calendarRegenerate => 'Új hivatkozás';
+
+  @override
+  String get calendarRegenerateTitle => 'Új hivatkozást generálsz?';
+
+  @override
+  String get calendarRegenerateText =>
+      'A régi hivatkozás megszűnik, a naptáraidban újra fel kell venned az újat.';
+
+  @override
+  String get settingsSaved => 'Mentve';
 }
