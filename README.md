@@ -94,3 +94,18 @@ flutter analyze
   (az `avdmanager create avd` a 36-os képpel `devices.xml`-hibát ad, ezért az AVD kézzel készült a `config.ini`-vel).
 - Futtatás: `flutter run -d emulator-5554 --dart-define=API_BASE_URL=http://10.0.2.2:8080` (a 10.0.2.2 az emulátorból a gép localhostja).
 - Az `android/gradle.properties`-ben a `kotlin.incremental=false` kell: a pub-gyorsítótár (C:) és a projekt (D:) külön meghajtón van.
+
+## Csatlakozás a backendhez
+A cím a build-idejű `API_BASE_URL`-ből jön (`--dart-define=API_BASE_URL=…`), alapértéke `http://10.0.2.2:8080`.
+
+| Hol fut az app | `API_BASE_URL` | Megjegyzés |
+| --- | --- | --- |
+| Android emulátor | `http://10.0.2.2:8080` (alapérték) | a 10.0.2.2 az emulátorból a gép localhostja |
+| Valódi telefon, ugyanazon a Wi-Fin | `http://<a gép LAN IP-je>:8080` | a gép tűzfalán engedélyezni kell a 8080-at |
+| Valódi telefon, USB-vel | `http://localhost:8080` + `adb reverse tcp:8080 tcp:8080` | nem kell hálózat |
+| iOS szimulátor | `http://localhost:8080` | a Mac helyi gépe |
+| Éles / teszt-kiadás | `https://<a domain>` | **kötelezően HTTPS**; a sima HTTP csak a debug buildben engedélyezett |
+
+Helyi backend: a `kalenda-java-backend` repóban `docker compose -f docker-compose.mobile-dev.yml up -d --build`, majd `bash scripts/seed-dev.sh` (próba-vállalkozás + vállalkozói fiók).
+A belépő linkek e-mail helyett a backend naplójában jelennek meg: `docker compose -f docker-compose.mobile-dev.yml logs app`.
+Android: a `main` manifestben az `INTERNET` engedély (enélkül a release build nem érné el a hálózatot), a `debug` manifestben a `usesCleartextTraffic` (sima HTTP a helyi backendhez).

@@ -4,4 +4,7 @@
          to allow setting breakpoints, to provide hot reload, etc.
     -->
     <uses-permission android:name="android.permission.INTERNET"/>
+    <!-- Fejlesztéshez: a helyi backend sima HTTP-n (http://10.0.2.2:8080) érhető el; az Android 9+ ezt alapból tiltja.
+         Csak a debug buildben – a release build HTTPS-t használ. -->
+    <application android:usesCleartextTraffic="true"/>
 </manifest>
