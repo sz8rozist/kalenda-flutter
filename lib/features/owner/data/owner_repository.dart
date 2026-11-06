@@ -60,6 +60,17 @@ class OwnerRepository {
         'send_email': r.sendEmail,
       }));
 
+  Future<List<HourRow>> hours(int businessId) async {
+    final response = await _api.call((d) => d.get('/businesses/$businessId/hours'));
+    return (response.data as List).map((e) => HourRow.fromJson(e as Map<String, dynamic>)).toList();
+  }
+
+  /// A teljes heti nyitvatartás mentése; a válasz a mentett állapot.
+  Future<List<HourRow>> saveHours(int businessId, List<HourRow> rows) async {
+    final response = await _api.call((d) => d.put('/businesses/$businessId/hours', data: {'hours': rows.map((r) => r.toJson()).toList()}));
+    return (response.data as List).map((e) => HourRow.fromJson(e as Map<String, dynamic>)).toList();
+  }
+
   Future<List<OwnerService>> services(int businessId) async {
     final response = await _api.call((d) => d.get('/businesses/$businessId/services'));
     return (response.data as List).map((e) => OwnerService.fromJson(e as Map<String, dynamic>)).toList();

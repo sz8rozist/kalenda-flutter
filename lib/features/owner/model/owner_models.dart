@@ -337,3 +337,37 @@ class OwnerService {
         isRental: j['is_rental'] as bool? ?? false,
       );
 }
+
+/// A vállalkozás nyitvatartása egy napra (`GET/PUT /businesses/{id}/hours`). A nap: 0 = vasárnap … 6 = szombat.
+class HourRow {
+  const HourRow({required this.dayOfWeek, required this.openAt, required this.closeAt, required this.isClosed});
+
+  final int dayOfWeek;
+  final String openAt;
+  final String closeAt;
+  final bool isClosed;
+
+  HourRow copyWith({String? openAt, String? closeAt, bool? isClosed}) =>
+      HourRow(dayOfWeek: dayOfWeek, openAt: openAt ?? this.openAt, closeAt: closeAt ?? this.closeAt, isClosed: isClosed ?? this.isClosed);
+
+  factory HourRow.fromJson(Map<String, dynamic> j) => HourRow(
+        dayOfWeek: (j['day_of_week'] as num).toInt(),
+        openAt: _hhmm(j['open_at'] as String?, '09:00'),
+        closeAt: _hhmm(j['close_at'] as String?, '17:00'),
+        isClosed: j['is_closed'] as bool? ?? false,
+      );
+
+  /// Zárt napnál a szerver 00:00-t tárol: nyitáskor értelmes alapérték kell.
+  static String _hhmm(String? value, String fallback) {
+    if (value == null || value.length < 5) return fallback;
+    final text = value.substring(0, 5);
+    return text == '00:00' ? fallback : text;
+  }
+
+  Map<String, dynamic> toJson() => {
+        'day_of_week': dayOfWeek,
+        'is_closed': isClosed,
+        if (!isClosed) 'open_at': openAt,
+        if (!isClosed) 'close_at': closeAt,
+      };
+}

@@ -12,6 +12,8 @@
   "updateRequiredText": "This version is no longer supported. Please update the app to version {version} or newer.",
   "@updateRequiredText": { "placeholders": { "version": { "type": "String" } } },
   "updateNow": "Update",
+  "ownerHours": "Opening hours",
+  "closedDay": "Closed",
   "ownerServices": "Services",
   "serviceRental": "Rental",
   "serviceDurationMinutes": "Duration (minutes)",

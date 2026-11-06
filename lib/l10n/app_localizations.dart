@@ -164,6 +164,18 @@ abstract class AppLocalizations {
   /// **'Frissítés'**
   String get updateNow;
 
+  /// No description provided for @ownerHours.
+  ///
+  /// In hu, this message translates to:
+  /// **'Nyitvatartás'**
+  String get ownerHours;
+
+  /// No description provided for @closedDay.
+  ///
+  /// In hu, this message translates to:
+  /// **'Zárva'**
+  String get closedDay;
+
   /// No description provided for @ownerServices.
   ///
   /// In hu, this message translates to:

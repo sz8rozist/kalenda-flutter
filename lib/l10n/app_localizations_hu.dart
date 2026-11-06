@@ -47,6 +47,12 @@ class AppLocalizationsHu extends AppLocalizations {
   String get updateNow => 'Frissítés';
 
   @override
+  String get ownerHours => 'Nyitvatartás';
+
+  @override
+  String get closedDay => 'Zárva';
+
+  @override
   String get ownerServices => 'Szolgáltatások';
 
   @override

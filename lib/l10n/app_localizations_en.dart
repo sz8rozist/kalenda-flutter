@@ -47,6 +47,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get updateNow => 'Update';
 
   @override
+  String get ownerHours => 'Opening hours';
+
+  @override
+  String get closedDay => 'Closed';
+
+  @override
   String get ownerServices => 'Services';
 
   @override
