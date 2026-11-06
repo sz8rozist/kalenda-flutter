@@ -3,9 +3,11 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'core/router.dart';
+import 'core/theme/app_theme.dart';
 import 'features/app_gate/view/update_required_page.dart';
-import 'features/app_lock/view/app_lock_gate.dart';
 import 'features/app_gate/viewmodel/app_gate_viewmodel.dart';
+import 'features/app_lock/view/app_lock_gate.dart';
+import 'features/splash/view/splash_gate.dart';
 import 'l10n/app_localizations.dart';
 
 void main() {
@@ -22,7 +24,9 @@ class KalendaApp extends ConsumerWidget {
     return MaterialApp.router(
       onGenerateTitle: (context) => AppLocalizations.of(context).appTitle,
       routerConfig: ref.watch(routerProvider),
-      theme: ThemeData(colorSchemeSeed: const Color(0xFF4F46E5), useMaterial3: true),
+      theme: buildAppTheme(Brightness.light),
+      darkTheme: buildAppTheme(Brightness.dark),
+      themeMode: ThemeMode.system,
       localizationsDelegates: const [
         AppLocalizations.delegate,
         GlobalMaterialLocalizations.delegate,
@@ -30,10 +34,11 @@ class KalendaApp extends ConsumerWidget {
         GlobalCupertinoLocalizations.delegate,
       ],
       supportedLocales: AppLocalizations.supportedLocales,
-      // Elavult verziónál minden képernyő helyett a kötelező frissítés oldal jelenik meg.
-      // A zár (biometrikus azonosítás) az egész app fölött van, a frissítés-kényszer pedig a tartalom helyén.
-      builder: (context, child) => AppLockGate(
-        child: update != null ? UpdateRequiredPage(requirement: update) : (child ?? const SizedBox.shrink()),
+      // Kívülről befelé: splash → zár (biometrikus azonosítás) → a tartalom (vagy a kötelező frissítés oldal).
+      builder: (context, child) => SplashGate(
+        child: AppLockGate(
+          child: update != null ? UpdateRequiredPage(requirement: update) : (child ?? const SizedBox.shrink()),
+        ),
       ),
     );
   }

@@ -164,6 +164,102 @@ abstract class AppLocalizations {
   /// **'Frissítés'**
   String get updateNow;
 
+  /// No description provided for @ok.
+  ///
+  /// In hu, this message translates to:
+  /// **'Rendben'**
+  String get ok;
+
+  /// No description provided for @errorTitleGeneric.
+  ///
+  /// In hu, this message translates to:
+  /// **'Hiba történt'**
+  String get errorTitleGeneric;
+
+  /// No description provided for @errorTitleNetwork.
+  ///
+  /// In hu, this message translates to:
+  /// **'Nincs kapcsolat'**
+  String get errorTitleNetwork;
+
+  /// No description provided for @errorNetworkText.
+  ///
+  /// In hu, this message translates to:
+  /// **'Nem érjük el a szervert. Ellenőrizd az internetkapcsolatod, és próbáld újra.'**
+  String get errorNetworkText;
+
+  /// No description provided for @errorTitleSession.
+  ///
+  /// In hu, this message translates to:
+  /// **'Lejárt a munkamenet'**
+  String get errorTitleSession;
+
+  /// No description provided for @errorSessionText.
+  ///
+  /// In hu, this message translates to:
+  /// **'Kérjük, lépj be újra.'**
+  String get errorSessionText;
+
+  /// No description provided for @errorTitleDenied.
+  ///
+  /// In hu, this message translates to:
+  /// **'Nincs jogosultságod'**
+  String get errorTitleDenied;
+
+  /// No description provided for @errorTitleNotFound.
+  ///
+  /// In hu, this message translates to:
+  /// **'Nem található'**
+  String get errorTitleNotFound;
+
+  /// No description provided for @errorTitleValidation.
+  ///
+  /// In hu, this message translates to:
+  /// **'Ellenőrizd az adatokat'**
+  String get errorTitleValidation;
+
+  /// No description provided for @errorTitleTooMany.
+  ///
+  /// In hu, this message translates to:
+  /// **'Túl sok kérés'**
+  String get errorTitleTooMany;
+
+  /// No description provided for @errorTooManyText.
+  ///
+  /// In hu, this message translates to:
+  /// **'Kérjük, várj egy kicsit, és próbáld újra.'**
+  String get errorTooManyText;
+
+  /// No description provided for @errorTitleServer.
+  ///
+  /// In hu, this message translates to:
+  /// **'Szerverhiba'**
+  String get errorTitleServer;
+
+  /// No description provided for @errorServerText.
+  ///
+  /// In hu, this message translates to:
+  /// **'Valami félresiklott a szerveren. Próbáld újra egy kicsit később.'**
+  String get errorServerText;
+
+  /// No description provided for @welcomeTitle.
+  ///
+  /// In hu, this message translates to:
+  /// **'Foglalj időpontot pár koppintással'**
+  String get welcomeTitle;
+
+  /// No description provided for @welcomeText.
+  ///
+  /// In hu, this message translates to:
+  /// **'Keresd meg kedvenc szalonod, stúdiód vagy edződ, és foglalj online.'**
+  String get welcomeText;
+
+  /// No description provided for @splashTagline.
+  ///
+  /// In hu, this message translates to:
+  /// **'Időpontfoglalás egyszerűen'**
+  String get splashTagline;
+
   /// No description provided for @ownerStaff.
   ///
   /// In hu, this message translates to:

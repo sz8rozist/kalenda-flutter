@@ -47,6 +47,57 @@ class AppLocalizationsEn extends AppLocalizations {
   String get updateNow => 'Update';
 
   @override
+  String get ok => 'OK';
+
+  @override
+  String get errorTitleGeneric => 'Something went wrong';
+
+  @override
+  String get errorTitleNetwork => 'No connection';
+
+  @override
+  String get errorNetworkText =>
+      'We cannot reach the server. Check your internet connection and try again.';
+
+  @override
+  String get errorTitleSession => 'Session expired';
+
+  @override
+  String get errorSessionText => 'Please sign in again.';
+
+  @override
+  String get errorTitleDenied => 'Access denied';
+
+  @override
+  String get errorTitleNotFound => 'Not found';
+
+  @override
+  String get errorTitleValidation => 'Please check your details';
+
+  @override
+  String get errorTitleTooMany => 'Too many requests';
+
+  @override
+  String get errorTooManyText => 'Please wait a moment and try again.';
+
+  @override
+  String get errorTitleServer => 'Server error';
+
+  @override
+  String get errorServerText =>
+      'Something went wrong on the server. Please try again a little later.';
+
+  @override
+  String get welcomeTitle => 'Book appointments in a few taps';
+
+  @override
+  String get welcomeText =>
+      'Find your favourite salon, studio or trainer and book online.';
+
+  @override
+  String get splashTagline => 'Appointment booking made simple';
+
+  @override
   String get ownerStaff => 'Staff';
 
   @override

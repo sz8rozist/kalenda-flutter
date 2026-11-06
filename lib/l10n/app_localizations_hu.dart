@@ -47,6 +47,57 @@ class AppLocalizationsHu extends AppLocalizations {
   String get updateNow => 'Frissítés';
 
   @override
+  String get ok => 'Rendben';
+
+  @override
+  String get errorTitleGeneric => 'Hiba történt';
+
+  @override
+  String get errorTitleNetwork => 'Nincs kapcsolat';
+
+  @override
+  String get errorNetworkText =>
+      'Nem érjük el a szervert. Ellenőrizd az internetkapcsolatod, és próbáld újra.';
+
+  @override
+  String get errorTitleSession => 'Lejárt a munkamenet';
+
+  @override
+  String get errorSessionText => 'Kérjük, lépj be újra.';
+
+  @override
+  String get errorTitleDenied => 'Nincs jogosultságod';
+
+  @override
+  String get errorTitleNotFound => 'Nem található';
+
+  @override
+  String get errorTitleValidation => 'Ellenőrizd az adatokat';
+
+  @override
+  String get errorTitleTooMany => 'Túl sok kérés';
+
+  @override
+  String get errorTooManyText => 'Kérjük, várj egy kicsit, és próbáld újra.';
+
+  @override
+  String get errorTitleServer => 'Szerverhiba';
+
+  @override
+  String get errorServerText =>
+      'Valami félresiklott a szerveren. Próbáld újra egy kicsit később.';
+
+  @override
+  String get welcomeTitle => 'Foglalj időpontot pár koppintással';
+
+  @override
+  String get welcomeText =>
+      'Keresd meg kedvenc szalonod, stúdiód vagy edződ, és foglalj online.';
+
+  @override
+  String get splashTagline => 'Időpontfoglalás egyszerűen';
+
+  @override
   String get ownerStaff => 'Munkatársak';
 
   @override
