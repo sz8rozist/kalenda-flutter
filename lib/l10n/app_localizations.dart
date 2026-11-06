@@ -170,6 +170,12 @@ abstract class AppLocalizations {
   /// **'Rendben'**
   String get ok;
 
+  /// No description provided for @bookingIncomplete.
+  ///
+  /// In hu, this message translates to:
+  /// **'Válaszd ki a munkatársat, a napot és az időpontot.'**
+  String get bookingIncomplete;
+
   /// No description provided for @errorTitleGeneric.
   ///
   /// In hu, this message translates to:

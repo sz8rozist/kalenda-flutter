@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../../shared/async_view.dart';
 import '../../../shared/flash.dart';
+import '../../../shared/ui/app_alerts.dart';
 import '../../../shared/format.dart';
 import '../../app_lock/view/app_lock_settings.dart';
 import '../../auth/viewmodel/customer_session_viewmodel.dart';
@@ -72,18 +73,15 @@ class AccountPage extends ConsumerWidget {
   /// A megerősítő párbeszéd a View dolga; a törlést a ViewModel végzi.
   Future<void> _confirmDelete(BuildContext context, WidgetRef ref) async {
     final l10n = AppLocalizations.of(context);
-    final confirmed = await showDialog<bool>(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: Text(l10n.deleteAccountTitle),
-        content: Text(l10n.deleteAccountText),
-        actions: [
-          TextButton(onPressed: () => Navigator.pop(context, false), child: Text(l10n.no)),
-          FilledButton(onPressed: () => Navigator.pop(context, true), child: Text(l10n.deleteAccount)),
-        ],
-      ),
+    final confirmed = await showConfirmAlert(
+      context,
+      title: l10n.deleteAccountTitle,
+      message: l10n.deleteAccountText,
+      confirmLabel: l10n.deleteAccount,
+      destructive: true,
+      icon: Icons.delete_forever_outlined,
     );
-    if (confirmed == true) await ref.read(accountActionsProvider.notifier).deleteAccount();
+    if (confirmed) await ref.read(accountActionsProvider.notifier).deleteAccount();
   }
 }
 

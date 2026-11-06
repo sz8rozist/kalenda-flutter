@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../../l10n/app_localizations.dart';
 import '../../../shared/async_view.dart';
+import '../../../shared/flash.dart';
 import '../../../shared/format.dart';
 import '../model/booking_models.dart';
 import '../model/booking_request.dart';
@@ -78,6 +79,7 @@ class _FormState extends ConsumerState<_Form> {
     final s = widget.session;
     final provider = groupBookingViewModelProvider(_args);
     final state = ref.watch(provider);
+    listenError(ref, context, provider.select((s) => s.error));
     final hasCampaigns = ref.watch(businessViewModelProvider(widget.slug)).value?.hasCampaigns ?? false;
 
     ref.listen(provider.select((x) => x.manageToken), (_, token) {
@@ -143,10 +145,6 @@ class _FormState extends ConsumerState<_Form> {
               title: Text(l10n.marketingConsent),
               onChanged: (v) => ref.read(provider.notifier).setMarketing(v ?? false),
             ),
-          if (state.error != null) ...[
-            const SizedBox(height: 12),
-            Text(errorText(context, state.error!), style: TextStyle(color: theme.colorScheme.error)),
-          ],
           const SizedBox(height: 16),
           FilledButton(
             onPressed: (state.busy || s.full) ? null : _submit,

@@ -13,6 +13,7 @@
   "@updateRequiredText": { "placeholders": { "version": { "type": "String" } } },
   "updateNow": "Frissítés",
   "ok": "Rendben",
+  "bookingIncomplete": "Válaszd ki a munkatársat, a napot és az időpontot.",
   "errorTitleGeneric": "Hiba történt",
   "errorTitleNetwork": "Nincs kapcsolat",
   "errorNetworkText": "Nem érjük el a szervert. Ellenőrizd az internetkapcsolatod, és próbáld újra.",

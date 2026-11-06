@@ -4,7 +4,9 @@ import 'package:go_router/go_router.dart';
 
 import '../../../l10n/app_localizations.dart';
 import '../../../shared/async_view.dart';
+import '../../../shared/flash.dart';
 import '../../../shared/format.dart';
+import '../../../shared/ui/app_alerts.dart';
 import '../../booking/model/booking_models.dart';
 import '../../booking/viewmodel/business_viewmodels.dart';
 import '../../staff/viewmodel/staff_session_viewmodel.dart';
@@ -96,9 +98,14 @@ class _FormState extends ConsumerState<_Form> {
     // Sikeres felvitel: vissza a naptárhoz, jelzéssel.
     ref.listen(provider.select((s) => s.created), (_, created) {
       if (!created) return;
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(l10n.saved)));
+      showToast(context, l10n.saved);
       context.pop();
     });
+
+    ref.listen(provider.select((s) => s.incomplete), (_, incomplete) {
+      if (incomplete) showToast(context, l10n.bookingIncomplete, kind: AlertKind.warning);
+    });
+    listenError(ref, context, provider.select((s) => s.error));
 
     final business = widget.business;
     final staff = state.serviceId == null ? const <PublicStaff>[] : business.staffFor(state.serviceId!);
@@ -183,13 +190,6 @@ class _FormState extends ConsumerState<_Form> {
             value: state.sendEmail,
             onChanged: viewModel.setSendEmail,
           ),
-          if (state.incomplete || state.error != null) ...[
-            const SizedBox(height: 8),
-            Text(
-              state.incomplete ? l10n.required : errorText(context, state.error!),
-              style: TextStyle(color: theme.colorScheme.error),
-            ),
-          ],
           const SizedBox(height: 16),
           FilledButton(
             onPressed: state.busy ? null : _submit,

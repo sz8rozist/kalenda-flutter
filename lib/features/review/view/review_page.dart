@@ -5,7 +5,7 @@ import 'package:url_launcher/url_launcher.dart';
 
 import '../../../l10n/app_localizations.dart';
 import '../../../shared/async_view.dart';
-import '../../../shared/format.dart';
+import '../../../shared/flash.dart';
 import '../model/review_models.dart';
 import '../viewmodel/review_viewmodels.dart';
 
@@ -95,6 +95,7 @@ class _FormState extends ConsumerState<_Form> {
     final provider = reviewFormViewModelProvider((token: widget.token, initialRating: widget.initialRating));
     final state = ref.watch(provider);
     final viewModel = ref.read(provider.notifier);
+    listenError(ref, context, provider.select((s) => s.error));
 
     return ListView(
       padding: const EdgeInsets.all(24),
@@ -121,10 +122,6 @@ class _FormState extends ConsumerState<_Form> {
           maxLines: 4,
           decoration: InputDecoration(labelText: l10n.reviewFeedback, border: const OutlineInputBorder()),
         ),
-        if (state.error != null) ...[
-          const SizedBox(height: 12),
-          Text(errorText(context, state.error!), style: TextStyle(color: theme.colorScheme.error)),
-        ],
         const SizedBox(height: 16),
         FilledButton(
           onPressed: (state.rating < 1 || state.busy) ? null : () => viewModel.submit(_feedback.text.trim()),

@@ -4,6 +4,7 @@ import 'package:url_launcher/url_launcher.dart';
 
 import '../../../l10n/app_localizations.dart';
 import '../../../shared/async_view.dart';
+import '../../../shared/flash.dart';
 import '../../../shared/format.dart';
 import '../model/booking_models.dart';
 import '../viewmodel/business_viewmodels.dart';
@@ -70,6 +71,7 @@ class _FormState extends ConsumerState<_Form> {
     final provider = passPurchaseViewModelProvider(_args);
     final state = ref.watch(provider);
     final viewModel = ref.read(provider.notifier);
+    listenError(ref, context, provider.select((s) => s.error));
 
     // A fizetési oldal megnyitása a böngészőben.
     ref.listen(provider.select((s) => s.checkoutUrl), (_, url) {
@@ -138,10 +140,6 @@ class _FormState extends ConsumerState<_Form> {
           if (state.checkoutUrl != null) ...[
             const SizedBox(height: 12),
             Text(l10n.passAfterPayment),
-          ],
-          if (state.error != null) ...[
-            const SizedBox(height: 12),
-            Text(errorText(context, state.error!), style: TextStyle(color: theme.colorScheme.error)),
           ],
           const SizedBox(height: 16),
           FilledButton(

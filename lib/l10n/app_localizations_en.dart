@@ -50,6 +50,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String get ok => 'OK';
 
   @override
+  String get bookingIncomplete =>
+      'Please choose a staff member, a day and a time.';
+
+  @override
   String get errorTitleGeneric => 'Something went wrong';
 
   @override

@@ -50,6 +50,10 @@ class AppLocalizationsHu extends AppLocalizations {
   String get ok => 'Rendben';
 
   @override
+  String get bookingIncomplete =>
+      'Válaszd ki a munkatársat, a napot és az időpontot.';
+
+  @override
   String get errorTitleGeneric => 'Hiba történt';
 
   @override

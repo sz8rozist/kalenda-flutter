@@ -7,6 +7,7 @@ import '../../../core/viewmodel/simple_viewmodels.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../../shared/async_view.dart';
 import '../../../shared/flash.dart';
+import '../../../shared/ui/app_alerts.dart';
 import '../../../shared/format.dart';
 import '../model/booking_models.dart';
 import '../viewmodel/managed_booking_viewmodels.dart';
@@ -83,18 +84,15 @@ class ManageBookingPage extends ConsumerWidget {
 
   Future<void> _confirmCancel(BuildContext context, WidgetRef ref) async {
     final l10n = AppLocalizations.of(context);
-    final confirmed = await showDialog<bool>(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: Text(l10n.cancelConfirmTitle),
-        content: Text(l10n.cancelConfirmText),
-        actions: [
-          TextButton(onPressed: () => Navigator.pop(context, false), child: Text(l10n.no)),
-          FilledButton(onPressed: () => Navigator.pop(context, true), child: Text(l10n.yes)),
-        ],
-      ),
+    final confirmed = await showConfirmAlert(
+      context,
+      title: l10n.cancelConfirmTitle,
+      message: l10n.cancelConfirmText,
+      confirmLabel: l10n.yes,
+      destructive: true,
+      icon: Icons.event_busy_outlined,
     );
-    if (confirmed == true) await ref.read(managedBookingActionsProvider(token).notifier).cancel();
+    if (confirmed) await ref.read(managedBookingActionsProvider(token).notifier).cancel();
   }
 
   Future<void> _reschedule(BuildContext context, WidgetRef ref) async {

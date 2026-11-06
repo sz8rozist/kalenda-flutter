@@ -3,14 +3,16 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../../../core/theme/app_theme.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../../shared/async_view.dart';
 import '../../../shared/format.dart';
+import '../../../shared/ui/empty_state.dart';
 import '../model/booking_models.dart';
 import '../viewmodel/business_viewmodels.dart';
 import '../viewmodel/group_session_viewmodels.dart';
 
-/// A vállalkozás nyilvános oldala: adatok és szolgáltatások, innen indul a foglalás (View).
+/// A vállalkozás nyilvános oldala (View): borítóképes fejléc, elérhetőségek, szolgáltatások, csoportos alkalmak, bérletek.
 class BusinessPage extends ConsumerWidget {
   const BusinessPage({super.key, required this.slug});
 
@@ -21,11 +23,259 @@ class BusinessPage extends ConsumerWidget {
     final business = ref.watch(businessViewModelProvider(slug));
 
     return Scaffold(
-      appBar: AppBar(title: Text(business.value?.name ?? '')),
       body: AsyncView<PublicBusiness>(
         value: business,
         onRetry: () => ref.invalidate(businessViewModelProvider(slug)),
         builder: (context, data) => _Content(business: data),
+      ),
+      // Betöltés / hiba alatt is legyen vissza-nyíl.
+      appBar: business.hasValue ? null : AppBar(),
+    );
+  }
+}
+
+class _Content extends StatelessWidget {
+  const _Content({required this.business});
+
+  final PublicBusiness business;
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    final theme = Theme.of(context);
+
+    return CustomScrollView(
+      slivers: [
+        SliverAppBar(
+          pinned: true,
+          expandedHeight: 220,
+          backgroundColor: AppColors.brandDark,
+          foregroundColor: Colors.white,
+          title: Text(business.name),
+          flexibleSpace: FlexibleSpaceBar(
+            collapseMode: CollapseMode.parallax,
+            background: Stack(
+              fit: StackFit.expand,
+              children: [
+                if (business.coverUrl != null)
+                  Image.network(business.coverUrl!, fit: BoxFit.cover, errorBuilder: (_, _, _) => const _CoverFallback())
+                else
+                  const _CoverFallback(),
+                // Sötétítés, hogy a cím és a vissza-nyíl mindig olvasható legyen.
+                const DecoratedBox(
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                      colors: [Color(0x66000000), Color(0x00000000), Color(0x99000000)],
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: AppDimens.pagePadding,
+                  right: AppDimens.pagePadding,
+                  bottom: 16,
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      _LogoAvatar(url: business.logoUrl),
+                      const SizedBox(width: 14),
+                      Expanded(
+                        child: Text(
+                          business.name,
+                          style: theme.textTheme.headlineSmall?.copyWith(color: Colors.white),
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+        SliverPadding(
+          padding: const EdgeInsets.all(AppDimens.pagePadding),
+          sliver: SliverList.list(
+            children: [
+              if (business.description != null && business.description!.isNotEmpty) ...[
+                Text(business.description!, style: theme.textTheme.bodyLarge),
+                const SizedBox(height: 16),
+              ],
+              _ContactCard(business: business),
+              const SizedBox(height: 24),
+              Text(l10n.services, style: theme.textTheme.titleLarge),
+              const SizedBox(height: 12),
+              if (business.services.isEmpty) EmptyNote(l10n.nothingYet, icon: Icons.content_cut_rounded),
+              for (final service in business.services) _ServiceCard(service: service, slug: business.slug),
+              _GroupSessionsSection(slug: business.slug),
+              if (business.hasPasses && business.passTypes.isNotEmpty) ...[
+                const SizedBox(height: 12),
+                Text(l10n.passesAndVouchers, style: theme.textTheme.titleLarge),
+                const SizedBox(height: 12),
+                for (final type in business.passTypes)
+                  Card(
+                    child: ListTile(
+                      leading: _IconTile(type.isVoucher ? Icons.card_giftcard_rounded : Icons.confirmation_number_outlined),
+                      title: Text(type.name),
+                      subtitle: Text(formatHuf(context, type.priceHuf)),
+                      trailing: const Icon(Icons.chevron_right_rounded),
+                      onTap: () => context.push('/b/${business.slug}/pass/${type.id}'),
+                    ),
+                  ),
+              ],
+              if (business.extraInfo != null && business.extraInfo!.isNotEmpty) ...[
+                const SizedBox(height: 16),
+                Text(business.extraInfo!, style: theme.textTheme.bodySmall?.copyWith(color: theme.colorScheme.onSurfaceVariant)),
+              ],
+              const SizedBox(height: 24),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class _CoverFallback extends StatelessWidget {
+  const _CoverFallback();
+
+  @override
+  Widget build(BuildContext context) => const DecoratedBox(decoration: BoxDecoration(gradient: AppColors.heroGradient));
+}
+
+class _LogoAvatar extends StatelessWidget {
+  const _LogoAvatar({this.url});
+
+  final String? url;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 56,
+      height: 56,
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(16),
+        boxShadow: const [BoxShadow(color: Color(0x33000000), blurRadius: 8, offset: Offset(0, 2))],
+      ),
+      clipBehavior: Clip.antiAlias,
+      child: url == null
+          ? const Icon(Icons.storefront_rounded, color: AppColors.brand)
+          : Image.network(url!, fit: BoxFit.cover, errorBuilder: (_, _, _) => const Icon(Icons.storefront_rounded, color: AppColors.brand)),
+    );
+  }
+}
+
+class _IconTile extends StatelessWidget {
+  const _IconTile(this.icon);
+
+  final IconData icon;
+
+  @override
+  Widget build(BuildContext context) {
+    final color = Theme.of(context).colorScheme.primary;
+    return Container(
+      width: 44,
+      height: 44,
+      decoration: BoxDecoration(color: color.withValues(alpha: 0.10), borderRadius: BorderRadius.circular(12)),
+      child: Icon(icon, color: color),
+    );
+  }
+}
+
+class _ContactCard extends StatelessWidget {
+  const _ContactCard({required this.business});
+
+  final PublicBusiness business;
+
+  @override
+  Widget build(BuildContext context) {
+    final hasAddress = business.fullAddress.isNotEmpty;
+    final hasPhone = business.phone != null && business.phone!.isNotEmpty;
+    if (!hasAddress && !hasPhone) return const SizedBox.shrink();
+
+    return Card(
+      child: Column(
+        children: [
+          if (hasAddress)
+            ListTile(
+              leading: const _IconTile(Icons.place_outlined),
+              title: Text(business.fullAddress),
+              onTap: () => launchUrl(Uri.https('www.google.com', '/maps/search/', {'api': '1', 'query': business.fullAddress}),
+                  mode: LaunchMode.externalApplication),
+            ),
+          if (hasAddress && hasPhone) const Divider(indent: 16, endIndent: 16),
+          if (hasPhone)
+            ListTile(
+              leading: const _IconTile(Icons.phone_outlined),
+              title: Text(business.phone!),
+              onTap: () => launchUrl(Uri(scheme: 'tel', path: business.phone)),
+            ),
+        ],
+      ),
+    );
+  }
+}
+
+class _ServiceCard extends StatelessWidget {
+  const _ServiceCard({required this.service, required this.slug});
+
+  final PublicService service;
+  final String slug;
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    final theme = Theme.of(context);
+
+    return Card(
+      child: InkWell(
+        onTap: () => context.push('/b/$slug/book/${service.id}'),
+        child: Padding(
+          padding: const EdgeInsets.all(16),
+          child: Row(
+            children: [
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(service.name, style: theme.textTheme.titleMedium),
+                    if (service.description != null && service.description!.isNotEmpty) ...[
+                      const SizedBox(height: 4),
+                      Text(
+                        service.description!,
+                        style: theme.textTheme.bodySmall?.copyWith(color: theme.colorScheme.onSurfaceVariant),
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ],
+                    const SizedBox(height: 8),
+                    Row(children: [
+                      Icon(Icons.schedule_rounded, size: 15, color: theme.colorScheme.onSurfaceVariant),
+                      const SizedBox(width: 4),
+                      Text(l10n.minutes(service.durationMinutes), style: theme.textTheme.bodySmall),
+                      if (service.priceHuf != null) ...[
+                        const SizedBox(width: 12),
+                        Text(
+                          formatHuf(context, service.priceHuf!),
+                          style: theme.textTheme.bodySmall?.copyWith(fontWeight: FontWeight.w700, color: theme.colorScheme.primary),
+                        ),
+                      ],
+                    ]),
+                  ],
+                ),
+              ),
+              const SizedBox(width: 12),
+              FilledButton.tonal(
+                onPressed: () => context.push('/b/$slug/book/${service.id}'),
+                style: FilledButton.styleFrom(minimumSize: const Size(88, 44)),
+                child: Text(l10n.book),
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }
@@ -46,98 +296,23 @@ class _GroupSessionsSection extends ConsumerWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const SizedBox(height: 16),
-        Text(l10n.groupSessions, style: Theme.of(context).textTheme.titleMedium),
-        const SizedBox(height: 8),
+        const SizedBox(height: 12),
+        Text(l10n.groupSessions, style: Theme.of(context).textTheme.titleLarge),
+        const SizedBox(height: 12),
         for (final s in sessions)
           Card(
             child: ListTile(
+              leading: const _IconTile(Icons.groups_rounded),
               title: Text(s.serviceName),
               subtitle: Text([
                 formatDateTime(context, s.startsAt),
                 s.full ? l10n.sessionFull : l10n.placesLeft(s.placesLeft),
                 if (s.priceHuf != null) formatHuf(context, s.priceHuf!),
               ].join(' · ')),
-              trailing: const Icon(Icons.chevron_right),
+              trailing: const Icon(Icons.chevron_right_rounded),
               onTap: () => context.push('/b/$slug/group/${s.id}'),
             ),
           ),
-      ],
-    );
-  }
-}
-
-class _Content extends StatelessWidget {
-  const _Content({required this.business});
-
-  final PublicBusiness business;
-
-  @override
-  Widget build(BuildContext context) {
-    final l10n = AppLocalizations.of(context);
-    final theme = Theme.of(context);
-
-    return ListView(
-      padding: const EdgeInsets.all(16),
-      children: [
-        if (business.coverUrl != null)
-          ClipRRect(
-            borderRadius: BorderRadius.circular(12),
-            child: Image.network(business.coverUrl!, height: 160, fit: BoxFit.cover,
-                errorBuilder: (_, _, _) => const SizedBox.shrink()),
-          ),
-        const SizedBox(height: 12),
-        Text(business.name, style: theme.textTheme.headlineSmall),
-        if (business.description != null) ...[
-          const SizedBox(height: 8),
-          Text(business.description!),
-        ],
-        if (business.fullAddress.isNotEmpty)
-          ListTile(contentPadding: EdgeInsets.zero, leading: const Icon(Icons.place_outlined), title: Text(business.fullAddress)),
-        if (business.phone != null && business.phone!.isNotEmpty)
-          ListTile(
-            contentPadding: EdgeInsets.zero,
-            leading: const Icon(Icons.phone_outlined),
-            title: Text(business.phone!),
-            onTap: () => launchUrl(Uri(scheme: 'tel', path: business.phone)),
-          ),
-        const SizedBox(height: 8),
-        Text(l10n.services, style: theme.textTheme.titleMedium),
-        const SizedBox(height: 8),
-        for (final service in business.services)
-          Card(
-            child: ListTile(
-              title: Text(service.name),
-              subtitle: Text([
-                l10n.minutes(service.durationMinutes),
-                if (service.priceHuf != null) formatHuf(context, service.priceHuf!),
-              ].join(' · ')),
-              trailing: FilledButton.tonal(
-                onPressed: () => context.push('/b/${business.slug}/book/${service.id}'),
-                child: Text(l10n.book),
-              ),
-            ),
-          ),
-        _GroupSessionsSection(slug: business.slug),
-        if (business.hasPasses && business.passTypes.isNotEmpty) ...[
-          const SizedBox(height: 16),
-          Text(l10n.passesAndVouchers, style: theme.textTheme.titleMedium),
-          const SizedBox(height: 8),
-          for (final type in business.passTypes)
-            Card(
-              child: ListTile(
-                leading: Icon(type.isVoucher ? Icons.card_giftcard : Icons.confirmation_number_outlined),
-                title: Text(type.name),
-                subtitle: Text(formatHuf(context, type.priceHuf)),
-                trailing: const Icon(Icons.chevron_right),
-                onTap: () => context.push('/b/${business.slug}/pass/${type.id}'),
-              ),
-            ),
-        ],
-        if (business.extraInfo != null && business.extraInfo!.isNotEmpty) ...[
-          const SizedBox(height: 16),
-          Text(business.extraInfo!, style: theme.textTheme.bodySmall),
-        ],
       ],
     );
   }

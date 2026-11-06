@@ -4,7 +4,9 @@ import 'package:go_router/go_router.dart';
 
 import '../../../l10n/app_localizations.dart';
 import '../../../shared/async_view.dart';
+import '../../../shared/flash.dart';
 import '../../../shared/format.dart';
+import '../../../shared/ui/app_alerts.dart';
 import '../model/booking_models.dart';
 import '../model/booking_request.dart';
 import '../viewmodel/booking_form_viewmodel.dart';
@@ -113,8 +115,14 @@ class _BookingFormState extends ConsumerState<_BookingForm> {
     // Várólistára feliratkozva: a szerver üzenetét mutatjuk.
     ref.listen(provider.select((s) => s.waitlistMessage), (_, message) {
       if (message == null) return;
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(message.trim().isEmpty ? l10n.waitlistJoined : message)));
+      showToast(context, message.trim().isEmpty ? l10n.waitlistJoined : message);
     });
+
+    // Hiányzó választás (munkatárs / nap / időpont) → figyelmeztetés; szerverhiba → alert.
+    ref.listen(provider.select((s) => s.incomplete), (_, incomplete) {
+      if (incomplete) showToast(context, l10n.bookingIncomplete, kind: AlertKind.warning);
+    });
+    listenError(ref, context, provider.select((s) => s.error));
 
     // Sikeres foglalás: a visszaigazoló képernyő (előlegnél itt indítható a fizetés).
     ref.listen(provider.select((s) => s.outcome), (_, outcome) {
@@ -232,13 +240,6 @@ class _BookingFormState extends ConsumerState<_BookingForm> {
               title: Text(l10n.marketingConsent),
               onChanged: (v) => viewModel.setMarketing(v ?? false),
             ),
-          if (state.incomplete || state.error != null) ...[
-            const SizedBox(height: 12),
-            Text(
-              state.incomplete ? l10n.required : errorText(context, state.error!),
-              style: TextStyle(color: theme.colorScheme.error),
-            ),
-          ],
           const SizedBox(height: 16),
           FilledButton(
             onPressed: state.busy ? null : _submit,
