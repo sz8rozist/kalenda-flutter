@@ -13,6 +13,8 @@ import '../../staff/viewmodel/staff_session_viewmodel.dart';
 import '../model/owner_models.dart';
 import '../viewmodel/owner_manage_viewmodels.dart';
 import '../viewmodel/owner_service_viewmodels.dart';
+import '../viewmodel/settings_viewmodels.dart';
+import 'owner_extras_pages.dart';
 
 /// Szolgáltatás létrehozása vagy szerkesztése (View). `serviceId == null` az új szolgáltatás.
 class OwnerServiceFormPage extends ConsumerWidget {
@@ -275,6 +277,20 @@ class _ServiceFormState extends ConsumerState<_ServiceForm> {
                 ? const SizedBox(height: 22, width: 22, child: CircularProgressIndicator(strokeWidth: 2.5, color: Colors.white))
                 : Text(l10n.save),
           ),
+          if (widget.service != null) ...[
+            const SizedBox(height: 8),
+            OutlinedButton.icon(
+              icon: const Icon(Icons.science_outlined),
+              label: Text(l10n.serviceMaterials),
+              onPressed: () => showMaterialsSheet(context, businessId: widget.businessId, serviceId: widget.service!.id),
+            ),
+            const SizedBox(height: 8),
+            OutlinedButton.icon(
+              icon: const Icon(Icons.image_outlined),
+              label: Text(l10n.serviceImage),
+              onPressed: () => ref.read(extrasActionsProvider.notifier).uploadImage(widget.businessId, 'services/${widget.service!.id}/image'),
+            ),
+          ],
           if (widget.service != null)
             TextButton.icon(
               icon: const Icon(Icons.delete_outline),

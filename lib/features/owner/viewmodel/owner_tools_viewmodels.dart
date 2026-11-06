@@ -1,3 +1,4 @@
+import '../model/finance_models.dart';
 import '../model/register_models.dart';
 import '../model/appointment_detail.dart';
 import '../../../core/files/document_opener.dart';
@@ -266,3 +267,32 @@ class RegisterActionsViewModel extends ActionNotifier {
 }
 
 final registerActionsProvider = NotifierProvider.autoDispose<RegisterActionsViewModel, ActionState>(RegisterActionsViewModel.new);
+
+/// A kiválasztott kifizetés azonosítója (üres = a legutóbbi).
+class SelectedPayoutViewModel extends Notifier<String?> {
+  @override
+  String? build() => null;
+
+  void select(String? id) => state = id;
+}
+
+final selectedPayoutProvider = NotifierProvider.autoDispose<SelectedPayoutViewModel, String?>(SelectedPayoutViewModel.new);
+
+final payoutsProvider = FutureProvider.autoDispose.family<PayoutsOverview, int>(
+  (ref, businessId) => ref.watch(ownerToolsRepositoryProvider).payouts(businessId, payoutId: ref.watch(selectedPayoutProvider)),
+);
+
+final missingDocumentsProvider = FutureProvider.autoDispose.family<List<MissingDocument>, int>(
+  (ref, businessId) => ref.watch(ownerToolsRepositoryProvider).missingDocuments(businessId),
+);
+
+/// Kimaradt bizonylat újrapróbálása.
+class MissingDocumentsActionsViewModel extends ActionNotifier {
+  Future<bool> retry(int businessId, String key) async {
+    final ok = await perform(() => ref.read(ownerToolsRepositoryProvider).retryMissingDocument(businessId, key), success: FlashKind.saved);
+    if (ok) ref.invalidate(missingDocumentsProvider(businessId));
+    return ok;
+  }
+}
+
+final missingDocumentsActionsProvider = NotifierProvider.autoDispose<MissingDocumentsActionsViewModel, ActionState>(MissingDocumentsActionsViewModel.new);

@@ -21,8 +21,8 @@ A webes felület (`kalenda/resources/js/Pages`) és a mobilapp összevetése. A 
 |---|---|
 | Ma, naptár, szabadság, időmérés (ki/bejelentkezés) | ✅ |
 | Foglalás állapota, áthelyezése | ✅ |
-| Munkaidő-nyilvántartás (Timesheet) saját | ⬜ |
-| Saját profil, naptár-feed token (Profile, Account) | ⬜ |
+| Munkaidő-nyilvántartás (Timesheet) saját | ✅ |
+| Saját profil, naptár-feed hivatkozás (másolás, újragenerálás) | ✅ |
 
 ## Vállalkozó (Business)
 | Web | Mobil |
@@ -32,13 +32,13 @@ A webes felület (`kalenda/resources/js/Pages`) és a mobilapp összevetése. A 
 | Foglalás létrehozása (Appointments/Create) | ✅ |
 | Foglalás részletei, fizetések, számla/nyugta kiállítása, sztornó, PDF (Appointments/Show) | ✅ |
 | Ügyfelek lista, ügyfél részletei, profil, számlázási adatok, hűségpont-váltás (Customer/Show) | ✅ |
-| Szolgáltatások: lista, létrehozás, szerkesztés, törlés | ✅ · kiegészítők (addons), anyagok, kép ⬜ |
-| Munkatársak: lista, létrehozás, szerkesztés, szolgáltatások, meghívó, hozzáférés-megvonás, törlés | ✅ · munkaidő, bér, fotó ⬜ |
+| Szolgáltatások: lista, létrehozás, szerkesztés, törlés, kiegészítők (addons), anyagfelhasználás, kép | ✅ |
+| Munkatársak: lista, létrehozás, szerkesztés, szolgáltatások, meghívó, hozzáférés-megvonás, törlés, munkaidő, bér/jutalék, fotó | ✅ |
 | Nyitvatartás (Settings/Hours) | ✅ |
 | Szabadságok (Settings/Leaves) | ✅ (jóváhagyás) · saját szabadság felvétele ⬜ |
 | Szünetek (Calendar/Breaks): lista, felvétel, törlés | ✅ |
-| Számlák (Invoices): lista, fizetve, emlékeztető, új önálló számla, PDF, sztornó | ✅ · hiányzó dokumentumok újrapróbálása, ajánlatok ⬜ |
-| Riportok: könyvelés, cash-flow | ✅ · kifizetések (Payouts) ⬜ |
+| Számlák (Invoices): lista, fizetve, emlékeztető, új önálló számla, PDF, sztornó | ✅ · hiányzó dokumentumok újrapróbálása ✅ · ajánlatok: az API nem tartalmaz végpontot |
+| Riportok: könyvelés, cash-flow, kifizetések (Payouts) | ✅ · fájl-letöltés (export) ⬜ |
 | Költségek (Expenses): lista, felvitel, törlés | ✅ · bizonylat, export ⬜ |
 | Termékek (Products): lista, szűrés, létrehozás, szerkesztés, törlés, értékesítés | ✅ |
 | Beszerzés: beszállítók, rendelések (létrehozás, leadás, bevételezés, sztornó) | ✅ |
@@ -52,7 +52,7 @@ A webes felület (`kalenda/resources/js/Pages`) és a mobilapp összevetése. A 
 | Tevékenység-napló (ActivityLog) | ✅ |
 | Várólista (Waitlist): lista, értesítés, eltávolítás | ✅ · csoportos alkalmak (lista, létrehozás, résztvevő, lemondás) ✅ |
 | Értesítések (notifications) | ⬜ |
-| Beállítások: vállalkozás adatai, mód, foglalási oldal + logó/borító feltöltés, szabályzat, fizetés (Stripe Connect böngészőben), számlázás, naptár-szinkron | ✅ · szolgáltatás- és munkatárs-fotó feltöltés ⬜ |
+| Beállítások: vállalkozás adatai, mód, foglalási oldal + logó/borító feltöltés, szabályzat, fizetés (Stripe Connect böngészőben), számlázás, naptár-szinkron | ✅ · szolgáltatás- és munkatárs-fotó feltöltés ✅ |
 | Vállalkozás szerkesztése, első beállítás (Setup), regisztráció | ✅ |
 | Előfizetés | ✅ csak olvasható (csomag, állapot, funkciók; a menü a csomag szerint zárol) – a vásárlás szándékosan a weben marad |
 | Fiók: jelszócsere, elfelejtett jelszó, visszajelzés (Profile, Feedback, ForgotPassword) | ✅ |

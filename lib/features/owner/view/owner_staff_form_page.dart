@@ -12,6 +12,8 @@ import '../../../shared/ui/step_section.dart';
 import '../../staff/viewmodel/staff_session_viewmodel.dart';
 import '../model/owner_models.dart';
 import '../viewmodel/owner_manage_viewmodels.dart';
+import '../viewmodel/settings_viewmodels.dart';
+import 'owner_extras_pages.dart';
 import '../viewmodel/owner_service_viewmodels.dart';
 import '../viewmodel/owner_staff_viewmodels.dart';
 
@@ -208,6 +210,24 @@ class _StaffFormState extends ConsumerState<_StaffForm> {
           ),
           if (existing != null) ...[
             const SizedBox(height: 12),
+            OutlinedButton.icon(
+              icon: const Icon(Icons.schedule_rounded),
+              label: Text(l10n.staffHoursButton),
+              onPressed: () => showStaffHoursSheet(context, (businessId: widget.businessId, staffId: existing.id)),
+            ),
+            const SizedBox(height: 8),
+            OutlinedButton.icon(
+              icon: const Icon(Icons.payments_outlined),
+              label: Text(l10n.staffPayButton),
+              onPressed: () => showStaffPaySheet(context, (businessId: widget.businessId, staffId: existing.id)),
+            ),
+            const SizedBox(height: 8),
+            OutlinedButton.icon(
+              icon: const Icon(Icons.photo_camera_outlined),
+              label: Text(l10n.staffPhotoButton),
+              onPressed: () => ref.read(extrasActionsProvider.notifier).uploadImage(widget.businessId, 'staff/${existing.id}/photo'),
+            ),
+            const SizedBox(height: 8),
             if (existing.hasAccount)
               OutlinedButton.icon(
                 icon: const Icon(Icons.lock_reset_outlined),

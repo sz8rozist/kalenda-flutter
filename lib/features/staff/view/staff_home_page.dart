@@ -55,7 +55,15 @@ class StaffHomePage extends ConsumerWidget {
 
     final index = ref.watch(staffTabProvider);
     return Scaffold(
-      appBar: AppBar(title: Text(user.businessName ?? l10n.appTitle), actions: const [SettingsButton(), _SignOutButton()]),
+      appBar: AppBar(
+        title: Text(user.businessName ?? l10n.appTitle),
+        actions: [
+          IconButton(tooltip: l10n.portalTimesheetTitle, icon: const Icon(Icons.timer_outlined), onPressed: () => context.push('/staff/timesheet')),
+          IconButton(tooltip: l10n.portalProfileTitle, icon: const Icon(Icons.person_outline), onPressed: () => context.push('/staff/profile')),
+          const SettingsButton(),
+          const _SignOutButton(),
+        ],
+      ),
       body: IndexedStack(index: index, children: const [_TodayTab(), _CalendarTab(), _LeavesTab()]),
       bottomNavigationBar: NavigationBar(
         selectedIndex: index,

@@ -1,3 +1,4 @@
+import '../model/finance_models.dart';
 import '../model/register_models.dart';
 import '../model/appointment_detail.dart';
 import 'package:dio/dio.dart';
@@ -201,6 +202,20 @@ class OwnerToolsRepository {
 
   Future<void> reopenRegister(int businessId, DateTime date) =>
       _api.call((d) => d.post('/businesses/$businessId/register/reopen', data: {'date': dateParam(date)}));
+
+  // ─── Kifizetések és hiányzó bizonylatok ───────────────────────
+
+  Future<PayoutsOverview> payouts(int businessId, {String? payoutId}) async {
+    final response = await _api.call((d) => d.get('/businesses/$businessId/reports/payouts', queryParameters: {'payout': ?payoutId}));
+    return PayoutsOverview.fromJson(response.data as Map<String, dynamic>);
+  }
+
+  Future<List<MissingDocument>> missingDocuments(int businessId) async {
+    final response = await _api.call((d) => d.get('/businesses/$businessId/invoices/missing-documents'));
+    return [for (final e in response.data as List) MissingDocument.fromJson(e as Map<String, dynamic>)];
+  }
+
+  Future<void> retryMissingDocument(int businessId, String key) => _api.call((d) => d.post('/businesses/$businessId/documents/missing/retry', data: {'key': key}));
 }
 
 final ownerToolsRepositoryProvider = Provider<OwnerToolsRepository>((ref) => OwnerToolsRepository(ref.watch(apiClientProvider)));

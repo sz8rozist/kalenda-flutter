@@ -1,3 +1,4 @@
+import '../model/extras_models.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../core/files/image_picker_gateway.dart';
@@ -150,3 +151,86 @@ class SettingsActionsViewModel extends ActionNotifier {
 }
 
 final settingsActionsProvider = NotifierProvider.autoDispose<SettingsActionsViewModel, ActionState>(SettingsActionsViewModel.new);
+
+final addonsProvider = FutureProvider.autoDispose.family<List<Addon>, int>(
+  (ref, businessId) => ref.watch(settingsRepositoryProvider).addons(businessId),
+);
+
+typedef StaffKey = ({int businessId, int staffId});
+
+final staffHoursProvider = FutureProvider.autoDispose.family<List<StaffHour>, StaffKey>(
+  (ref, key) => ref.watch(settingsRepositoryProvider).staffHours(key.businessId, key.staffId),
+);
+
+final staffPayProvider = FutureProvider.autoDispose.family<StaffPay, StaffKey>(
+  (ref, key) => ref.watch(settingsRepositoryProvider).staffPay(key.businessId, key.staffId),
+);
+
+final portalProfileProvider = FutureProvider.autoDispose<PortalProfile>((ref) => ref.watch(settingsRepositoryProvider).portalProfile());
+
+/// A munkatársi portál munkaidő-nyilvántartásának hónapja.
+class PortalMonthViewModel extends Notifier<DateTime> {
+  @override
+  DateTime build() {
+    final now = DateTime.now();
+    return DateTime(now.year, now.month);
+  }
+
+  void shift(int months) => state = DateTime(state.year, state.month + months);
+}
+
+final portalMonthProvider = NotifierProvider.autoDispose<PortalMonthViewModel, DateTime>(PortalMonthViewModel.new);
+
+final portalTimesheetProvider = FutureProvider.autoDispose<PortalTimesheet>(
+  (ref) => ref.watch(settingsRepositoryProvider).portalTimesheet(ref.watch(portalMonthProvider)),
+);
+
+/// Kiegészítők, munkatárs munkaideje és bére, anyagfelhasználás, portál-profil műveletei.
+class ExtrasActionsViewModel extends ActionNotifier {
+  SettingsRepository get _repo => ref.read(settingsRepositoryProvider);
+
+  Future<bool> saveAddon(int businessId, Addon addon, {int? id}) async {
+    final ok = await perform(() => _repo.saveAddon(businessId, id: id, addon: addon), success: FlashKind.saved);
+    if (ok) ref.invalidate(addonsProvider(businessId));
+    return ok;
+  }
+
+  Future<bool> deleteAddon(int businessId, int id) async {
+    final ok = await perform(() => _repo.deleteAddon(businessId, id));
+    if (ok) ref.invalidate(addonsProvider(businessId));
+    return ok;
+  }
+
+  Future<bool> saveStaffHours(StaffKey key, List<StaffHour> hours) async {
+    final ok = await perform(() => _repo.saveStaffHours(key.businessId, key.staffId, hours), success: FlashKind.saved);
+    if (ok) ref.invalidate(staffHoursProvider(key));
+    return ok;
+  }
+
+  Future<bool> saveStaffPay(StaffKey key, {required String payType, required int payRateHuf, required String hoursSource, double serviceCommission = 0, double productCommission = 0}) async {
+    final ok = await perform(
+      () => _repo.saveStaffPay(key.businessId, key.staffId, payType: payType, payRateHuf: payRateHuf, hoursSource: hoursSource, serviceCommission: serviceCommission, productCommission: productCommission),
+      success: FlashKind.saved,
+    );
+    if (ok) ref.invalidate(staffPayProvider(key));
+    return ok;
+  }
+
+  Future<bool> saveMaterials(int businessId, int serviceId, Map<int, double> materials) =>
+      perform(() => _repo.saveServiceMaterials(businessId, serviceId, materials), success: FlashKind.saved);
+
+  /// Kép feltöltése egy munkatárshoz (`staff/{id}/photo`) vagy szolgáltatáshoz (`services/{id}/image`).
+  Future<bool> uploadImage(int businessId, String kind) async {
+    final path = await ref.read(imagePickerProvider).pickFromGallery();
+    if (path == null) return false;
+    return perform(() => _repo.uploadImage(businessId, kind, path), success: FlashKind.saved);
+  }
+
+  Future<bool> regenerateCalendarToken() async {
+    final ok = await perform(() async => await _repo.regeneratePortalCalendarToken(), success: FlashKind.saved);
+    if (ok) ref.invalidate(portalProfileProvider);
+    return ok;
+  }
+}
+
+final extrasActionsProvider = NotifierProvider.autoDispose<ExtrasActionsViewModel, ActionState>(ExtrasActionsViewModel.new);

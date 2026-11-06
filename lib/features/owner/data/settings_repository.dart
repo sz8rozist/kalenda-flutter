@@ -1,3 +1,4 @@
+import '../model/extras_models.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -185,6 +186,80 @@ class SettingsRepository {
   }
 
   Future<void> deleteImage(int businessId, String kind) => _api.call((d) => d.delete('/businesses/$businessId/booking-page/$kind'));
+
+  // ─── Kiegészítők ──────────────────────────────────────────────
+
+  Future<List<Addon>> addons(int businessId) async {
+    final response = await _api.call((d) => d.get('/businesses/$businessId/service-addons'));
+    return [for (final e in response.data as List) Addon.fromJson(e as Map<String, dynamic>)];
+  }
+
+  Future<void> saveAddon(int businessId, {int? id, required Addon addon}) => id == null
+      ? _api.call((d) => d.post('/businesses/$businessId/service-addons', data: addon.toJson()))
+      : _api.call((d) => d.put('/businesses/$businessId/service-addons/$id', data: addon.toJson()));
+
+  Future<void> deleteAddon(int businessId, int id) => _api.call((d) => d.delete('/businesses/$businessId/service-addons/$id'));
+
+  // ─── Munkatárs: munkaidő, bér, fotó ───────────────────────────
+
+  Future<List<StaffHour>> staffHours(int businessId, int staffId) async {
+    final response = await _api.call((d) => d.get('/businesses/$businessId/staff/$staffId/hours'));
+    return StaffHour.weekFrom([for (final e in response.data as List) StaffHour.fromJson(e as Map<String, dynamic>)]);
+  }
+
+  Future<void> saveStaffHours(int businessId, int staffId, List<StaffHour> hours) =>
+      _api.call((d) => d.put('/businesses/$businessId/staff/$staffId/hours', data: {'hours': [for (final h in hours) h.toJson()]}));
+
+  Future<StaffPay> staffPay(int businessId, int staffId) async {
+    final response = await _api.call((d) => d.get('/businesses/$businessId/staff/$staffId/pay'));
+    return StaffPay.fromJson(response.data as Map<String, dynamic>);
+  }
+
+  Future<void> saveStaffPay(int businessId, int staffId, {required String payType, required int payRateHuf, required String hoursSource, double serviceCommission = 0, double productCommission = 0}) =>
+      _api.call(
+        (d) => d.put(
+          '/businesses/$businessId/staff/$staffId/pay',
+          data: {
+            'pay_type': payType,
+            'pay_rate_huf': payRateHuf,
+            'hours_source': hoursSource,
+            'service_commission_percent': serviceCommission,
+            'product_commission_percent': productCommission,
+          },
+        ),
+      );
+
+  // ─── Szolgáltatás: anyagok ────────────────────────────────────
+
+  /// Az anyagfelhasználás beállítása: termék-azonosító → mennyiség egy alkalomra.
+  Future<void> saveServiceMaterials(int businessId, int serviceId, Map<int, double> materials) => _api.call(
+    (d) => d.put(
+      '/businesses/$businessId/services/$serviceId/materials',
+      data: {
+        'materials': [
+          for (final e in materials.entries) {'product_id': e.key, 'quantity': e.value},
+        ],
+      },
+    ),
+  );
+
+  // ─── Munkatársi portál: saját munkaidő és profil ──────────────
+
+  Future<PortalTimesheet> portalTimesheet(DateTime month) async {
+    final key = '${month.year.toString().padLeft(4, '0')}-${month.month.toString().padLeft(2, '0')}';
+    final response = await _api.call((d) => d.get('/staff-portal/timesheet', queryParameters: {'month': key}));
+    return PortalTimesheet.fromJson(response.data as Map<String, dynamic>);
+  }
+
+  Future<PortalProfile> portalProfile() async {
+    final response = await _api.call((d) => d.get('/staff-portal/profile'));
+    return PortalProfile.fromJson(response.data as Map<String, dynamic>);
+  }
+
+  Future<PortalProfile> regeneratePortalCalendarToken() async {
+    final response = await _api.call((d) => d.post('/staff-portal/profile/calendar-token'));
+    return PortalProfile.fromJson(response.data as Map<String, dynamic>);
+  }
 }
 
 final settingsRepositoryProvider = Provider<SettingsRepository>((ref) => SettingsRepository(ref.watch(apiClientProvider)));

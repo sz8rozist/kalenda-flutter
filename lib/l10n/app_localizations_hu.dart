@@ -2135,4 +2135,122 @@ class AppLocalizationsHu extends AppLocalizations {
   @override
   String get feedbackAnswerPlaceholder =>
       'Válasz a felhasználónak (nem kötelező)';
+
+  @override
+  String get ownerAddons => 'Kiegészítők';
+
+  @override
+  String get newAddon => 'Új kiegészítő';
+
+  @override
+  String get addonPrice => 'Ár (Ft)';
+
+  @override
+  String get addonMinutes => 'Időtartam (perc)';
+
+  @override
+  String get addonServices => 'Mely szolgáltatásokhoz';
+
+  @override
+  String get addonDeleteTitle => 'Törlöd a kiegészítőt?';
+
+  @override
+  String get staffHoursButton => 'Munkaidő';
+
+  @override
+  String get staffPayButton => 'Bér és jutalék';
+
+  @override
+  String get staffPhotoButton => 'Fotó feltöltése';
+
+  @override
+  String get dayOff => 'Szabadnap';
+
+  @override
+  String get payType => 'Bérezés módja';
+
+  @override
+  String get payTypeNone => 'Nincs megadva';
+
+  @override
+  String get payTypeHourly => 'Órabér';
+
+  @override
+  String get payTypeMonthly => 'Havi bér';
+
+  @override
+  String get payRate => 'Díj (Ft)';
+
+  @override
+  String get payHoursSource => 'Órák forrása';
+
+  @override
+  String get payHoursSchedule => 'Beosztás';
+
+  @override
+  String get payHoursClock => 'Időmérés';
+
+  @override
+  String get payHoursAppointments => 'Foglalások';
+
+  @override
+  String get payServiceCommission => 'Szolgáltatás-jutalék (%)';
+
+  @override
+  String get payProductCommission => 'Termék-jutalék (%)';
+
+  @override
+  String get serviceMaterials => 'Anyagfelhasználás';
+
+  @override
+  String get serviceImage => 'Kép feltöltése';
+
+  @override
+  String get materialQuantity => 'Mennyiség alkalmanként';
+
+  @override
+  String get portalTimesheetTitle => 'Munkaidőm';
+
+  @override
+  String get portalProfileTitle => 'Profilom';
+
+  @override
+  String get portalCalendarFeed => 'Naptár-hivatkozásom';
+
+  @override
+  String portalPlanned(String hours) {
+    return 'Tervezett: $hours';
+  }
+
+  @override
+  String portalClocked(String hours) {
+    return 'Bélyegzett: $hours';
+  }
+
+  @override
+  String get ownerPayouts => 'Kifizetések';
+
+  @override
+  String get ownerMissingDocuments => 'Hiányzó bizonylatok';
+
+  @override
+  String get missingDocumentsNone => 'Nincs kimaradt bizonylat.';
+
+  @override
+  String get payoutLines => 'A kifizetés tételei';
+
+  @override
+  String payoutGross(String amount) {
+    return 'Bruttó: $amount';
+  }
+
+  @override
+  String payoutFee(String amount) {
+    return 'Díj: $amount';
+  }
+
+  @override
+  String payoutNet(String amount) {
+    return 'Nettó: $amount';
+  }
 }

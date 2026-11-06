@@ -34,6 +34,7 @@ final ownerMenu = <OwnerMenuGroup>[
   OwnerMenuGroup((l) => l.menuGroupBooking, [
     OwnerMenuItem('/owner/services', Icons.content_cut_rounded, (l) => l.ownerServices),
     OwnerMenuItem('/owner/staff', Icons.badge_outlined, (l) => l.ownerStaff),
+    OwnerMenuItem('/owner/addons', Icons.add_circle_outline, (l) => l.ownerAddons, feature: 'addons'),
     OwnerMenuItem('/owner/group-sessions', Icons.groups_rounded, (l) => l.ownerGroupSessions),
     OwnerMenuItem('/owner/breaks', Icons.free_breakfast_outlined, (l) => l.ownerBreaks),
     OwnerMenuItem('/owner/waitlist', Icons.hourglass_empty_rounded, (l) => l.ownerWaitlist, feature: 'waitlist'),
@@ -48,6 +49,8 @@ final ownerMenu = <OwnerMenuGroup>[
   OwnerMenuGroup((l) => l.menuGroupFinance, [
     OwnerMenuItem('/owner/register', Icons.point_of_sale_outlined, (l) => l.ownerRegister, feature: 'register'),
     OwnerMenuItem('/owner/expenses', Icons.receipt_long_outlined, (l) => l.ownerExpenses, feature: 'expenses'),
+    OwnerMenuItem('/owner/payouts', Icons.account_balance_outlined, (l) => l.ownerPayouts),
+    OwnerMenuItem('/owner/missing-documents', Icons.report_gmailerrorred_outlined, (l) => l.ownerMissingDocuments, feature: 'own_invoicing'),
   ]),
   OwnerMenuGroup((l) => l.menuGroupOperations, [
     OwnerMenuItem('/owner/products', Icons.inventory_2_outlined, (l) => l.ownerProducts, feature: 'inventory'),

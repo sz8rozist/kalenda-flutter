@@ -2134,4 +2134,122 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get feedbackAnswerPlaceholder => 'Reply to the user (optional)';
+
+  @override
+  String get ownerAddons => 'Add-ons';
+
+  @override
+  String get newAddon => 'New add-on';
+
+  @override
+  String get addonPrice => 'Price (HUF)';
+
+  @override
+  String get addonMinutes => 'Duration (min)';
+
+  @override
+  String get addonServices => 'For which services';
+
+  @override
+  String get addonDeleteTitle => 'Delete this add-on?';
+
+  @override
+  String get staffHoursButton => 'Working hours';
+
+  @override
+  String get staffPayButton => 'Pay and commission';
+
+  @override
+  String get staffPhotoButton => 'Upload photo';
+
+  @override
+  String get dayOff => 'Day off';
+
+  @override
+  String get payType => 'Pay type';
+
+  @override
+  String get payTypeNone => 'Not set';
+
+  @override
+  String get payTypeHourly => 'Hourly';
+
+  @override
+  String get payTypeMonthly => 'Monthly';
+
+  @override
+  String get payRate => 'Rate (HUF)';
+
+  @override
+  String get payHoursSource => 'Hours source';
+
+  @override
+  String get payHoursSchedule => 'Schedule';
+
+  @override
+  String get payHoursClock => 'Time clock';
+
+  @override
+  String get payHoursAppointments => 'Bookings';
+
+  @override
+  String get payServiceCommission => 'Service commission (%)';
+
+  @override
+  String get payProductCommission => 'Product commission (%)';
+
+  @override
+  String get serviceMaterials => 'Materials used';
+
+  @override
+  String get serviceImage => 'Upload image';
+
+  @override
+  String get materialQuantity => 'Quantity per visit';
+
+  @override
+  String get portalTimesheetTitle => 'My hours';
+
+  @override
+  String get portalProfileTitle => 'My profile';
+
+  @override
+  String get portalCalendarFeed => 'My calendar link';
+
+  @override
+  String portalPlanned(String hours) {
+    return 'Planned: $hours';
+  }
+
+  @override
+  String portalClocked(String hours) {
+    return 'Clocked: $hours';
+  }
+
+  @override
+  String get ownerPayouts => 'Payouts';
+
+  @override
+  String get ownerMissingDocuments => 'Missing documents';
+
+  @override
+  String get missingDocumentsNone => 'No missing documents.';
+
+  @override
+  String get payoutLines => 'Payout items';
+
+  @override
+  String payoutGross(String amount) {
+    return 'Gross: $amount';
+  }
+
+  @override
+  String payoutFee(String amount) {
+    return 'Fee: $amount';
+  }
+
+  @override
+  String payoutNet(String amount) {
+    return 'Net: $amount';
+  }
 }

@@ -4033,6 +4033,222 @@ abstract class AppLocalizations {
   /// In hu, this message translates to:
   /// **'Válasz a felhasználónak (nem kötelező)'**
   String get feedbackAnswerPlaceholder;
+
+  /// No description provided for @ownerAddons.
+  ///
+  /// In hu, this message translates to:
+  /// **'Kiegészítők'**
+  String get ownerAddons;
+
+  /// No description provided for @newAddon.
+  ///
+  /// In hu, this message translates to:
+  /// **'Új kiegészítő'**
+  String get newAddon;
+
+  /// No description provided for @addonPrice.
+  ///
+  /// In hu, this message translates to:
+  /// **'Ár (Ft)'**
+  String get addonPrice;
+
+  /// No description provided for @addonMinutes.
+  ///
+  /// In hu, this message translates to:
+  /// **'Időtartam (perc)'**
+  String get addonMinutes;
+
+  /// No description provided for @addonServices.
+  ///
+  /// In hu, this message translates to:
+  /// **'Mely szolgáltatásokhoz'**
+  String get addonServices;
+
+  /// No description provided for @addonDeleteTitle.
+  ///
+  /// In hu, this message translates to:
+  /// **'Törlöd a kiegészítőt?'**
+  String get addonDeleteTitle;
+
+  /// No description provided for @staffHoursButton.
+  ///
+  /// In hu, this message translates to:
+  /// **'Munkaidő'**
+  String get staffHoursButton;
+
+  /// No description provided for @staffPayButton.
+  ///
+  /// In hu, this message translates to:
+  /// **'Bér és jutalék'**
+  String get staffPayButton;
+
+  /// No description provided for @staffPhotoButton.
+  ///
+  /// In hu, this message translates to:
+  /// **'Fotó feltöltése'**
+  String get staffPhotoButton;
+
+  /// No description provided for @dayOff.
+  ///
+  /// In hu, this message translates to:
+  /// **'Szabadnap'**
+  String get dayOff;
+
+  /// No description provided for @payType.
+  ///
+  /// In hu, this message translates to:
+  /// **'Bérezés módja'**
+  String get payType;
+
+  /// No description provided for @payTypeNone.
+  ///
+  /// In hu, this message translates to:
+  /// **'Nincs megadva'**
+  String get payTypeNone;
+
+  /// No description provided for @payTypeHourly.
+  ///
+  /// In hu, this message translates to:
+  /// **'Órabér'**
+  String get payTypeHourly;
+
+  /// No description provided for @payTypeMonthly.
+  ///
+  /// In hu, this message translates to:
+  /// **'Havi bér'**
+  String get payTypeMonthly;
+
+  /// No description provided for @payRate.
+  ///
+  /// In hu, this message translates to:
+  /// **'Díj (Ft)'**
+  String get payRate;
+
+  /// No description provided for @payHoursSource.
+  ///
+  /// In hu, this message translates to:
+  /// **'Órák forrása'**
+  String get payHoursSource;
+
+  /// No description provided for @payHoursSchedule.
+  ///
+  /// In hu, this message translates to:
+  /// **'Beosztás'**
+  String get payHoursSchedule;
+
+  /// No description provided for @payHoursClock.
+  ///
+  /// In hu, this message translates to:
+  /// **'Időmérés'**
+  String get payHoursClock;
+
+  /// No description provided for @payHoursAppointments.
+  ///
+  /// In hu, this message translates to:
+  /// **'Foglalások'**
+  String get payHoursAppointments;
+
+  /// No description provided for @payServiceCommission.
+  ///
+  /// In hu, this message translates to:
+  /// **'Szolgáltatás-jutalék (%)'**
+  String get payServiceCommission;
+
+  /// No description provided for @payProductCommission.
+  ///
+  /// In hu, this message translates to:
+  /// **'Termék-jutalék (%)'**
+  String get payProductCommission;
+
+  /// No description provided for @serviceMaterials.
+  ///
+  /// In hu, this message translates to:
+  /// **'Anyagfelhasználás'**
+  String get serviceMaterials;
+
+  /// No description provided for @serviceImage.
+  ///
+  /// In hu, this message translates to:
+  /// **'Kép feltöltése'**
+  String get serviceImage;
+
+  /// No description provided for @materialQuantity.
+  ///
+  /// In hu, this message translates to:
+  /// **'Mennyiség alkalmanként'**
+  String get materialQuantity;
+
+  /// No description provided for @portalTimesheetTitle.
+  ///
+  /// In hu, this message translates to:
+  /// **'Munkaidőm'**
+  String get portalTimesheetTitle;
+
+  /// No description provided for @portalProfileTitle.
+  ///
+  /// In hu, this message translates to:
+  /// **'Profilom'**
+  String get portalProfileTitle;
+
+  /// No description provided for @portalCalendarFeed.
+  ///
+  /// In hu, this message translates to:
+  /// **'Naptár-hivatkozásom'**
+  String get portalCalendarFeed;
+
+  /// No description provided for @portalPlanned.
+  ///
+  /// In hu, this message translates to:
+  /// **'Tervezett: {hours}'**
+  String portalPlanned(String hours);
+
+  /// No description provided for @portalClocked.
+  ///
+  /// In hu, this message translates to:
+  /// **'Bélyegzett: {hours}'**
+  String portalClocked(String hours);
+
+  /// No description provided for @ownerPayouts.
+  ///
+  /// In hu, this message translates to:
+  /// **'Kifizetések'**
+  String get ownerPayouts;
+
+  /// No description provided for @ownerMissingDocuments.
+  ///
+  /// In hu, this message translates to:
+  /// **'Hiányzó bizonylatok'**
+  String get ownerMissingDocuments;
+
+  /// No description provided for @missingDocumentsNone.
+  ///
+  /// In hu, this message translates to:
+  /// **'Nincs kimaradt bizonylat.'**
+  String get missingDocumentsNone;
+
+  /// No description provided for @payoutLines.
+  ///
+  /// In hu, this message translates to:
+  /// **'A kifizetés tételei'**
+  String get payoutLines;
+
+  /// No description provided for @payoutGross.
+  ///
+  /// In hu, this message translates to:
+  /// **'Bruttó: {amount}'**
+  String payoutGross(String amount);
+
+  /// No description provided for @payoutFee.
+  ///
+  /// In hu, this message translates to:
+  /// **'Díj: {amount}'**
+  String payoutFee(String amount);
+
+  /// No description provided for @payoutNet.
+  ///
+  /// In hu, this message translates to:
+  /// **'Nettó: {amount}'**
+  String payoutNet(String amount);
 }
 
 class _AppLocalizationsDelegate
