@@ -39,6 +39,9 @@ final ownerMenu = <OwnerMenuGroup>[
   ]),
   OwnerMenuGroup((l) => l.menuGroupSales, [
     OwnerMenuItem('/owner/passes', Icons.confirmation_number_outlined, (l) => l.ownerPasses, feature: 'passes'),
+    OwnerMenuItem('/owner/pass-types', Icons.card_giftcard_rounded, (l) => l.ownerPassTypes, feature: 'passes'),
+    OwnerMenuItem('/owner/loyalty', Icons.stars_rounded, (l) => l.ownerLoyalty, feature: 'loyalty'),
+    OwnerMenuItem('/owner/campaigns', Icons.campaign_outlined, (l) => l.ownerCampaigns, feature: 'campaigns'),
   ]),
   OwnerMenuGroup((l) => l.menuGroupFinance, [
     OwnerMenuItem('/owner/register', Icons.point_of_sale_outlined, (l) => l.ownerRegister, feature: 'register'),

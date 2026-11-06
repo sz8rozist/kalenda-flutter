@@ -1517,4 +1517,157 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get orderReceivedQty => 'Beérkezett (db)';
+
+  @override
+  String get ownerPassTypes => 'Bérlet- és utalvány-típusok';
+
+  @override
+  String get ownerLoyalty => 'Hűségprogram';
+
+  @override
+  String get ownerCampaigns => 'Kampányok';
+
+  @override
+  String get newPassType => 'Új típus';
+
+  @override
+  String get passTypeKind => 'Fajta';
+
+  @override
+  String get passTypeSessions => 'Alkalmak száma';
+
+  @override
+  String get passTypeValue => 'Névérték (Ft)';
+
+  @override
+  String get passTypePrice => 'Ár (Ft)';
+
+  @override
+  String get passTypeValidity => 'Érvényesség (nap)';
+
+  @override
+  String get passTypeService => 'Szolgáltatás (nem kötelező)';
+
+  @override
+  String get passTypeAnyService => 'Bármelyik';
+
+  @override
+  String passTypeSoldCount(int count) {
+    return '$count eladva';
+  }
+
+  @override
+  String get passTypeSell => 'Eladás';
+
+  @override
+  String get passTypePurchaserEmail => 'Vevő e-mail-címe';
+
+  @override
+  String get passTypeRecipient => 'Címzett neve (ajándéknál)';
+
+  @override
+  String get passTypeDeleteTitle => 'Törlöd a típust?';
+
+  @override
+  String get passTypeInactive => 'Kikapcsolva';
+
+  @override
+  String get loyaltyEnabled => 'Hűségprogram bekapcsolva';
+
+  @override
+  String get loyaltyPointsPer1000 => 'Pont minden 1000 Ft után';
+
+  @override
+  String get loyaltyRewardPointsLabel => 'Jutalomhoz szükséges pont';
+
+  @override
+  String get loyaltyRewardValueLabel => 'Jutalom értéke (Ft)';
+
+  @override
+  String loyaltyMembers(int count) {
+    return 'Tagok: $count';
+  }
+
+  @override
+  String loyaltyOutstanding(int count) {
+    return 'Ki nem váltott pont: $count';
+  }
+
+  @override
+  String get loyaltyLeaderboard => 'Ranglista';
+
+  @override
+  String get newCampaign => 'Új kampány';
+
+  @override
+  String get editCampaign => 'Kampány szerkesztése';
+
+  @override
+  String get campaignName => 'Belső név';
+
+  @override
+  String get campaignSubject => 'Levél tárgya';
+
+  @override
+  String get campaignBody => 'Levél szövege';
+
+  @override
+  String get campaignSegmentLabel => 'Célcsoport';
+
+  @override
+  String get segAll => 'Minden hozzájárult vendég';
+
+  @override
+  String get segInactive => 'Rég nem járt nálunk';
+
+  @override
+  String get segNew => 'Új vendégek';
+
+  @override
+  String get segService => 'Adott szolgáltatást igénybe vevők';
+
+  @override
+  String get segLoyalty => 'Hűségpontjuk már beváltható';
+
+  @override
+  String get segDays => 'Napok száma';
+
+  @override
+  String campaignAudience(int count) {
+    return 'Ennyien kapnák meg: $count';
+  }
+
+  @override
+  String get campaignStatusDraft => 'Piszkozat';
+
+  @override
+  String get campaignStatusSent => 'Elküldve';
+
+  @override
+  String get campaignSendTest => 'Próbalevél nekem';
+
+  @override
+  String campaignTestSent(String email) {
+    return 'A próbalevél elment ide: $email';
+  }
+
+  @override
+  String get campaignSend => 'Kiküldés';
+
+  @override
+  String get campaignSendConfirm =>
+      'Kiküldöd a kampányt a célcsoportnak? Ez nem vonható vissza.';
+
+  @override
+  String campaignSent(int count) {
+    return 'Kiküldve $count címzettnek.';
+  }
+
+  @override
+  String get campaignDeleteTitle => 'Törlöd a kampányt?';
+
+  @override
+  String campaignConsents(int count, int limit) {
+    return 'Hozzájárult vendégek: $count · napi limit: $limit';
+  }
 }

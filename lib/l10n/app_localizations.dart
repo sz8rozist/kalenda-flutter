@@ -2905,6 +2905,282 @@ abstract class AppLocalizations {
   /// In hu, this message translates to:
   /// **'Beérkezett (db)'**
   String get orderReceivedQty;
+
+  /// No description provided for @ownerPassTypes.
+  ///
+  /// In hu, this message translates to:
+  /// **'Bérlet- és utalvány-típusok'**
+  String get ownerPassTypes;
+
+  /// No description provided for @ownerLoyalty.
+  ///
+  /// In hu, this message translates to:
+  /// **'Hűségprogram'**
+  String get ownerLoyalty;
+
+  /// No description provided for @ownerCampaigns.
+  ///
+  /// In hu, this message translates to:
+  /// **'Kampányok'**
+  String get ownerCampaigns;
+
+  /// No description provided for @newPassType.
+  ///
+  /// In hu, this message translates to:
+  /// **'Új típus'**
+  String get newPassType;
+
+  /// No description provided for @passTypeKind.
+  ///
+  /// In hu, this message translates to:
+  /// **'Fajta'**
+  String get passTypeKind;
+
+  /// No description provided for @passTypeSessions.
+  ///
+  /// In hu, this message translates to:
+  /// **'Alkalmak száma'**
+  String get passTypeSessions;
+
+  /// No description provided for @passTypeValue.
+  ///
+  /// In hu, this message translates to:
+  /// **'Névérték (Ft)'**
+  String get passTypeValue;
+
+  /// No description provided for @passTypePrice.
+  ///
+  /// In hu, this message translates to:
+  /// **'Ár (Ft)'**
+  String get passTypePrice;
+
+  /// No description provided for @passTypeValidity.
+  ///
+  /// In hu, this message translates to:
+  /// **'Érvényesség (nap)'**
+  String get passTypeValidity;
+
+  /// No description provided for @passTypeService.
+  ///
+  /// In hu, this message translates to:
+  /// **'Szolgáltatás (nem kötelező)'**
+  String get passTypeService;
+
+  /// No description provided for @passTypeAnyService.
+  ///
+  /// In hu, this message translates to:
+  /// **'Bármelyik'**
+  String get passTypeAnyService;
+
+  /// No description provided for @passTypeSoldCount.
+  ///
+  /// In hu, this message translates to:
+  /// **'{count} eladva'**
+  String passTypeSoldCount(int count);
+
+  /// No description provided for @passTypeSell.
+  ///
+  /// In hu, this message translates to:
+  /// **'Eladás'**
+  String get passTypeSell;
+
+  /// No description provided for @passTypePurchaserEmail.
+  ///
+  /// In hu, this message translates to:
+  /// **'Vevő e-mail-címe'**
+  String get passTypePurchaserEmail;
+
+  /// No description provided for @passTypeRecipient.
+  ///
+  /// In hu, this message translates to:
+  /// **'Címzett neve (ajándéknál)'**
+  String get passTypeRecipient;
+
+  /// No description provided for @passTypeDeleteTitle.
+  ///
+  /// In hu, this message translates to:
+  /// **'Törlöd a típust?'**
+  String get passTypeDeleteTitle;
+
+  /// No description provided for @passTypeInactive.
+  ///
+  /// In hu, this message translates to:
+  /// **'Kikapcsolva'**
+  String get passTypeInactive;
+
+  /// No description provided for @loyaltyEnabled.
+  ///
+  /// In hu, this message translates to:
+  /// **'Hűségprogram bekapcsolva'**
+  String get loyaltyEnabled;
+
+  /// No description provided for @loyaltyPointsPer1000.
+  ///
+  /// In hu, this message translates to:
+  /// **'Pont minden 1000 Ft után'**
+  String get loyaltyPointsPer1000;
+
+  /// No description provided for @loyaltyRewardPointsLabel.
+  ///
+  /// In hu, this message translates to:
+  /// **'Jutalomhoz szükséges pont'**
+  String get loyaltyRewardPointsLabel;
+
+  /// No description provided for @loyaltyRewardValueLabel.
+  ///
+  /// In hu, this message translates to:
+  /// **'Jutalom értéke (Ft)'**
+  String get loyaltyRewardValueLabel;
+
+  /// No description provided for @loyaltyMembers.
+  ///
+  /// In hu, this message translates to:
+  /// **'Tagok: {count}'**
+  String loyaltyMembers(int count);
+
+  /// No description provided for @loyaltyOutstanding.
+  ///
+  /// In hu, this message translates to:
+  /// **'Ki nem váltott pont: {count}'**
+  String loyaltyOutstanding(int count);
+
+  /// No description provided for @loyaltyLeaderboard.
+  ///
+  /// In hu, this message translates to:
+  /// **'Ranglista'**
+  String get loyaltyLeaderboard;
+
+  /// No description provided for @newCampaign.
+  ///
+  /// In hu, this message translates to:
+  /// **'Új kampány'**
+  String get newCampaign;
+
+  /// No description provided for @editCampaign.
+  ///
+  /// In hu, this message translates to:
+  /// **'Kampány szerkesztése'**
+  String get editCampaign;
+
+  /// No description provided for @campaignName.
+  ///
+  /// In hu, this message translates to:
+  /// **'Belső név'**
+  String get campaignName;
+
+  /// No description provided for @campaignSubject.
+  ///
+  /// In hu, this message translates to:
+  /// **'Levél tárgya'**
+  String get campaignSubject;
+
+  /// No description provided for @campaignBody.
+  ///
+  /// In hu, this message translates to:
+  /// **'Levél szövege'**
+  String get campaignBody;
+
+  /// No description provided for @campaignSegmentLabel.
+  ///
+  /// In hu, this message translates to:
+  /// **'Célcsoport'**
+  String get campaignSegmentLabel;
+
+  /// No description provided for @segAll.
+  ///
+  /// In hu, this message translates to:
+  /// **'Minden hozzájárult vendég'**
+  String get segAll;
+
+  /// No description provided for @segInactive.
+  ///
+  /// In hu, this message translates to:
+  /// **'Rég nem járt nálunk'**
+  String get segInactive;
+
+  /// No description provided for @segNew.
+  ///
+  /// In hu, this message translates to:
+  /// **'Új vendégek'**
+  String get segNew;
+
+  /// No description provided for @segService.
+  ///
+  /// In hu, this message translates to:
+  /// **'Adott szolgáltatást igénybe vevők'**
+  String get segService;
+
+  /// No description provided for @segLoyalty.
+  ///
+  /// In hu, this message translates to:
+  /// **'Hűségpontjuk már beváltható'**
+  String get segLoyalty;
+
+  /// No description provided for @segDays.
+  ///
+  /// In hu, this message translates to:
+  /// **'Napok száma'**
+  String get segDays;
+
+  /// No description provided for @campaignAudience.
+  ///
+  /// In hu, this message translates to:
+  /// **'Ennyien kapnák meg: {count}'**
+  String campaignAudience(int count);
+
+  /// No description provided for @campaignStatusDraft.
+  ///
+  /// In hu, this message translates to:
+  /// **'Piszkozat'**
+  String get campaignStatusDraft;
+
+  /// No description provided for @campaignStatusSent.
+  ///
+  /// In hu, this message translates to:
+  /// **'Elküldve'**
+  String get campaignStatusSent;
+
+  /// No description provided for @campaignSendTest.
+  ///
+  /// In hu, this message translates to:
+  /// **'Próbalevél nekem'**
+  String get campaignSendTest;
+
+  /// No description provided for @campaignTestSent.
+  ///
+  /// In hu, this message translates to:
+  /// **'A próbalevél elment ide: {email}'**
+  String campaignTestSent(String email);
+
+  /// No description provided for @campaignSend.
+  ///
+  /// In hu, this message translates to:
+  /// **'Kiküldés'**
+  String get campaignSend;
+
+  /// No description provided for @campaignSendConfirm.
+  ///
+  /// In hu, this message translates to:
+  /// **'Kiküldöd a kampányt a célcsoportnak? Ez nem vonható vissza.'**
+  String get campaignSendConfirm;
+
+  /// No description provided for @campaignSent.
+  ///
+  /// In hu, this message translates to:
+  /// **'Kiküldve {count} címzettnek.'**
+  String campaignSent(int count);
+
+  /// No description provided for @campaignDeleteTitle.
+  ///
+  /// In hu, this message translates to:
+  /// **'Törlöd a kampányt?'**
+  String get campaignDeleteTitle;
+
+  /// No description provided for @campaignConsents.
+  ///
+  /// In hu, this message translates to:
+  /// **'Hozzájárult vendégek: {count} · napi limit: {limit}'**
+  String campaignConsents(int count, int limit);
 }
 
 class _AppLocalizationsDelegate

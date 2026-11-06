@@ -44,9 +44,9 @@ A webes felület (`kalenda/resources/js/Pages`) és a mobilapp összevetése. A 
 | Beszerzés: beszállítók, rendelések (létrehozás, leadás, bevételezés, sztornó) | ✅ |
 | Pénztár (Register): napi összesítő, tételek, kifizetetlen foglalások, zárás/nyitás | ✅ |
 | Ajánlatok (Quotes) | ⬜ |
-| Hűségprogram (Loyalty) | ⬜ |
-| Bérletek / utalványok: eladottak listája | 🟡 · típusok kezelése, helyszíni eladás ⬜ |
-| Kampányok (Campaigns) | ⬜ |
+| Hűségprogram (Loyalty): beállítás, ranglista, statisztika | ✅ |
+| Bérletek / utalványok: eladottak listája, típusok létrehozása/kapcsolása/törlése, helyszíni eladás | ✅ |
+| Kampányok (Campaigns): lista, szerkesztés, célcsoport, címzett-szám, próbalevél, kiküldés | ✅ |
 | Értékelések (Reviews) + beállítás | ✅ |
 | Munkaidő (Timesheet), zárás, export | ⬜ |
 | Tevékenység-napló (ActivityLog) | ✅ |

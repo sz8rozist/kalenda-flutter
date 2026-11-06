@@ -1516,4 +1516,157 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get orderReceivedQty => 'Received (pcs)';
+
+  @override
+  String get ownerPassTypes => 'Pass and voucher types';
+
+  @override
+  String get ownerLoyalty => 'Loyalty program';
+
+  @override
+  String get ownerCampaigns => 'Campaigns';
+
+  @override
+  String get newPassType => 'New type';
+
+  @override
+  String get passTypeKind => 'Kind';
+
+  @override
+  String get passTypeSessions => 'Number of sessions';
+
+  @override
+  String get passTypeValue => 'Face value (HUF)';
+
+  @override
+  String get passTypePrice => 'Price (HUF)';
+
+  @override
+  String get passTypeValidity => 'Valid for (days)';
+
+  @override
+  String get passTypeService => 'Service (optional)';
+
+  @override
+  String get passTypeAnyService => 'Any';
+
+  @override
+  String passTypeSoldCount(int count) {
+    return '$count sold';
+  }
+
+  @override
+  String get passTypeSell => 'Sell';
+
+  @override
+  String get passTypePurchaserEmail => 'Buyer email';
+
+  @override
+  String get passTypeRecipient => 'Recipient name (for gifts)';
+
+  @override
+  String get passTypeDeleteTitle => 'Delete this type?';
+
+  @override
+  String get passTypeInactive => 'Disabled';
+
+  @override
+  String get loyaltyEnabled => 'Loyalty program enabled';
+
+  @override
+  String get loyaltyPointsPer1000 => 'Points per 1000 HUF';
+
+  @override
+  String get loyaltyRewardPointsLabel => 'Points needed for a reward';
+
+  @override
+  String get loyaltyRewardValueLabel => 'Reward value (HUF)';
+
+  @override
+  String loyaltyMembers(int count) {
+    return 'Members: $count';
+  }
+
+  @override
+  String loyaltyOutstanding(int count) {
+    return 'Outstanding points: $count';
+  }
+
+  @override
+  String get loyaltyLeaderboard => 'Leaderboard';
+
+  @override
+  String get newCampaign => 'New campaign';
+
+  @override
+  String get editCampaign => 'Edit campaign';
+
+  @override
+  String get campaignName => 'Internal name';
+
+  @override
+  String get campaignSubject => 'Email subject';
+
+  @override
+  String get campaignBody => 'Email text';
+
+  @override
+  String get campaignSegmentLabel => 'Audience';
+
+  @override
+  String get segAll => 'All customers who agreed';
+
+  @override
+  String get segInactive => 'Haven\'t visited in a while';
+
+  @override
+  String get segNew => 'New customers';
+
+  @override
+  String get segService => 'Customers of a given service';
+
+  @override
+  String get segLoyalty => 'Can already redeem a reward';
+
+  @override
+  String get segDays => 'Days';
+
+  @override
+  String campaignAudience(int count) {
+    return 'Would reach: $count';
+  }
+
+  @override
+  String get campaignStatusDraft => 'Draft';
+
+  @override
+  String get campaignStatusSent => 'Sent';
+
+  @override
+  String get campaignSendTest => 'Send me a test';
+
+  @override
+  String campaignTestSent(String email) {
+    return 'Test email sent to $email';
+  }
+
+  @override
+  String get campaignSend => 'Send';
+
+  @override
+  String get campaignSendConfirm =>
+      'Send the campaign to the audience? This cannot be undone.';
+
+  @override
+  String campaignSent(int count) {
+    return 'Sent to $count recipients.';
+  }
+
+  @override
+  String get campaignDeleteTitle => 'Delete this campaign?';
+
+  @override
+  String campaignConsents(int count, int limit) {
+    return 'Customers who agreed: $count · daily limit: $limit';
+  }
 }
