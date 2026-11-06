@@ -60,6 +60,19 @@ class OwnerRepository {
         'send_email': r.sendEmail,
       }));
 
+  /// A döntésre váró szabadság-igénylések.
+  Future<List<OwnerLeaveRequest>> pendingLeaveRequests(int businessId) async {
+    final response = await _api.call((d) => d.get('/businesses/$businessId/leave-requests', queryParameters: {'status': 'pending'}));
+    return (response.data as List).map((e) => OwnerLeaveRequest.fromJson(e as Map<String, dynamic>)).toList();
+  }
+
+  Future<void> approveLeave(int businessId, int requestId) =>
+      _api.call((d) => d.post('/businesses/$businessId/leave-requests/$requestId/approve'));
+
+  Future<void> rejectLeave(int businessId, int requestId, {String? note}) => _api.call((d) => d.post(
+      '/businesses/$businessId/leave-requests/$requestId/reject',
+      data: {'response_note': ?(note == null || note.isEmpty ? null : note)}));
+
   Future<List<HourRow>> hours(int businessId) async {
     final response = await _api.call((d) => d.get('/businesses/$businessId/hours'));
     return (response.data as List).map((e) => HourRow.fromJson(e as Map<String, dynamic>)).toList();

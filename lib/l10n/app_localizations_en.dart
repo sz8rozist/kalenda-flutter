@@ -47,6 +47,24 @@ class AppLocalizationsEn extends AppLocalizations {
   String get updateNow => 'Update';
 
   @override
+  String get ownerManage => 'Manage';
+
+  @override
+  String get ownerLeaves => 'Time-off requests';
+
+  @override
+  String get noPendingLeaves => 'No time-off requests waiting for a decision.';
+
+  @override
+  String get approveLeave => 'Approve';
+
+  @override
+  String get rejectLeave => 'Reject';
+
+  @override
+  String get rejectNote => 'Reason (optional)';
+
+  @override
   String get ownerHours => 'Opening hours';
 
   @override

@@ -371,3 +371,24 @@ class HourRow {
         if (!isClosed) 'close_at': closeAt,
       };
 }
+
+/// Egy munkatárs szabadság-igénylése a vállalkozó döntésére várva (`GET /businesses/{id}/leave-requests`).
+class OwnerLeaveRequest {
+  OwnerLeaveRequest({required this.id, required this.staffName, required this.dateFrom, required this.dateTo, required this.status, this.reason});
+
+  final int id;
+  final String staffName;
+  final DateTime dateFrom;
+  final DateTime dateTo;
+  final String status;
+  final String? reason;
+
+  factory OwnerLeaveRequest.fromJson(Map<String, dynamic> j) => OwnerLeaveRequest(
+        id: (j['id'] as num).toInt(),
+        staffName: (j['staff'] as Map<String, dynamic>?)?['name'] as String? ?? '',
+        dateFrom: DateTime.parse(j['date_from'] as String),
+        dateTo: DateTime.parse(j['date_to'] as String),
+        status: j['status'] as String? ?? '',
+        reason: j['reason'] as String?,
+      );
+}

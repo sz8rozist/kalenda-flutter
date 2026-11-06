@@ -164,6 +164,42 @@ abstract class AppLocalizations {
   /// **'Frissítés'**
   String get updateNow;
 
+  /// No description provided for @ownerManage.
+  ///
+  /// In hu, this message translates to:
+  /// **'Kezelés'**
+  String get ownerManage;
+
+  /// No description provided for @ownerLeaves.
+  ///
+  /// In hu, this message translates to:
+  /// **'Szabadságkérelmek'**
+  String get ownerLeaves;
+
+  /// No description provided for @noPendingLeaves.
+  ///
+  /// In hu, this message translates to:
+  /// **'Nincs döntésre váró szabadságkérelem.'**
+  String get noPendingLeaves;
+
+  /// No description provided for @approveLeave.
+  ///
+  /// In hu, this message translates to:
+  /// **'Jóváhagyás'**
+  String get approveLeave;
+
+  /// No description provided for @rejectLeave.
+  ///
+  /// In hu, this message translates to:
+  /// **'Elutasítás'**
+  String get rejectLeave;
+
+  /// No description provided for @rejectNote.
+  ///
+  /// In hu, this message translates to:
+  /// **'Indok (nem kötelező)'**
+  String get rejectNote;
+
   /// No description provided for @ownerHours.
   ///
   /// In hu, this message translates to:

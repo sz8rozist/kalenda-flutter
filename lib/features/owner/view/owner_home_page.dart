@@ -32,15 +32,16 @@ class OwnerHomePage extends ConsumerWidget {
       appBar: AppBar(
         title: Text(user.businessName ?? l10n.appTitle),
         actions: [
-          IconButton(
-            tooltip: l10n.ownerHours,
-            icon: const Icon(Icons.schedule),
-            onPressed: () => context.push('/owner/hours'),
-          ),
-          IconButton(
-            tooltip: l10n.ownerServices,
-            icon: const Icon(Icons.content_cut),
-            onPressed: () => context.push('/owner/services'),
+          // A kezelő oldalak egy menüben (a sok ikon helyett).
+          PopupMenuButton<String>(
+            tooltip: l10n.ownerManage,
+            icon: const Icon(Icons.tune),
+            onSelected: context.push,
+            itemBuilder: (_) => [
+              PopupMenuItem(value: '/owner/leaves', child: Text(l10n.ownerLeaves)),
+              PopupMenuItem(value: '/owner/hours', child: Text(l10n.ownerHours)),
+              PopupMenuItem(value: '/owner/services', child: Text(l10n.ownerServices)),
+            ],
           ),
           const SettingsButton(),
           IconButton(

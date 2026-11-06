@@ -47,6 +47,24 @@ class AppLocalizationsHu extends AppLocalizations {
   String get updateNow => 'Frissítés';
 
   @override
+  String get ownerManage => 'Kezelés';
+
+  @override
+  String get ownerLeaves => 'Szabadságkérelmek';
+
+  @override
+  String get noPendingLeaves => 'Nincs döntésre váró szabadságkérelem.';
+
+  @override
+  String get approveLeave => 'Jóváhagyás';
+
+  @override
+  String get rejectLeave => 'Elutasítás';
+
+  @override
+  String get rejectNote => 'Indok (nem kötelező)';
+
+  @override
   String get ownerHours => 'Nyitvatartás';
 
   @override
