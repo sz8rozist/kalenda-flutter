@@ -58,7 +58,7 @@ A webes felület (`kalenda/resources/js/Pages`) és a mobilapp összevetése. A 
 | Fiók: jelszócsere, elfelejtett jelszó, visszajelzés (Profile, Feedback, ForgotPassword) | ✅ |
 
 ## Admin
-Irányítópult, vállalkozások (be/kikapcsolás), foglalások, visszajelzések | ⬜
+Irányítópult, vállalkozások (be/kikapcsolás), foglalások, visszajelzések (megválaszolás) | ✅
 
 ## Megjegyzések
 - ⚠ **Előfizetés:** az App Store / Play szabályai szerint a digitális előfizetést az alkalmazáson belül az áruház fizetési rendszerével kell

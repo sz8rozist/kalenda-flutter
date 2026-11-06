@@ -2057,4 +2057,82 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get feedbackThanks => 'Köszönjük a visszajelzést!';
+
+  @override
+  String get adminTitle => 'Adminisztráció';
+
+  @override
+  String get adminOverview => 'Áttekintés';
+
+  @override
+  String get adminBusinesses => 'Vállalkozások';
+
+  @override
+  String get adminAppointments => 'Foglalások';
+
+  @override
+  String get adminFeedback => 'Visszajelzések';
+
+  @override
+  String adminUsers(int count) {
+    return 'Felhasználók: $count';
+  }
+
+  @override
+  String adminBusinessCount(int count) {
+    return 'Vállalkozások: $count';
+  }
+
+  @override
+  String adminAppointmentCount(int count) {
+    return 'Foglalások: $count';
+  }
+
+  @override
+  String adminToday(int count) {
+    return 'Ma: $count';
+  }
+
+  @override
+  String adminThisMonth(int count) {
+    return 'Ebben a hónapban: $count';
+  }
+
+  @override
+  String adminActiveSubscriptions(int count) {
+    return 'Aktív előfizetés: $count';
+  }
+
+  @override
+  String adminPlans(int free, int basic, int pro) {
+    return 'Csomagok: próba $free · alap $basic · profi $pro';
+  }
+
+  @override
+  String get adminActive => 'Aktív';
+
+  @override
+  String get adminInactive => 'Kikapcsolva';
+
+  @override
+  String get adminAllStatuses => 'Mind';
+
+  @override
+  String get feedbackStatusNew => 'Beérkezett';
+
+  @override
+  String get feedbackStatusInProgress => 'Folyamatban';
+
+  @override
+  String get feedbackStatusResolved => 'Megoldva';
+
+  @override
+  String get feedbackStatusRejected => 'Elutasítva';
+
+  @override
+  String get feedbackAnswer => 'Válasz';
+
+  @override
+  String get feedbackAnswerPlaceholder =>
+      'Válasz a felhasználónak (nem kötelező)';
 }

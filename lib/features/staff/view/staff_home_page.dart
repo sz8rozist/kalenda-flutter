@@ -9,6 +9,7 @@ import '../../../shared/format.dart';
 import '../../../shared/ui/empty_state.dart';
 import '../../../shared/ui/status_chip.dart';
 import '../../../shared/week_header.dart';
+import '../../admin/view/admin_home_page.dart';
 import '../../app_lock/view/app_lock_settings.dart';
 import '../../owner/view/owner_home_page.dart';
 import '../model/staff_models.dart';
@@ -30,6 +31,8 @@ class StaffHomePage extends ConsumerWidget {
     if (session.isLoading) return const Scaffold(body: Center(child: CircularProgressIndicator()));
     final user = session.value;
     if (user == null) return const StaffLoginPage();
+
+    if (user.isAdmin) return const AdminHomePage();
 
     if (user.isOwner && user.businessId != null) {
       return OwnerHomePage(user: user, businessId: user.businessId!);

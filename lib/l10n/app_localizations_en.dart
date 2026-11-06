@@ -2057,4 +2057,81 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get feedbackThanks => 'Thanks for your feedback!';
+
+  @override
+  String get adminTitle => 'Administration';
+
+  @override
+  String get adminOverview => 'Overview';
+
+  @override
+  String get adminBusinesses => 'Businesses';
+
+  @override
+  String get adminAppointments => 'Bookings';
+
+  @override
+  String get adminFeedback => 'Feedback';
+
+  @override
+  String adminUsers(int count) {
+    return 'Users: $count';
+  }
+
+  @override
+  String adminBusinessCount(int count) {
+    return 'Businesses: $count';
+  }
+
+  @override
+  String adminAppointmentCount(int count) {
+    return 'Bookings: $count';
+  }
+
+  @override
+  String adminToday(int count) {
+    return 'Today: $count';
+  }
+
+  @override
+  String adminThisMonth(int count) {
+    return 'This month: $count';
+  }
+
+  @override
+  String adminActiveSubscriptions(int count) {
+    return 'Active subscriptions: $count';
+  }
+
+  @override
+  String adminPlans(int free, int basic, int pro) {
+    return 'Plans: trial $free · basic $basic · pro $pro';
+  }
+
+  @override
+  String get adminActive => 'Active';
+
+  @override
+  String get adminInactive => 'Disabled';
+
+  @override
+  String get adminAllStatuses => 'All';
+
+  @override
+  String get feedbackStatusNew => 'New';
+
+  @override
+  String get feedbackStatusInProgress => 'In progress';
+
+  @override
+  String get feedbackStatusResolved => 'Resolved';
+
+  @override
+  String get feedbackStatusRejected => 'Rejected';
+
+  @override
+  String get feedbackAnswer => 'Reply';
+
+  @override
+  String get feedbackAnswerPlaceholder => 'Reply to the user (optional)';
 }

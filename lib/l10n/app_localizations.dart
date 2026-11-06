@@ -3907,6 +3907,132 @@ abstract class AppLocalizations {
   /// In hu, this message translates to:
   /// **'Köszönjük a visszajelzést!'**
   String get feedbackThanks;
+
+  /// No description provided for @adminTitle.
+  ///
+  /// In hu, this message translates to:
+  /// **'Adminisztráció'**
+  String get adminTitle;
+
+  /// No description provided for @adminOverview.
+  ///
+  /// In hu, this message translates to:
+  /// **'Áttekintés'**
+  String get adminOverview;
+
+  /// No description provided for @adminBusinesses.
+  ///
+  /// In hu, this message translates to:
+  /// **'Vállalkozások'**
+  String get adminBusinesses;
+
+  /// No description provided for @adminAppointments.
+  ///
+  /// In hu, this message translates to:
+  /// **'Foglalások'**
+  String get adminAppointments;
+
+  /// No description provided for @adminFeedback.
+  ///
+  /// In hu, this message translates to:
+  /// **'Visszajelzések'**
+  String get adminFeedback;
+
+  /// No description provided for @adminUsers.
+  ///
+  /// In hu, this message translates to:
+  /// **'Felhasználók: {count}'**
+  String adminUsers(int count);
+
+  /// No description provided for @adminBusinessCount.
+  ///
+  /// In hu, this message translates to:
+  /// **'Vállalkozások: {count}'**
+  String adminBusinessCount(int count);
+
+  /// No description provided for @adminAppointmentCount.
+  ///
+  /// In hu, this message translates to:
+  /// **'Foglalások: {count}'**
+  String adminAppointmentCount(int count);
+
+  /// No description provided for @adminToday.
+  ///
+  /// In hu, this message translates to:
+  /// **'Ma: {count}'**
+  String adminToday(int count);
+
+  /// No description provided for @adminThisMonth.
+  ///
+  /// In hu, this message translates to:
+  /// **'Ebben a hónapban: {count}'**
+  String adminThisMonth(int count);
+
+  /// No description provided for @adminActiveSubscriptions.
+  ///
+  /// In hu, this message translates to:
+  /// **'Aktív előfizetés: {count}'**
+  String adminActiveSubscriptions(int count);
+
+  /// No description provided for @adminPlans.
+  ///
+  /// In hu, this message translates to:
+  /// **'Csomagok: próba {free} · alap {basic} · profi {pro}'**
+  String adminPlans(int free, int basic, int pro);
+
+  /// No description provided for @adminActive.
+  ///
+  /// In hu, this message translates to:
+  /// **'Aktív'**
+  String get adminActive;
+
+  /// No description provided for @adminInactive.
+  ///
+  /// In hu, this message translates to:
+  /// **'Kikapcsolva'**
+  String get adminInactive;
+
+  /// No description provided for @adminAllStatuses.
+  ///
+  /// In hu, this message translates to:
+  /// **'Mind'**
+  String get adminAllStatuses;
+
+  /// No description provided for @feedbackStatusNew.
+  ///
+  /// In hu, this message translates to:
+  /// **'Beérkezett'**
+  String get feedbackStatusNew;
+
+  /// No description provided for @feedbackStatusInProgress.
+  ///
+  /// In hu, this message translates to:
+  /// **'Folyamatban'**
+  String get feedbackStatusInProgress;
+
+  /// No description provided for @feedbackStatusResolved.
+  ///
+  /// In hu, this message translates to:
+  /// **'Megoldva'**
+  String get feedbackStatusResolved;
+
+  /// No description provided for @feedbackStatusRejected.
+  ///
+  /// In hu, this message translates to:
+  /// **'Elutasítva'**
+  String get feedbackStatusRejected;
+
+  /// No description provided for @feedbackAnswer.
+  ///
+  /// In hu, this message translates to:
+  /// **'Válasz'**
+  String get feedbackAnswer;
+
+  /// No description provided for @feedbackAnswerPlaceholder.
+  ///
+  /// In hu, this message translates to:
+  /// **'Válasz a felhasználónak (nem kötelező)'**
+  String get feedbackAnswerPlaceholder;
 }
 
 class _AppLocalizationsDelegate
