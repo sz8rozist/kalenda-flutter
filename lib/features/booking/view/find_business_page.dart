@@ -9,6 +9,7 @@ import '../../../shared/ui/app_logo.dart';
 import '../../favorites/model/saved_business.dart';
 import '../../favorites/viewmodel/saved_businesses_viewmodel.dart';
 import '../viewmodel/business_viewmodels.dart';
+import '../../settings/view/language_tile.dart';
 import '../../account/model/account_models.dart';
 import '../../account/viewmodel/account_viewmodel.dart';
 import '../../auth/viewmodel/customer_session_viewmodel.dart';
@@ -67,6 +68,16 @@ class _FindBusinessPageState extends ConsumerState<FindBusinessPage> {
                     const SizedBox(width: 10),
                     Text('Kalenda', style: theme.textTheme.titleMedium?.copyWith(color: Colors.white)),
                     const Spacer(),
+                    IconButton(
+                      tooltip: l10n.languageTitle,
+                      color: Colors.white,
+                      icon: const Icon(Icons.language_rounded),
+                      onPressed: () => showModalBottomSheet<void>(
+                        context: context,
+                        showDragHandle: true,
+                        builder: (_) => const SafeArea(child: Padding(padding: EdgeInsets.fromLTRB(16, 0, 16, 16), child: LanguageTile())),
+                      ),
+                    ),
                     IconButton.filledTonal(
                       tooltip: l10n.scanQr,
                       style: IconButton.styleFrom(backgroundColor: Colors.white.withValues(alpha: 0.18), foregroundColor: Colors.white),

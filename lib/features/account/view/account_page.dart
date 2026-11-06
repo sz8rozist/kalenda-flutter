@@ -10,6 +10,7 @@ import '../../../shared/format.dart';
 import '../../../shared/ui/empty_state.dart';
 import '../../../shared/ui/status_chip.dart';
 import '../../app_lock/view/app_lock_settings.dart';
+import '../../settings/view/language_tile.dart';
 import '../../auth/viewmodel/customer_session_viewmodel.dart';
 import '../model/account_models.dart';
 import '../viewmodel/account_viewmodel.dart';
@@ -62,6 +63,7 @@ class AccountPage extends ConsumerWidget {
                 for (final consent in data.consents) _ConsentTile(consent: consent),
               ],
               const SizedBox(height: 24),
+              const LanguageTile(),
               const AppLockTile(),
               const SizedBox(height: 8),
               TextButton.icon(

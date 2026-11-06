@@ -2337,4 +2337,10 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get nextAppointmentLabel => 'Következő időpontod';
+
+  @override
+  String get languageTitle => 'Nyelv';
+
+  @override
+  String get languageSystem => 'Rendszer';
 }

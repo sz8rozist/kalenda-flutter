@@ -2336,4 +2336,10 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get nextAppointmentLabel => 'Your next appointment';
+
+  @override
+  String get languageTitle => 'Language';
+
+  @override
+  String get languageSystem => 'System';
 }

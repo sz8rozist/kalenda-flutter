@@ -787,5 +787,7 @@
   "@homeGreeting": { "placeholders": { "name": { "type": "String" } } },
   "homeGreetingGuest": "Hi there!",
   "homeQuestion": "When are you coming next?",
-  "nextAppointmentLabel": "Your next appointment"
+  "nextAppointmentLabel": "Your next appointment",
+  "languageTitle": "Language",
+  "languageSystem": "System"
 }

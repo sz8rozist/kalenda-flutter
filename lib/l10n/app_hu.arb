@@ -787,5 +787,7 @@
   "@homeGreeting": { "placeholders": { "name": { "type": "String" } } },
   "homeGreetingGuest": "Szia!",
   "homeQuestion": "Mikor jössz legközelebb?",
-  "nextAppointmentLabel": "Következő időpontod"
+  "nextAppointmentLabel": "Következő időpontod",
+  "languageTitle": "Nyelv",
+  "languageSystem": "Rendszer"
 }

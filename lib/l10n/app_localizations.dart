@@ -4399,6 +4399,18 @@ abstract class AppLocalizations {
   /// In hu, this message translates to:
   /// **'Következő időpontod'**
   String get nextAppointmentLabel;
+
+  /// No description provided for @languageTitle.
+  ///
+  /// In hu, this message translates to:
+  /// **'Nyelv'**
+  String get languageTitle;
+
+  /// No description provided for @languageSystem.
+  ///
+  /// In hu, this message translates to:
+  /// **'Rendszer'**
+  String get languageSystem;
 }
 
 class _AppLocalizationsDelegate
