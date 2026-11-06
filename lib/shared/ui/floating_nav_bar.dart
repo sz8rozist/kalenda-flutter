@@ -29,6 +29,7 @@ class FloatingNavigationBar extends StatelessWidget {
           child: NavigationBarTheme(
             data: NavigationBarTheme.of(context).copyWith(
               labelPadding: const EdgeInsets.only(top: 2),
+              indicatorShape: const StadiumBorder(),
               labelTextStyle: WidgetStateProperty.resolveWith(
                 (states) => theme.textTheme.labelSmall?.copyWith(
                   fontSize: 11,
@@ -37,9 +38,6 @@ class FloatingNavigationBar extends StatelessWidget {
                   color: states.contains(WidgetState.selected) ? theme.colorScheme.primary : theme.colorScheme.onSurfaceVariant,
                 ),
               ),
-                theme.textTheme.labelSmall?.copyWith(fontSize: 11, fontWeight: FontWeight.w600, height: 1.1),
-              ),
-              indicatorShape: const StadiumBorder(),
             ),
             child: NavigationBar(
               selectedIndex: selectedIndex,
@@ -48,9 +46,7 @@ class FloatingNavigationBar extends StatelessWidget {
               backgroundColor: Colors.transparent,
               height: 72,
               // Sok fül (vállalkozói felület: 5) esetén csak a kiválasztott fül felirata látszik, hogy minden elférjen.
-              labelBehavior: destinations.length > 4
-                  ? NavigationDestinationLabelBehavior.onlyShowSelected
-                  : NavigationDestinationLabelBehavior.alwaysShow,
+              labelBehavior: destinations.length > 4 ? NavigationDestinationLabelBehavior.onlyShowSelected : NavigationDestinationLabelBehavior.alwaysShow,
             ),
           ),
         ),
