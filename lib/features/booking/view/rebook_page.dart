@@ -12,7 +12,7 @@ String rebookTarget(String slug, List<PublicService> services, String serviceNam
   final wanted = serviceName.trim().toLowerCase();
   final service = services.where((s) => s.name.trim().toLowerCase() == wanted).firstOrNull;
   if (service == null) return '/b/$slug';
-  return Uri(path: '/b/$slug/book/${service.id}', queryParameters: {'staff': ?staffName}).toString();
+  return Uri(path: '/b/$slug/book/${service.id}', queryParameters: staffName == null ? null : {'staff': staffName}).toString();
 }
 
 /// „Újra foglalok": a korábbi foglalás szolgáltatását név szerint megkeresi a vállalkozásnál, és megnyitja a foglalási űrlapot
