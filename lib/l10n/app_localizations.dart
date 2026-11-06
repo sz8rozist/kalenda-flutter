@@ -1421,7 +1421,7 @@ abstract class AppLocalizations {
   /// No description provided for @actionCancel.
   ///
   /// In hu, this message translates to:
-  /// **'Mégse'**
+  /// **'Lemondás'**
   String get actionCancel;
 
   /// No description provided for @newLeave.
@@ -1717,6 +1717,12 @@ abstract class AppLocalizations {
   /// In hu, this message translates to:
   /// **'Új'**
   String get actionAdd;
+
+  /// No description provided for @dialogCancel.
+  ///
+  /// In hu, this message translates to:
+  /// **'Mégse'**
+  String get dialogCancel;
 
   /// No description provided for @fieldDescription.
   ///
@@ -2197,6 +2203,354 @@ abstract class AppLocalizations {
   /// In hu, this message translates to:
   /// **'Továbbiak'**
   String get ownerMore;
+
+  /// No description provided for @menuGroupBooking.
+  ///
+  /// In hu, this message translates to:
+  /// **'Foglalás és ügyfelek'**
+  String get menuGroupBooking;
+
+  /// No description provided for @menuGroupSales.
+  ///
+  /// In hu, this message translates to:
+  /// **'Értékesítés és marketing'**
+  String get menuGroupSales;
+
+  /// No description provided for @menuGroupFinance.
+  ///
+  /// In hu, this message translates to:
+  /// **'Pénzügy'**
+  String get menuGroupFinance;
+
+  /// No description provided for @menuGroupOperations.
+  ///
+  /// In hu, this message translates to:
+  /// **'Működés'**
+  String get menuGroupOperations;
+
+  /// No description provided for @menuGroupSettings.
+  ///
+  /// In hu, this message translates to:
+  /// **'Beállítások'**
+  String get menuGroupSettings;
+
+  /// No description provided for @menuNotInPlan.
+  ///
+  /// In hu, this message translates to:
+  /// **'A csomagod nem tartalmazza'**
+  String get menuNotInPlan;
+
+  /// No description provided for @subscriptionTitle.
+  ///
+  /// In hu, this message translates to:
+  /// **'Előfizetés'**
+  String get subscriptionTitle;
+
+  /// No description provided for @planName.
+  ///
+  /// In hu, this message translates to:
+  /// **'Csomag: {plan}'**
+  String planName(String plan);
+
+  /// No description provided for @planTrial.
+  ///
+  /// In hu, this message translates to:
+  /// **'Próba'**
+  String get planTrial;
+
+  /// No description provided for @planBasic.
+  ///
+  /// In hu, this message translates to:
+  /// **'Alap'**
+  String get planBasic;
+
+  /// No description provided for @planProfessional.
+  ///
+  /// In hu, this message translates to:
+  /// **'Profi'**
+  String get planProfessional;
+
+  /// No description provided for @trialDaysLeft.
+  ///
+  /// In hu, this message translates to:
+  /// **'A próbaidőszakból {days} nap van hátra.'**
+  String trialDaysLeft(int days);
+
+  /// No description provided for @subscriptionLocked.
+  ///
+  /// In hu, this message translates to:
+  /// **'A vállalkozás zárolva van, a csomag lejárt vagy felfüggesztették.'**
+  String get subscriptionLocked;
+
+  /// No description provided for @subscriptionRenewsOn.
+  ///
+  /// In hu, this message translates to:
+  /// **'A csomag érvényes eddig: {date}'**
+  String subscriptionRenewsOn(String date);
+
+  /// No description provided for @subscriptionCancelsAtEnd.
+  ///
+  /// In hu, this message translates to:
+  /// **'Az előfizetés az időszak végén lejár.'**
+  String get subscriptionCancelsAtEnd;
+
+  /// No description provided for @subscriptionManageOnWeb.
+  ///
+  /// In hu, this message translates to:
+  /// **'Az előfizetés vásárlása és módosítása a webes felületen történik. Az alkalmazás csak a jelenlegi csomagot mutatja.'**
+  String get subscriptionManageOnWeb;
+
+  /// No description provided for @openWebApp.
+  ///
+  /// In hu, this message translates to:
+  /// **'Megnyitás a weben'**
+  String get openWebApp;
+
+  /// No description provided for @subscriptionFeatures.
+  ///
+  /// In hu, this message translates to:
+  /// **'A csomag funkciói'**
+  String get subscriptionFeatures;
+
+  /// No description provided for @appointmentDetailTitle.
+  ///
+  /// In hu, this message translates to:
+  /// **'Foglalás részletei'**
+  String get appointmentDetailTitle;
+
+  /// No description provided for @paymentsTitle.
+  ///
+  /// In hu, this message translates to:
+  /// **'Fizetés'**
+  String get paymentsTitle;
+
+  /// No description provided for @paidAmount.
+  ///
+  /// In hu, this message translates to:
+  /// **'Befizetve: {amount}'**
+  String paidAmount(String amount);
+
+  /// No description provided for @dueAmount.
+  ///
+  /// In hu, this message translates to:
+  /// **'Fizetendő: {amount}'**
+  String dueAmount(String amount);
+
+  /// No description provided for @coveredByPass.
+  ///
+  /// In hu, this message translates to:
+  /// **'Bérlet fedezi'**
+  String get coveredByPass;
+
+  /// No description provided for @documentsTitle.
+  ///
+  /// In hu, this message translates to:
+  /// **'Bizonylatok'**
+  String get documentsTitle;
+
+  /// No description provided for @docReceipt.
+  ///
+  /// In hu, this message translates to:
+  /// **'Nyugta'**
+  String get docReceipt;
+
+  /// No description provided for @docReceiptDeposit.
+  ///
+  /// In hu, this message translates to:
+  /// **'Nyugta (előleg)'**
+  String get docReceiptDeposit;
+
+  /// No description provided for @docInvoice.
+  ///
+  /// In hu, this message translates to:
+  /// **'Számla'**
+  String get docInvoice;
+
+  /// No description provided for @docInvoiceDeposit.
+  ///
+  /// In hu, this message translates to:
+  /// **'Előlegszámla'**
+  String get docInvoiceDeposit;
+
+  /// No description provided for @docInvoiceFinal.
+  ///
+  /// In hu, this message translates to:
+  /// **'Végszámla'**
+  String get docInvoiceFinal;
+
+  /// No description provided for @docCancelled.
+  ///
+  /// In hu, this message translates to:
+  /// **'Sztornózva'**
+  String get docCancelled;
+
+  /// No description provided for @docCancel.
+  ///
+  /// In hu, this message translates to:
+  /// **'Sztornó'**
+  String get docCancel;
+
+  /// No description provided for @docCancelReason.
+  ///
+  /// In hu, this message translates to:
+  /// **'Sztornó oka'**
+  String get docCancelReason;
+
+  /// No description provided for @docCancelTitle.
+  ///
+  /// In hu, this message translates to:
+  /// **'Sztornózod a bizonylatot?'**
+  String get docCancelTitle;
+
+  /// No description provided for @docOpenPdf.
+  ///
+  /// In hu, this message translates to:
+  /// **'PDF megnyitása'**
+  String get docOpenPdf;
+
+  /// No description provided for @docPdfFailed.
+  ///
+  /// In hu, this message translates to:
+  /// **'Nincs alkalmazás a PDF megnyitásához.'**
+  String get docPdfFailed;
+
+  /// No description provided for @issueDocument.
+  ///
+  /// In hu, this message translates to:
+  /// **'{document} kiállítása'**
+  String issueDocument(String document);
+
+  /// No description provided for @payMethod.
+  ///
+  /// In hu, this message translates to:
+  /// **'Fizetés módja'**
+  String get payMethod;
+
+  /// No description provided for @methodOnline.
+  ///
+  /// In hu, this message translates to:
+  /// **'Online bankkártya'**
+  String get methodOnline;
+
+  /// No description provided for @methodCard.
+  ///
+  /// In hu, this message translates to:
+  /// **'Bankkártya (helyszínen)'**
+  String get methodCard;
+
+  /// No description provided for @methodCash.
+  ///
+  /// In hu, this message translates to:
+  /// **'Készpénz'**
+  String get methodCash;
+
+  /// No description provided for @methodTransfer.
+  ///
+  /// In hu, this message translates to:
+  /// **'Átutalás'**
+  String get methodTransfer;
+
+  /// No description provided for @methodOther.
+  ///
+  /// In hu, this message translates to:
+  /// **'Egyéb'**
+  String get methodOther;
+
+  /// No description provided for @methodVoucher.
+  ///
+  /// In hu, this message translates to:
+  /// **'Utalvány'**
+  String get methodVoucher;
+
+  /// No description provided for @refundAsk.
+  ///
+  /// In hu, this message translates to:
+  /// **'Visszatérítsd a befizetett összeget is?'**
+  String get refundAsk;
+
+  /// No description provided for @refundYes.
+  ///
+  /// In hu, this message translates to:
+  /// **'Igen, visszatérítés'**
+  String get refundYes;
+
+  /// No description provided for @refundNo.
+  ///
+  /// In hu, this message translates to:
+  /// **'Nem'**
+  String get refundNo;
+
+  /// No description provided for @bookingAddons.
+  ///
+  /// In hu, this message translates to:
+  /// **'Kiegészítők'**
+  String get bookingAddons;
+
+  /// No description provided for @newInvoice.
+  ///
+  /// In hu, this message translates to:
+  /// **'Új számla'**
+  String get newInvoice;
+
+  /// No description provided for @invoiceCustomerName.
+  ///
+  /// In hu, this message translates to:
+  /// **'Ügyfél neve'**
+  String get invoiceCustomerName;
+
+  /// No description provided for @invoiceItemsTitle.
+  ///
+  /// In hu, this message translates to:
+  /// **'Tételek'**
+  String get invoiceItemsTitle;
+
+  /// No description provided for @invoiceItemName.
+  ///
+  /// In hu, this message translates to:
+  /// **'Megnevezés'**
+  String get invoiceItemName;
+
+  /// No description provided for @invoiceItemQty.
+  ///
+  /// In hu, this message translates to:
+  /// **'Menny.'**
+  String get invoiceItemQty;
+
+  /// No description provided for @invoiceItemPrice.
+  ///
+  /// In hu, this message translates to:
+  /// **'Bruttó egységár (Ft)'**
+  String get invoiceItemPrice;
+
+  /// No description provided for @invoiceAddItem.
+  ///
+  /// In hu, this message translates to:
+  /// **'Új tétel'**
+  String get invoiceAddItem;
+
+  /// No description provided for @invoiceDueDays.
+  ///
+  /// In hu, this message translates to:
+  /// **'Fizetési határidő (nap)'**
+  String get invoiceDueDays;
+
+  /// No description provided for @invoiceAlreadyPaid.
+  ///
+  /// In hu, this message translates to:
+  /// **'Már ki van fizetve'**
+  String get invoiceAlreadyPaid;
+
+  /// No description provided for @invoiceTotalLine.
+  ///
+  /// In hu, this message translates to:
+  /// **'Összesen: {total}'**
+  String invoiceTotalLine(String total);
+
+  /// No description provided for @invoiceNeedsItem.
+  ///
+  /// In hu, this message translates to:
+  /// **'Adj meg legalább egy tételt névvel és árral.'**
+  String get invoiceNeedsItem;
 }
 
 class _AppLocalizationsDelegate

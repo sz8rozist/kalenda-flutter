@@ -1,8 +1,12 @@
+import '../model/appointment_detail.dart';
+import 'package:dio/dio.dart';
+import 'dart:typed_data';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../core/api/api_client.dart';
 import '../../../core/api/date_param.dart';
 import '../../../core/providers.dart';
+import '../model/business_info.dart';
 import '../model/owner_tools_models.dart';
 
 /// A vállalkozói „egyéb" végpontok: költségek, értékelések, bérletek, várólista, tevékenység-napló.
@@ -85,6 +89,71 @@ class OwnerToolsRepository {
     );
     return [for (final e in pagedContent((response.data as Map<String, dynamic>)['entries'])) ActivityEntry.fromJson(e)];
   }
+
+  // ─── Vállalkozás és csomag (csak olvasás) ─────────────────────
+
+  Future<BusinessInfo> businessInfo(int businessId) async {
+    final response = await _api.call((d) => d.get('/businesses/$businessId'));
+    return BusinessInfo.fromJson(response.data as Map<String, dynamic>);
+  }
+
+  Future<SubscriptionState> subscription(int businessId) async {
+    final response = await _api.call((d) => d.get('/businesses/$businessId/subscription'));
+    return SubscriptionState.fromJson(response.data as Map<String, dynamic>);
+  }
+
+  // ─── Foglalás-részletek és bizonylatok ────────────────────────
+
+  Future<AppointmentDetail> appointmentDetail(int businessId, int appointmentId) async {
+    final response = await _api.call((d) => d.get('/businesses/$businessId/appointments/$appointmentId'));
+    return AppointmentDetail.fromJson(response.data as Map<String, dynamic>);
+  }
+
+  /// Állapotváltás; lemondásnál a `refund` igaz esetén a befizetett összeg visszatérítésre kerül.
+  Future<void> changeAppointmentStatus(int businessId, int appointmentId, String status, {bool refund = false}) =>
+      _api.call((d) => d.patch('/businesses/$businessId/appointments/$appointmentId/status', data: {'status': status, 'refund': refund}));
+
+  /// Számla / nyugta kiállítása a foglaláshoz (a fizetés módjával).
+  Future<void> issueAppointmentInvoice(int businessId, int appointmentId, {required String paymentMethod}) =>
+      _api.call((d) => d.post('/businesses/$businessId/appointments/$appointmentId/invoice', data: {'payment_method': paymentMethod}));
+
+  Future<void> cancelDocument(int businessId, String type, int documentId, {String? reason}) =>
+      _api.call((d) => d.post('/businesses/$businessId/documents/$type/$documentId/cancel', data: {'reason': reason ?? ''}));
+
+  /// A bizonylat PDF-je (hitelesítve töltjük le, ezért nem nyitható közvetlen linkkel).
+  Future<Uint8List> documentPdf(int businessId, String type, int documentId) async {
+    final response = await _api.call(
+      (d) => d.get<List<int>>('/businesses/$businessId/documents/$type/$documentId/pdf', options: Options(responseType: ResponseType.bytes)),
+    );
+    return Uint8List.fromList(response.data ?? const []);
+  }
+
+  // ─── Önálló számla ────────────────────────────────────────────
+
+  /// Új önálló számla (a tételek bruttó egységárral; az ÁFA-kulcs a vállalkozás alapértelmezése).
+  Future<void> createStandaloneInvoice(
+    int businessId, {
+    required List<({String name, double qty, int unitPriceHuf})> items,
+    String? customerName,
+    String? customerEmail,
+    int dueDays = 8,
+    bool alreadyPaid = false,
+    String? paymentMethod,
+  }) => _api.call(
+    (d) => d.post(
+      '/businesses/$businessId/invoices',
+      data: {
+        'customer_name': customerName == null || customerName.trim().isEmpty ? null : customerName.trim(),
+        'customer_email': customerEmail == null || customerEmail.trim().isEmpty ? null : customerEmail.trim(),
+        'items': [
+          for (final i in items) {'name': i.name, 'qty': i.qty, 'unit_price_huf': i.unitPriceHuf},
+        ],
+        'due_days': dueDays,
+        'already_paid': alreadyPaid,
+        if (alreadyPaid) 'payment_method': paymentMethod ?? 'cash',
+      },
+    ),
+  );
 }
 
 final ownerToolsRepositoryProvider = Provider<OwnerToolsRepository>((ref) => OwnerToolsRepository(ref.watch(apiClientProvider)));

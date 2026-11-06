@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../l10n/app_localizations.dart';
 import '../../../shared/async_view.dart';
 import '../../../shared/flash.dart';
 import '../../../shared/format.dart';
+import '../../../shared/ui/app_alerts.dart';
 import '../model/owner_models.dart';
 import '../viewmodel/owner_invoice_viewmodels.dart';
+import '../viewmodel/owner_tools_viewmodels.dart';
 
 /// A vállalkozás számlái (View): szűrő (mind / nyitott / lejárt / kifizetett) és a számlán végezhető műveletek.
 class OwnerInvoicesTab extends ConsumerWidget {
@@ -36,6 +39,7 @@ class OwnerInvoicesTab extends ConsumerWidget {
                 ('paid', l10n.invoicePaid),
               ])
                 ChoiceChip(label: Text(label), selected: filter == value, onSelected: (_) => filters.select(value)),
+              ActionChip(avatar: const Icon(Icons.add, size: 18), label: Text(l10n.newInvoice), onPressed: () => context.push('/owner/invoices/new')),
             ],
           ),
         ),
@@ -131,6 +135,35 @@ class _InvoiceTile extends ConsumerWidget {
                               actions.markUnpaid(businessId, invoice.id);
                             },
                           ),
+                        ListTile(
+                          leading: const Icon(Icons.picture_as_pdf_outlined),
+                          title: Text(l10n.docOpenPdf),
+                          onTap: () async {
+                            Navigator.pop(sheetContext);
+                            final viewModel = ref.read(documentActionsProvider.notifier);
+                            final ok = await viewModel.openPdf(businessId, 'standalone', invoice.id, invoice.number);
+                            if (ok && viewModel.pdfNotOpened && context.mounted) showToast(context, l10n.docPdfFailed, kind: AlertKind.warning);
+                          },
+                        ),
+                        ListTile(
+                          leading: Icon(Icons.block_outlined, color: theme.colorScheme.error),
+                          title: Text(l10n.docCancel, style: TextStyle(color: theme.colorScheme.error)),
+                          onTap: () async {
+                            Navigator.pop(sheetContext);
+                            final confirmed = await showConfirmAlert(
+                              context,
+                              title: l10n.docCancelTitle,
+                              message: invoice.number,
+                              confirmLabel: l10n.docCancel,
+                              destructive: true,
+                              icon: Icons.block_outlined,
+                            );
+                            if (!confirmed) return;
+                            await ref
+                                .read(documentActionsProvider.notifier)
+                                .cancel(businessId, 'standalone', invoice.id, null, onDone: () => ref.invalidate(invoicesProvider(businessId)));
+                          },
+                        ),
                       ],
                     ),
                   ),

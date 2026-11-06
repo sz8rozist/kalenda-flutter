@@ -34,23 +34,7 @@ class OwnerHomePage extends ConsumerWidget {
       appBar: AppBar(
         title: Text(user.businessName ?? l10n.appTitle),
         actions: [
-          // A kezelő oldalak egy menüben (a sok ikon helyett).
-          PopupMenuButton<String>(
-            tooltip: l10n.ownerManage,
-            icon: const Icon(Icons.tune),
-            onSelected: context.push,
-            itemBuilder: (_) => [
-              PopupMenuItem(value: '/owner/leaves', child: Text(l10n.ownerLeaves)),
-              PopupMenuItem(value: '/owner/staff', child: Text(l10n.ownerStaff)),
-              PopupMenuItem(value: '/owner/hours', child: Text(l10n.ownerHours)),
-              PopupMenuItem(value: '/owner/services', child: Text(l10n.ownerServices)),
-              PopupMenuItem(value: '/owner/expenses', child: Text(l10n.ownerExpenses)),
-              PopupMenuItem(value: '/owner/reviews', child: Text(l10n.ownerReviews)),
-              PopupMenuItem(value: '/owner/passes', child: Text(l10n.ownerPasses)),
-              PopupMenuItem(value: '/owner/waitlist', child: Text(l10n.ownerWaitlist)),
-              PopupMenuItem(value: '/owner/activity', child: Text(l10n.ownerActivityLog)),
-            ],
-          ),
+          IconButton(tooltip: l10n.ownerMore, icon: const Icon(Icons.apps_rounded), onPressed: () => context.push('/owner/more')),
           const SettingsButton(),
           IconButton(
             tooltip: l10n.signOut,

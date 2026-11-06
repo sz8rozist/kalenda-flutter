@@ -104,7 +104,7 @@ class _ContentState extends ConsumerState<_Content> {
           ],
         ),
         actions: [
-          TextButton(onPressed: () => Navigator.pop(context, false), child: Text(l10n.actionCancel)),
+          TextButton(onPressed: () => Navigator.pop(context, false), child: Text(l10n.dialogCancel)),
           FilledButton(onPressed: () => Navigator.pop(context, true), child: Text(l10n.save)),
         ],
       ),

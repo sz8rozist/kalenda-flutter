@@ -726,7 +726,7 @@ class AppLocalizationsHu extends AppLocalizations {
   String get actionNoShow => 'Nem jelent meg';
 
   @override
-  String get actionCancel => 'Mégse';
+  String get actionCancel => 'Lemondás';
 
   @override
   String get newLeave => 'Szabadság kérése';
@@ -889,6 +889,9 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get actionAdd => 'Új';
+
+  @override
+  String get dialogCancel => 'Mégse';
 
   @override
   String get fieldDescription => 'Leírás';
@@ -1138,4 +1141,195 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get ownerMore => 'Továbbiak';
+
+  @override
+  String get menuGroupBooking => 'Foglalás és ügyfelek';
+
+  @override
+  String get menuGroupSales => 'Értékesítés és marketing';
+
+  @override
+  String get menuGroupFinance => 'Pénzügy';
+
+  @override
+  String get menuGroupOperations => 'Működés';
+
+  @override
+  String get menuGroupSettings => 'Beállítások';
+
+  @override
+  String get menuNotInPlan => 'A csomagod nem tartalmazza';
+
+  @override
+  String get subscriptionTitle => 'Előfizetés';
+
+  @override
+  String planName(String plan) {
+    return 'Csomag: $plan';
+  }
+
+  @override
+  String get planTrial => 'Próba';
+
+  @override
+  String get planBasic => 'Alap';
+
+  @override
+  String get planProfessional => 'Profi';
+
+  @override
+  String trialDaysLeft(int days) {
+    return 'A próbaidőszakból $days nap van hátra.';
+  }
+
+  @override
+  String get subscriptionLocked =>
+      'A vállalkozás zárolva van, a csomag lejárt vagy felfüggesztették.';
+
+  @override
+  String subscriptionRenewsOn(String date) {
+    return 'A csomag érvényes eddig: $date';
+  }
+
+  @override
+  String get subscriptionCancelsAtEnd =>
+      'Az előfizetés az időszak végén lejár.';
+
+  @override
+  String get subscriptionManageOnWeb =>
+      'Az előfizetés vásárlása és módosítása a webes felületen történik. Az alkalmazás csak a jelenlegi csomagot mutatja.';
+
+  @override
+  String get openWebApp => 'Megnyitás a weben';
+
+  @override
+  String get subscriptionFeatures => 'A csomag funkciói';
+
+  @override
+  String get appointmentDetailTitle => 'Foglalás részletei';
+
+  @override
+  String get paymentsTitle => 'Fizetés';
+
+  @override
+  String paidAmount(String amount) {
+    return 'Befizetve: $amount';
+  }
+
+  @override
+  String dueAmount(String amount) {
+    return 'Fizetendő: $amount';
+  }
+
+  @override
+  String get coveredByPass => 'Bérlet fedezi';
+
+  @override
+  String get documentsTitle => 'Bizonylatok';
+
+  @override
+  String get docReceipt => 'Nyugta';
+
+  @override
+  String get docReceiptDeposit => 'Nyugta (előleg)';
+
+  @override
+  String get docInvoice => 'Számla';
+
+  @override
+  String get docInvoiceDeposit => 'Előlegszámla';
+
+  @override
+  String get docInvoiceFinal => 'Végszámla';
+
+  @override
+  String get docCancelled => 'Sztornózva';
+
+  @override
+  String get docCancel => 'Sztornó';
+
+  @override
+  String get docCancelReason => 'Sztornó oka';
+
+  @override
+  String get docCancelTitle => 'Sztornózod a bizonylatot?';
+
+  @override
+  String get docOpenPdf => 'PDF megnyitása';
+
+  @override
+  String get docPdfFailed => 'Nincs alkalmazás a PDF megnyitásához.';
+
+  @override
+  String issueDocument(String document) {
+    return '$document kiállítása';
+  }
+
+  @override
+  String get payMethod => 'Fizetés módja';
+
+  @override
+  String get methodOnline => 'Online bankkártya';
+
+  @override
+  String get methodCard => 'Bankkártya (helyszínen)';
+
+  @override
+  String get methodCash => 'Készpénz';
+
+  @override
+  String get methodTransfer => 'Átutalás';
+
+  @override
+  String get methodOther => 'Egyéb';
+
+  @override
+  String get methodVoucher => 'Utalvány';
+
+  @override
+  String get refundAsk => 'Visszatérítsd a befizetett összeget is?';
+
+  @override
+  String get refundYes => 'Igen, visszatérítés';
+
+  @override
+  String get refundNo => 'Nem';
+
+  @override
+  String get bookingAddons => 'Kiegészítők';
+
+  @override
+  String get newInvoice => 'Új számla';
+
+  @override
+  String get invoiceCustomerName => 'Ügyfél neve';
+
+  @override
+  String get invoiceItemsTitle => 'Tételek';
+
+  @override
+  String get invoiceItemName => 'Megnevezés';
+
+  @override
+  String get invoiceItemQty => 'Menny.';
+
+  @override
+  String get invoiceItemPrice => 'Bruttó egységár (Ft)';
+
+  @override
+  String get invoiceAddItem => 'Új tétel';
+
+  @override
+  String get invoiceDueDays => 'Fizetési határidő (nap)';
+
+  @override
+  String get invoiceAlreadyPaid => 'Már ki van fizetve';
+
+  @override
+  String invoiceTotalLine(String total) {
+    return 'Összesen: $total';
+  }
+
+  @override
+  String get invoiceNeedsItem => 'Adj meg legalább egy tételt névvel és árral.';
 }

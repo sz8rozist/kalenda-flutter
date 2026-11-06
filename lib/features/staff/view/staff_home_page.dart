@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../l10n/app_localizations.dart';
 import '../../../shared/async_view.dart';
@@ -181,7 +182,7 @@ class AppointmentTile extends StatelessWidget {
 
     return Card(
       child: InkWell(
-        onTap: () => showAppointmentSheet(context, a, businessId: businessId),
+        onTap: () => businessId == null ? showAppointmentSheet(context, a) : context.push('/owner/appointments/${a.id}'),
         child: Padding(
           padding: const EdgeInsets.all(14),
           child: Row(

@@ -30,14 +30,14 @@ A webes felület (`kalenda/resources/js/Pages`) és a mobilapp összevetése. A 
 | Irányítópult (Dashboard) | 🟡 (bevétel, mai foglalások) |
 | Naptár | ✅ |
 | Foglalás létrehozása (Appointments/Create) | ✅ |
-| Foglalás részletei, számla kiállítása (Appointments/Show) | ⬜ |
+| Foglalás részletei, fizetések, számla/nyugta kiállítása, sztornó, PDF (Appointments/Show) | ✅ |
 | Ügyfelek lista, ügyfél részletei, profil, számlázási adatok, hűségpont-váltás (Customer/Show) | ✅ |
 | Szolgáltatások: lista, létrehozás, szerkesztés, törlés | ✅ · kiegészítők (addons), anyagok, kép ⬜ |
 | Munkatársak: lista, létrehozás, szerkesztés, szolgáltatások, meghívó, hozzáférés-megvonás, törlés | ✅ · munkaidő, bér, fotó ⬜ |
 | Nyitvatartás (Settings/Hours) | ✅ |
 | Szabadságok (Settings/Leaves) | ✅ (jóváhagyás) · saját szabadság felvétele ⬜ |
 | Szünetek (Calendar/Breaks) | ⬜ |
-| Számlák (Invoices) | 🟡 (lista, fizetve, emlékeztető) · kiállítás, sztornó, hiányzó dokumentumok ⬜ |
+| Számlák (Invoices): lista, fizetve, emlékeztető, új önálló számla, PDF, sztornó | ✅ · hiányzó dokumentumok újrapróbálása, ajánlatok ⬜ |
 | Riportok: könyvelés, cash-flow | ✅ · kifizetések (Payouts) ⬜ |
 | Költségek (Expenses): lista, felvitel, törlés | ✅ · bizonylat, export ⬜ |
 | Termékek (Products), értékesítés | ⬜ |
@@ -54,7 +54,7 @@ A webes felület (`kalenda/resources/js/Pages`) és a mobilapp összevetése. A 
 | Értesítések (notifications) | ⬜ |
 | Beállítások: foglalási oldal, logó/borító/fotók, szabályzat, mód, fizetés (Stripe Connect), számlázás, naptár-szinkron | ⬜ |
 | Vállalkozás szerkesztése, első beállítás (Setup), regisztráció | ⬜ |
-| Előfizetés: csomagok, számlázás (Subscription) | ⬜ ⚠ lásd lent |
+| Előfizetés | ✅ csak olvasható (csomag, állapot, funkciók; a menü a csomag szerint zárol) – a vásárlás szándékosan a weben marad |
 | Fiók: profil, jelszócsere, jelszó-visszaállítás, visszajelzés (Profile, Feedback, ForgotPassword) | ⬜ |
 
 ## Admin

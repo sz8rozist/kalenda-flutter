@@ -1,7 +1,10 @@
+import '../model/appointment_detail.dart';
+import '../../../core/files/document_opener.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../core/viewmodel/action_state.dart';
 import '../data/owner_tools_repository.dart';
+import '../model/business_info.dart';
 import '../model/owner_tools_models.dart';
 
 final expensesProvider = FutureProvider.autoDispose.family<ExpenseListing, int>(
@@ -83,3 +86,110 @@ class OwnerToolsActionsViewModel extends ActionNotifier {
 }
 
 final ownerToolsActionsProvider = NotifierProvider.autoDispose<OwnerToolsActionsViewModel, ActionState>(OwnerToolsActionsViewModel.new);
+
+/// A vállalkozás adatai és csomagja: ebből dől el, mely funkciók érhetők el a vállalkozói menüben.
+final businessInfoProvider = FutureProvider.autoDispose.family<BusinessInfo, int>(
+  (ref, businessId) => ref.watch(ownerToolsRepositoryProvider).businessInfo(businessId),
+);
+
+final subscriptionStateProvider = FutureProvider.autoDispose.family<SubscriptionState, int>(
+  (ref, businessId) => ref.watch(ownerToolsRepositoryProvider).subscription(businessId),
+);
+
+typedef AppointmentKey = ({int businessId, int appointmentId});
+
+/// Egy foglalás részletei a vállalkozónak.
+final appointmentDetailProvider = FutureProvider.autoDispose.family<AppointmentDetail, AppointmentKey>(
+  (ref, key) => ref.watch(ownerToolsRepositoryProvider).appointmentDetail(key.businessId, key.appointmentId),
+);
+
+/// A foglalás-oldal műveletei: állapotváltás, számla kiállítása, sztornó, PDF megnyitása.
+class AppointmentActionsViewModel extends ActionNotifier {
+  /// Jelzi a View-nak, hogy a PDF-et nem sikerült megnyitni (nincs hozzá alkalmazás az eszközön).
+  bool pdfNotOpened = false;
+
+  Future<bool> setStatus(AppointmentKey key, String status, {bool refund = false}) async {
+    final ok = await perform(
+      () => ref.read(ownerToolsRepositoryProvider).changeAppointmentStatus(key.businessId, key.appointmentId, status, refund: refund),
+      success: FlashKind.saved,
+    );
+    if (ok) ref.invalidate(appointmentDetailProvider(key));
+    return ok;
+  }
+
+  Future<bool> issueInvoice(AppointmentKey key, String paymentMethod) async {
+    final ok = await perform(
+      () => ref.read(ownerToolsRepositoryProvider).issueAppointmentInvoice(key.businessId, key.appointmentId, paymentMethod: paymentMethod),
+      success: FlashKind.saved,
+    );
+    if (ok) ref.invalidate(appointmentDetailProvider(key));
+    return ok;
+  }
+
+  Future<bool> cancelDocument(AppointmentKey key, int documentId, String? reason) async {
+    final ok = await perform(
+      () => ref.read(ownerToolsRepositoryProvider).cancelDocument(key.businessId, 'appointment', documentId, reason: reason),
+      success: FlashKind.saved,
+    );
+    if (ok) ref.invalidate(appointmentDetailProvider(key));
+    return ok;
+  }
+
+  Future<bool> openPdf(AppointmentKey key, AppointmentDocument document) async {
+    pdfNotOpened = false;
+    return perform(() async {
+      final bytes = await ref.read(ownerToolsRepositoryProvider).documentPdf(key.businessId, 'appointment', document.id);
+      final opened = await ref.read(documentOpenerProvider).open(bytes, '${document.number ?? 'bizonylat-${document.id}'}.pdf');
+      pdfNotOpened = !opened;
+    });
+  }
+}
+
+final appointmentActionsProvider = NotifierProvider.autoDispose<AppointmentActionsViewModel, ActionState>(AppointmentActionsViewModel.new);
+
+/// Bizonylatok (önálló számla, bérlet-számla…) PDF-je és sztornója típus szerint.
+class DocumentActionsViewModel extends ActionNotifier {
+  bool pdfNotOpened = false;
+
+  Future<bool> openPdf(int businessId, String type, int id, String fileName) async {
+    pdfNotOpened = false;
+    return perform(() async {
+      final bytes = await ref.read(ownerToolsRepositoryProvider).documentPdf(businessId, type, id);
+      pdfNotOpened = !await ref.read(documentOpenerProvider).open(bytes, '$fileName.pdf');
+    });
+  }
+
+  Future<bool> cancel(int businessId, String type, int id, String? reason, {void Function()? onDone}) async {
+    final ok = await perform(
+      () => ref.read(ownerToolsRepositoryProvider).cancelDocument(businessId, type, id, reason: reason),
+      success: FlashKind.saved,
+    );
+    if (ok) onDone?.call();
+    return ok;
+  }
+
+  Future<bool> createStandaloneInvoice(
+    int businessId, {
+    required List<({String name, double qty, int unitPriceHuf})> items,
+    String? customerName,
+    String? customerEmail,
+    int dueDays = 8,
+    bool alreadyPaid = false,
+    String? paymentMethod,
+  }) => perform(
+    () => ref
+        .read(ownerToolsRepositoryProvider)
+        .createStandaloneInvoice(
+          businessId,
+          items: items,
+          customerName: customerName,
+          customerEmail: customerEmail,
+          dueDays: dueDays,
+          alreadyPaid: alreadyPaid,
+          paymentMethod: paymentMethod,
+        ),
+    success: FlashKind.saved,
+  );
+}
+
+final documentActionsProvider = NotifierProvider.autoDispose<DocumentActionsViewModel, ActionState>(DocumentActionsViewModel.new);

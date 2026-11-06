@@ -889,6 +889,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get actionAdd => 'New';
 
   @override
+  String get dialogCancel => 'Cancel';
+
+  @override
   String get fieldDescription => 'Description';
 
   @override
@@ -1136,4 +1139,196 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get ownerMore => 'More';
+
+  @override
+  String get menuGroupBooking => 'Bookings and customers';
+
+  @override
+  String get menuGroupSales => 'Sales and marketing';
+
+  @override
+  String get menuGroupFinance => 'Finance';
+
+  @override
+  String get menuGroupOperations => 'Operations';
+
+  @override
+  String get menuGroupSettings => 'Settings';
+
+  @override
+  String get menuNotInPlan => 'Not included in your plan';
+
+  @override
+  String get subscriptionTitle => 'Subscription';
+
+  @override
+  String planName(String plan) {
+    return 'Plan: $plan';
+  }
+
+  @override
+  String get planTrial => 'Trial';
+
+  @override
+  String get planBasic => 'Basic';
+
+  @override
+  String get planProfessional => 'Professional';
+
+  @override
+  String trialDaysLeft(int days) {
+    return '$days days left in your trial.';
+  }
+
+  @override
+  String get subscriptionLocked =>
+      'The business is locked because the plan expired or was suspended.';
+
+  @override
+  String subscriptionRenewsOn(String date) {
+    return 'Plan valid until: $date';
+  }
+
+  @override
+  String get subscriptionCancelsAtEnd =>
+      'The subscription ends at the end of the period.';
+
+  @override
+  String get subscriptionManageOnWeb =>
+      'Buying and changing the subscription is done on the web. The app only shows your current plan.';
+
+  @override
+  String get openWebApp => 'Open on the web';
+
+  @override
+  String get subscriptionFeatures => 'Plan features';
+
+  @override
+  String get appointmentDetailTitle => 'Booking details';
+
+  @override
+  String get paymentsTitle => 'Payment';
+
+  @override
+  String paidAmount(String amount) {
+    return 'Paid: $amount';
+  }
+
+  @override
+  String dueAmount(String amount) {
+    return 'Due: $amount';
+  }
+
+  @override
+  String get coveredByPass => 'Covered by a pass';
+
+  @override
+  String get documentsTitle => 'Documents';
+
+  @override
+  String get docReceipt => 'Receipt';
+
+  @override
+  String get docReceiptDeposit => 'Receipt (deposit)';
+
+  @override
+  String get docInvoice => 'Invoice';
+
+  @override
+  String get docInvoiceDeposit => 'Deposit invoice';
+
+  @override
+  String get docInvoiceFinal => 'Final invoice';
+
+  @override
+  String get docCancelled => 'Cancelled';
+
+  @override
+  String get docCancel => 'Cancel document';
+
+  @override
+  String get docCancelReason => 'Reason';
+
+  @override
+  String get docCancelTitle => 'Cancel this document?';
+
+  @override
+  String get docOpenPdf => 'Open PDF';
+
+  @override
+  String get docPdfFailed => 'No app available to open the PDF.';
+
+  @override
+  String issueDocument(String document) {
+    return 'Issue $document';
+  }
+
+  @override
+  String get payMethod => 'Payment method';
+
+  @override
+  String get methodOnline => 'Online card payment';
+
+  @override
+  String get methodCard => 'Card (on site)';
+
+  @override
+  String get methodCash => 'Cash';
+
+  @override
+  String get methodTransfer => 'Bank transfer';
+
+  @override
+  String get methodOther => 'Other';
+
+  @override
+  String get methodVoucher => 'Voucher';
+
+  @override
+  String get refundAsk => 'Refund the amount already paid?';
+
+  @override
+  String get refundYes => 'Yes, refund';
+
+  @override
+  String get refundNo => 'No';
+
+  @override
+  String get bookingAddons => 'Add-ons';
+
+  @override
+  String get newInvoice => 'New invoice';
+
+  @override
+  String get invoiceCustomerName => 'Customer name';
+
+  @override
+  String get invoiceItemsTitle => 'Items';
+
+  @override
+  String get invoiceItemName => 'Description';
+
+  @override
+  String get invoiceItemQty => 'Qty';
+
+  @override
+  String get invoiceItemPrice => 'Gross unit price (HUF)';
+
+  @override
+  String get invoiceAddItem => 'Add item';
+
+  @override
+  String get invoiceDueDays => 'Payment due (days)';
+
+  @override
+  String get invoiceAlreadyPaid => 'Already paid';
+
+  @override
+  String invoiceTotalLine(String total) {
+    return 'Total: $total';
+  }
+
+  @override
+  String get invoiceNeedsItem =>
+      'Enter at least one item with a name and price.';
 }

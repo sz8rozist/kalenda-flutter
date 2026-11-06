@@ -8,6 +8,9 @@ class AppConfig {
   /// a backend `GOOGLE_CLIENT_IDS` listájában is szerepelnie kell.
   static const googleServerClientId = String.fromEnvironment('GOOGLE_SERVER_CLIENT_ID');
 
+  /// A webes felület alapcíme (az előfizetés kezeléséhez); alapból az API címe.
+  static const webBaseUrl = String.fromEnvironment('WEB_BASE_URL', defaultValue: apiBaseUrl);
+
   /// Az API-nak küldött kliensverzió (minimum-verzió ellenőrzéshez).
   static const appVersion = String.fromEnvironment('APP_VERSION', defaultValue: '1.0.0');
 }
