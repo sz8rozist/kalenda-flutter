@@ -109,22 +109,47 @@ class _AppointmentCard extends StatelessWidget {
                         overflow: TextOverflow.ellipsis,
                       ),
                       const SizedBox(height: 6),
-                      Row(children: [
-                        Icon(Icons.schedule_rounded, size: 14, color: theme.colorScheme.onSurfaceVariant),
-                        const SizedBox(width: 4),
-                        Text(formatTime(context, item.startsAt), style: theme.textTheme.bodySmall),
-                        if (item.staff != null) ...[
-                          const SizedBox(width: 10),
-                          Icon(Icons.person_outline_rounded, size: 14, color: theme.colorScheme.onSurfaceVariant),
+                      Row(
+                        children: [
+                          Icon(Icons.schedule_rounded, size: 14, color: theme.colorScheme.onSurfaceVariant),
                           const SizedBox(width: 4),
-                          Flexible(child: Text(item.staff!, style: theme.textTheme.bodySmall, overflow: TextOverflow.ellipsis)),
+                          Text(formatTime(context, item.startsAt), style: theme.textTheme.bodySmall),
+                          if (item.staff != null) ...[
+                            const SizedBox(width: 10),
+                            Icon(Icons.person_outline_rounded, size: 14, color: theme.colorScheme.onSurfaceVariant),
+                            const SizedBox(width: 4),
+                            Flexible(
+                              child: Text(item.staff!, style: theme.textTheme.bodySmall, overflow: TextOverflow.ellipsis),
+                            ),
+                          ],
                         ],
-                      ]),
+                      ),
                     ],
                   ),
                 ),
                 const SizedBox(width: 8),
-                StatusChip(item.status),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    StatusChip(item.status),
+                    // Korábbi foglalásnál: ugyanaz a szolgáltatás és szakember egy koppintással.
+                    if (muted && item.businessSlug != null && item.businessSlug!.isNotEmpty)
+                      TextButton.icon(
+                        style: TextButton.styleFrom(
+                          visualDensity: VisualDensity.compact,
+                          padding: const EdgeInsets.symmetric(horizontal: 6),
+                        ),
+                        icon: const Icon(Icons.replay_rounded, size: 16),
+                        label: Text(AppLocalizations.of(context).rebook),
+                        onPressed: () => context.push(
+                          Uri(
+                            path: '/b/${item.businessSlug}/rebook',
+                            queryParameters: {'service': item.service, if (item.staff != null) 'staff': item.staff},
+                          ).toString(),
+                        ),
+                      ),
+                  ],
+                ),
               ],
             ),
           ),

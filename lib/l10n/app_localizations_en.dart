@@ -2342,4 +2342,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get languageSystem => 'System';
+
+  @override
+  String get rebook => 'Book again';
 }

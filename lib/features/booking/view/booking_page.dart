@@ -20,13 +20,16 @@ import '../viewmodel/business_viewmodels.dart';
 /// Egy szolgáltatás foglalása (View): munkatárs → kiegészítők → nap → időpont → adatok → megerősítés.
 /// A választások és a beküldés a [BookingFormViewModel]-ben van; itt csak a szövegmezők és a megjelenítés.
 class BookingPage extends ConsumerWidget {
-  const BookingPage({super.key, required this.slug, required this.serviceId, this.rental = false});
+  const BookingPage({super.key, required this.slug, required this.serviceId, this.rental = false, this.preferredStaff});
 
   final String slug;
   final int serviceId;
 
   /// Bérelhető szolgáltatás foglalása (az időtartam is választható).
   final bool rental;
+
+  /// Újrafoglalásnál az előző szakember neve (előre kiválasztjuk, ha még dolgozik a szolgáltatásnál).
+  final String? preferredStaff;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -37,20 +40,22 @@ class BookingPage extends ConsumerWidget {
       body: AsyncView<PublicBusiness>(
         value: business,
         onRetry: () => ref.invalidate(businessViewModelProvider(slug)),
-        builder: (context, data) =>
-            rental ? _RentalLoader(business: data, serviceId: serviceId) : _BookingForm(business: data, serviceId: serviceId),
+        builder: (context, data) => rental
+            ? _RentalLoader(business: data, serviceId: serviceId)
+            : _BookingForm(business: data, serviceId: serviceId, preferredStaff: preferredStaff),
       ),
     );
   }
 }
 
 class _BookingForm extends ConsumerStatefulWidget {
-  const _BookingForm({required this.business, required this.serviceId, this.rental});
+  const _BookingForm({required this.business, required this.serviceId, this.rental, this.preferredStaff});
 
   final PublicBusiness business;
   final int serviceId;
 
   final PublicRental? rental;
+  final String? preferredStaff;
 
   @override
   ConsumerState<_BookingForm> createState() => _BookingFormState();
@@ -67,6 +72,18 @@ class _BookingFormState extends ConsumerState<_BookingForm> {
   @override
   void initState() {
     super.initState();
+    final preferred = widget.preferredStaff;
+    if (preferred != null) {
+      Future.microtask(() {
+        if (!mounted) return;
+        final match = widget.business
+            .staffFor(widget.serviceId)
+            .where((s) => s.name.trim().toLowerCase() == preferred.trim().toLowerCase())
+            .firstOrNull;
+        final viewModel = ref.read(bookingFormViewModelProvider(_args).notifier);
+        if (match != null && ref.read(bookingFormViewModelProvider(_args)).staffId == null) viewModel.selectStaff(match.id);
+      });
+    }
     final rental = widget.rental;
     if (rental != null) {
       Future.microtask(() {

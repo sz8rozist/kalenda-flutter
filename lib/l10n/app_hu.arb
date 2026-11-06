@@ -789,5 +789,6 @@
   "homeQuestion": "Mikor jössz legközelebb?",
   "nextAppointmentLabel": "Következő időpontod",
   "languageTitle": "Nyelv",
-  "languageSystem": "Rendszer"
+  "languageSystem": "Rendszer",
+  "rebook": "Újra foglalok"
 }

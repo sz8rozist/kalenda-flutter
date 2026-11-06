@@ -4411,6 +4411,12 @@ abstract class AppLocalizations {
   /// In hu, this message translates to:
   /// **'Rendszer'**
   String get languageSystem;
+
+  /// No description provided for @rebook.
+  ///
+  /// In hu, this message translates to:
+  /// **'Újra foglalok'**
+  String get rebook;
 }
 
 class _AppLocalizationsDelegate

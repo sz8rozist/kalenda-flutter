@@ -789,5 +789,6 @@
   "homeQuestion": "When are you coming next?",
   "nextAppointmentLabel": "Your next appointment",
   "languageTitle": "Language",
-  "languageSystem": "System"
+  "languageSystem": "System",
+  "rebook": "Book again"
 }

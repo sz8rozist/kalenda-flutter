@@ -17,6 +17,7 @@ class AccountAppointment {
   AccountAppointment({
     required this.id,
     required this.business,
+    this.businessSlug,
     required this.service,
     required this.startsAt,
     required this.status,
@@ -37,6 +38,9 @@ class AccountAppointment {
 
   final int id;
   final String business;
+
+  /// A vállalkozás azonosítója (az újrafoglaláshoz).
+  final String? businessSlug;
   final String service;
   final String? staff;
   final DateTime startsAt;
@@ -46,6 +50,7 @@ class AccountAppointment {
   factory AccountAppointment.fromJson(Map<String, dynamic> json) => AccountAppointment(
         id: (json['id'] as num).toInt(),
         business: json['business'] as String? ?? '',
+        businessSlug: json['business_slug'] as String?,
         service: json['service'] as String? ?? '',
         staff: json['staff'] as String?,
         // Helyi (Europe/Budapest) falióra-idő, "Z" nélkül – nem UTC-ként értelmezzük.

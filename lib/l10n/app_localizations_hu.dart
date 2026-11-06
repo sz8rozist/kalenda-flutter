@@ -2343,4 +2343,7 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get languageSystem => 'Rendszer';
+
+  @override
+  String get rebook => 'Újra foglalok';
 }
