@@ -1332,4 +1332,189 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get invoiceNeedsItem => 'Adj meg legalább egy tételt névvel és árral.';
+
+  @override
+  String get ownerRegister => 'Pénztár';
+
+  @override
+  String get registerIncome => 'Bevétel';
+
+  @override
+  String get registerCashIn => 'Befizetés';
+
+  @override
+  String get registerCashOut => 'Kivét';
+
+  @override
+  String get registerOpening => 'Nyitó készpénz';
+
+  @override
+  String get registerExpected => 'Várható készpénz';
+
+  @override
+  String get registerOnline => 'Online fizetések';
+
+  @override
+  String get registerUnpaid => 'Kifizetetlen foglalások';
+
+  @override
+  String get registerNoEntries => 'Ezen a napon még nincs tétel.';
+
+  @override
+  String get registerNewEntry => 'Új tétel';
+
+  @override
+  String get registerDescription => 'Leírás (pl. borravaló, váltópénz)';
+
+  @override
+  String get registerClose => 'Nap zárása';
+
+  @override
+  String get registerCounted => 'Leszámolt készpénz (Ft)';
+
+  @override
+  String get registerClosed => 'A nap le van zárva';
+
+  @override
+  String registerDifference(String amount) {
+    return 'Eltérés: $amount';
+  }
+
+  @override
+  String get registerReopen => 'Zárás visszavonása';
+
+  @override
+  String registerPayWith(String method) {
+    return 'Kifizetés: $method';
+  }
+
+  @override
+  String get registerDeleteTitle => 'Törlöd a tételt?';
+
+  @override
+  String get registerToday => 'Ma';
+
+  @override
+  String get ownerProducts => 'Termékek és készlet';
+
+  @override
+  String get ownerSuppliers => 'Beszállítók';
+
+  @override
+  String get ownerPurchasing => 'Beszerzés';
+
+  @override
+  String get newProduct => 'Új termék';
+
+  @override
+  String get editProduct => 'Termék szerkesztése';
+
+  @override
+  String get productPrice => 'Eladási ár (Ft)';
+
+  @override
+  String get productCost => 'Beszerzési ár (Ft)';
+
+  @override
+  String get productStock => 'Készlet (db)';
+
+  @override
+  String get productSku => 'Cikkszám';
+
+  @override
+  String get productLowThreshold => 'Alacsony készlet küszöbe';
+
+  @override
+  String get productLowStock => 'Alacsony készlet';
+
+  @override
+  String get productsLowOnly => 'Csak alacsony készlet';
+
+  @override
+  String get productSell => 'Eladás';
+
+  @override
+  String get sellQuantity => 'Mennyiség';
+
+  @override
+  String get productSold => 'Az eladás rögzítve.';
+
+  @override
+  String stockLabel(int count) {
+    return 'Készlet: $count';
+  }
+
+  @override
+  String get deleteProductTitle => 'Törlöd a terméket?';
+
+  @override
+  String get newSupplier => 'Új beszállító';
+
+  @override
+  String get editSupplier => 'Beszállító szerkesztése';
+
+  @override
+  String get supplierContact => 'Kapcsolattartó';
+
+  @override
+  String get supplierTax => 'Adószám';
+
+  @override
+  String get deleteSupplierTitle => 'Törlöd a beszállítót?';
+
+  @override
+  String get newOrder => 'Új rendelés';
+
+  @override
+  String get orderSupplier => 'Beszállító';
+
+  @override
+  String get orderLines => 'Tételek';
+
+  @override
+  String get orderLineDescription => 'Megnevezés';
+
+  @override
+  String get orderLineQty => 'Db';
+
+  @override
+  String get orderLineCost => 'Egységár (Ft)';
+
+  @override
+  String get orderAddLine => 'Új tétel';
+
+  @override
+  String get orderStatusDraft => 'Piszkozat';
+
+  @override
+  String get orderStatusOrdered => 'Leadva';
+
+  @override
+  String get orderStatusReceived => 'Bevételezve';
+
+  @override
+  String get orderStatusCancelled => 'Sztornózva';
+
+  @override
+  String get orderMarkOrdered => 'Leadás';
+
+  @override
+  String get orderReceive => 'Bevételezés';
+
+  @override
+  String get orderCancel => 'Sztornó';
+
+  @override
+  String orderExpected(String date) {
+    return 'Várható: $date';
+  }
+
+  @override
+  String get orderNeedsSupplier => 'Előbb vegyél fel egy beszállítót.';
+
+  @override
+  String get orderNeedsLine => 'Adj meg legalább egy tételt.';
+
+  @override
+  String get orderReceivedQty => 'Beérkezett (db)';
 }

@@ -41,9 +41,13 @@ final ownerMenu = <OwnerMenuGroup>[
     OwnerMenuItem('/owner/passes', Icons.confirmation_number_outlined, (l) => l.ownerPasses, feature: 'passes'),
   ]),
   OwnerMenuGroup((l) => l.menuGroupFinance, [
+    OwnerMenuItem('/owner/register', Icons.point_of_sale_outlined, (l) => l.ownerRegister, feature: 'register'),
     OwnerMenuItem('/owner/expenses', Icons.receipt_long_outlined, (l) => l.ownerExpenses, feature: 'expenses'),
   ]),
   OwnerMenuGroup((l) => l.menuGroupOperations, [
+    OwnerMenuItem('/owner/products', Icons.inventory_2_outlined, (l) => l.ownerProducts, feature: 'inventory'),
+    OwnerMenuItem('/owner/suppliers', Icons.local_shipping_outlined, (l) => l.ownerSuppliers, feature: 'purchasing'),
+    OwnerMenuItem('/owner/purchasing', Icons.assignment_outlined, (l) => l.ownerPurchasing, feature: 'purchasing'),
     OwnerMenuItem('/owner/activity', Icons.history_rounded, (l) => l.ownerActivityLog, feature: 'activity_log'),
   ]),
   OwnerMenuGroup((l) => l.menuGroupSettings, [

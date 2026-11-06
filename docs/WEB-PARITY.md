@@ -40,9 +40,9 @@ A webes felület (`kalenda/resources/js/Pages`) és a mobilapp összevetése. A 
 | Számlák (Invoices): lista, fizetve, emlékeztető, új önálló számla, PDF, sztornó | ✅ · hiányzó dokumentumok újrapróbálása, ajánlatok ⬜ |
 | Riportok: könyvelés, cash-flow | ✅ · kifizetések (Payouts) ⬜ |
 | Költségek (Expenses): lista, felvitel, törlés | ✅ · bizonylat, export ⬜ |
-| Termékek (Products), értékesítés | ⬜ |
-| Beszerzés (Purchasing), beszállítók | ⬜ |
-| Pénztár (Register) | ⬜ |
+| Termékek (Products): lista, szűrés, létrehozás, szerkesztés, törlés, értékesítés | ✅ |
+| Beszerzés: beszállítók, rendelések (létrehozás, leadás, bevételezés, sztornó) | ✅ |
+| Pénztár (Register): napi összesítő, tételek, kifizetetlen foglalások, zárás/nyitás | ✅ |
 | Ajánlatok (Quotes) | ⬜ |
 | Hűségprogram (Loyalty) | ⬜ |
 | Bérletek / utalványok: eladottak listája | 🟡 · típusok kezelése, helyszíni eladás ⬜ |

@@ -1,3 +1,4 @@
+import '../model/register_models.dart';
 import '../model/appointment_detail.dart';
 import '../../../core/files/document_opener.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -193,3 +194,75 @@ class DocumentActionsViewModel extends ActionNotifier {
 }
 
 final documentActionsProvider = NotifierProvider.autoDispose<DocumentActionsViewModel, ActionState>(DocumentActionsViewModel.new);
+
+/// A pénztárban éppen megnézett nap.
+class RegisterDateViewModel extends Notifier<DateTime> {
+  @override
+  DateTime build() {
+    final now = DateTime.now();
+    return DateTime(now.year, now.month, now.day);
+  }
+
+  void select(DateTime date) => state = DateTime(date.year, date.month, date.day);
+
+  void shift(int days) => state = state.add(Duration(days: days));
+}
+
+final registerDateProvider = NotifierProvider.autoDispose<RegisterDateViewModel, DateTime>(RegisterDateViewModel.new);
+
+final registerDayProvider = FutureProvider.autoDispose.family<RegisterDay, int>(
+  (ref, businessId) => ref.watch(ownerToolsRepositoryProvider).registerDay(businessId, ref.watch(registerDateProvider)),
+);
+
+/// A pénztár műveletei: tétel rögzítése/törlése, foglalás kifizetése, nap zárása és újranyitása.
+class RegisterActionsViewModel extends ActionNotifier {
+  Future<bool> record(
+    int businessId, {
+    required String kind,
+    required String method,
+    required int amountHuf,
+    required DateTime date,
+    String? description,
+  }) async {
+    final ok = await perform(
+      () => ref
+          .read(ownerToolsRepositoryProvider)
+          .recordRegisterPayment(businessId, kind: kind, method: method, amountHuf: amountHuf, date: date, description: description),
+      success: FlashKind.saved,
+    );
+    if (ok) ref.invalidate(registerDayProvider(businessId));
+    return ok;
+  }
+
+  Future<bool> deletePayment(int businessId, int paymentId) async {
+    final ok = await perform(() => ref.read(ownerToolsRepositoryProvider).deleteRegisterPayment(businessId, paymentId));
+    if (ok) ref.invalidate(registerDayProvider(businessId));
+    return ok;
+  }
+
+  Future<bool> payAppointment(int businessId, int appointmentId, String method) async {
+    final ok = await perform(
+      () => ref.read(ownerToolsRepositoryProvider).payAppointmentAtRegister(businessId, appointmentId, method: method),
+      success: FlashKind.saved,
+    );
+    if (ok) ref.invalidate(registerDayProvider(businessId));
+    return ok;
+  }
+
+  Future<bool> close(int businessId, DateTime date, {required int countedCashHuf, String? note}) async {
+    final ok = await perform(
+      () => ref.read(ownerToolsRepositoryProvider).closeRegister(businessId, date, countedCashHuf: countedCashHuf, note: note),
+      success: FlashKind.saved,
+    );
+    if (ok) ref.invalidate(registerDayProvider(businessId));
+    return ok;
+  }
+
+  Future<bool> reopen(int businessId, DateTime date) async {
+    final ok = await perform(() => ref.read(ownerToolsRepositoryProvider).reopenRegister(businessId, date), success: FlashKind.saved);
+    if (ok) ref.invalidate(registerDayProvider(businessId));
+    return ok;
+  }
+}
+
+final registerActionsProvider = NotifierProvider.autoDispose<RegisterActionsViewModel, ActionState>(RegisterActionsViewModel.new);

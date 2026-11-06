@@ -1,3 +1,4 @@
+import '../model/register_models.dart';
 import '../model/appointment_detail.dart';
 import 'package:dio/dio.dart';
 import 'dart:typed_data';
@@ -154,6 +155,52 @@ class OwnerToolsRepository {
       },
     ),
   );
+
+  // ─── Pénztár ──────────────────────────────────────────────────
+
+  Future<RegisterDay> registerDay(int businessId, DateTime date) async {
+    final response = await _api.call((d) => d.get('/businesses/$businessId/register', queryParameters: {'date': dateParam(date)}));
+    return RegisterDay.fromJson(response.data as Map<String, dynamic>);
+  }
+
+  Future<void> recordRegisterPayment(
+    int businessId, {
+    required String kind,
+    required String method,
+    required int amountHuf,
+    required DateTime date,
+    String? description,
+  }) => _api.call(
+    (d) => d.post(
+      '/businesses/$businessId/register/payments',
+      data: {
+        'kind': kind,
+        'method': kind == 'income' ? method : 'cash',
+        'amount_huf': amountHuf,
+        'date': dateParam(date),
+        'description': description == null || description.trim().isEmpty ? null : description.trim(),
+      },
+    ),
+  );
+
+  Future<void> deleteRegisterPayment(int businessId, int paymentId) => _api.call((d) => d.delete('/businesses/$businessId/register/payments/$paymentId'));
+
+  Future<void> payAppointmentAtRegister(int businessId, int appointmentId, {required String method, int? amountHuf}) => _api.call(
+    (d) => d.post(
+      '/businesses/$businessId/register/appointments/$appointmentId/pay',
+      data: {'method': method, 'amount_huf': ?amountHuf},
+    ),
+  );
+
+  Future<void> closeRegister(int businessId, DateTime date, {required int countedCashHuf, String? note}) => _api.call(
+    (d) => d.post(
+      '/businesses/$businessId/register/close',
+      data: {'date': dateParam(date), 'counted_cash_huf': countedCashHuf, 'note': note == null || note.trim().isEmpty ? null : note.trim()},
+    ),
+  );
+
+  Future<void> reopenRegister(int businessId, DateTime date) =>
+      _api.call((d) => d.post('/businesses/$businessId/register/reopen', data: {'date': dateParam(date)}));
 }
 
 final ownerToolsRepositoryProvider = Provider<OwnerToolsRepository>((ref) => OwnerToolsRepository(ref.watch(apiClientProvider)));

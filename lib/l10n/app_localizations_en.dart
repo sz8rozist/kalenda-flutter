@@ -1331,4 +1331,189 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get invoiceNeedsItem =>
       'Enter at least one item with a name and price.';
+
+  @override
+  String get ownerRegister => 'Cash register';
+
+  @override
+  String get registerIncome => 'Income';
+
+  @override
+  String get registerCashIn => 'Cash in';
+
+  @override
+  String get registerCashOut => 'Cash out';
+
+  @override
+  String get registerOpening => 'Opening cash';
+
+  @override
+  String get registerExpected => 'Expected cash';
+
+  @override
+  String get registerOnline => 'Online payments';
+
+  @override
+  String get registerUnpaid => 'Unpaid bookings';
+
+  @override
+  String get registerNoEntries => 'No entries on this day yet.';
+
+  @override
+  String get registerNewEntry => 'New entry';
+
+  @override
+  String get registerDescription => 'Description (e.g. tip, change)';
+
+  @override
+  String get registerClose => 'Close the day';
+
+  @override
+  String get registerCounted => 'Counted cash (HUF)';
+
+  @override
+  String get registerClosed => 'The day is closed';
+
+  @override
+  String registerDifference(String amount) {
+    return 'Difference: $amount';
+  }
+
+  @override
+  String get registerReopen => 'Reopen';
+
+  @override
+  String registerPayWith(String method) {
+    return 'Pay: $method';
+  }
+
+  @override
+  String get registerDeleteTitle => 'Delete this entry?';
+
+  @override
+  String get registerToday => 'Today';
+
+  @override
+  String get ownerProducts => 'Products and stock';
+
+  @override
+  String get ownerSuppliers => 'Suppliers';
+
+  @override
+  String get ownerPurchasing => 'Purchasing';
+
+  @override
+  String get newProduct => 'New product';
+
+  @override
+  String get editProduct => 'Edit product';
+
+  @override
+  String get productPrice => 'Selling price (HUF)';
+
+  @override
+  String get productCost => 'Cost price (HUF)';
+
+  @override
+  String get productStock => 'Stock (pcs)';
+
+  @override
+  String get productSku => 'SKU';
+
+  @override
+  String get productLowThreshold => 'Low stock threshold';
+
+  @override
+  String get productLowStock => 'Low stock';
+
+  @override
+  String get productsLowOnly => 'Low stock only';
+
+  @override
+  String get productSell => 'Sell';
+
+  @override
+  String get sellQuantity => 'Quantity';
+
+  @override
+  String get productSold => 'The sale was recorded.';
+
+  @override
+  String stockLabel(int count) {
+    return 'Stock: $count';
+  }
+
+  @override
+  String get deleteProductTitle => 'Delete this product?';
+
+  @override
+  String get newSupplier => 'New supplier';
+
+  @override
+  String get editSupplier => 'Edit supplier';
+
+  @override
+  String get supplierContact => 'Contact person';
+
+  @override
+  String get supplierTax => 'Tax number';
+
+  @override
+  String get deleteSupplierTitle => 'Delete this supplier?';
+
+  @override
+  String get newOrder => 'New order';
+
+  @override
+  String get orderSupplier => 'Supplier';
+
+  @override
+  String get orderLines => 'Items';
+
+  @override
+  String get orderLineDescription => 'Description';
+
+  @override
+  String get orderLineQty => 'Qty';
+
+  @override
+  String get orderLineCost => 'Unit cost (HUF)';
+
+  @override
+  String get orderAddLine => 'Add item';
+
+  @override
+  String get orderStatusDraft => 'Draft';
+
+  @override
+  String get orderStatusOrdered => 'Ordered';
+
+  @override
+  String get orderStatusReceived => 'Received';
+
+  @override
+  String get orderStatusCancelled => 'Cancelled';
+
+  @override
+  String get orderMarkOrdered => 'Place order';
+
+  @override
+  String get orderReceive => 'Receive';
+
+  @override
+  String get orderCancel => 'Cancel order';
+
+  @override
+  String orderExpected(String date) {
+    return 'Expected: $date';
+  }
+
+  @override
+  String get orderNeedsSupplier => 'Add a supplier first.';
+
+  @override
+  String get orderNeedsLine => 'Add at least one item.';
+
+  @override
+  String get orderReceivedQty => 'Received (pcs)';
 }

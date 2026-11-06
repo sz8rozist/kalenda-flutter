@@ -2551,6 +2551,360 @@ abstract class AppLocalizations {
   /// In hu, this message translates to:
   /// **'Adj meg legalább egy tételt névvel és árral.'**
   String get invoiceNeedsItem;
+
+  /// No description provided for @ownerRegister.
+  ///
+  /// In hu, this message translates to:
+  /// **'Pénztár'**
+  String get ownerRegister;
+
+  /// No description provided for @registerIncome.
+  ///
+  /// In hu, this message translates to:
+  /// **'Bevétel'**
+  String get registerIncome;
+
+  /// No description provided for @registerCashIn.
+  ///
+  /// In hu, this message translates to:
+  /// **'Befizetés'**
+  String get registerCashIn;
+
+  /// No description provided for @registerCashOut.
+  ///
+  /// In hu, this message translates to:
+  /// **'Kivét'**
+  String get registerCashOut;
+
+  /// No description provided for @registerOpening.
+  ///
+  /// In hu, this message translates to:
+  /// **'Nyitó készpénz'**
+  String get registerOpening;
+
+  /// No description provided for @registerExpected.
+  ///
+  /// In hu, this message translates to:
+  /// **'Várható készpénz'**
+  String get registerExpected;
+
+  /// No description provided for @registerOnline.
+  ///
+  /// In hu, this message translates to:
+  /// **'Online fizetések'**
+  String get registerOnline;
+
+  /// No description provided for @registerUnpaid.
+  ///
+  /// In hu, this message translates to:
+  /// **'Kifizetetlen foglalások'**
+  String get registerUnpaid;
+
+  /// No description provided for @registerNoEntries.
+  ///
+  /// In hu, this message translates to:
+  /// **'Ezen a napon még nincs tétel.'**
+  String get registerNoEntries;
+
+  /// No description provided for @registerNewEntry.
+  ///
+  /// In hu, this message translates to:
+  /// **'Új tétel'**
+  String get registerNewEntry;
+
+  /// No description provided for @registerDescription.
+  ///
+  /// In hu, this message translates to:
+  /// **'Leírás (pl. borravaló, váltópénz)'**
+  String get registerDescription;
+
+  /// No description provided for @registerClose.
+  ///
+  /// In hu, this message translates to:
+  /// **'Nap zárása'**
+  String get registerClose;
+
+  /// No description provided for @registerCounted.
+  ///
+  /// In hu, this message translates to:
+  /// **'Leszámolt készpénz (Ft)'**
+  String get registerCounted;
+
+  /// No description provided for @registerClosed.
+  ///
+  /// In hu, this message translates to:
+  /// **'A nap le van zárva'**
+  String get registerClosed;
+
+  /// No description provided for @registerDifference.
+  ///
+  /// In hu, this message translates to:
+  /// **'Eltérés: {amount}'**
+  String registerDifference(String amount);
+
+  /// No description provided for @registerReopen.
+  ///
+  /// In hu, this message translates to:
+  /// **'Zárás visszavonása'**
+  String get registerReopen;
+
+  /// No description provided for @registerPayWith.
+  ///
+  /// In hu, this message translates to:
+  /// **'Kifizetés: {method}'**
+  String registerPayWith(String method);
+
+  /// No description provided for @registerDeleteTitle.
+  ///
+  /// In hu, this message translates to:
+  /// **'Törlöd a tételt?'**
+  String get registerDeleteTitle;
+
+  /// No description provided for @registerToday.
+  ///
+  /// In hu, this message translates to:
+  /// **'Ma'**
+  String get registerToday;
+
+  /// No description provided for @ownerProducts.
+  ///
+  /// In hu, this message translates to:
+  /// **'Termékek és készlet'**
+  String get ownerProducts;
+
+  /// No description provided for @ownerSuppliers.
+  ///
+  /// In hu, this message translates to:
+  /// **'Beszállítók'**
+  String get ownerSuppliers;
+
+  /// No description provided for @ownerPurchasing.
+  ///
+  /// In hu, this message translates to:
+  /// **'Beszerzés'**
+  String get ownerPurchasing;
+
+  /// No description provided for @newProduct.
+  ///
+  /// In hu, this message translates to:
+  /// **'Új termék'**
+  String get newProduct;
+
+  /// No description provided for @editProduct.
+  ///
+  /// In hu, this message translates to:
+  /// **'Termék szerkesztése'**
+  String get editProduct;
+
+  /// No description provided for @productPrice.
+  ///
+  /// In hu, this message translates to:
+  /// **'Eladási ár (Ft)'**
+  String get productPrice;
+
+  /// No description provided for @productCost.
+  ///
+  /// In hu, this message translates to:
+  /// **'Beszerzési ár (Ft)'**
+  String get productCost;
+
+  /// No description provided for @productStock.
+  ///
+  /// In hu, this message translates to:
+  /// **'Készlet (db)'**
+  String get productStock;
+
+  /// No description provided for @productSku.
+  ///
+  /// In hu, this message translates to:
+  /// **'Cikkszám'**
+  String get productSku;
+
+  /// No description provided for @productLowThreshold.
+  ///
+  /// In hu, this message translates to:
+  /// **'Alacsony készlet küszöbe'**
+  String get productLowThreshold;
+
+  /// No description provided for @productLowStock.
+  ///
+  /// In hu, this message translates to:
+  /// **'Alacsony készlet'**
+  String get productLowStock;
+
+  /// No description provided for @productsLowOnly.
+  ///
+  /// In hu, this message translates to:
+  /// **'Csak alacsony készlet'**
+  String get productsLowOnly;
+
+  /// No description provided for @productSell.
+  ///
+  /// In hu, this message translates to:
+  /// **'Eladás'**
+  String get productSell;
+
+  /// No description provided for @sellQuantity.
+  ///
+  /// In hu, this message translates to:
+  /// **'Mennyiség'**
+  String get sellQuantity;
+
+  /// No description provided for @productSold.
+  ///
+  /// In hu, this message translates to:
+  /// **'Az eladás rögzítve.'**
+  String get productSold;
+
+  /// No description provided for @stockLabel.
+  ///
+  /// In hu, this message translates to:
+  /// **'Készlet: {count}'**
+  String stockLabel(int count);
+
+  /// No description provided for @deleteProductTitle.
+  ///
+  /// In hu, this message translates to:
+  /// **'Törlöd a terméket?'**
+  String get deleteProductTitle;
+
+  /// No description provided for @newSupplier.
+  ///
+  /// In hu, this message translates to:
+  /// **'Új beszállító'**
+  String get newSupplier;
+
+  /// No description provided for @editSupplier.
+  ///
+  /// In hu, this message translates to:
+  /// **'Beszállító szerkesztése'**
+  String get editSupplier;
+
+  /// No description provided for @supplierContact.
+  ///
+  /// In hu, this message translates to:
+  /// **'Kapcsolattartó'**
+  String get supplierContact;
+
+  /// No description provided for @supplierTax.
+  ///
+  /// In hu, this message translates to:
+  /// **'Adószám'**
+  String get supplierTax;
+
+  /// No description provided for @deleteSupplierTitle.
+  ///
+  /// In hu, this message translates to:
+  /// **'Törlöd a beszállítót?'**
+  String get deleteSupplierTitle;
+
+  /// No description provided for @newOrder.
+  ///
+  /// In hu, this message translates to:
+  /// **'Új rendelés'**
+  String get newOrder;
+
+  /// No description provided for @orderSupplier.
+  ///
+  /// In hu, this message translates to:
+  /// **'Beszállító'**
+  String get orderSupplier;
+
+  /// No description provided for @orderLines.
+  ///
+  /// In hu, this message translates to:
+  /// **'Tételek'**
+  String get orderLines;
+
+  /// No description provided for @orderLineDescription.
+  ///
+  /// In hu, this message translates to:
+  /// **'Megnevezés'**
+  String get orderLineDescription;
+
+  /// No description provided for @orderLineQty.
+  ///
+  /// In hu, this message translates to:
+  /// **'Db'**
+  String get orderLineQty;
+
+  /// No description provided for @orderLineCost.
+  ///
+  /// In hu, this message translates to:
+  /// **'Egységár (Ft)'**
+  String get orderLineCost;
+
+  /// No description provided for @orderAddLine.
+  ///
+  /// In hu, this message translates to:
+  /// **'Új tétel'**
+  String get orderAddLine;
+
+  /// No description provided for @orderStatusDraft.
+  ///
+  /// In hu, this message translates to:
+  /// **'Piszkozat'**
+  String get orderStatusDraft;
+
+  /// No description provided for @orderStatusOrdered.
+  ///
+  /// In hu, this message translates to:
+  /// **'Leadva'**
+  String get orderStatusOrdered;
+
+  /// No description provided for @orderStatusReceived.
+  ///
+  /// In hu, this message translates to:
+  /// **'Bevételezve'**
+  String get orderStatusReceived;
+
+  /// No description provided for @orderStatusCancelled.
+  ///
+  /// In hu, this message translates to:
+  /// **'Sztornózva'**
+  String get orderStatusCancelled;
+
+  /// No description provided for @orderMarkOrdered.
+  ///
+  /// In hu, this message translates to:
+  /// **'Leadás'**
+  String get orderMarkOrdered;
+
+  /// No description provided for @orderReceive.
+  ///
+  /// In hu, this message translates to:
+  /// **'Bevételezés'**
+  String get orderReceive;
+
+  /// No description provided for @orderCancel.
+  ///
+  /// In hu, this message translates to:
+  /// **'Sztornó'**
+  String get orderCancel;
+
+  /// No description provided for @orderExpected.
+  ///
+  /// In hu, this message translates to:
+  /// **'Várható: {date}'**
+  String orderExpected(String date);
+
+  /// No description provided for @orderNeedsSupplier.
+  ///
+  /// In hu, this message translates to:
+  /// **'Előbb vegyél fel egy beszállítót.'**
+  String get orderNeedsSupplier;
+
+  /// No description provided for @orderNeedsLine.
+  ///
+  /// In hu, this message translates to:
+  /// **'Adj meg legalább egy tételt.'**
+  String get orderNeedsLine;
+
+  /// No description provided for @orderReceivedQty.
+  ///
+  /// In hu, this message translates to:
+  /// **'Beérkezett (db)'**
+  String get orderReceivedQty;
 }
 
 class _AppLocalizationsDelegate
