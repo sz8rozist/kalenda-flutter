@@ -26,6 +26,9 @@ class StaffSessionViewModel extends AsyncNotifier<StaffUser?> {
     state = AsyncData(result.user);
   }
 
+  /// Egy már hitelesített felhasználó átvétele (pl. regisztráció vagy az első vállalkozás létrehozása után).
+  void adopt(StaffUser user) => state = AsyncData(user);
+
   Future<void> signOut() async {
     try {
       await ref.read(staffAuthRepositoryProvider).logout();

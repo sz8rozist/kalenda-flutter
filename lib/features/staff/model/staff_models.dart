@@ -5,7 +5,19 @@ List<T> _list<T>(Object? raw, T Function(Map<String, dynamic>) from) =>
 
 /// A bejelentkezett felhasználó (`GET /me`): szerepkörök és a vállalkozás.
 class StaffUser {
-  StaffUser({required this.name, required this.email, required this.isStaff, required this.isOwner, this.businessName, this.businessId, this.businessSlug});
+  StaffUser({
+    required this.name,
+    required this.email,
+    required this.isStaff,
+    required this.isOwner,
+    this.isAdmin = false,
+    this.businessName,
+    this.businessId,
+    this.businessSlug,
+  });
+
+  /// A platform adminisztrátora (az admin felület elérhető).
+  final bool isAdmin;
 
   final String? businessSlug;
 
@@ -27,6 +39,7 @@ class StaffUser {
       email: j['email'] as String? ?? '',
       isStaff: roles['staff'] as bool? ?? false,
       isOwner: roles['business_owner'] as bool? ?? false,
+      isAdmin: roles['admin'] as bool? ?? false,
       businessName: (business?['name'] ?? staffBusiness?['name']) as String?,
       businessId: ((business?['id'] ?? staffBusiness?['id']) as num?)?.toInt(),
       businessSlug: (business?['slug'] ?? staffBusiness?['slug']) as String?,

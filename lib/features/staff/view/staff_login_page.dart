@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../l10n/app_localizations.dart';
 import '../../../shared/flash.dart';
 import '../viewmodel/staff_session_viewmodel.dart';
+import 'staff_account_pages.dart';
 
 /// Belépés munkatársként / vállalkozóként (View): a bejelentkezést a [StaffLoginViewModel] végzi.
 class StaffLoginPage extends ConsumerStatefulWidget {
@@ -56,6 +58,9 @@ class _StaffLoginPageState extends ConsumerState<StaffLoginPage> {
             ),
             const SizedBox(height: 16),
             FilledButton(onPressed: busy ? null : _submit, child: Text(l10n.signIn)),
+            const SizedBox(height: 8),
+            TextButton(onPressed: () => showForgotPasswordDialog(context, ref, initialEmail: _email.text), child: Text(l10n.forgotPassword)),
+            TextButton(onPressed: () => context.push('/staff/register'), child: Text(l10n.registerBusinessLink)),
           ],
         ),
       ),

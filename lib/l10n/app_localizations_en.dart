@@ -1956,4 +1956,105 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get settingsSaved => 'Saved';
+
+  @override
+  String get forgotPassword => 'Forgot password';
+
+  @override
+  String get forgotPasswordText =>
+      'Enter your email and we\'ll send a link to set a new password.';
+
+  @override
+  String get forgotPasswordSent =>
+      'If the address exists in the system, we sent the email.';
+
+  @override
+  String get sendLinkShort => 'Send';
+
+  @override
+  String get registerBusinessLink => 'I\'m starting a business';
+
+  @override
+  String get registerTitle => 'Sign up';
+
+  @override
+  String get registerIntro =>
+      'Create your account, then set up your business in a few minutes.';
+
+  @override
+  String get passwordMin => 'The password must be at least 8 characters.';
+
+  @override
+  String get createAccount => 'Create account';
+
+  @override
+  String get setupTitle => 'Create your business';
+
+  @override
+  String get setupIntro =>
+      'A few details and your booking page is ready. You can change everything later.';
+
+  @override
+  String get setupBusinessName => 'Business name';
+
+  @override
+  String get setupSolo => 'I work alone';
+
+  @override
+  String get setupServices => 'Your first services';
+
+  @override
+  String get setupStaff => 'Team members';
+
+  @override
+  String get setupAddService => 'Add service';
+
+  @override
+  String get setupAddStaff => 'Add team member';
+
+  @override
+  String get setupCreate => 'Create';
+
+  @override
+  String get setupNeedsService =>
+      'Add at least one service with a name and duration.';
+
+  @override
+  String get setupCta => 'You don\'t have a business yet';
+
+  @override
+  String get setupCtaText => 'Create your first one and start taking bookings.';
+
+  @override
+  String get accountSecurityTitle => 'Account and feedback';
+
+  @override
+  String get currentPassword => 'Current password';
+
+  @override
+  String get newPassword => 'New password';
+
+  @override
+  String get changePassword => 'Change password';
+
+  @override
+  String get feedbackTitle => 'Feedback';
+
+  @override
+  String get feedbackTypeBug => 'Bug';
+
+  @override
+  String get feedbackTypeFeature => 'Idea';
+
+  @override
+  String get feedbackSubject => 'Subject';
+
+  @override
+  String get feedbackMessage => 'Message';
+
+  @override
+  String get feedbackSend => 'Send';
+
+  @override
+  String get feedbackThanks => 'Thanks for your feedback!';
 }

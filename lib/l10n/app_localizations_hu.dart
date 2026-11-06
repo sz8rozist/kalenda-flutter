@@ -1955,4 +1955,106 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get settingsSaved => 'Mentve';
+
+  @override
+  String get forgotPassword => 'Elfelejtett jelszó';
+
+  @override
+  String get forgotPasswordText =>
+      'Add meg az e-mail-címed, és küldünk egy linket az új jelszó beállításához.';
+
+  @override
+  String get forgotPasswordSent =>
+      'Ha a cím szerepel a rendszerben, elküldtük a levelet.';
+
+  @override
+  String get sendLinkShort => 'Küldés';
+
+  @override
+  String get registerBusinessLink => 'Új vállalkozást indítok';
+
+  @override
+  String get registerTitle => 'Regisztráció';
+
+  @override
+  String get registerIntro =>
+      'Hozd létre a fiókod, utána pár perc alatt beállíthatod a vállalkozásod.';
+
+  @override
+  String get passwordMin => 'A jelszó legalább 8 karakter legyen.';
+
+  @override
+  String get createAccount => 'Fiók létrehozása';
+
+  @override
+  String get setupTitle => 'Vállalkozás létrehozása';
+
+  @override
+  String get setupIntro =>
+      'Pár adat, és kész a foglalási oldalad. Mindent később is módosíthatsz.';
+
+  @override
+  String get setupBusinessName => 'A vállalkozás neve';
+
+  @override
+  String get setupSolo => 'Egyedül dolgozom';
+
+  @override
+  String get setupServices => 'Első szolgáltatásaid';
+
+  @override
+  String get setupStaff => 'Munkatársak';
+
+  @override
+  String get setupAddService => 'Újabb szolgáltatás';
+
+  @override
+  String get setupAddStaff => 'Újabb munkatárs';
+
+  @override
+  String get setupCreate => 'Létrehozás';
+
+  @override
+  String get setupNeedsService =>
+      'Adj meg legalább egy szolgáltatást névvel és időtartammal.';
+
+  @override
+  String get setupCta => 'Még nincs vállalkozásod';
+
+  @override
+  String get setupCtaText =>
+      'Hozd létre az elsőt, és elkezdheted fogadni a foglalásokat.';
+
+  @override
+  String get accountSecurityTitle => 'Fiók és visszajelzés';
+
+  @override
+  String get currentPassword => 'Jelenlegi jelszó';
+
+  @override
+  String get newPassword => 'Új jelszó';
+
+  @override
+  String get changePassword => 'Jelszó módosítása';
+
+  @override
+  String get feedbackTitle => 'Visszajelzés';
+
+  @override
+  String get feedbackTypeBug => 'Hiba';
+
+  @override
+  String get feedbackTypeFeature => 'Ötlet';
+
+  @override
+  String get feedbackSubject => 'Tárgy';
+
+  @override
+  String get feedbackMessage => 'Üzenet';
+
+  @override
+  String get feedbackSend => 'Küldés';
+
+  @override
+  String get feedbackThanks => 'Köszönjük a visszajelzést!';
 }

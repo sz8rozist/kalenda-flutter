@@ -3715,6 +3715,198 @@ abstract class AppLocalizations {
   /// In hu, this message translates to:
   /// **'Mentve'**
   String get settingsSaved;
+
+  /// No description provided for @forgotPassword.
+  ///
+  /// In hu, this message translates to:
+  /// **'Elfelejtett jelszó'**
+  String get forgotPassword;
+
+  /// No description provided for @forgotPasswordText.
+  ///
+  /// In hu, this message translates to:
+  /// **'Add meg az e-mail-címed, és küldünk egy linket az új jelszó beállításához.'**
+  String get forgotPasswordText;
+
+  /// No description provided for @forgotPasswordSent.
+  ///
+  /// In hu, this message translates to:
+  /// **'Ha a cím szerepel a rendszerben, elküldtük a levelet.'**
+  String get forgotPasswordSent;
+
+  /// No description provided for @sendLinkShort.
+  ///
+  /// In hu, this message translates to:
+  /// **'Küldés'**
+  String get sendLinkShort;
+
+  /// No description provided for @registerBusinessLink.
+  ///
+  /// In hu, this message translates to:
+  /// **'Új vállalkozást indítok'**
+  String get registerBusinessLink;
+
+  /// No description provided for @registerTitle.
+  ///
+  /// In hu, this message translates to:
+  /// **'Regisztráció'**
+  String get registerTitle;
+
+  /// No description provided for @registerIntro.
+  ///
+  /// In hu, this message translates to:
+  /// **'Hozd létre a fiókod, utána pár perc alatt beállíthatod a vállalkozásod.'**
+  String get registerIntro;
+
+  /// No description provided for @passwordMin.
+  ///
+  /// In hu, this message translates to:
+  /// **'A jelszó legalább 8 karakter legyen.'**
+  String get passwordMin;
+
+  /// No description provided for @createAccount.
+  ///
+  /// In hu, this message translates to:
+  /// **'Fiók létrehozása'**
+  String get createAccount;
+
+  /// No description provided for @setupTitle.
+  ///
+  /// In hu, this message translates to:
+  /// **'Vállalkozás létrehozása'**
+  String get setupTitle;
+
+  /// No description provided for @setupIntro.
+  ///
+  /// In hu, this message translates to:
+  /// **'Pár adat, és kész a foglalási oldalad. Mindent később is módosíthatsz.'**
+  String get setupIntro;
+
+  /// No description provided for @setupBusinessName.
+  ///
+  /// In hu, this message translates to:
+  /// **'A vállalkozás neve'**
+  String get setupBusinessName;
+
+  /// No description provided for @setupSolo.
+  ///
+  /// In hu, this message translates to:
+  /// **'Egyedül dolgozom'**
+  String get setupSolo;
+
+  /// No description provided for @setupServices.
+  ///
+  /// In hu, this message translates to:
+  /// **'Első szolgáltatásaid'**
+  String get setupServices;
+
+  /// No description provided for @setupStaff.
+  ///
+  /// In hu, this message translates to:
+  /// **'Munkatársak'**
+  String get setupStaff;
+
+  /// No description provided for @setupAddService.
+  ///
+  /// In hu, this message translates to:
+  /// **'Újabb szolgáltatás'**
+  String get setupAddService;
+
+  /// No description provided for @setupAddStaff.
+  ///
+  /// In hu, this message translates to:
+  /// **'Újabb munkatárs'**
+  String get setupAddStaff;
+
+  /// No description provided for @setupCreate.
+  ///
+  /// In hu, this message translates to:
+  /// **'Létrehozás'**
+  String get setupCreate;
+
+  /// No description provided for @setupNeedsService.
+  ///
+  /// In hu, this message translates to:
+  /// **'Adj meg legalább egy szolgáltatást névvel és időtartammal.'**
+  String get setupNeedsService;
+
+  /// No description provided for @setupCta.
+  ///
+  /// In hu, this message translates to:
+  /// **'Még nincs vállalkozásod'**
+  String get setupCta;
+
+  /// No description provided for @setupCtaText.
+  ///
+  /// In hu, this message translates to:
+  /// **'Hozd létre az elsőt, és elkezdheted fogadni a foglalásokat.'**
+  String get setupCtaText;
+
+  /// No description provided for @accountSecurityTitle.
+  ///
+  /// In hu, this message translates to:
+  /// **'Fiók és visszajelzés'**
+  String get accountSecurityTitle;
+
+  /// No description provided for @currentPassword.
+  ///
+  /// In hu, this message translates to:
+  /// **'Jelenlegi jelszó'**
+  String get currentPassword;
+
+  /// No description provided for @newPassword.
+  ///
+  /// In hu, this message translates to:
+  /// **'Új jelszó'**
+  String get newPassword;
+
+  /// No description provided for @changePassword.
+  ///
+  /// In hu, this message translates to:
+  /// **'Jelszó módosítása'**
+  String get changePassword;
+
+  /// No description provided for @feedbackTitle.
+  ///
+  /// In hu, this message translates to:
+  /// **'Visszajelzés'**
+  String get feedbackTitle;
+
+  /// No description provided for @feedbackTypeBug.
+  ///
+  /// In hu, this message translates to:
+  /// **'Hiba'**
+  String get feedbackTypeBug;
+
+  /// No description provided for @feedbackTypeFeature.
+  ///
+  /// In hu, this message translates to:
+  /// **'Ötlet'**
+  String get feedbackTypeFeature;
+
+  /// No description provided for @feedbackSubject.
+  ///
+  /// In hu, this message translates to:
+  /// **'Tárgy'**
+  String get feedbackSubject;
+
+  /// No description provided for @feedbackMessage.
+  ///
+  /// In hu, this message translates to:
+  /// **'Üzenet'**
+  String get feedbackMessage;
+
+  /// No description provided for @feedbackSend.
+  ///
+  /// In hu, this message translates to:
+  /// **'Küldés'**
+  String get feedbackSend;
+
+  /// No description provided for @feedbackThanks.
+  ///
+  /// In hu, this message translates to:
+  /// **'Köszönjük a visszajelzést!'**
+  String get feedbackThanks;
 }
 
 class _AppLocalizationsDelegate

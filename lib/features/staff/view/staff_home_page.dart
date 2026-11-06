@@ -38,12 +38,15 @@ class StaffHomePage extends ConsumerWidget {
     if (!user.isStaff) {
       return Scaffold(
         appBar: AppBar(actions: const [SettingsButton(), _SignOutButton()]),
-        body: Center(
-          child: Padding(
-            padding: const EdgeInsets.all(24),
-            child: Text(l10n.staffNoProfile, textAlign: TextAlign.center),
-          ),
-        ),
+        body: user.isOwner
+            ? Center(child: Text(l10n.staffNoProfile, textAlign: TextAlign.center))
+            : EmptyState(
+                icon: Icons.storefront_outlined,
+                title: l10n.setupCta,
+                message: l10n.setupCtaText,
+                actionLabel: l10n.setupCreate,
+                onAction: () => context.push('/owner/setup'),
+              ),
       );
     }
 

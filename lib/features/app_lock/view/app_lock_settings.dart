@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../l10n/app_localizations.dart';
 import '../viewmodel/app_lock_viewmodel.dart';
@@ -42,6 +43,16 @@ Future<void> showSettingsSheet(BuildContext context) {
             Text(AppLocalizations.of(context).settingsTitle, style: Theme.of(context).textTheme.titleLarge),
             const SizedBox(height: 8),
             const AppLockTile(),
+            ListTile(
+              contentPadding: EdgeInsets.zero,
+              leading: const Icon(Icons.manage_accounts_outlined),
+              title: Text(AppLocalizations.of(context).accountSecurityTitle),
+              trailing: const Icon(Icons.chevron_right_rounded),
+              onTap: () {
+                Navigator.pop(context);
+                GoRouter.of(context).push('/account/security');
+              },
+            ),
           ],
         ),
       ),

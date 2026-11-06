@@ -28,6 +28,7 @@ import '../features/owner/view/owner_staff_form_page.dart';
 import '../features/owner/view/owner_tools_pages.dart';
 import '../features/owner/view/owner_staff_page.dart';
 import '../features/review/view/review_page.dart';
+import '../features/staff/view/staff_account_pages.dart';
 import '../features/staff/view/staff_home_page.dart';
 import 'push/push_service.dart';
 
@@ -39,6 +40,9 @@ final routerProvider = Provider<GoRouter>((ref) {
     routes: [
       GoRoute(path: '/', builder: (_, _) => const HomePage()),
       GoRoute(path: '/staff', builder: (_, _) => const StaffHomePage()),
+      GoRoute(path: '/staff/register', builder: (_, _) => const StaffRegisterPage()),
+      GoRoute(path: '/owner/setup', builder: (_, _) => const OwnerSetupPage()),
+      GoRoute(path: '/account/security', builder: (_, _) => const AccountSecurityPage()),
       GoRoute(path: '/scan', builder: (_, _) => const ScanQrPage()),
       GoRoute(path: '/owner/new-booking', builder: (_, _) => const OwnerBookingPage()),
       GoRoute(path: '/owner/services', builder: (_, _) => const OwnerServicesPage()),
