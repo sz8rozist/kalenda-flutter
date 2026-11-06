@@ -47,6 +47,17 @@ class AppLocalizationsEn extends AppLocalizations {
   String get updateNow => 'Update';
 
   @override
+  String get ownerStaff => 'Staff';
+
+  @override
+  String get staffHasAccount => 'has an account';
+
+  @override
+  String upcomingBookings(int count) {
+    return '$count upcoming bookings';
+  }
+
+  @override
   String get ownerManage => 'Manage';
 
   @override

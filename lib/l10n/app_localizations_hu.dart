@@ -47,6 +47,17 @@ class AppLocalizationsHu extends AppLocalizations {
   String get updateNow => 'Frissítés';
 
   @override
+  String get ownerStaff => 'Munkatársak';
+
+  @override
+  String get staffHasAccount => 'van fiókja';
+
+  @override
+  String upcomingBookings(int count) {
+    return '$count közelgő foglalás';
+  }
+
+  @override
   String get ownerManage => 'Kezelés';
 
   @override

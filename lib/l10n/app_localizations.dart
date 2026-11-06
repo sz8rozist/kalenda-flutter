@@ -164,6 +164,24 @@ abstract class AppLocalizations {
   /// **'Frissítés'**
   String get updateNow;
 
+  /// No description provided for @ownerStaff.
+  ///
+  /// In hu, this message translates to:
+  /// **'Munkatársak'**
+  String get ownerStaff;
+
+  /// No description provided for @staffHasAccount.
+  ///
+  /// In hu, this message translates to:
+  /// **'van fiókja'**
+  String get staffHasAccount;
+
+  /// No description provided for @upcomingBookings.
+  ///
+  /// In hu, this message translates to:
+  /// **'{count} közelgő foglalás'**
+  String upcomingBookings(int count);
+
   /// No description provided for @ownerManage.
   ///
   /// In hu, this message translates to:

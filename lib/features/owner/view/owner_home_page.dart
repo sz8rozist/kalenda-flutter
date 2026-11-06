@@ -39,6 +39,7 @@ class OwnerHomePage extends ConsumerWidget {
             onSelected: context.push,
             itemBuilder: (_) => [
               PopupMenuItem(value: '/owner/leaves', child: Text(l10n.ownerLeaves)),
+              PopupMenuItem(value: '/owner/staff', child: Text(l10n.ownerStaff)),
               PopupMenuItem(value: '/owner/hours', child: Text(l10n.ownerHours)),
               PopupMenuItem(value: '/owner/services', child: Text(l10n.ownerServices)),
             ],

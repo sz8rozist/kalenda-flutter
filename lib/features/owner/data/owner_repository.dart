@@ -60,6 +60,19 @@ class OwnerRepository {
         'send_email': r.sendEmail,
       }));
 
+  Future<List<OwnerStaff>> staffList(int businessId) async {
+    final response = await _api.call((d) => d.get('/businesses/$businessId/staff'));
+    return (response.data as List).map((e) => OwnerStaff.fromJson(e as Map<String, dynamic>)).toList();
+  }
+
+  /// Részleges módosítás (PATCH): csak a megadott mezők változnak.
+  Future<void> patchStaff(int businessId, int staffId, {String? name, String? phone, bool? isActive}) =>
+      _api.call((d) => d.patch('/businesses/$businessId/staff/$staffId', data: {
+            'name': ?name,
+            'phone': ?phone,
+            'is_active': ?isActive,
+          }));
+
   /// A döntésre váró szabadság-igénylések.
   Future<List<OwnerLeaveRequest>> pendingLeaveRequests(int businessId) async {
     final response = await _api.call((d) => d.get('/businesses/$businessId/leave-requests', queryParameters: {'status': 'pending'}));

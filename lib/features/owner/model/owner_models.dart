@@ -392,3 +392,36 @@ class OwnerLeaveRequest {
         reason: j['reason'] as String?,
       );
 }
+
+/// Egy munkatárs a vállalkozói kezelőben (`GET /businesses/{id}/staff`).
+class OwnerStaff {
+  OwnerStaff({
+    required this.id,
+    required this.name,
+    required this.isActive,
+    required this.hasAccount,
+    required this.upcomingCount,
+    this.email,
+    this.phone,
+  });
+
+  final int id;
+  final String name;
+  final String? email;
+  final String? phone;
+  final bool isActive;
+
+  /// Van-e bejelentkezési fiókja (a munkatársi portált használja).
+  final bool hasAccount;
+  final int upcomingCount;
+
+  factory OwnerStaff.fromJson(Map<String, dynamic> j) => OwnerStaff(
+        id: (j['id'] as num).toInt(),
+        name: j['name'] as String? ?? '',
+        email: j['email'] as String?,
+        phone: j['phone'] as String?,
+        isActive: j['is_active'] as bool? ?? true,
+        hasAccount: j['has_account'] as bool? ?? false,
+        upcomingCount: (j['upcoming_appointments_count'] as num?)?.toInt() ?? 0,
+      );
+}
