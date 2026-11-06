@@ -2322,4 +2322,18 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get openInBrowser => 'Open in browser';
+
+  @override
+  String homeGreeting(String name) {
+    return 'Hi, $name!';
+  }
+
+  @override
+  String get homeGreetingGuest => 'Hi there!';
+
+  @override
+  String get homeQuestion => 'When are you coming next?';
+
+  @override
+  String get nextAppointmentLabel => 'Your next appointment';
 }

@@ -47,7 +47,7 @@ void main() {
     await tester.pumpWidget(_app());
     await tester.pumpAndSettle();
 
-    expect(find.text('Vállalkozás keresése'), findsOneWidget);
+    expect(find.text('Mikor jössz legközelebb?'), findsOneWidget);
     // Belépés nélkül két fül: új foglalás és belépés.
     expect(find.byType(NavigationDestination), findsNWidgets(2));
   });
@@ -106,6 +106,6 @@ void main() {
     await tester.pumpAndSettle();
 
     expect(find.text('Frissítés szükséges'), findsNothing);
-    expect(find.text('Vállalkozás keresése'), findsOneWidget);
+    expect(find.text('Mikor jössz legközelebb?'), findsOneWidget);
   });
 }

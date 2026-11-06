@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../shared/ui/floating_nav_bar.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../../shared/async_view.dart';
 import '../../../shared/flash.dart';
@@ -65,7 +66,7 @@ class StaffHomePage extends ConsumerWidget {
         ],
       ),
       body: IndexedStack(index: index, children: const [_TodayTab(), _CalendarTab(), _LeavesTab()]),
-      bottomNavigationBar: NavigationBar(
+      bottomNavigationBar: FloatingNavigationBar(
         selectedIndex: index,
         onDestinationSelected: ref.read(staffTabProvider.notifier).select,
         destinations: [

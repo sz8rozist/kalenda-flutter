@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../../core/theme/app_theme.dart';
+import '../../../shared/ui/floating_nav_bar.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../../shared/async_view.dart';
 import '../../../shared/format.dart';
@@ -60,7 +61,7 @@ class OwnerHomePage extends ConsumerWidget {
           OwnerReportsTab(businessId: businessId),
         ],
       ),
-      bottomNavigationBar: NavigationBar(
+      bottomNavigationBar: FloatingNavigationBar(
         selectedIndex: index,
         onDestinationSelected: ref.read(ownerTabProvider.notifier).select,
         destinations: [

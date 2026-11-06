@@ -8,6 +8,16 @@ class AppColors {
   static const brand = Color(0xFF2563EB);
   static const brandDark = Color(0xFF1E40AF);
   static const navy = Color(0xFF1E3A8A);
+
+  /// A webes felület másodlagos színe (a hero-gradiens és a kiemelések indigója).
+  static const indigo = Color(0xFF4F46E5);
+
+  // Pasztell csempe-színek (a webes Tailwind-palettából): halvány háttér + sötétebb ikon-/szövegszín.
+  static const blueSoft = Color(0xFFEFF6FF);
+  static const indigoSoft = Color(0xFFEEF2FF);
+  static const greenSoft = Color(0xFFECFDF5);
+  static const amberSoft = Color(0xFFFFFBEB);
+  static const roseSoft = Color(0xFFFFF1F2);
   static const tint = Color(0xFFEFF6FF);
 
   // Állapotszínek (foglalás, számla, szabadság…).
@@ -16,15 +26,16 @@ class AppColors {
   static const danger = Color(0xFFDC2626);
   static const neutral = Color(0xFF64748B);
 
-  static const heroGradient = LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: [brand, brandDark]);
+  static const heroGradient = LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: [brand, indigo]);
 }
 
 /// Közös méretek és lekerekítések, hogy minden képernyő egy nyelvet beszéljen.
 class AppDimens {
   AppDimens._();
 
-  static const radius = 16.0;
-  static const radiusSmall = 12.0;
+  static const radius = 22.0;
+  static const radiusSmall = 16.0;
+  static const radiusLarge = 30.0;
   static const pagePadding = 20.0;
   static const gap = 12.0;
 }
@@ -37,7 +48,7 @@ ThemeData buildAppTheme(Brightness brightness) {
     brightness: brightness,
   ).copyWith(primary: dark ? const Color(0xFF8AB4FF) : AppColors.brand, error: dark ? const Color(0xFFFF8A80) : AppColors.danger);
 
-  final background = dark ? const Color(0xFF0B1220) : const Color(0xFFF6F8FC);
+  final background = dark ? const Color(0xFF0B1220) : const Color(0xFFF8FAFC);
   final surface = dark ? const Color(0xFF121A2B) : Colors.white;
   final border = dark ? const Color(0xFF243049) : const Color(0xFFE2E8F0);
 
@@ -73,11 +84,13 @@ ThemeData buildAppTheme(Brightness brightness) {
     cardTheme: CardThemeData(
       color: surface,
       surfaceTintColor: Colors.transparent,
-      elevation: 0,
+      // Világos módban lágy, kékes árnyék a keret helyett; sötétben vékony keret.
+      elevation: dark ? 0 : 3,
+      shadowColor: const Color(0x142563EB),
       margin: const EdgeInsets.only(bottom: AppDimens.gap),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(AppDimens.radius),
-        side: BorderSide(color: border),
+        side: dark ? BorderSide(color: border) : BorderSide.none,
       ),
       clipBehavior: Clip.antiAlias,
     ),
@@ -94,14 +107,14 @@ ThemeData buildAppTheme(Brightness brightness) {
     ),
     filledButtonTheme: FilledButtonThemeData(
       style: FilledButton.styleFrom(
-        minimumSize: const Size.fromHeight(52),
+        minimumSize: const Size.fromHeight(56),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(AppDimens.radiusSmall)),
         textStyle: text.labelLarge?.copyWith(fontSize: 16),
       ),
     ),
     outlinedButtonTheme: OutlinedButtonThemeData(
       style: OutlinedButton.styleFrom(
-        minimumSize: const Size.fromHeight(52),
+        minimumSize: const Size.fromHeight(56),
         side: BorderSide(color: border),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(AppDimens.radiusSmall)),
         textStyle: text.labelLarge?.copyWith(fontSize: 16),

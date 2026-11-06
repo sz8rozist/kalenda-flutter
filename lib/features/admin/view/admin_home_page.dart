@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../core/theme/app_theme.dart';
+import '../../../shared/ui/floating_nav_bar.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../../shared/async_view.dart';
 import '../../../shared/flash.dart';
@@ -42,7 +43,7 @@ class _AdminHomePageState extends ConsumerState<AdminHomePage> {
         ],
       ),
       body: IndexedStack(index: _index, children: const [_Overview(), _Businesses(), _Appointments(), _Feedback()]),
-      bottomNavigationBar: NavigationBar(
+      bottomNavigationBar: FloatingNavigationBar(
         selectedIndex: _index,
         onDestinationSelected: (i) => setState(() => _index = i),
         destinations: [

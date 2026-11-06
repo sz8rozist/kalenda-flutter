@@ -4375,6 +4375,30 @@ abstract class AppLocalizations {
   /// In hu, this message translates to:
   /// **'Megnyitás a böngészőben'**
   String get openInBrowser;
+
+  /// No description provided for @homeGreeting.
+  ///
+  /// In hu, this message translates to:
+  /// **'Szia, {name}!'**
+  String homeGreeting(String name);
+
+  /// No description provided for @homeGreetingGuest.
+  ///
+  /// In hu, this message translates to:
+  /// **'Szia!'**
+  String get homeGreetingGuest;
+
+  /// No description provided for @homeQuestion.
+  ///
+  /// In hu, this message translates to:
+  /// **'Mikor jössz legközelebb?'**
+  String get homeQuestion;
+
+  /// No description provided for @nextAppointmentLabel.
+  ///
+  /// In hu, this message translates to:
+  /// **'Következő időpontod'**
+  String get nextAppointmentLabel;
 }
 
 class _AppLocalizationsDelegate

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../shared/ui/floating_nav_bar.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../../shared/ui/haptics.dart';
 import '../../account/view/account_page.dart';
@@ -43,7 +44,7 @@ class HomePage extends ConsumerWidget {
 
     return Scaffold(
       body: IndexedStack(index: index, children: pages),
-      bottomNavigationBar: NavigationBar(
+      bottomNavigationBar: FloatingNavigationBar(
         selectedIndex: index,
         onDestinationSelected: (i) {
           Haptics.select();

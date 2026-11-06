@@ -782,5 +782,10 @@
   "waitlistRemoveDone": "You left the waitlist, we won't send more notifications.",
   "unsubscribeTitle": "Unsubscribe from emails",
   "unsubscribeText": "You can finish unsubscribing in the browser.",
-  "openInBrowser": "Open in browser"
+  "openInBrowser": "Open in browser",
+  "homeGreeting": "Hi, {name}!",
+  "@homeGreeting": { "placeholders": { "name": { "type": "String" } } },
+  "homeGreetingGuest": "Hi there!",
+  "homeQuestion": "When are you coming next?",
+  "nextAppointmentLabel": "Your next appointment"
 }

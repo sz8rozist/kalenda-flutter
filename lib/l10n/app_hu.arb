@@ -782,5 +782,10 @@
   "waitlistRemoveDone": "Leiratkoztál a várólistáról, több értesítést nem küldünk.",
   "unsubscribeTitle": "Leiratkozás a hírlevélről",
   "unsubscribeText": "A leiratkozást a böngészőben fejezheted be.",
-  "openInBrowser": "Megnyitás a böngészőben"
+  "openInBrowser": "Megnyitás a böngészőben",
+  "homeGreeting": "Szia, {name}!",
+  "@homeGreeting": { "placeholders": { "name": { "type": "String" } } },
+  "homeGreetingGuest": "Szia!",
+  "homeQuestion": "Mikor jössz legközelebb?",
+  "nextAppointmentLabel": "Következő időpontod"
 }

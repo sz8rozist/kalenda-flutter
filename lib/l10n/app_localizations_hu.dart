@@ -2323,4 +2323,18 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get openInBrowser => 'Megnyitás a böngészőben';
+
+  @override
+  String homeGreeting(String name) {
+    return 'Szia, $name!';
+  }
+
+  @override
+  String get homeGreetingGuest => 'Szia!';
+
+  @override
+  String get homeQuestion => 'Mikor jössz legközelebb?';
+
+  @override
+  String get nextAppointmentLabel => 'Következő időpontod';
 }
