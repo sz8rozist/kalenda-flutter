@@ -4249,6 +4249,132 @@ abstract class AppLocalizations {
   /// In hu, this message translates to:
   /// **'Nettó: {amount}'**
   String payoutNet(String amount);
+
+  /// No description provided for @exportLabel.
+  ///
+  /// In hu, this message translates to:
+  /// **'Exportálás'**
+  String get exportLabel;
+
+  /// No description provided for @exportAccountingLabel.
+  ///
+  /// In hu, this message translates to:
+  /// **'Könyvelői csomag letöltése'**
+  String get exportAccountingLabel;
+
+  /// No description provided for @fileNotOpened.
+  ///
+  /// In hu, this message translates to:
+  /// **'Nincs alkalmazás a fájl megnyitásához.'**
+  String get fileNotOpened;
+
+  /// No description provided for @receiptUpload.
+  ///
+  /// In hu, this message translates to:
+  /// **'Bizonylat feltöltése'**
+  String get receiptUpload;
+
+  /// No description provided for @receiptOpen.
+  ///
+  /// In hu, this message translates to:
+  /// **'Bizonylat megnyitása'**
+  String get receiptOpen;
+
+  /// No description provided for @ownerAddLeave.
+  ///
+  /// In hu, this message translates to:
+  /// **'Szabadság / zárva tartás'**
+  String get ownerAddLeave;
+
+  /// No description provided for @leaveWholeBusiness.
+  ///
+  /// In hu, this message translates to:
+  /// **'Az egész vállalkozás'**
+  String get leaveWholeBusiness;
+
+  /// No description provided for @leaveCancelAffected.
+  ///
+  /// In hu, this message translates to:
+  /// **'Az érintett foglalások lemondása'**
+  String get leaveCancelAffected;
+
+  /// No description provided for @leaveAffected.
+  ///
+  /// In hu, this message translates to:
+  /// **'{count} foglalást érint'**
+  String leaveAffected(int count);
+
+  /// No description provided for @leaveCreatedAffected.
+  ///
+  /// In hu, this message translates to:
+  /// **'Felvéve. Érintett foglalás: {count}.'**
+  String leaveCreatedAffected(int count);
+
+  /// No description provided for @ownerNotifications.
+  ///
+  /// In hu, this message translates to:
+  /// **'Értesítések'**
+  String get ownerNotifications;
+
+  /// No description provided for @markAllRead.
+  ///
+  /// In hu, this message translates to:
+  /// **'Mind olvasott'**
+  String get markAllRead;
+
+  /// No description provided for @customerInvoicesTitle.
+  ///
+  /// In hu, this message translates to:
+  /// **'Számláim'**
+  String get customerInvoicesTitle;
+
+  /// No description provided for @invoiceOpenPdf.
+  ///
+  /// In hu, this message translates to:
+  /// **'Számla megnyitása'**
+  String get invoiceOpenPdf;
+
+  /// No description provided for @rentalsTitle.
+  ///
+  /// In hu, this message translates to:
+  /// **'Bérelhető'**
+  String get rentalsTitle;
+
+  /// No description provided for @rentalPricePerHour.
+  ///
+  /// In hu, this message translates to:
+  /// **'{price} / óra'**
+  String rentalPricePerHour(String price);
+
+  /// No description provided for @waitlistRemoveTitle.
+  ///
+  /// In hu, this message translates to:
+  /// **'Leiratkozás a várólistáról'**
+  String get waitlistRemoveTitle;
+
+  /// No description provided for @waitlistRemoveDone.
+  ///
+  /// In hu, this message translates to:
+  /// **'Leiratkoztál a várólistáról, több értesítést nem küldünk.'**
+  String get waitlistRemoveDone;
+
+  /// No description provided for @unsubscribeTitle.
+  ///
+  /// In hu, this message translates to:
+  /// **'Leiratkozás a hírlevélről'**
+  String get unsubscribeTitle;
+
+  /// No description provided for @unsubscribeText.
+  ///
+  /// In hu, this message translates to:
+  /// **'A leiratkozást a böngészőben fejezheted be.'**
+  String get unsubscribeText;
+
+  /// No description provided for @openInBrowser.
+  ///
+  /// In hu, this message translates to:
+  /// **'Megnyitás a böngészőben'**
+  String get openInBrowser;
 }
 
 class _AppLocalizationsDelegate

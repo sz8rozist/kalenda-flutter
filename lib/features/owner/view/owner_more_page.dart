@@ -63,6 +63,8 @@ final ownerMenu = <OwnerMenuGroup>[
     OwnerMenuItem('/owner/settings', Icons.settings_outlined, (l) => l.ownerSettings),
     OwnerMenuItem('/owner/hours', Icons.schedule_rounded, (l) => l.ownerHours),
     OwnerMenuItem('/owner/leaves', Icons.beach_access_outlined, (l) => l.ownerLeaves),
+    OwnerMenuItem('/owner/time-off', Icons.event_busy_outlined, (l) => l.ownerAddLeave),
+    OwnerMenuItem('/owner/notifications', Icons.notifications_none_rounded, (l) => l.ownerNotifications),
   ]),
 ];
 

@@ -13,14 +13,16 @@ import '../../../shared/ui/status_chip.dart';
 import '../../staff/viewmodel/staff_session_viewmodel.dart';
 import '../model/owner_tools_models.dart';
 import '../viewmodel/owner_tools_viewmodels.dart';
+import 'owner_misc_pages.dart' show exportAndOpen;
 
 /// Közös keret: a vállalkozás azonosítóját a munkamenetből veszi, nélküle hibaüzenetet mutat.
 class _BusinessScaffold extends ConsumerWidget {
-  const _BusinessScaffold({required this.title, required this.builder, this.floatingActionButton});
+  const _BusinessScaffold({required this.title, required this.builder, this.floatingActionButton, this.actions});
 
   final String title;
   final Widget Function(BuildContext context, int businessId) builder;
   final Widget Function(int businessId)? floatingActionButton;
+  final List<Widget> Function(int businessId)? actions;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -28,7 +30,7 @@ class _BusinessScaffold extends ConsumerWidget {
     listenFlash(ref, context, ownerToolsActionsProvider.select((s) => s.flash));
 
     return Scaffold(
-      appBar: AppBar(title: Text(title)),
+      appBar: AppBar(title: Text(title), actions: businessId == null ? null : actions?.call(businessId)),
       floatingActionButton: businessId == null ? null : floatingActionButton?.call(businessId),
       body: businessId == null ? Center(child: Text(AppLocalizations.of(context).ownerNoBusiness)) : builder(context, businessId),
     );
@@ -46,6 +48,16 @@ class OwnerExpensesPage extends ConsumerWidget {
 
     return _BusinessScaffold(
       title: l10n.ownerExpenses,
+      actions: (businessId) => [
+        IconButton(
+          tooltip: l10n.exportLabel,
+          icon: const Icon(Icons.download_rounded),
+          onPressed: () async {
+            final viewModel = ref.read(ownerMiscActionsProvider.notifier);
+            exportAndOpen(context, viewModel, () => viewModel.exportExpenses(businessId));
+          },
+        ),
+      ],
       floatingActionButton: (businessId) => FloatingActionButton.extended(
         onPressed: () => showModalBottomSheet<void>(
           context: context,
@@ -94,6 +106,35 @@ class OwnerExpensesPage extends ConsumerWidget {
                   child: Card(
                     child: ListTile(
                       leading: Icon(e.isRecurring ? Icons.event_repeat_outlined : Icons.receipt_outlined),
+                      onTap: () => showModalBottomSheet<void>(
+                        context: context,
+                        showDragHandle: true,
+                        builder: (sheet) => SafeArea(
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              ListTile(
+                                leading: const Icon(Icons.upload_file_outlined),
+                                title: Text(l10n.receiptUpload),
+                                onTap: () {
+                                  Navigator.pop(sheet);
+                                  ref.read(ownerMiscActionsProvider.notifier).uploadReceipt(businessId, e.id);
+                                },
+                              ),
+                              if (e.hasReceipt)
+                                ListTile(
+                                  leading: const Icon(Icons.description_outlined),
+                                  title: Text(l10n.receiptOpen),
+                                  onTap: () async {
+                                    Navigator.pop(sheet);
+                                    final viewModel = ref.read(ownerMiscActionsProvider.notifier);
+                                    exportAndOpen(context, viewModel, () => viewModel.openReceipt(businessId, e.id));
+                                  },
+                                ),
+                            ],
+                          ),
+                        ),
+                      ),
                       title: Text(e.category),
                       subtitle: Text(
                         [

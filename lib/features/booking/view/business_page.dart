@@ -133,6 +133,7 @@ class _ContentState extends ConsumerState<_Content> {
               if (business.services.isEmpty) EmptyNote(l10n.nothingYet, icon: Icons.content_cut_rounded),
               for (final service in business.services) _ServiceCard(service: service, slug: business.slug),
               _GroupSessionsSection(slug: business.slug),
+              _RentalsSection(slug: business.slug),
               if (business.hasPasses && business.passTypes.isNotEmpty) ...[
                 const SizedBox(height: 12),
                 Text(l10n.passesAndVouchers, style: theme.textTheme.titleLarge),
@@ -377,6 +378,44 @@ class _FavoriteButton extends ConsumerWidget {
         Haptics.light();
         ref.read(savedBusinessesProvider.notifier).toggleFavorite(business);
       },
+    );
+  }
+}
+
+/// A bérelhető erőforrások (pálya, terem), ha a vállalkozás használ ilyet; koppintásra az időtartam és időpont választó nyílik.
+class _RentalsSection extends ConsumerWidget {
+  const _RentalsSection({required this.slug});
+
+  final String slug;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context);
+    final rentals = ref.watch(rentalsProvider(slug)).value ?? const <PublicRental>[];
+    if (rentals.isEmpty) return const SizedBox.shrink();
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const SizedBox(height: 12),
+        Text(l10n.rentalsTitle, style: Theme.of(context).textTheme.titleLarge),
+        const SizedBox(height: 12),
+        for (final r in rentals)
+          Card(
+            child: ListTile(
+              leading: const _IconTile(Icons.sports_tennis_rounded),
+              title: Text(r.name),
+              subtitle: Text(
+                [
+                  if (r.pricePerHourHuf != null) l10n.rentalPricePerHour(formatHuf(context, r.pricePerHourHuf!)),
+                  r.resources.map((e) => e.name).join(', '),
+                ].where((s) => s.isNotEmpty).join(' · '),
+              ),
+              trailing: const Icon(Icons.chevron_right_rounded),
+              onTap: () => context.push('/b/$slug/book/${r.id}?rental=1'),
+            ),
+          ),
+      ],
     );
   }
 }

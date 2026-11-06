@@ -20,10 +20,13 @@ import '../viewmodel/business_viewmodels.dart';
 /// Egy szolgáltatás foglalása (View): munkatárs → kiegészítők → nap → időpont → adatok → megerősítés.
 /// A választások és a beküldés a [BookingFormViewModel]-ben van; itt csak a szövegmezők és a megjelenítés.
 class BookingPage extends ConsumerWidget {
-  const BookingPage({super.key, required this.slug, required this.serviceId});
+  const BookingPage({super.key, required this.slug, required this.serviceId, this.rental = false});
 
   final String slug;
   final int serviceId;
+
+  /// Bérelhető szolgáltatás foglalása (az időtartam is választható).
+  final bool rental;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -34,17 +37,20 @@ class BookingPage extends ConsumerWidget {
       body: AsyncView<PublicBusiness>(
         value: business,
         onRetry: () => ref.invalidate(businessViewModelProvider(slug)),
-        builder: (context, data) => _BookingForm(business: data, serviceId: serviceId),
+        builder: (context, data) =>
+            rental ? _RentalLoader(business: data, serviceId: serviceId) : _BookingForm(business: data, serviceId: serviceId),
       ),
     );
   }
 }
 
 class _BookingForm extends ConsumerStatefulWidget {
-  const _BookingForm({required this.business, required this.serviceId});
+  const _BookingForm({required this.business, required this.serviceId, this.rental});
 
   final PublicBusiness business;
   final int serviceId;
+
+  final PublicRental? rental;
 
   @override
   ConsumerState<_BookingForm> createState() => _BookingFormState();
@@ -57,6 +63,17 @@ class _BookingFormState extends ConsumerState<_BookingForm> {
   final _phone = TextEditingController();
   final _notes = TextEditingController();
   final _passCode = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    final rental = widget.rental;
+    if (rental != null) {
+      Future.microtask(() {
+        if (mounted) ref.read(bookingFormViewModelProvider(_args).notifier).ensureDuration(rental.minMinutes);
+      });
+    }
+  }
 
   BookingArgs get _args => (slug: widget.business.slug, serviceId: widget.serviceId);
 
@@ -136,10 +153,25 @@ class _BookingFormState extends ConsumerState<_BookingForm> {
       if (outcome != null) context.go('/booked/${outcome.manageToken}');
     });
 
-    final service = widget.business.service(widget.serviceId);
+    final rental = widget.rental;
+    final minutes = state.durationMinutes ?? rental?.minMinutes ?? 0;
+    final service = rental == null
+        ? widget.business.service(widget.serviceId)
+        : PublicService(
+            id: rental.id,
+            name: rental.name,
+            durationMinutes: minutes,
+            priceHuf: rental.priceFor(minutes),
+            requiresPayment: rental.requiresPayment,
+            depositLabel: rental.depositLabel,
+          );
     if (service == null) return Center(child: Text(l10n.genericError));
 
-    final staff = widget.business.staffFor(widget.serviceId);
+    final staff = rental == null
+        ? widget.business.staffFor(widget.serviceId)
+        : [
+            for (final r in rental.resources) PublicStaff(id: r.id, name: r.name, serviceIds: [rental.id], photoUrl: r.photoUrl),
+          ];
     final addons = widget.business.addonsByService[widget.serviceId] ?? const <PublicAddon>[];
     final query = viewModel.slotQuery;
 
@@ -185,6 +217,24 @@ class _BookingFormState extends ConsumerState<_BookingForm> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                if (rental != null) ...[
+                  Wrap(
+                    spacing: 8,
+                    runSpacing: 8,
+                    children: [
+                      for (final d in rental.durations)
+                        ChoiceChip(
+                          label: Text(l10n.minutes(d)),
+                          selected: minutes == d,
+                          onSelected: (_) {
+                            Haptics.select();
+                            viewModel.setDuration(d);
+                          },
+                        ),
+                    ],
+                  ),
+                  const SizedBox(height: 16),
+                ],
                 _StaffPicker(staff: staff, selected: state.staffId, onSelected: viewModel.selectStaff),
                 if (addons.isNotEmpty) ...[
                   const SizedBox(height: 16),
@@ -406,6 +456,27 @@ class _SlotPicker extends ConsumerWidget {
               ),
           ],
         );
+      },
+    );
+  }
+}
+
+/// Bérlés: betölti a vállalkozás bérelhető szolgáltatásait, és megnyitja az űrlapot a kiválasztottal.
+class _RentalLoader extends ConsumerWidget {
+  const _RentalLoader({required this.business, required this.serviceId});
+
+  final PublicBusiness business;
+  final int serviceId;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    return AsyncView<List<PublicRental>>(
+      value: ref.watch(rentalsProvider(business.slug)),
+      onRetry: () => ref.invalidate(rentalsProvider(business.slug)),
+      builder: (context, rentals) {
+        final rental = rentals.where((r) => r.id == serviceId).firstOrNull;
+        if (rental == null) return Center(child: Text(AppLocalizations.of(context).genericError));
+        return _BookingForm(business: business, serviceId: serviceId, rental: rental);
       },
     );
   }

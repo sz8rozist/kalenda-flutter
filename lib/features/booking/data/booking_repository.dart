@@ -24,6 +24,7 @@ class BookingRepository {
           'staff_id': q.staffId,
           'date': dateParam(q.date),
           if (q.addonIds.isNotEmpty) 'addon_ids[]': q.addonIds,
+          'duration_minutes': ?q.durationMinutes,
         }));
     return (response.data as List).map((e) => TimeSlot.fromJson(e as Map<String, dynamic>)).toList();
   }
@@ -41,6 +42,7 @@ class BookingRepository {
           if (r.passCode != null && r.passCode!.isNotEmpty) 'pass_code': r.passCode,
           'marketing_consent': ?r.marketingConsent,
           if (r.addonIds.isNotEmpty) 'addon_ids': r.addonIds,
+          'duration_minutes': ?r.durationMinutes,
         }));
     return BookedResult.fromJson(response.data as Map<String, dynamic>);
   }
@@ -119,6 +121,15 @@ class BookingRepository {
 
   Future<void> reschedule(String token, DateTime date, String time) =>
       _api.call((d) => d.patch('/public/bookings/$token', data: {'date': dateParam(date), 'time': time}));
+
+  /// A vállalkozás bérelhető szolgáltatásai erőforrásokkal (üres, ha nincs ilyen).
+  Future<List<PublicRental>> rentals(String slug) async {
+    final response = await _api.call((d) => d.get('/public/businesses/$slug/rentals'));
+    return (response.data as List).map((e) => PublicRental.fromJson(e as Map<String, dynamic>)).toList();
+  }
+
+  /// Leiratkozás a várólistáról a levélben kapott linkkel.
+  Future<void> removeFromWaitlist(String token) => _api.call((d) => d.delete('/public/waitlist/$token'));
 }
 
 final bookingRepositoryProvider = Provider<BookingRepository>((ref) => BookingRepository(ref.watch(apiClientProvider)));

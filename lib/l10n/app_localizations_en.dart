@@ -2252,4 +2252,74 @@ class AppLocalizationsEn extends AppLocalizations {
   String payoutNet(String amount) {
     return 'Net: $amount';
   }
+
+  @override
+  String get exportLabel => 'Export';
+
+  @override
+  String get exportAccountingLabel => 'Download accountant package';
+
+  @override
+  String get fileNotOpened => 'No app available to open the file.';
+
+  @override
+  String get receiptUpload => 'Upload receipt';
+
+  @override
+  String get receiptOpen => 'Open receipt';
+
+  @override
+  String get ownerAddLeave => 'Time off / closed';
+
+  @override
+  String get leaveWholeBusiness => 'The whole business';
+
+  @override
+  String get leaveCancelAffected => 'Cancel the affected bookings';
+
+  @override
+  String leaveAffected(int count) {
+    return 'Affects $count bookings';
+  }
+
+  @override
+  String leaveCreatedAffected(int count) {
+    return 'Added. Affected bookings: $count.';
+  }
+
+  @override
+  String get ownerNotifications => 'Notifications';
+
+  @override
+  String get markAllRead => 'Mark all as read';
+
+  @override
+  String get customerInvoicesTitle => 'My invoices';
+
+  @override
+  String get invoiceOpenPdf => 'Open invoice';
+
+  @override
+  String get rentalsTitle => 'Rentals';
+
+  @override
+  String rentalPricePerHour(String price) {
+    return '$price / hour';
+  }
+
+  @override
+  String get waitlistRemoveTitle => 'Leave the waitlist';
+
+  @override
+  String get waitlistRemoveDone =>
+      'You left the waitlist, we won\'t send more notifications.';
+
+  @override
+  String get unsubscribeTitle => 'Unsubscribe from emails';
+
+  @override
+  String get unsubscribeText => 'You can finish unsubscribing in the browser.';
+
+  @override
+  String get openInBrowser => 'Open in browser';
 }

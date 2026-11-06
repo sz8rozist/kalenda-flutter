@@ -51,6 +51,11 @@ class AccountPage extends ConsumerWidget {
               _Heading(l10n.passesTitle),
               if (data.passes.isEmpty) EmptyNote(l10n.nothingYet, icon: Icons.confirmation_number_outlined),
               for (final pass in data.passes) _PassTile(pass: pass),
+              if (data.invoices.isNotEmpty) ...[
+                const SizedBox(height: 24),
+                _Heading(l10n.customerInvoicesTitle),
+                for (final invoice in data.invoices) _InvoiceTile(invoice: invoice),
+              ],
               const SizedBox(height: 24),
               if (data.consents.isNotEmpty) ...[
                 _Heading(l10n.consentsTitle),
@@ -261,6 +266,34 @@ class _TileIcon extends StatelessWidget {
       height: 44,
       decoration: BoxDecoration(color: color.withValues(alpha: 0.10), borderRadius: BorderRadius.circular(12)),
       child: Icon(icon, color: color),
+    );
+  }
+}
+
+/// Egy számla / nyugta az ügyfél fiókjában; koppintásra letöltődik és megnyílik a PDF.
+class _InvoiceTile extends ConsumerWidget {
+  const _InvoiceTile({required this.invoice});
+
+  final AccountInvoice invoice;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context);
+
+    return Card(
+      child: ListTile(
+        leading: const _TileIcon(Icons.receipt_long_outlined),
+        title: Text('${invoice.number} · ${formatHuf(context, invoice.amountHuf)}'),
+        subtitle: Text([invoice.business, if (invoice.date != null) formatDate(context, invoice.date!)].join(' · ')),
+        trailing: invoice.paymentState == 'paid' ? null : StatusChip(invoice.paymentState == 'overdue' ? 'cancelled' : 'pending', label: invoice.paymentState),
+        onTap: invoice.downloadUrl == null
+            ? null
+            : () async {
+                final viewModel = ref.read(accountActionsProvider.notifier);
+                final ok = await viewModel.openInvoice(invoice);
+                if (ok && viewModel.pdfNotOpened && context.mounted) showToast(context, l10n.fileNotOpened, kind: AlertKind.warning);
+              },
+      ),
     );
   }
 }

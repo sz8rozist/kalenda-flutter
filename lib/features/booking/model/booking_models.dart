@@ -323,3 +323,73 @@ class PassType {
         validityDays: _int(j['validity_days']) ?? 0,
       );
 }
+
+/// Egy bérelhető erőforrás (pálya, terem) a nyilvános oldalon.
+class PublicRentalResource {
+  PublicRentalResource({required this.id, required this.name, this.description, this.photoUrl});
+
+  final int id;
+  final String name;
+  final String? description;
+  final String? photoUrl;
+
+  factory PublicRentalResource.fromJson(Map<String, dynamic> j) => PublicRentalResource(
+        id: _int(j['id'])!,
+        name: j['name'] as String? ?? '',
+        description: j['description'] as String?,
+        photoUrl: j['photo_url'] as String?,
+      );
+}
+
+/// Egy bérelhető szolgáltatás: a bérlés hossza a megadott határok között, lépésközzel választható.
+class PublicRental {
+  PublicRental({
+    required this.id,
+    required this.name,
+    required this.minMinutes,
+    required this.maxMinutes,
+    required this.stepMinutes,
+    required this.resources,
+    this.description,
+    this.pricePerHourHuf,
+    this.requiresPayment = false,
+    this.depositLabel,
+  });
+
+  final int id;
+  final String name;
+  final String? description;
+  final int minMinutes;
+  final int maxMinutes;
+  final int stepMinutes;
+  final int? pricePerHourHuf;
+  final bool requiresPayment;
+  final String? depositLabel;
+  final List<PublicRentalResource> resources;
+
+  /// A választható időtartamok (percben), legfeljebb 12 darab.
+  List<int> get durations {
+    final step = stepMinutes < 5 ? 5 : stepMinutes;
+    final result = <int>[];
+    for (var m = minMinutes; m <= maxMinutes && result.length < 12; m += step) {
+      result.add(m);
+    }
+    return result.isEmpty ? [minMinutes] : result;
+  }
+
+  /// A bérlés ára a megadott hosszra (óradíj arányosan).
+  int? priceFor(int minutes) => pricePerHourHuf == null ? null : (pricePerHourHuf! * minutes / 60).round();
+
+  factory PublicRental.fromJson(Map<String, dynamic> j) => PublicRental(
+        id: _int(j['id'])!,
+        name: j['name'] as String? ?? '',
+        description: j['description'] as String?,
+        minMinutes: _int(j['min_minutes']) ?? 30,
+        maxMinutes: _int(j['max_minutes']) ?? 120,
+        stepMinutes: _int(j['step_minutes']) ?? 30,
+        pricePerHourHuf: _int(j['price_per_hour_huf']),
+        requiresPayment: j['requires_payment'] as bool? ?? false,
+        depositLabel: j['deposit_label'] as String?,
+        resources: _list(j['resources'], PublicRentalResource.fromJson),
+      );
+}

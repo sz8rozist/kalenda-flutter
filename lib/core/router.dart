@@ -8,6 +8,7 @@ import '../features/booking/view/business_page.dart';
 import '../features/booking/view/group_booking_page.dart';
 import '../features/booking/view/manage_booking_page.dart';
 import '../features/booking/view/pass_purchase_page.dart';
+import '../features/booking/view/public_links_pages.dart';
 import '../features/booking/view/scan_qr_page.dart';
 import '../features/home/view/home_page.dart';
 import '../features/owner/view/customer_detail_page.dart';
@@ -22,6 +23,7 @@ import '../features/owner/view/owner_inventory_pages.dart';
 import '../features/owner/view/owner_marketing_pages.dart';
 import '../features/owner/view/owner_extras_pages.dart';
 import '../features/owner/view/owner_finance_pages.dart';
+import '../features/owner/view/owner_misc_pages.dart';
 import '../features/owner/view/owner_more_page.dart';
 import '../features/owner/view/owner_settings_page.dart';
 import '../features/owner/view/owner_operations_pages.dart';
@@ -46,6 +48,8 @@ final routerProvider = Provider<GoRouter>((ref) {
       GoRoute(path: '/owner/setup', builder: (_, _) => const OwnerSetupPage()),
       GoRoute(path: '/account/security', builder: (_, _) => const AccountSecurityPage()),
       GoRoute(path: '/scan', builder: (_, _) => const ScanQrPage()),
+      GoRoute(path: '/booking/waitlist/remove/:token', builder: (_, state) => WaitlistRemovalPage(token: state.pathParameters['token']!)),
+      GoRoute(path: '/leiratkozas/:token', builder: (_, state) => MarketingUnsubscribePage(token: state.pathParameters['token']!)),
       GoRoute(path: '/owner/new-booking', builder: (_, _) => const OwnerBookingPage()),
       GoRoute(path: '/owner/services', builder: (_, _) => const OwnerServicesPage()),
       GoRoute(path: '/owner/services/new', builder: (_, _) => const OwnerServiceFormPage()),
@@ -55,6 +59,8 @@ final routerProvider = Provider<GoRouter>((ref) {
       ),
       GoRoute(path: '/owner/staff/new', builder: (_, _) => const OwnerStaffFormPage()),
       GoRoute(path: '/owner/more', builder: (_, _) => const OwnerMorePage()),
+      GoRoute(path: '/owner/time-off', builder: (_, _) => const OwnerTimeOffPage()),
+      GoRoute(path: '/owner/notifications', builder: (_, _) => const OwnerNotificationsPage()),
       GoRoute(path: '/owner/payouts', builder: (_, _) => const OwnerPayoutsPage()),
       GoRoute(path: '/owner/missing-documents', builder: (_, _) => const OwnerMissingDocumentsPage()),
       GoRoute(path: '/owner/addons', builder: (_, _) => const OwnerAddonsPage()),
@@ -104,7 +110,11 @@ final routerProvider = Provider<GoRouter>((ref) {
       ),
       GoRoute(
         path: '/b/:slug/book/:serviceId',
-        builder: (_, state) => BookingPage(slug: state.pathParameters['slug']!, serviceId: int.parse(state.pathParameters['serviceId']!)),
+        builder: (_, state) => BookingPage(
+          slug: state.pathParameters['slug']!,
+          serviceId: int.parse(state.pathParameters['serviceId']!),
+          rental: state.uri.queryParameters['rental'] == '1',
+        ),
       ),
       // A levelekben és a weben használt útvonalak is megnyílnak az appban (univerzális link).
       GoRoute(

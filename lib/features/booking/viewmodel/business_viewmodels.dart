@@ -64,3 +64,8 @@ class ScanViewModel extends Notifier<String?> {
 final scanViewModelProvider = NotifierProvider.autoDispose<ScanViewModel, String?>(ScanViewModel.new);
 
 final findBusinessViewModelProvider = NotifierProvider.autoDispose<FindBusinessViewModel, void>(FindBusinessViewModel.new);
+
+/// A vállalkozás bérelhető szolgáltatásai (a nyilvános oldalon külön szakasz).
+final rentalsProvider = FutureProvider.autoDispose.family<List<PublicRental>, String>(
+  (ref, slug) => ref.watch(bookingRepositoryProvider).rentals(slug),
+);

@@ -16,13 +16,16 @@ import '../model/owner_models.dart';
 import '../viewmodel/operations_viewmodels.dart';
 import '../viewmodel/owner_service_viewmodels.dart';
 import '../viewmodel/owner_staff_viewmodels.dart';
+import '../viewmodel/owner_tools_viewmodels.dart' show ownerMiscActionsProvider;
+import 'owner_misc_pages.dart' show exportAndOpen;
 
 class _Frame extends ConsumerWidget {
-  const _Frame({required this.title, required this.builder, this.fab});
+  const _Frame({required this.title, required this.builder, this.fab, this.actions});
 
   final String title;
   final Widget Function(BuildContext context, int businessId) builder;
   final Widget Function(BuildContext context, int businessId)? fab;
+  final List<Widget> Function(BuildContext context, int businessId)? actions;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -30,7 +33,7 @@ class _Frame extends ConsumerWidget {
     listenFlash(ref, context, operationsActionsProvider.select((s) => s.flash));
 
     return Scaffold(
-      appBar: AppBar(title: Text(title)),
+      appBar: AppBar(title: Text(title), actions: businessId == null ? null : actions?.call(context, businessId)),
       floatingActionButton: businessId == null ? null : fab?.call(context, businessId),
       body: businessId == null ? Center(child: Text(AppLocalizations.of(context).ownerNoBusiness)) : builder(context, businessId),
     );
@@ -510,6 +513,16 @@ class OwnerTimesheetPage extends ConsumerWidget {
 
     return _Frame(
       title: l10n.ownerTimesheet,
+      actions: (context, businessId) => [
+        IconButton(
+          tooltip: l10n.exportLabel,
+          icon: const Icon(Icons.download_rounded),
+          onPressed: () {
+            final viewModel = ref.read(ownerMiscActionsProvider.notifier);
+            exportAndOpen(context, viewModel, () => viewModel.exportTimesheet(businessId, month));
+          },
+        ),
+      ],
       fab: (context, businessId) => FloatingActionButton.extended(
         onPressed: () => _sheet(context, (_) => _EntrySheet(businessId: businessId)),
         icon: const Icon(Icons.add),

@@ -1,4 +1,7 @@
 import 'dart:convert';
+import 'dart:typed_data';
+
+import 'package:dio/dio.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -57,6 +60,13 @@ class AccountRepository {
 
   Future<void> setMarketingConsent(int businessId, bool value) =>
       _api.call((d) => d.put('/customer/consents/$businessId', data: {'marketing_consent': value}));
+
+  /// A számla / nyugta PDF-je: a hitelesített útvonalat töltjük le (az `/api/v1` előtagot a kliens már tartalmazza).
+  Future<Uint8List> downloadDocument(String downloadUrl) async {
+    final path = downloadUrl.replaceFirst(RegExp(r'^https?://[^/]+'), '').replaceFirst('/api/v1', '');
+    final response = await _api.call((d) => d.get<List<int>>(path, options: Options(responseType: ResponseType.bytes)));
+    return Uint8List.fromList(response.data ?? const []);
+  }
 }
 
 final accountRepositoryProvider = Provider<AccountRepository>(

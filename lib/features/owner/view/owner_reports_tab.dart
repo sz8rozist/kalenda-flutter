@@ -6,6 +6,8 @@ import '../../../l10n/app_localizations.dart';
 import '../../../shared/async_view.dart';
 import '../../../shared/format.dart';
 import '../model/owner_models.dart';
+import '../viewmodel/owner_tools_viewmodels.dart' show ownerMiscActionsProvider;
+import 'owner_misc_pages.dart' show exportAndOpen;
 import '../viewmodel/owner_report_viewmodels.dart';
 
 /// Riportok (View): havi eredmény-összesítő és a cash flow előrejelzés.
@@ -41,7 +43,19 @@ class OwnerReportsTab extends ConsumerWidget {
           AsyncView<AccountingReport>(
             value: ref.watch(accountingReportProvider(businessId)),
             onRetry: () => ref.invalidate(accountingReportProvider(businessId)),
-            builder: (context, report) => _MonthlyCard(report: report),
+            builder: (context, report) => Column(
+              children: [
+                _MonthlyCard(report: report),
+                OutlinedButton.icon(
+                  icon: const Icon(Icons.download_rounded),
+                  label: Text(l10n.exportAccountingLabel),
+                  onPressed: () {
+                    final viewModel = ref.read(ownerMiscActionsProvider.notifier);
+                    exportAndOpen(context, viewModel, () => viewModel.exportAccounting(businessId, month));
+                  },
+                ),
+              ],
+            ),
           ),
           const SizedBox(height: 24),
           Text(l10n.cashflowTitle, style: Theme.of(context).textTheme.titleMedium),

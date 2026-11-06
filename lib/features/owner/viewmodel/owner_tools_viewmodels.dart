@@ -1,3 +1,6 @@
+import '../../../core/files/image_picker_gateway.dart';
+import 'dart:typed_data';
+import '../model/misc_models.dart';
 import '../model/finance_models.dart';
 import '../model/register_models.dart';
 import '../model/appointment_detail.dart';
@@ -296,3 +299,69 @@ class MissingDocumentsActionsViewModel extends ActionNotifier {
 }
 
 final missingDocumentsActionsProvider = NotifierProvider.autoDispose<MissingDocumentsActionsViewModel, ActionState>(MissingDocumentsActionsViewModel.new);
+
+final ownerLeavesProvider = FutureProvider.autoDispose.family<List<OwnerLeave>, int>(
+  (ref, businessId) => ref.watch(ownerToolsRepositoryProvider).leaves(businessId),
+);
+
+final notificationsProvider = FutureProvider.autoDispose.family<NotificationListing, int>(
+  (ref, businessId) => ref.watch(ownerToolsRepositoryProvider).notifications(businessId),
+);
+
+/// Exportok, költség-bizonylat, szabadság-felvétel és értesítések műveletei.
+class OwnerMiscActionsViewModel extends ActionNotifier {
+  OwnerToolsRepository get _repo => ref.read(ownerToolsRepositoryProvider);
+
+  /// A legutóbbi letöltés után nem nyílt meg a fájl (nincs hozzá alkalmazás).
+  bool fileNotOpened = false;
+
+  /// A szabadság felvételekor érintett foglalások száma.
+  int lastAffected = 0;
+
+  Future<bool> _open(Future<DownloadedFile> Function() download) async {
+    fileNotOpened = false;
+    return perform(() async {
+      final file = await download();
+      fileNotOpened = !await ref.read(documentOpenerProvider).open(Uint8List.fromList(file.bytes), file.name);
+    });
+  }
+
+  Future<bool> exportAccounting(int businessId, DateTime month) => _open(() => _repo.accountingDownload(businessId, month));
+
+  Future<bool> exportExpenses(int businessId) => _open(() => _repo.expensesExport(businessId));
+
+  Future<bool> exportTimesheet(int businessId, DateTime month) => _open(() => _repo.timesheetExport(businessId, month));
+
+  Future<bool> openReceipt(int businessId, int expenseId) => _open(() => _repo.expenseReceipt(businessId, expenseId));
+
+  Future<bool> uploadReceipt(int businessId, int expenseId) async {
+    final path = await ref.read(imagePickerProvider).pickFromGallery();
+    if (path == null) return false;
+    final ok = await perform(() => _repo.uploadExpenseReceipt(businessId, expenseId, path), success: FlashKind.saved);
+    if (ok) ref.invalidate(expensesProvider(businessId));
+    return ok;
+  }
+
+  Future<bool> createLeave(int businessId, {int? staffId, required DateTime from, required DateTime to, String? reason, bool cancelAffected = false}) async {
+    final ok = await perform(
+      () async => lastAffected = await _repo.createLeave(businessId, staffId: staffId, from: from, to: to, reason: reason, cancelAffected: cancelAffected),
+      success: FlashKind.saved,
+    );
+    if (ok) ref.invalidate(ownerLeavesProvider(businessId));
+    return ok;
+  }
+
+  Future<bool> deleteLeave(int businessId, int id) async {
+    final ok = await perform(() => _repo.deleteLeave(businessId, id));
+    if (ok) ref.invalidate(ownerLeavesProvider(businessId));
+    return ok;
+  }
+
+  Future<bool> readAllNotifications(int businessId) async {
+    final ok = await perform(() => _repo.readAllNotifications(businessId));
+    if (ok) ref.invalidate(notificationsProvider(businessId));
+    return ok;
+  }
+}
+
+final ownerMiscActionsProvider = NotifierProvider.autoDispose<OwnerMiscActionsViewModel, ActionState>(OwnerMiscActionsViewModel.new);

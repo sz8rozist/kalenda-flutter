@@ -1,7 +1,7 @@
 /// Egy időpont-rács lekérdezése: melyik vállalkozás, szolgáltatás, munkatárs, nap és kiegészítők.
 /// Értékegyenlőség van rajta (provider-kulcs): a kiegészítők sorrendje nem számít.
 class SlotQuery {
-  SlotQuery({required this.slug, required this.serviceId, required this.staffId, required DateTime date, required List<int> addonIds})
+  SlotQuery({required this.slug, required this.serviceId, required this.staffId, required DateTime date, required List<int> addonIds, this.durationMinutes})
       : date = DateTime(date.year, date.month, date.day),
         addonIds = List.unmodifiable([...addonIds]..sort());
 
@@ -11,6 +11,9 @@ class SlotQuery {
   final DateTime date;
   final List<int> addonIds;
 
+  /// Bérlésnél a kért időtartam (perc).
+  final int? durationMinutes;
+
   @override
   bool operator ==(Object other) =>
       other is SlotQuery &&
@@ -18,11 +21,12 @@ class SlotQuery {
       other.serviceId == serviceId &&
       other.staffId == staffId &&
       other.date == date &&
+      other.durationMinutes == durationMinutes &&
       other.addonIds.length == addonIds.length &&
       Iterable<int>.generate(addonIds.length).every((i) => addonIds[i] == other.addonIds[i]);
 
   @override
-  int get hashCode => Object.hash(slug, serviceId, staffId, date, Object.hashAll(addonIds));
+  int get hashCode => Object.hash(slug, serviceId, staffId, date, durationMinutes, Object.hashAll(addonIds));
 }
 
 /// A foglalás beküldött adatai (`POST /public/businesses/{slug}/bookings`).
@@ -39,6 +43,7 @@ class BookingRequest {
     this.passCode,
     this.marketingConsent,
     this.addonIds = const [],
+    this.durationMinutes,
   });
 
   final int serviceId;
@@ -52,6 +57,9 @@ class BookingRequest {
   final String? passCode;
   final bool? marketingConsent;
   final List<int> addonIds;
+
+  /// Bérlésnél a kért időtartam (perc).
+  final int? durationMinutes;
 }
 
 /// Feliratkozás a várólistára (`POST /public/businesses/{slug}/waitlist`).

@@ -1,3 +1,4 @@
+import '../model/misc_models.dart';
 import '../model/finance_models.dart';
 import '../model/register_models.dart';
 import '../model/appointment_detail.dart';
@@ -216,6 +217,69 @@ class OwnerToolsRepository {
   }
 
   Future<void> retryMissingDocument(int businessId, String key) => _api.call((d) => d.post('/businesses/$businessId/documents/missing/retry', data: {'key': key}));
+
+  // ─── Exportok és költség-bizonylat ────────────────────────────
+
+  String _monthKey(DateTime d) => '${d.year.toString().padLeft(4, '0')}-${d.month.toString().padLeft(2, '0')}';
+
+  Future<DownloadedFile> _download(String path, String fallbackName, {Map<String, Object?>? query}) async {
+    final response = await _api.call(
+      (d) => d.get<List<int>>(path, queryParameters: query, options: Options(responseType: ResponseType.bytes)),
+    );
+    return DownloadedFile(bytes: response.data ?? const [], name: DownloadedFile.nameFrom(response.headers.value('content-disposition'), fallbackName));
+  }
+
+  /// A havi könyvelői csomag (ZIP).
+  Future<DownloadedFile> accountingDownload(int businessId, DateTime month) =>
+      _download('/businesses/$businessId/reports/accounting/download', 'konyveles-${_monthKey(month)}.zip', query: {'month': _monthKey(month)});
+
+  Future<DownloadedFile> expensesExport(int businessId) => _download('/businesses/$businessId/expenses/export', 'koltsegek.csv');
+
+  Future<DownloadedFile> timesheetExport(int businessId, DateTime month) =>
+      _download('/businesses/$businessId/timesheet/export', 'munkaido-${_monthKey(month)}.csv', query: {'month': _monthKey(month)});
+
+  Future<DownloadedFile> expenseReceipt(int businessId, int expenseId) =>
+      _download('/businesses/$businessId/expenses/$expenseId/receipt', 'bizonylat-$expenseId');
+
+  Future<void> uploadExpenseReceipt(int businessId, int expenseId, String filePath) async {
+    final form = FormData.fromMap({'file': await MultipartFile.fromFile(filePath)});
+    await _api.call((d) => d.post('/businesses/$businessId/expenses/$expenseId/receipt', data: form));
+  }
+
+  // ─── Szabadság (a vállalkozó felvétele) ───────────────────────
+
+  Future<List<OwnerLeave>> leaves(int businessId) async {
+    final response = await _api.call((d) => d.get('/businesses/$businessId/leaves'));
+    return [for (final e in response.data as List) OwnerLeave.fromJson(e as Map<String, dynamic>)];
+  }
+
+  /// Szabadság felvétele; `staffId` nélkül az egész vállalkozásra (zárva tartás). Visszaadja az érintett foglalások számát.
+  Future<int> createLeave(int businessId, {int? staffId, required DateTime from, required DateTime to, String? reason, bool cancelAffected = false}) async {
+    final response = await _api.call(
+      (d) => d.post(
+        '/businesses/$businessId/leaves',
+        data: {
+          'staff_id': ?staffId,
+          'date_from': dateParam(from),
+          'date_to': dateParam(to),
+          'reason': reason == null || reason.trim().isEmpty ? null : reason.trim(),
+          'cancel_affected': cancelAffected,
+        },
+      ),
+    );
+    return ((response.data as Map<String, dynamic>)['affected_appointments'] as num?)?.toInt() ?? 0;
+  }
+
+  Future<void> deleteLeave(int businessId, int id) => _api.call((d) => d.delete('/businesses/$businessId/leaves/$id'));
+
+  // ─── Értesítések ──────────────────────────────────────────────
+
+  Future<NotificationListing> notifications(int businessId) async {
+    final response = await _api.call((d) => d.get('/businesses/$businessId/notifications'));
+    return NotificationListing.fromJson(response.data as Map<String, dynamic>);
+  }
+
+  Future<void> readAllNotifications(int businessId) => _api.call((d) => d.post('/businesses/$businessId/notifications/read-all'));
 }
 
 final ownerToolsRepositoryProvider = Provider<OwnerToolsRepository>((ref) => OwnerToolsRepository(ref.watch(apiClientProvider)));

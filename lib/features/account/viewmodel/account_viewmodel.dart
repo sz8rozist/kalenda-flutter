@@ -1,5 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../core/files/document_opener.dart';
 import '../../../core/viewmodel/action_state.dart';
 import '../../auth/viewmodel/customer_session_viewmodel.dart';
 import '../data/account_repository.dart';
@@ -26,6 +27,19 @@ class AccountActionsViewModel extends ActionNotifier {
       success: FlashKind.saved,
     );
     if (ok) ref.invalidate(accountViewModelProvider);
+  }
+
+  /// A számla PDF-jének letöltése és megnyitása; hamis (de nem hiba), ha nincs megjelenítő az eszközön.
+  bool pdfNotOpened = false;
+
+  Future<bool> openInvoice(AccountInvoice invoice) async {
+    final url = invoice.downloadUrl;
+    if (url == null) return false;
+    pdfNotOpened = false;
+    return perform(() async {
+      final bytes = await ref.read(accountRepositoryProvider).downloadDocument(url);
+      pdfNotOpened = !await ref.read(documentOpenerProvider).open(bytes, '${invoice.number}.pdf');
+    });
   }
 
   Future<void> setMarketingConsent(int businessId, bool value) async {

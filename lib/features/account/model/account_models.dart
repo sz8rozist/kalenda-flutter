@@ -64,11 +64,13 @@ class AccountOverview {
     this.loyalty = const [],
     this.passes = const [],
     this.consents = const [],
+    this.invoices = const [],
   });
 
   final List<LoyaltyItem> loyalty;
   final List<PassItem> passes;
   final List<ConsentItem> consents;
+  final List<AccountInvoice> invoices;
 
   final AccountProfile profile;
   final List<AccountAppointment> upcoming;
@@ -86,6 +88,7 @@ class AccountOverview {
       loyalty: _mapList(json['loyalty'], LoyaltyItem.fromJson),
       passes: _mapList(json['passes'], PassItem.fromJson),
       consents: _mapList(json['consents'], ConsentItem.fromJson),
+      invoices: _mapList(json['invoices'], AccountInvoice.fromJson),
     );
   }
 }
@@ -160,3 +163,34 @@ class ConsentItem {
 
 List<T> _mapList<T>(Object? raw, T Function(Map<String, dynamic>) from) =>
     ((raw as List?) ?? const []).map((e) => from(e as Map<String, dynamic>)).toList();
+
+/// Az ügyfél egy számlája / nyugtája (`GET /customer/account` → `invoices`).
+class AccountInvoice {
+  AccountInvoice({required this.business, required this.number, required this.amountHuf, required this.paymentState, this.kind, this.date, this.dueDate, this.downloadUrl});
+
+  final String business;
+  final String number;
+
+  /// `invoice` | `receipt`.
+  final String? kind;
+  final DateTime? date;
+  final int amountHuf;
+
+  /// `paid` | `unpaid` | `overdue`.
+  final String paymentState;
+  final DateTime? dueDate;
+
+  /// A letöltés (hitelesített) útvonala.
+  final String? downloadUrl;
+
+  factory AccountInvoice.fromJson(Map<String, dynamic> j) => AccountInvoice(
+        business: j['business'] as String? ?? '',
+        number: j['number'] as String? ?? '',
+        kind: j['kind'] as String?,
+        date: DateTime.tryParse(j['date'] as String? ?? ''),
+        amountHuf: (j['amount_huf'] as num?)?.toInt() ?? 0,
+        paymentState: j['payment_state'] as String? ?? '',
+        dueDate: DateTime.tryParse(j['due_date'] as String? ?? ''),
+        downloadUrl: j['download_url'] as String?,
+      );
+}

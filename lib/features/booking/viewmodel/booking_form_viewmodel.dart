@@ -22,6 +22,7 @@ class BookingFormState {
   const BookingFormState({
     this.staffId,
     this.addonIds = const {},
+    this.durationMinutes,
     this.date,
     this.time,
     this.marketing = false,
@@ -35,6 +36,9 @@ class BookingFormState {
 
   final int? staffId;
   final Set<int> addonIds;
+
+  /// Bérlésnél a választott időtartam (perc).
+  final int? durationMinutes;
   final DateTime? date;
   final String? time;
   final bool marketing;
@@ -54,6 +58,7 @@ class BookingFormState {
   BookingFormState copyWith({
     int? staffId,
     Set<int>? addonIds,
+    int? durationMinutes,
     DateTime? date,
     String? time,
     bool clearTime = false,
@@ -69,6 +74,7 @@ class BookingFormState {
       BookingFormState(
         staffId: staffId ?? this.staffId,
         addonIds: addonIds ?? this.addonIds,
+        durationMinutes: durationMinutes ?? this.durationMinutes,
         date: date ?? this.date,
         time: clearTime ? null : (time ?? this.time),
         marketing: marketing ?? this.marketing,
@@ -114,12 +120,20 @@ class BookingFormViewModel extends Notifier<BookingFormState> {
     final staffId = state.staffId;
     final date = state.date;
     if (staffId == null || date == null) return null;
-    return SlotQuery(slug: args.slug, serviceId: args.serviceId, staffId: staffId, date: date, addonIds: state.addonIds.toList());
+    return SlotQuery(
+      slug: args.slug,
+      serviceId: args.serviceId,
+      staffId: staffId,
+      date: date,
+      addonIds: state.addonIds.toList(),
+      durationMinutes: state.durationMinutes,
+    );
   }
 
   void selectStaff(int? id) => state = BookingFormState(
         staffId: id,
         addonIds: state.addonIds,
+        durationMinutes: state.durationMinutes,
         date: state.date,
         marketing: state.marketing,
         prefill: state.prefill,
@@ -129,6 +143,14 @@ class BookingFormViewModel extends Notifier<BookingFormState> {
     final next = {...state.addonIds};
     selected ? next.add(id) : next.remove(id);
     state = state.copyWith(addonIds: next, clearTime: true);
+  }
+
+  /// Bérlés hossza: a kiválasztott időpont érvényét veszti.
+  void setDuration(int minutes) => state = state.copyWith(durationMinutes: minutes, clearTime: true);
+
+  /// Az alapértelmezett bérlés-hossz beállítása, ha még nincs választva.
+  void ensureDuration(int minutes) {
+    if (state.durationMinutes == null) state = state.copyWith(durationMinutes: minutes);
   }
 
   void pickDate(DateTime date) => state = state.copyWith(date: date, clearTime: true);
@@ -186,6 +208,7 @@ class BookingFormViewModel extends Notifier<BookingFormState> {
               passCode: details.passCode,
               marketingConsent: (business?.hasCampaigns ?? false) ? state.marketing : null,
               addonIds: state.addonIds.toList(),
+              durationMinutes: state.durationMinutes,
             ),
           );
       ref.invalidate(accountViewModelProvider);

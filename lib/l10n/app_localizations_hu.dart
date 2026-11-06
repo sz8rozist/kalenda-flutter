@@ -2253,4 +2253,74 @@ class AppLocalizationsHu extends AppLocalizations {
   String payoutNet(String amount) {
     return 'Nettó: $amount';
   }
+
+  @override
+  String get exportLabel => 'Exportálás';
+
+  @override
+  String get exportAccountingLabel => 'Könyvelői csomag letöltése';
+
+  @override
+  String get fileNotOpened => 'Nincs alkalmazás a fájl megnyitásához.';
+
+  @override
+  String get receiptUpload => 'Bizonylat feltöltése';
+
+  @override
+  String get receiptOpen => 'Bizonylat megnyitása';
+
+  @override
+  String get ownerAddLeave => 'Szabadság / zárva tartás';
+
+  @override
+  String get leaveWholeBusiness => 'Az egész vállalkozás';
+
+  @override
+  String get leaveCancelAffected => 'Az érintett foglalások lemondása';
+
+  @override
+  String leaveAffected(int count) {
+    return '$count foglalást érint';
+  }
+
+  @override
+  String leaveCreatedAffected(int count) {
+    return 'Felvéve. Érintett foglalás: $count.';
+  }
+
+  @override
+  String get ownerNotifications => 'Értesítések';
+
+  @override
+  String get markAllRead => 'Mind olvasott';
+
+  @override
+  String get customerInvoicesTitle => 'Számláim';
+
+  @override
+  String get invoiceOpenPdf => 'Számla megnyitása';
+
+  @override
+  String get rentalsTitle => 'Bérelhető';
+
+  @override
+  String rentalPricePerHour(String price) {
+    return '$price / óra';
+  }
+
+  @override
+  String get waitlistRemoveTitle => 'Leiratkozás a várólistáról';
+
+  @override
+  String get waitlistRemoveDone =>
+      'Leiratkoztál a várólistáról, több értesítést nem küldünk.';
+
+  @override
+  String get unsubscribeTitle => 'Leiratkozás a hírlevélről';
+
+  @override
+  String get unsubscribeText => 'A leiratkozást a böngészőben fejezheted be.';
+
+  @override
+  String get openInBrowser => 'Megnyitás a böngészőben';
 }
