@@ -68,6 +68,8 @@ class ListSkeleton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Shimmer(
       child: ListView.builder(
+        // shrinkWrap: a vázlat bárhová beágyazható (ListView-ba, Column-ba) anélkül, hogy a magassága határtalan lenne.
+        shrinkWrap: true,
         physics: const NeverScrollableScrollPhysics(),
         padding: const EdgeInsets.all(20),
         itemCount: items,

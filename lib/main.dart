@@ -24,6 +24,7 @@ class KalendaApp extends ConsumerWidget {
     final update = ref.watch(appGateProvider).value;
 
     return MaterialApp.router(
+      debugShowCheckedModeBanner: false,
       onGenerateTitle: (context) => AppLocalizations.of(context).appTitle,
       routerConfig: ref.watch(routerProvider),
       theme: buildAppTheme(Brightness.light),
