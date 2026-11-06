@@ -1670,4 +1670,141 @@ class AppLocalizationsHu extends AppLocalizations {
   String campaignConsents(int count, int limit) {
     return 'Hozzájárult vendégek: $count · napi limit: $limit';
   }
+
+  @override
+  String get ownerGroupSessions => 'Csoportos alkalmak';
+
+  @override
+  String get ownerBreaks => 'Szünetek';
+
+  @override
+  String get ownerTimesheet => 'Munkaidő';
+
+  @override
+  String get newGroupSession => 'Új alkalom';
+
+  @override
+  String get groupCapacity => 'Férőhely';
+
+  @override
+  String get groupRepeatWeeks => 'Ismétlés (hét)';
+
+  @override
+  String get groupTime => 'Kezdés (ÓÓ:PP)';
+
+  @override
+  String groupBooked(int booked, int capacity) {
+    return '$booked/$capacity fő';
+  }
+
+  @override
+  String get groupAddAttendee => 'Résztvevő felvétele';
+
+  @override
+  String get groupCancelTitle => 'Lemondod az alkalmat?';
+
+  @override
+  String get groupCancelText => 'A jelentkezők értesítést kapnak.';
+
+  @override
+  String get groupCancelled => 'Lemondva';
+
+  @override
+  String get groupNoAttendees => 'Még nincs jelentkező.';
+
+  @override
+  String get breaksNone => 'Nincs szünet felvéve.';
+
+  @override
+  String get newBreak => 'Új szünet';
+
+  @override
+  String get breakDay => 'Nap';
+
+  @override
+  String get breakFrom => 'Kezdete (ÓÓ:PP)';
+
+  @override
+  String get breakTo => 'Vége (ÓÓ:PP)';
+
+  @override
+  String get breakLabel => 'Megnevezés (pl. ebéd)';
+
+  @override
+  String get weekdaySun => 'Vasárnap';
+
+  @override
+  String get weekdayMon => 'Hétfő';
+
+  @override
+  String get weekdayTue => 'Kedd';
+
+  @override
+  String get weekdayWed => 'Szerda';
+
+  @override
+  String get weekdayThu => 'Csütörtök';
+
+  @override
+  String get weekdayFri => 'Péntek';
+
+  @override
+  String get weekdaySat => 'Szombat';
+
+  @override
+  String timesheetWorked(String hours) {
+    return 'Ledolgozott: $hours';
+  }
+
+  @override
+  String timesheetPlanned(String hours) {
+    return 'Tervezett: $hours';
+  }
+
+  @override
+  String timesheetOvertime(String hours) {
+    return 'Túlóra: $hours';
+  }
+
+  @override
+  String timesheetPay(String amount) {
+    return 'Becsült bér: $amount';
+  }
+
+  @override
+  String get timesheetClosed => 'A hónap le van zárva';
+
+  @override
+  String get timesheetClose => 'Hónap zárása';
+
+  @override
+  String get timesheetReopen => 'Zárás visszavonása';
+
+  @override
+  String timesheetStale(int count) {
+    return '$count nyitva felejtett műszak';
+  }
+
+  @override
+  String get timesheetNewEntry => 'Műszak felvétele';
+
+  @override
+  String get timesheetStaff => 'Munkatárs';
+
+  @override
+  String get timesheetIn => 'Kezdés';
+
+  @override
+  String get timesheetOut => 'Vége';
+
+  @override
+  String get timesheetBreakMinutes => 'Szünet (perc)';
+
+  @override
+  String get timesheetEntries => 'Műszakok';
+
+  @override
+  String timesheetOpenSince(String time) {
+    return 'Bent van: $time';
+  }
 }

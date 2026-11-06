@@ -3181,6 +3181,252 @@ abstract class AppLocalizations {
   /// In hu, this message translates to:
   /// **'Hozzájárult vendégek: {count} · napi limit: {limit}'**
   String campaignConsents(int count, int limit);
+
+  /// No description provided for @ownerGroupSessions.
+  ///
+  /// In hu, this message translates to:
+  /// **'Csoportos alkalmak'**
+  String get ownerGroupSessions;
+
+  /// No description provided for @ownerBreaks.
+  ///
+  /// In hu, this message translates to:
+  /// **'Szünetek'**
+  String get ownerBreaks;
+
+  /// No description provided for @ownerTimesheet.
+  ///
+  /// In hu, this message translates to:
+  /// **'Munkaidő'**
+  String get ownerTimesheet;
+
+  /// No description provided for @newGroupSession.
+  ///
+  /// In hu, this message translates to:
+  /// **'Új alkalom'**
+  String get newGroupSession;
+
+  /// No description provided for @groupCapacity.
+  ///
+  /// In hu, this message translates to:
+  /// **'Férőhely'**
+  String get groupCapacity;
+
+  /// No description provided for @groupRepeatWeeks.
+  ///
+  /// In hu, this message translates to:
+  /// **'Ismétlés (hét)'**
+  String get groupRepeatWeeks;
+
+  /// No description provided for @groupTime.
+  ///
+  /// In hu, this message translates to:
+  /// **'Kezdés (ÓÓ:PP)'**
+  String get groupTime;
+
+  /// No description provided for @groupBooked.
+  ///
+  /// In hu, this message translates to:
+  /// **'{booked}/{capacity} fő'**
+  String groupBooked(int booked, int capacity);
+
+  /// No description provided for @groupAddAttendee.
+  ///
+  /// In hu, this message translates to:
+  /// **'Résztvevő felvétele'**
+  String get groupAddAttendee;
+
+  /// No description provided for @groupCancelTitle.
+  ///
+  /// In hu, this message translates to:
+  /// **'Lemondod az alkalmat?'**
+  String get groupCancelTitle;
+
+  /// No description provided for @groupCancelText.
+  ///
+  /// In hu, this message translates to:
+  /// **'A jelentkezők értesítést kapnak.'**
+  String get groupCancelText;
+
+  /// No description provided for @groupCancelled.
+  ///
+  /// In hu, this message translates to:
+  /// **'Lemondva'**
+  String get groupCancelled;
+
+  /// No description provided for @groupNoAttendees.
+  ///
+  /// In hu, this message translates to:
+  /// **'Még nincs jelentkező.'**
+  String get groupNoAttendees;
+
+  /// No description provided for @breaksNone.
+  ///
+  /// In hu, this message translates to:
+  /// **'Nincs szünet felvéve.'**
+  String get breaksNone;
+
+  /// No description provided for @newBreak.
+  ///
+  /// In hu, this message translates to:
+  /// **'Új szünet'**
+  String get newBreak;
+
+  /// No description provided for @breakDay.
+  ///
+  /// In hu, this message translates to:
+  /// **'Nap'**
+  String get breakDay;
+
+  /// No description provided for @breakFrom.
+  ///
+  /// In hu, this message translates to:
+  /// **'Kezdete (ÓÓ:PP)'**
+  String get breakFrom;
+
+  /// No description provided for @breakTo.
+  ///
+  /// In hu, this message translates to:
+  /// **'Vége (ÓÓ:PP)'**
+  String get breakTo;
+
+  /// No description provided for @breakLabel.
+  ///
+  /// In hu, this message translates to:
+  /// **'Megnevezés (pl. ebéd)'**
+  String get breakLabel;
+
+  /// No description provided for @weekdaySun.
+  ///
+  /// In hu, this message translates to:
+  /// **'Vasárnap'**
+  String get weekdaySun;
+
+  /// No description provided for @weekdayMon.
+  ///
+  /// In hu, this message translates to:
+  /// **'Hétfő'**
+  String get weekdayMon;
+
+  /// No description provided for @weekdayTue.
+  ///
+  /// In hu, this message translates to:
+  /// **'Kedd'**
+  String get weekdayTue;
+
+  /// No description provided for @weekdayWed.
+  ///
+  /// In hu, this message translates to:
+  /// **'Szerda'**
+  String get weekdayWed;
+
+  /// No description provided for @weekdayThu.
+  ///
+  /// In hu, this message translates to:
+  /// **'Csütörtök'**
+  String get weekdayThu;
+
+  /// No description provided for @weekdayFri.
+  ///
+  /// In hu, this message translates to:
+  /// **'Péntek'**
+  String get weekdayFri;
+
+  /// No description provided for @weekdaySat.
+  ///
+  /// In hu, this message translates to:
+  /// **'Szombat'**
+  String get weekdaySat;
+
+  /// No description provided for @timesheetWorked.
+  ///
+  /// In hu, this message translates to:
+  /// **'Ledolgozott: {hours}'**
+  String timesheetWorked(String hours);
+
+  /// No description provided for @timesheetPlanned.
+  ///
+  /// In hu, this message translates to:
+  /// **'Tervezett: {hours}'**
+  String timesheetPlanned(String hours);
+
+  /// No description provided for @timesheetOvertime.
+  ///
+  /// In hu, this message translates to:
+  /// **'Túlóra: {hours}'**
+  String timesheetOvertime(String hours);
+
+  /// No description provided for @timesheetPay.
+  ///
+  /// In hu, this message translates to:
+  /// **'Becsült bér: {amount}'**
+  String timesheetPay(String amount);
+
+  /// No description provided for @timesheetClosed.
+  ///
+  /// In hu, this message translates to:
+  /// **'A hónap le van zárva'**
+  String get timesheetClosed;
+
+  /// No description provided for @timesheetClose.
+  ///
+  /// In hu, this message translates to:
+  /// **'Hónap zárása'**
+  String get timesheetClose;
+
+  /// No description provided for @timesheetReopen.
+  ///
+  /// In hu, this message translates to:
+  /// **'Zárás visszavonása'**
+  String get timesheetReopen;
+
+  /// No description provided for @timesheetStale.
+  ///
+  /// In hu, this message translates to:
+  /// **'{count} nyitva felejtett műszak'**
+  String timesheetStale(int count);
+
+  /// No description provided for @timesheetNewEntry.
+  ///
+  /// In hu, this message translates to:
+  /// **'Műszak felvétele'**
+  String get timesheetNewEntry;
+
+  /// No description provided for @timesheetStaff.
+  ///
+  /// In hu, this message translates to:
+  /// **'Munkatárs'**
+  String get timesheetStaff;
+
+  /// No description provided for @timesheetIn.
+  ///
+  /// In hu, this message translates to:
+  /// **'Kezdés'**
+  String get timesheetIn;
+
+  /// No description provided for @timesheetOut.
+  ///
+  /// In hu, this message translates to:
+  /// **'Vége'**
+  String get timesheetOut;
+
+  /// No description provided for @timesheetBreakMinutes.
+  ///
+  /// In hu, this message translates to:
+  /// **'Szünet (perc)'**
+  String get timesheetBreakMinutes;
+
+  /// No description provided for @timesheetEntries.
+  ///
+  /// In hu, this message translates to:
+  /// **'Műszakok'**
+  String get timesheetEntries;
+
+  /// No description provided for @timesheetOpenSince.
+  ///
+  /// In hu, this message translates to:
+  /// **'Bent van: {time}'**
+  String timesheetOpenSince(String time);
 }
 
 class _AppLocalizationsDelegate

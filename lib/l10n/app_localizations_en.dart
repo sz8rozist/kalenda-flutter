@@ -1669,4 +1669,141 @@ class AppLocalizationsEn extends AppLocalizations {
   String campaignConsents(int count, int limit) {
     return 'Customers who agreed: $count · daily limit: $limit';
   }
+
+  @override
+  String get ownerGroupSessions => 'Group sessions';
+
+  @override
+  String get ownerBreaks => 'Breaks';
+
+  @override
+  String get ownerTimesheet => 'Timesheet';
+
+  @override
+  String get newGroupSession => 'New session';
+
+  @override
+  String get groupCapacity => 'Capacity';
+
+  @override
+  String get groupRepeatWeeks => 'Repeat (weeks)';
+
+  @override
+  String get groupTime => 'Start (HH:MM)';
+
+  @override
+  String groupBooked(int booked, int capacity) {
+    return '$booked/$capacity people';
+  }
+
+  @override
+  String get groupAddAttendee => 'Add attendee';
+
+  @override
+  String get groupCancelTitle => 'Cancel this session?';
+
+  @override
+  String get groupCancelText => 'The attendees will be notified.';
+
+  @override
+  String get groupCancelled => 'Cancelled';
+
+  @override
+  String get groupNoAttendees => 'No attendees yet.';
+
+  @override
+  String get breaksNone => 'No breaks added.';
+
+  @override
+  String get newBreak => 'New break';
+
+  @override
+  String get breakDay => 'Day';
+
+  @override
+  String get breakFrom => 'From (HH:MM)';
+
+  @override
+  String get breakTo => 'To (HH:MM)';
+
+  @override
+  String get breakLabel => 'Label (e.g. lunch)';
+
+  @override
+  String get weekdaySun => 'Sunday';
+
+  @override
+  String get weekdayMon => 'Monday';
+
+  @override
+  String get weekdayTue => 'Tuesday';
+
+  @override
+  String get weekdayWed => 'Wednesday';
+
+  @override
+  String get weekdayThu => 'Thursday';
+
+  @override
+  String get weekdayFri => 'Friday';
+
+  @override
+  String get weekdaySat => 'Saturday';
+
+  @override
+  String timesheetWorked(String hours) {
+    return 'Worked: $hours';
+  }
+
+  @override
+  String timesheetPlanned(String hours) {
+    return 'Planned: $hours';
+  }
+
+  @override
+  String timesheetOvertime(String hours) {
+    return 'Overtime: $hours';
+  }
+
+  @override
+  String timesheetPay(String amount) {
+    return 'Estimated pay: $amount';
+  }
+
+  @override
+  String get timesheetClosed => 'The month is closed';
+
+  @override
+  String get timesheetClose => 'Close the month';
+
+  @override
+  String get timesheetReopen => 'Reopen';
+
+  @override
+  String timesheetStale(int count) {
+    return '$count shifts left open';
+  }
+
+  @override
+  String get timesheetNewEntry => 'Add a shift';
+
+  @override
+  String get timesheetStaff => 'Team member';
+
+  @override
+  String get timesheetIn => 'Start';
+
+  @override
+  String get timesheetOut => 'End';
+
+  @override
+  String get timesheetBreakMinutes => 'Break (min)';
+
+  @override
+  String get timesheetEntries => 'Shifts';
+
+  @override
+  String timesheetOpenSince(String time) {
+    return 'Clocked in: $time';
+  }
 }

@@ -21,6 +21,7 @@ import '../features/owner/view/owner_invoice_form_page.dart';
 import '../features/owner/view/owner_inventory_pages.dart';
 import '../features/owner/view/owner_marketing_pages.dart';
 import '../features/owner/view/owner_more_page.dart';
+import '../features/owner/view/owner_operations_pages.dart';
 import '../features/owner/view/owner_register_page.dart';
 import '../features/owner/view/owner_staff_form_page.dart';
 import '../features/owner/view/owner_tools_pages.dart';
@@ -47,6 +48,9 @@ final routerProvider = Provider<GoRouter>((ref) {
       ),
       GoRoute(path: '/owner/staff/new', builder: (_, _) => const OwnerStaffFormPage()),
       GoRoute(path: '/owner/more', builder: (_, _) => const OwnerMorePage()),
+      GoRoute(path: '/owner/group-sessions', builder: (_, _) => const OwnerGroupSessionsPage()),
+      GoRoute(path: '/owner/breaks', builder: (_, _) => const OwnerBreaksPage()),
+      GoRoute(path: '/owner/timesheet', builder: (_, _) => const OwnerTimesheetPage()),
       GoRoute(path: '/owner/pass-types', builder: (_, _) => const OwnerPassTypesPage()),
       GoRoute(path: '/owner/loyalty', builder: (_, _) => const OwnerLoyaltyPage()),
       GoRoute(path: '/owner/campaigns', builder: (_, _) => const OwnerCampaignsPage()),

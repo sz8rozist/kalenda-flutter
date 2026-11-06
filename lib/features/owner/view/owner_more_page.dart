@@ -34,6 +34,8 @@ final ownerMenu = <OwnerMenuGroup>[
   OwnerMenuGroup((l) => l.menuGroupBooking, [
     OwnerMenuItem('/owner/services', Icons.content_cut_rounded, (l) => l.ownerServices),
     OwnerMenuItem('/owner/staff', Icons.badge_outlined, (l) => l.ownerStaff),
+    OwnerMenuItem('/owner/group-sessions', Icons.groups_rounded, (l) => l.ownerGroupSessions),
+    OwnerMenuItem('/owner/breaks', Icons.free_breakfast_outlined, (l) => l.ownerBreaks),
     OwnerMenuItem('/owner/waitlist', Icons.hourglass_empty_rounded, (l) => l.ownerWaitlist, feature: 'waitlist'),
     OwnerMenuItem('/owner/reviews', Icons.star_outline_rounded, (l) => l.ownerReviews, feature: 'reviews'),
   ]),
@@ -51,6 +53,7 @@ final ownerMenu = <OwnerMenuGroup>[
     OwnerMenuItem('/owner/products', Icons.inventory_2_outlined, (l) => l.ownerProducts, feature: 'inventory'),
     OwnerMenuItem('/owner/suppliers', Icons.local_shipping_outlined, (l) => l.ownerSuppliers, feature: 'purchasing'),
     OwnerMenuItem('/owner/purchasing', Icons.assignment_outlined, (l) => l.ownerPurchasing, feature: 'purchasing'),
+    OwnerMenuItem('/owner/timesheet', Icons.schedule_rounded, (l) => l.ownerTimesheet, feature: 'timesheet'),
     OwnerMenuItem('/owner/activity', Icons.history_rounded, (l) => l.ownerActivityLog, feature: 'activity_log'),
   ]),
   OwnerMenuGroup((l) => l.menuGroupSettings, [

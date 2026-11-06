@@ -36,7 +36,7 @@ A webes felület (`kalenda/resources/js/Pages`) és a mobilapp összevetése. A 
 | Munkatársak: lista, létrehozás, szerkesztés, szolgáltatások, meghívó, hozzáférés-megvonás, törlés | ✅ · munkaidő, bér, fotó ⬜ |
 | Nyitvatartás (Settings/Hours) | ✅ |
 | Szabadságok (Settings/Leaves) | ✅ (jóváhagyás) · saját szabadság felvétele ⬜ |
-| Szünetek (Calendar/Breaks) | ⬜ |
+| Szünetek (Calendar/Breaks): lista, felvétel, törlés | ✅ |
 | Számlák (Invoices): lista, fizetve, emlékeztető, új önálló számla, PDF, sztornó | ✅ · hiányzó dokumentumok újrapróbálása, ajánlatok ⬜ |
 | Riportok: könyvelés, cash-flow | ✅ · kifizetések (Payouts) ⬜ |
 | Költségek (Expenses): lista, felvitel, törlés | ✅ · bizonylat, export ⬜ |
@@ -48,9 +48,9 @@ A webes felület (`kalenda/resources/js/Pages`) és a mobilapp összevetése. A 
 | Bérletek / utalványok: eladottak listája, típusok létrehozása/kapcsolása/törlése, helyszíni eladás | ✅ |
 | Kampányok (Campaigns): lista, szerkesztés, célcsoport, címzett-szám, próbalevél, kiküldés | ✅ |
 | Értékelések (Reviews) + beállítás | ✅ |
-| Munkaidő (Timesheet), zárás, export | ⬜ |
+| Munkaidő (Timesheet): havi összesítő, műszakok, felvétel, hónap zárása/újranyitása | ✅ · export ⬜ |
 | Tevékenység-napló (ActivityLog) | ✅ |
-| Várólista (Waitlist): lista, értesítés, eltávolítás | ✅ · csoportos alkalmak kezelése ⬜ |
+| Várólista (Waitlist): lista, értesítés, eltávolítás | ✅ · csoportos alkalmak (lista, létrehozás, résztvevő, lemondás) ✅ |
 | Értesítések (notifications) | ⬜ |
 | Beállítások: foglalási oldal, logó/borító/fotók, szabályzat, mód, fizetés (Stripe Connect), számlázás, naptár-szinkron | ⬜ |
 | Vállalkozás szerkesztése, első beállítás (Setup), regisztráció | ⬜ |
