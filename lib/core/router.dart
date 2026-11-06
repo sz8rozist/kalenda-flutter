@@ -17,6 +17,7 @@ import '../features/owner/view/owner_leaves_page.dart';
 import '../features/owner/view/owner_service_form_page.dart';
 import '../features/owner/view/owner_services_page.dart';
 import '../features/owner/view/owner_staff_form_page.dart';
+import '../features/owner/view/owner_tools_pages.dart';
 import '../features/owner/view/owner_staff_page.dart';
 import '../features/review/view/review_page.dart';
 import '../features/staff/view/staff_home_page.dart';
@@ -39,6 +40,11 @@ final routerProvider = Provider<GoRouter>((ref) {
         builder: (_, state) => OwnerServiceFormPage(serviceId: int.parse(state.pathParameters['id']!)),
       ),
       GoRoute(path: '/owner/staff/new', builder: (_, _) => const OwnerStaffFormPage()),
+      GoRoute(path: '/owner/expenses', builder: (_, _) => const OwnerExpensesPage()),
+      GoRoute(path: '/owner/reviews', builder: (_, _) => const OwnerReviewsPage()),
+      GoRoute(path: '/owner/passes', builder: (_, _) => const OwnerPassesPage()),
+      GoRoute(path: '/owner/waitlist', builder: (_, _) => const OwnerWaitlistPage()),
+      GoRoute(path: '/owner/activity', builder: (_, _) => const OwnerActivityLogPage()),
       GoRoute(
         path: '/owner/staff/:id',
         builder: (_, state) => OwnerStaffFormPage(staffId: int.parse(state.pathParameters['id']!)),

@@ -2029,6 +2029,174 @@ abstract class AppLocalizations {
   /// In hu, this message translates to:
   /// **'Előzmények'**
   String get loyaltyHistory;
+
+  /// No description provided for @ownerExpenses.
+  ///
+  /// In hu, this message translates to:
+  /// **'Költségek'**
+  String get ownerExpenses;
+
+  /// No description provided for @ownerReviews.
+  ///
+  /// In hu, this message translates to:
+  /// **'Értékelések'**
+  String get ownerReviews;
+
+  /// No description provided for @ownerPasses.
+  ///
+  /// In hu, this message translates to:
+  /// **'Bérletek és utalványok'**
+  String get ownerPasses;
+
+  /// No description provided for @ownerWaitlist.
+  ///
+  /// In hu, this message translates to:
+  /// **'Várólista'**
+  String get ownerWaitlist;
+
+  /// No description provided for @ownerActivityLog.
+  ///
+  /// In hu, this message translates to:
+  /// **'Tevékenység-napló'**
+  String get ownerActivityLog;
+
+  /// No description provided for @newExpense.
+  ///
+  /// In hu, this message translates to:
+  /// **'Új költség'**
+  String get newExpense;
+
+  /// No description provided for @expenseCategory.
+  ///
+  /// In hu, this message translates to:
+  /// **'Kategória'**
+  String get expenseCategory;
+
+  /// No description provided for @expenseAmount.
+  ///
+  /// In hu, this message translates to:
+  /// **'Összeg (Ft)'**
+  String get expenseAmount;
+
+  /// No description provided for @expenseVendor.
+  ///
+  /// In hu, this message translates to:
+  /// **'Szállító'**
+  String get expenseVendor;
+
+  /// No description provided for @expenseRecurring.
+  ///
+  /// In hu, this message translates to:
+  /// **'Ismétlődő költség'**
+  String get expenseRecurring;
+
+  /// No description provided for @expenseDate.
+  ///
+  /// In hu, this message translates to:
+  /// **'Dátum'**
+  String get expenseDate;
+
+  /// No description provided for @expensesTotal.
+  ///
+  /// In hu, this message translates to:
+  /// **'Összesen: {total}'**
+  String expensesTotal(String total);
+
+  /// No description provided for @deleteExpenseTitle.
+  ///
+  /// In hu, this message translates to:
+  /// **'Törlöd a költséget?'**
+  String get deleteExpenseTitle;
+
+  /// No description provided for @deleteExpenseText.
+  ///
+  /// In hu, this message translates to:
+  /// **'A költség kikerül a kimutatásokból.'**
+  String get deleteExpenseText;
+
+  /// No description provided for @reviewsEnabled.
+  ///
+  /// In hu, this message translates to:
+  /// **'Értékelés-kérés a látogatás után'**
+  String get reviewsEnabled;
+
+  /// No description provided for @googleReviewUrl.
+  ///
+  /// In hu, this message translates to:
+  /// **'Google-értékelés linkje'**
+  String get googleReviewUrl;
+
+  /// No description provided for @reviewsSummary.
+  ///
+  /// In hu, this message translates to:
+  /// **'{average} átlag · {count} értékelés'**
+  String reviewsSummary(String average, int count);
+
+  /// No description provided for @passKindPass.
+  ///
+  /// In hu, this message translates to:
+  /// **'Bérlet'**
+  String get passKindPass;
+
+  /// No description provided for @passKindVoucher.
+  ///
+  /// In hu, this message translates to:
+  /// **'Utalvány'**
+  String get passKindVoucher;
+
+  /// No description provided for @passRecipient.
+  ///
+  /// In hu, this message translates to:
+  /// **'Címzett: {name}'**
+  String passRecipient(String name);
+
+  /// No description provided for @waitlistNotify.
+  ///
+  /// In hu, this message translates to:
+  /// **'Értesítés küldése'**
+  String get waitlistNotify;
+
+  /// No description provided for @waitlistNotified.
+  ///
+  /// In hu, this message translates to:
+  /// **'Értesítve'**
+  String get waitlistNotified;
+
+  /// No description provided for @waitlistWaiting.
+  ///
+  /// In hu, this message translates to:
+  /// **'Vár'**
+  String get waitlistWaiting;
+
+  /// No description provided for @waitlistBooked.
+  ///
+  /// In hu, this message translates to:
+  /// **'Lefoglalta'**
+  String get waitlistBooked;
+
+  /// No description provided for @waitlistExpired.
+  ///
+  /// In hu, this message translates to:
+  /// **'Lejárt'**
+  String get waitlistExpired;
+
+  /// No description provided for @waitlistRemove.
+  ///
+  /// In hu, this message translates to:
+  /// **'Eltávolítás'**
+  String get waitlistRemove;
+
+  /// No description provided for @activitySearch.
+  ///
+  /// In hu, this message translates to:
+  /// **'Keresés a naplóban'**
+  String get activitySearch;
+
+  /// No description provided for @ownerMore.
+  ///
+  /// In hu, this message translates to:
+  /// **'Továbbiak'**
+  String get ownerMore;
 }
 
 class _AppLocalizationsDelegate

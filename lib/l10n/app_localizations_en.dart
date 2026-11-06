@@ -1046,4 +1046,94 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get loyaltyHistory => 'History';
+
+  @override
+  String get ownerExpenses => 'Expenses';
+
+  @override
+  String get ownerReviews => 'Reviews';
+
+  @override
+  String get ownerPasses => 'Passes and vouchers';
+
+  @override
+  String get ownerWaitlist => 'Waitlist';
+
+  @override
+  String get ownerActivityLog => 'Activity log';
+
+  @override
+  String get newExpense => 'New expense';
+
+  @override
+  String get expenseCategory => 'Category';
+
+  @override
+  String get expenseAmount => 'Amount (HUF)';
+
+  @override
+  String get expenseVendor => 'Vendor';
+
+  @override
+  String get expenseRecurring => 'Recurring expense';
+
+  @override
+  String get expenseDate => 'Date';
+
+  @override
+  String expensesTotal(String total) {
+    return 'Total: $total';
+  }
+
+  @override
+  String get deleteExpenseTitle => 'Delete this expense?';
+
+  @override
+  String get deleteExpenseText => 'It will be removed from the reports.';
+
+  @override
+  String get reviewsEnabled => 'Ask for a review after the visit';
+
+  @override
+  String get googleReviewUrl => 'Google review link';
+
+  @override
+  String reviewsSummary(String average, int count) {
+    return '$average average · $count reviews';
+  }
+
+  @override
+  String get passKindPass => 'Pass';
+
+  @override
+  String get passKindVoucher => 'Voucher';
+
+  @override
+  String passRecipient(String name) {
+    return 'Recipient: $name';
+  }
+
+  @override
+  String get waitlistNotify => 'Send notification';
+
+  @override
+  String get waitlistNotified => 'Notified';
+
+  @override
+  String get waitlistWaiting => 'Waiting';
+
+  @override
+  String get waitlistBooked => 'Booked';
+
+  @override
+  String get waitlistExpired => 'Expired';
+
+  @override
+  String get waitlistRemove => 'Remove';
+
+  @override
+  String get activitySearch => 'Search the log';
+
+  @override
+  String get ownerMore => 'More';
 }

@@ -39,18 +39,18 @@ A webes felület (`kalenda/resources/js/Pages`) és a mobilapp összevetése. A 
 | Szünetek (Calendar/Breaks) | ⬜ |
 | Számlák (Invoices) | 🟡 (lista, fizetve, emlékeztető) · kiállítás, sztornó, hiányzó dokumentumok ⬜ |
 | Riportok: könyvelés, cash-flow | ✅ · kifizetések (Payouts) ⬜ |
-| Költségek (Expenses) | ⬜ |
+| Költségek (Expenses): lista, felvitel, törlés | ✅ · bizonylat, export ⬜ |
 | Termékek (Products), értékesítés | ⬜ |
 | Beszerzés (Purchasing), beszállítók | ⬜ |
 | Pénztár (Register) | ⬜ |
 | Ajánlatok (Quotes) | ⬜ |
 | Hűségprogram (Loyalty) | ⬜ |
-| Bérletek / utalványok (Passes) | ⬜ |
+| Bérletek / utalványok: eladottak listája | 🟡 · típusok kezelése, helyszíni eladás ⬜ |
 | Kampányok (Campaigns) | ⬜ |
-| Értékelések (Reviews) + beállítás | ⬜ |
+| Értékelések (Reviews) + beállítás | ✅ |
 | Munkaidő (Timesheet), zárás, export | ⬜ |
-| Tevékenység-napló (ActivityLog) | ⬜ |
-| Várólista (Waitlist), csoportos alkalmak kezelése | ⬜ |
+| Tevékenység-napló (ActivityLog) | ✅ |
+| Várólista (Waitlist): lista, értesítés, eltávolítás | ✅ · csoportos alkalmak kezelése ⬜ |
 | Értesítések (notifications) | ⬜ |
 | Beállítások: foglalási oldal, logó/borító/fotók, szabályzat, mód, fizetés (Stripe Connect), számlázás, naptár-szinkron | ⬜ |
 | Vállalkozás szerkesztése, első beállítás (Setup), regisztráció | ⬜ |

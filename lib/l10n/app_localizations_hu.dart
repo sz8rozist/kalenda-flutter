@@ -1048,4 +1048,94 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get loyaltyHistory => 'Előzmények';
+
+  @override
+  String get ownerExpenses => 'Költségek';
+
+  @override
+  String get ownerReviews => 'Értékelések';
+
+  @override
+  String get ownerPasses => 'Bérletek és utalványok';
+
+  @override
+  String get ownerWaitlist => 'Várólista';
+
+  @override
+  String get ownerActivityLog => 'Tevékenység-napló';
+
+  @override
+  String get newExpense => 'Új költség';
+
+  @override
+  String get expenseCategory => 'Kategória';
+
+  @override
+  String get expenseAmount => 'Összeg (Ft)';
+
+  @override
+  String get expenseVendor => 'Szállító';
+
+  @override
+  String get expenseRecurring => 'Ismétlődő költség';
+
+  @override
+  String get expenseDate => 'Dátum';
+
+  @override
+  String expensesTotal(String total) {
+    return 'Összesen: $total';
+  }
+
+  @override
+  String get deleteExpenseTitle => 'Törlöd a költséget?';
+
+  @override
+  String get deleteExpenseText => 'A költség kikerül a kimutatásokból.';
+
+  @override
+  String get reviewsEnabled => 'Értékelés-kérés a látogatás után';
+
+  @override
+  String get googleReviewUrl => 'Google-értékelés linkje';
+
+  @override
+  String reviewsSummary(String average, int count) {
+    return '$average átlag · $count értékelés';
+  }
+
+  @override
+  String get passKindPass => 'Bérlet';
+
+  @override
+  String get passKindVoucher => 'Utalvány';
+
+  @override
+  String passRecipient(String name) {
+    return 'Címzett: $name';
+  }
+
+  @override
+  String get waitlistNotify => 'Értesítés küldése';
+
+  @override
+  String get waitlistNotified => 'Értesítve';
+
+  @override
+  String get waitlistWaiting => 'Vár';
+
+  @override
+  String get waitlistBooked => 'Lefoglalta';
+
+  @override
+  String get waitlistExpired => 'Lejárt';
+
+  @override
+  String get waitlistRemove => 'Eltávolítás';
+
+  @override
+  String get activitySearch => 'Keresés a naplóban';
+
+  @override
+  String get ownerMore => 'Továbbiak';
 }
