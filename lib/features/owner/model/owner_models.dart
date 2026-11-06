@@ -10,14 +10,13 @@ class WeekRevenue {
   final int previousToDateTotal;
 
   /// A mai napig tartó bevétel változása az előző hét azonos időszakához képest (%); null, ha nincs alap.
-  double? get changePercent =>
-      previousToDateTotal == 0 ? null : (toDateTotal - previousToDateTotal) * 100 / previousToDateTotal;
+  double? get changePercent => previousToDateTotal == 0 ? null : (toDateTotal - previousToDateTotal) * 100 / previousToDateTotal;
 
   factory WeekRevenue.fromJson(Map<String, dynamic>? j) => WeekRevenue(
-        total: (j?['total'] as num?)?.toInt() ?? 0,
-        toDateTotal: (j?['to_date_total'] as num?)?.toInt() ?? 0,
-        previousToDateTotal: (j?['previous_to_date_total'] as num?)?.toInt() ?? 0,
-      );
+    total: (j?['total'] as num?)?.toInt() ?? 0,
+    toDateTotal: (j?['to_date_total'] as num?)?.toInt() ?? 0,
+    previousToDateTotal: (j?['previous_to_date_total'] as num?)?.toInt() ?? 0,
+  );
 }
 
 class Receivables {
@@ -29,11 +28,11 @@ class Receivables {
   final int overdueCount;
 
   factory Receivables.fromJson(Map<String, dynamic>? j) => Receivables(
-        outstandingHuf: (j?['outstanding_huf'] as num?)?.toInt() ?? 0,
-        outstandingCount: (j?['outstanding_count'] as num?)?.toInt() ?? 0,
-        overdueHuf: (j?['overdue_huf'] as num?)?.toInt() ?? 0,
-        overdueCount: (j?['overdue_count'] as num?)?.toInt() ?? 0,
-      );
+    outstandingHuf: (j?['outstanding_huf'] as num?)?.toInt() ?? 0,
+    outstandingCount: (j?['outstanding_count'] as num?)?.toInt() ?? 0,
+    overdueHuf: (j?['overdue_huf'] as num?)?.toInt() ?? 0,
+    overdueCount: (j?['overdue_count'] as num?)?.toInt() ?? 0,
+  );
 }
 
 class OwnerDashboard {
@@ -68,14 +67,14 @@ class OwnerDashboard {
 
 /// A naptár egy tétele (`GET /businesses/{id}/calendar`) a munkatársi foglalás-modellre képezve.
 PortalAppointment calendarAppointment(Map<String, dynamic> j) => PortalAppointment(
-      id: (j['id'] as num).toInt(),
-      startsAt: DateTime.parse(j['start'] as String),
-      endsAt: DateTime.parse(j['end'] as String),
-      status: j['status'] as String? ?? '',
-      serviceName: j['title'] as String? ?? '',
-      customerName: j['customer_name'] as String?,
-      canManage: true,
-    );
+  id: (j['id'] as num).toInt(),
+  startsAt: DateTime.parse(j['start'] as String),
+  endsAt: DateTime.parse(j['end'] as String),
+  status: j['status'] as String? ?? '',
+  serviceName: j['title'] as String? ?? '',
+  customerName: j['customer_name'] as String?,
+  canManage: true,
+);
 
 class OwnerCalendar {
   OwnerCalendar({required this.appointments, required this.leaves});
@@ -84,11 +83,9 @@ class OwnerCalendar {
   final List<PortalLeave> leaves;
 
   factory OwnerCalendar.fromJson(Map<String, dynamic> j) => OwnerCalendar(
-        appointments: ((j['appointments'] as List?) ?? const [])
-            .map((e) => calendarAppointment(e as Map<String, dynamic>))
-            .toList(),
-        leaves: ((j['leaves'] as List?) ?? const []).map((e) => PortalLeave.fromJson(e as Map<String, dynamic>)).toList(),
-      );
+    appointments: ((j['appointments'] as List?) ?? const []).map((e) => calendarAppointment(e as Map<String, dynamic>)).toList(),
+    leaves: ((j['leaves'] as List?) ?? const []).map((e) => PortalLeave.fromJson(e as Map<String, dynamic>)).toList(),
+  );
 }
 
 class CustomerItem {
@@ -115,16 +112,16 @@ class CustomerItem {
   final DateTime? lastVisitAt;
 
   factory CustomerItem.fromJson(Map<String, dynamic> j) => CustomerItem(
-        id: (j['id'] as num).toInt(),
-        name: j['name'] as String? ?? '',
-        email: j['email'] as String?,
-        phone: j['phone'] as String?,
-        totalCount: (j['total_count'] as num?)?.toInt() ?? 0,
-        noShowCount: (j['no_show_count'] as num?)?.toInt() ?? 0,
-        upcomingCount: (j['upcoming_count'] as num?)?.toInt() ?? 0,
-        totalSpentHuf: (j['total_spent_huf'] as num?)?.toInt() ?? 0,
-        lastVisitAt: j['last_visit_at'] == null ? null : DateTime.parse(j['last_visit_at'] as String),
-      );
+    id: (j['id'] as num).toInt(),
+    name: j['name'] as String? ?? '',
+    email: j['email'] as String?,
+    phone: j['phone'] as String?,
+    totalCount: (j['total_count'] as num?)?.toInt() ?? 0,
+    noShowCount: (j['no_show_count'] as num?)?.toInt() ?? 0,
+    upcomingCount: (j['upcoming_count'] as num?)?.toInt() ?? 0,
+    totalSpentHuf: (j['total_spent_huf'] as num?)?.toInt() ?? 0,
+    lastVisitAt: j['last_visit_at'] == null ? null : DateTime.parse(j['last_visit_at'] as String),
+  );
 }
 
 /// Meglévő ügyfél a foglalás felviteléhez (`GET /businesses/{id}/appointment-customers`).
@@ -137,11 +134,11 @@ class CustomerOption {
   final String? phone;
 
   factory CustomerOption.fromJson(Map<String, dynamic> j) => CustomerOption(
-        id: (j['id'] as num).toInt(),
-        name: j['name'] as String? ?? '',
-        email: j['email'] as String?,
-        phone: j['phone'] as String?,
-      );
+    id: (j['id'] as num).toInt(),
+    name: j['name'] as String? ?? '',
+    email: j['email'] as String?,
+    phone: j['phone'] as String?,
+  );
 }
 
 /// A vállalkozó által felvitt foglalás (`POST /businesses/{id}/appointments`). Meglévő ügyfélnél a `customerId`,
@@ -273,9 +270,7 @@ class AccountingReport {
       passesSoldHuf: n(revenue['passes_sold_huf']),
       vouchersSoldHuf: n(revenue['vouchers_sold_huf']),
       expensesTotalHuf: n(j['expenses_total_huf']),
-      expensesByCategory: {
-        for (final e in ((j['expenses_by_category'] as Map<String, dynamic>?) ?? const {}).entries) e.key: n(e.value),
-      },
+      expensesByCategory: {for (final e in ((j['expenses_by_category'] as Map<String, dynamic>?) ?? const {}).entries) e.key: n(e.value)},
       payrollEstimateHuf: (j['payroll_estimate_huf'] as num?)?.toInt(),
       materialCostHuf: n(j['material_cost_huf']),
       receivablesAtMonthEndHuf: n(j['receivables_at_month_end_huf']),
@@ -299,12 +294,12 @@ class CashflowPeriod {
   final int netHuf;
 
   factory CashflowPeriod.fromJson(Map<String, dynamic> j) => CashflowPeriod(
-        label: j['label'] as String? ?? '',
-        partial: j['partial'] as bool? ?? false,
-        inflowHuf: ((j['inflow'] as Map<String, dynamic>?)?['total_huf'] as num?)?.toInt() ?? 0,
-        outflowHuf: ((j['outflow'] as Map<String, dynamic>?)?['total_huf'] as num?)?.toInt() ?? 0,
-        netHuf: (j['net_huf'] as num?)?.toInt() ?? 0,
-      );
+    label: j['label'] as String? ?? '',
+    partial: j['partial'] as bool? ?? false,
+    inflowHuf: ((j['inflow'] as Map<String, dynamic>?)?['total_huf'] as num?)?.toInt() ?? 0,
+    outflowHuf: ((j['outflow'] as Map<String, dynamic>?)?['total_huf'] as num?)?.toInt() ?? 0,
+    netHuf: (j['net_huf'] as num?)?.toInt() ?? 0,
+  );
 }
 
 /// Egy szolgáltatás a vállalkozói kezelőben (`GET /businesses/{id}/services`).
@@ -317,6 +312,14 @@ class OwnerService {
     this.priceHuf,
     this.isGroup = false,
     this.isRental = false,
+    this.description,
+    this.depositType = 'none',
+    this.depositPercentage,
+    this.color = '#3b82f6',
+    this.bufferBefore = 0,
+    this.bufferAfter = 0,
+    this.maxDurationMinutes,
+    this.durationStepMinutes,
   });
 
   final int id;
@@ -326,16 +329,52 @@ class OwnerService {
   final bool isActive;
   final bool isGroup;
   final bool isRental;
+  final String? description;
+
+  /// `none` | `percentage` | `full`.
+  final String depositType;
+  final int? depositPercentage;
+  final String color;
+  final int bufferBefore;
+  final int bufferAfter;
+  final int? maxDurationMinutes;
+  final int? durationStepMinutes;
 
   factory OwnerService.fromJson(Map<String, dynamic> j) => OwnerService(
-        id: (j['id'] as num).toInt(),
-        name: j['name'] as String? ?? '',
-        durationMinutes: (j['duration_minutes'] as num?)?.toInt() ?? 0,
-        priceHuf: (j['price_huf'] as num?)?.toInt(),
-        isActive: j['is_active'] as bool? ?? true,
-        isGroup: j['is_group'] as bool? ?? false,
-        isRental: j['is_rental'] as bool? ?? false,
-      );
+    id: (j['id'] as num).toInt(),
+    name: j['name'] as String? ?? '',
+    durationMinutes: (j['duration_minutes'] as num?)?.toInt() ?? 0,
+    priceHuf: (j['price_huf'] as num?)?.toInt(),
+    isActive: j['is_active'] as bool? ?? true,
+    isGroup: j['is_group'] as bool? ?? false,
+    isRental: j['is_rental'] as bool? ?? false,
+    description: j['description'] as String?,
+    depositType: j['deposit_type'] as String? ?? 'none',
+    depositPercentage: (j['deposit_percentage'] as num?)?.toInt(),
+    color: j['color'] as String? ?? '#3b82f6',
+    bufferBefore: (j['buffer_time_before'] as num?)?.toInt() ?? 0,
+    bufferAfter: (j['buffer_time_after'] as num?)?.toInt() ?? 0,
+    maxDurationMinutes: (j['max_duration_minutes'] as num?)?.toInt(),
+    durationStepMinutes: (j['duration_step_minutes'] as num?)?.toInt(),
+  );
+
+  /// A teljes mentés (`POST`/`PUT /businesses/{id}/services`) kérés-törzse.
+  Map<String, Object?> toSaveJson() => {
+    'name': name,
+    'description': description ?? '',
+    'duration_minutes': durationMinutes,
+    'price_huf': priceHuf,
+    'deposit_type': depositType,
+    'deposit_percentage': depositType == 'percentage' ? depositPercentage : null,
+    'color': color,
+    'buffer_time_before': bufferBefore,
+    'buffer_time_after': bufferAfter,
+    'is_active': isActive,
+    'is_group': isGroup,
+    'is_rental': isRental,
+    'max_duration_minutes': isRental ? maxDurationMinutes : null,
+    'duration_step_minutes': isRental ? durationStepMinutes : null,
+  };
 }
 
 /// A vállalkozás nyitvatartása egy napra (`GET/PUT /businesses/{id}/hours`). A nap: 0 = vasárnap … 6 = szombat.
@@ -351,11 +390,11 @@ class HourRow {
       HourRow(dayOfWeek: dayOfWeek, openAt: openAt ?? this.openAt, closeAt: closeAt ?? this.closeAt, isClosed: isClosed ?? this.isClosed);
 
   factory HourRow.fromJson(Map<String, dynamic> j) => HourRow(
-        dayOfWeek: (j['day_of_week'] as num).toInt(),
-        openAt: _hhmm(j['open_at'] as String?, '09:00'),
-        closeAt: _hhmm(j['close_at'] as String?, '17:00'),
-        isClosed: j['is_closed'] as bool? ?? false,
-      );
+    dayOfWeek: (j['day_of_week'] as num).toInt(),
+    openAt: _hhmm(j['open_at'] as String?, '09:00'),
+    closeAt: _hhmm(j['close_at'] as String?, '17:00'),
+    isClosed: j['is_closed'] as bool? ?? false,
+  );
 
   /// Zárt napnál a szerver 00:00-t tárol: nyitáskor értelmes alapérték kell.
   static String _hhmm(String? value, String fallback) {
@@ -365,16 +404,23 @@ class HourRow {
   }
 
   Map<String, dynamic> toJson() => {
-        'day_of_week': dayOfWeek,
-        'is_closed': isClosed,
-        if (!isClosed) 'open_at': openAt,
-        if (!isClosed) 'close_at': closeAt,
-      };
+    'day_of_week': dayOfWeek,
+    'is_closed': isClosed,
+    if (!isClosed) 'open_at': openAt,
+    if (!isClosed) 'close_at': closeAt,
+  };
 }
 
 /// Egy munkatárs szabadság-igénylése a vállalkozó döntésére várva (`GET /businesses/{id}/leave-requests`).
 class OwnerLeaveRequest {
-  OwnerLeaveRequest({required this.id, required this.staffName, required this.dateFrom, required this.dateTo, required this.status, this.reason});
+  OwnerLeaveRequest({
+    required this.id,
+    required this.staffName,
+    required this.dateFrom,
+    required this.dateTo,
+    required this.status,
+    this.reason,
+  });
 
   final int id;
   final String staffName;
@@ -384,13 +430,13 @@ class OwnerLeaveRequest {
   final String? reason;
 
   factory OwnerLeaveRequest.fromJson(Map<String, dynamic> j) => OwnerLeaveRequest(
-        id: (j['id'] as num).toInt(),
-        staffName: (j['staff'] as Map<String, dynamic>?)?['name'] as String? ?? '',
-        dateFrom: DateTime.parse(j['date_from'] as String),
-        dateTo: DateTime.parse(j['date_to'] as String),
-        status: j['status'] as String? ?? '',
-        reason: j['reason'] as String?,
-      );
+    id: (j['id'] as num).toInt(),
+    staffName: (j['staff'] as Map<String, dynamic>?)?['name'] as String? ?? '',
+    dateFrom: DateTime.parse(j['date_from'] as String),
+    dateTo: DateTime.parse(j['date_to'] as String),
+    status: j['status'] as String? ?? '',
+    reason: j['reason'] as String?,
+  );
 }
 
 /// Egy munkatárs a vállalkozói kezelőben (`GET /businesses/{id}/staff`).
@@ -403,6 +449,11 @@ class OwnerStaff {
     required this.upcomingCount,
     this.email,
     this.phone,
+    this.bio,
+    this.color = '#3b82f6',
+    this.kind = 'person',
+    this.serviceIds = const [],
+    this.photoUrl,
   });
 
   final int id;
@@ -414,14 +465,26 @@ class OwnerStaff {
   /// Van-e bejelentkezési fiókja (a munkatársi portált használja).
   final bool hasAccount;
   final int upcomingCount;
+  final String? bio;
+  final String color;
+
+  /// `person` | `resource` (pálya, terem).
+  final String kind;
+  final List<int> serviceIds;
+  final String? photoUrl;
 
   factory OwnerStaff.fromJson(Map<String, dynamic> j) => OwnerStaff(
-        id: (j['id'] as num).toInt(),
-        name: j['name'] as String? ?? '',
-        email: j['email'] as String?,
-        phone: j['phone'] as String?,
-        isActive: j['is_active'] as bool? ?? true,
-        hasAccount: j['has_account'] as bool? ?? false,
-        upcomingCount: (j['upcoming_appointments_count'] as num?)?.toInt() ?? 0,
-      );
+    id: (j['id'] as num).toInt(),
+    name: j['name'] as String? ?? '',
+    email: j['email'] as String?,
+    phone: j['phone'] as String?,
+    isActive: j['is_active'] as bool? ?? true,
+    hasAccount: j['has_account'] as bool? ?? false,
+    upcomingCount: (j['upcoming_appointments_count'] as num?)?.toInt() ?? 0,
+    bio: j['bio'] as String?,
+    color: j['color'] as String? ?? '#3b82f6',
+    kind: j['kind'] as String? ?? 'person',
+    serviceIds: [for (final id in (j['service_ids'] as List?) ?? const []) (id as num).toInt()],
+    photoUrl: j['photo_url'] as String?,
+  );
 }

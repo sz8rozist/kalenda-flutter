@@ -881,4 +881,169 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get profileInitial => 'Profile';
+
+  @override
+  String get actionDelete => 'Delete';
+
+  @override
+  String get actionAdd => 'New';
+
+  @override
+  String get fieldDescription => 'Description';
+
+  @override
+  String get fieldColor => 'Color';
+
+  @override
+  String get fieldActive => 'Active';
+
+  @override
+  String get fieldAddress => 'Address';
+
+  @override
+  String get newService => 'New service';
+
+  @override
+  String get editService => 'Edit service';
+
+  @override
+  String get depositTypeLabel => 'Deposit';
+
+  @override
+  String get depositNone => 'None';
+
+  @override
+  String get depositPercentage => 'Percentage';
+
+  @override
+  String get depositFull => 'Full amount';
+
+  @override
+  String get depositPercentLabel => 'Deposit (%)';
+
+  @override
+  String get bufferBefore => 'Preparation (min)';
+
+  @override
+  String get bufferAfter => 'Rest after (min)';
+
+  @override
+  String get groupServiceLabel => 'Group session';
+
+  @override
+  String get rentalServiceLabel => 'Rentable (court, room)';
+
+  @override
+  String get maxDurationLabel => 'Up to (min)';
+
+  @override
+  String get durationStepLabel => 'Duration step (min)';
+
+  @override
+  String get deleteServiceTitle => 'Delete this service?';
+
+  @override
+  String get deleteServiceText =>
+      'The service can no longer be booked. If it already has bookings, the server may refuse to delete it.';
+
+  @override
+  String get newStaff => 'New team member';
+
+  @override
+  String get editStaff => 'Edit team member';
+
+  @override
+  String get staffBio => 'Bio';
+
+  @override
+  String get staffKindLabel => 'Type';
+
+  @override
+  String get staffKindPerson => 'Person';
+
+  @override
+  String get staffKindResource => 'Resource (court, room)';
+
+  @override
+  String get staffServicesTitle => 'Services';
+
+  @override
+  String get inviteStaff => 'Send invitation';
+
+  @override
+  String get inviteSent => 'The invitation was sent.';
+
+  @override
+  String get revokeAccess => 'Revoke access';
+
+  @override
+  String get deleteStaffTitle => 'Delete this team member?';
+
+  @override
+  String get deleteStaffText => 'They can no longer be booked.';
+
+  @override
+  String get customerDetailsTitle => 'Customer';
+
+  @override
+  String get customerBookings => 'Bookings';
+
+  @override
+  String get customerCompleted => 'Completed';
+
+  @override
+  String get customerCancelled => 'Cancelled';
+
+  @override
+  String get customerNoShows => 'No-shows';
+
+  @override
+  String get customerSpent => 'Total spent';
+
+  @override
+  String get customerNote => 'Internal note';
+
+  @override
+  String get customerDepositExempt => 'Exempt from deposit';
+
+  @override
+  String get customerNoShowFlag => 'Warning: repeated no-shows';
+
+  @override
+  String get billingTitle => 'Billing details';
+
+  @override
+  String get billingPostCode => 'Post code';
+
+  @override
+  String get billingCity => 'City';
+
+  @override
+  String get billingTaxNumber => 'Tax number';
+
+  @override
+  String get billingEmail => 'Billing email';
+
+  @override
+  String get loyaltyTitleOwner => 'Loyalty points';
+
+  @override
+  String get loyaltyAdjust => 'Adjust points';
+
+  @override
+  String get loyaltyAdjustPoints => 'Points (can be negative)';
+
+  @override
+  String get loyaltyRedeem => 'Redeem reward';
+
+  @override
+  String loyaltyRedeemed(String discount) {
+    return 'Redeemed: $discount discount';
+  }
+
+  @override
+  String get loyaltyNoReward => 'Not enough points for the reward.';
+
+  @override
+  String get loyaltyHistory => 'History';
 }

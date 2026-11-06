@@ -1421,7 +1421,7 @@ abstract class AppLocalizations {
   /// No description provided for @actionCancel.
   ///
   /// In hu, this message translates to:
-  /// **'Lemondás'**
+  /// **'Mégse'**
   String get actionCancel;
 
   /// No description provided for @newLeave.
@@ -1705,6 +1705,330 @@ abstract class AppLocalizations {
   /// In hu, this message translates to:
   /// **'Profil'**
   String get profileInitial;
+
+  /// No description provided for @actionDelete.
+  ///
+  /// In hu, this message translates to:
+  /// **'Törlés'**
+  String get actionDelete;
+
+  /// No description provided for @actionAdd.
+  ///
+  /// In hu, this message translates to:
+  /// **'Új'**
+  String get actionAdd;
+
+  /// No description provided for @fieldDescription.
+  ///
+  /// In hu, this message translates to:
+  /// **'Leírás'**
+  String get fieldDescription;
+
+  /// No description provided for @fieldColor.
+  ///
+  /// In hu, this message translates to:
+  /// **'Szín'**
+  String get fieldColor;
+
+  /// No description provided for @fieldActive.
+  ///
+  /// In hu, this message translates to:
+  /// **'Aktív'**
+  String get fieldActive;
+
+  /// No description provided for @fieldAddress.
+  ///
+  /// In hu, this message translates to:
+  /// **'Cím'**
+  String get fieldAddress;
+
+  /// No description provided for @newService.
+  ///
+  /// In hu, this message translates to:
+  /// **'Új szolgáltatás'**
+  String get newService;
+
+  /// No description provided for @editService.
+  ///
+  /// In hu, this message translates to:
+  /// **'Szolgáltatás szerkesztése'**
+  String get editService;
+
+  /// No description provided for @depositTypeLabel.
+  ///
+  /// In hu, this message translates to:
+  /// **'Előleg'**
+  String get depositTypeLabel;
+
+  /// No description provided for @depositNone.
+  ///
+  /// In hu, this message translates to:
+  /// **'Nincs'**
+  String get depositNone;
+
+  /// No description provided for @depositPercentage.
+  ///
+  /// In hu, this message translates to:
+  /// **'Százalék'**
+  String get depositPercentage;
+
+  /// No description provided for @depositFull.
+  ///
+  /// In hu, this message translates to:
+  /// **'Teljes összeg'**
+  String get depositFull;
+
+  /// No description provided for @depositPercentLabel.
+  ///
+  /// In hu, this message translates to:
+  /// **'Előleg (%)'**
+  String get depositPercentLabel;
+
+  /// No description provided for @bufferBefore.
+  ///
+  /// In hu, this message translates to:
+  /// **'Előkészület (perc)'**
+  String get bufferBefore;
+
+  /// No description provided for @bufferAfter.
+  ///
+  /// In hu, this message translates to:
+  /// **'Pihenő utána (perc)'**
+  String get bufferAfter;
+
+  /// No description provided for @groupServiceLabel.
+  ///
+  /// In hu, this message translates to:
+  /// **'Csoportos alkalom'**
+  String get groupServiceLabel;
+
+  /// No description provided for @rentalServiceLabel.
+  ///
+  /// In hu, this message translates to:
+  /// **'Bérelhető (pálya, terem)'**
+  String get rentalServiceLabel;
+
+  /// No description provided for @maxDurationLabel.
+  ///
+  /// In hu, this message translates to:
+  /// **'Legfeljebb (perc)'**
+  String get maxDurationLabel;
+
+  /// No description provided for @durationStepLabel.
+  ///
+  /// In hu, this message translates to:
+  /// **'Időtartam lépésköz (perc)'**
+  String get durationStepLabel;
+
+  /// No description provided for @deleteServiceTitle.
+  ///
+  /// In hu, this message translates to:
+  /// **'Törlöd a szolgáltatást?'**
+  String get deleteServiceTitle;
+
+  /// No description provided for @deleteServiceText.
+  ///
+  /// In hu, this message translates to:
+  /// **'A szolgáltatás nem lesz többé foglalható. Ha már vannak foglalások rá, a szerver megakadályozhatja a törlést.'**
+  String get deleteServiceText;
+
+  /// No description provided for @newStaff.
+  ///
+  /// In hu, this message translates to:
+  /// **'Új munkatárs'**
+  String get newStaff;
+
+  /// No description provided for @editStaff.
+  ///
+  /// In hu, this message translates to:
+  /// **'Munkatárs szerkesztése'**
+  String get editStaff;
+
+  /// No description provided for @staffBio.
+  ///
+  /// In hu, this message translates to:
+  /// **'Bemutatkozás'**
+  String get staffBio;
+
+  /// No description provided for @staffKindLabel.
+  ///
+  /// In hu, this message translates to:
+  /// **'Típus'**
+  String get staffKindLabel;
+
+  /// No description provided for @staffKindPerson.
+  ///
+  /// In hu, this message translates to:
+  /// **'Személy'**
+  String get staffKindPerson;
+
+  /// No description provided for @staffKindResource.
+  ///
+  /// In hu, this message translates to:
+  /// **'Erőforrás (pálya, terem)'**
+  String get staffKindResource;
+
+  /// No description provided for @staffServicesTitle.
+  ///
+  /// In hu, this message translates to:
+  /// **'Szolgáltatások'**
+  String get staffServicesTitle;
+
+  /// No description provided for @inviteStaff.
+  ///
+  /// In hu, this message translates to:
+  /// **'Meghívó küldése'**
+  String get inviteStaff;
+
+  /// No description provided for @inviteSent.
+  ///
+  /// In hu, this message translates to:
+  /// **'A meghívó elment.'**
+  String get inviteSent;
+
+  /// No description provided for @revokeAccess.
+  ///
+  /// In hu, this message translates to:
+  /// **'Hozzáférés megvonása'**
+  String get revokeAccess;
+
+  /// No description provided for @deleteStaffTitle.
+  ///
+  /// In hu, this message translates to:
+  /// **'Törlöd a munkatársat?'**
+  String get deleteStaffTitle;
+
+  /// No description provided for @deleteStaffText.
+  ///
+  /// In hu, this message translates to:
+  /// **'A munkatárs nem lesz többé foglalható.'**
+  String get deleteStaffText;
+
+  /// No description provided for @customerDetailsTitle.
+  ///
+  /// In hu, this message translates to:
+  /// **'Ügyfél adatai'**
+  String get customerDetailsTitle;
+
+  /// No description provided for @customerBookings.
+  ///
+  /// In hu, this message translates to:
+  /// **'Foglalások'**
+  String get customerBookings;
+
+  /// No description provided for @customerCompleted.
+  ///
+  /// In hu, this message translates to:
+  /// **'Teljesített'**
+  String get customerCompleted;
+
+  /// No description provided for @customerCancelled.
+  ///
+  /// In hu, this message translates to:
+  /// **'Lemondott'**
+  String get customerCancelled;
+
+  /// No description provided for @customerNoShows.
+  ///
+  /// In hu, this message translates to:
+  /// **'Meg nem jelent'**
+  String get customerNoShows;
+
+  /// No description provided for @customerSpent.
+  ///
+  /// In hu, this message translates to:
+  /// **'Összes költés'**
+  String get customerSpent;
+
+  /// No description provided for @customerNote.
+  ///
+  /// In hu, this message translates to:
+  /// **'Belső megjegyzés'**
+  String get customerNote;
+
+  /// No description provided for @customerDepositExempt.
+  ///
+  /// In hu, this message translates to:
+  /// **'Előleg alól mentesítve'**
+  String get customerDepositExempt;
+
+  /// No description provided for @customerNoShowFlag.
+  ///
+  /// In hu, this message translates to:
+  /// **'Figyelmeztetés: többször nem jelent meg'**
+  String get customerNoShowFlag;
+
+  /// No description provided for @billingTitle.
+  ///
+  /// In hu, this message translates to:
+  /// **'Számlázási adatok'**
+  String get billingTitle;
+
+  /// No description provided for @billingPostCode.
+  ///
+  /// In hu, this message translates to:
+  /// **'Irányítószám'**
+  String get billingPostCode;
+
+  /// No description provided for @billingCity.
+  ///
+  /// In hu, this message translates to:
+  /// **'Település'**
+  String get billingCity;
+
+  /// No description provided for @billingTaxNumber.
+  ///
+  /// In hu, this message translates to:
+  /// **'Adószám'**
+  String get billingTaxNumber;
+
+  /// No description provided for @billingEmail.
+  ///
+  /// In hu, this message translates to:
+  /// **'Számlázási e-mail'**
+  String get billingEmail;
+
+  /// No description provided for @loyaltyTitleOwner.
+  ///
+  /// In hu, this message translates to:
+  /// **'Hűségpontok'**
+  String get loyaltyTitleOwner;
+
+  /// No description provided for @loyaltyAdjust.
+  ///
+  /// In hu, this message translates to:
+  /// **'Pontok módosítása'**
+  String get loyaltyAdjust;
+
+  /// No description provided for @loyaltyAdjustPoints.
+  ///
+  /// In hu, this message translates to:
+  /// **'Pont (negatív is lehet)'**
+  String get loyaltyAdjustPoints;
+
+  /// No description provided for @loyaltyRedeem.
+  ///
+  /// In hu, this message translates to:
+  /// **'Jutalom beváltása'**
+  String get loyaltyRedeem;
+
+  /// No description provided for @loyaltyRedeemed.
+  ///
+  /// In hu, this message translates to:
+  /// **'Beváltva: {discount} kedvezmény'**
+  String loyaltyRedeemed(String discount);
+
+  /// No description provided for @loyaltyNoReward.
+  ///
+  /// In hu, this message translates to:
+  /// **'Nincs elég pont a jutalomhoz.'**
+  String get loyaltyNoReward;
+
+  /// No description provided for @loyaltyHistory.
+  ///
+  /// In hu, this message translates to:
+  /// **'Előzmények'**
+  String get loyaltyHistory;
 }
 
 class _AppLocalizationsDelegate

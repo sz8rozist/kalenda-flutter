@@ -297,6 +297,7 @@ class _CustomersTabState extends ConsumerState<_CustomersTab> {
                           backgroundColor: Theme.of(context).colorScheme.primary.withValues(alpha: 0.12),
                           child: Text(c.name.isEmpty ? '?' : c.name.characters.first.toUpperCase()),
                         ),
+                        onTap: () => context.push('/owner/customers/${c.id}'),
                         title: Text(c.name),
                         subtitle: Text(
                           [

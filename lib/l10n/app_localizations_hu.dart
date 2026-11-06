@@ -726,7 +726,7 @@ class AppLocalizationsHu extends AppLocalizations {
   String get actionNoShow => 'Nem jelent meg';
 
   @override
-  String get actionCancel => 'Lemondás';
+  String get actionCancel => 'Mégse';
 
   @override
   String get newLeave => 'Szabadság kérése';
@@ -883,4 +883,169 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get profileInitial => 'Profil';
+
+  @override
+  String get actionDelete => 'Törlés';
+
+  @override
+  String get actionAdd => 'Új';
+
+  @override
+  String get fieldDescription => 'Leírás';
+
+  @override
+  String get fieldColor => 'Szín';
+
+  @override
+  String get fieldActive => 'Aktív';
+
+  @override
+  String get fieldAddress => 'Cím';
+
+  @override
+  String get newService => 'Új szolgáltatás';
+
+  @override
+  String get editService => 'Szolgáltatás szerkesztése';
+
+  @override
+  String get depositTypeLabel => 'Előleg';
+
+  @override
+  String get depositNone => 'Nincs';
+
+  @override
+  String get depositPercentage => 'Százalék';
+
+  @override
+  String get depositFull => 'Teljes összeg';
+
+  @override
+  String get depositPercentLabel => 'Előleg (%)';
+
+  @override
+  String get bufferBefore => 'Előkészület (perc)';
+
+  @override
+  String get bufferAfter => 'Pihenő utána (perc)';
+
+  @override
+  String get groupServiceLabel => 'Csoportos alkalom';
+
+  @override
+  String get rentalServiceLabel => 'Bérelhető (pálya, terem)';
+
+  @override
+  String get maxDurationLabel => 'Legfeljebb (perc)';
+
+  @override
+  String get durationStepLabel => 'Időtartam lépésköz (perc)';
+
+  @override
+  String get deleteServiceTitle => 'Törlöd a szolgáltatást?';
+
+  @override
+  String get deleteServiceText =>
+      'A szolgáltatás nem lesz többé foglalható. Ha már vannak foglalások rá, a szerver megakadályozhatja a törlést.';
+
+  @override
+  String get newStaff => 'Új munkatárs';
+
+  @override
+  String get editStaff => 'Munkatárs szerkesztése';
+
+  @override
+  String get staffBio => 'Bemutatkozás';
+
+  @override
+  String get staffKindLabel => 'Típus';
+
+  @override
+  String get staffKindPerson => 'Személy';
+
+  @override
+  String get staffKindResource => 'Erőforrás (pálya, terem)';
+
+  @override
+  String get staffServicesTitle => 'Szolgáltatások';
+
+  @override
+  String get inviteStaff => 'Meghívó küldése';
+
+  @override
+  String get inviteSent => 'A meghívó elment.';
+
+  @override
+  String get revokeAccess => 'Hozzáférés megvonása';
+
+  @override
+  String get deleteStaffTitle => 'Törlöd a munkatársat?';
+
+  @override
+  String get deleteStaffText => 'A munkatárs nem lesz többé foglalható.';
+
+  @override
+  String get customerDetailsTitle => 'Ügyfél adatai';
+
+  @override
+  String get customerBookings => 'Foglalások';
+
+  @override
+  String get customerCompleted => 'Teljesített';
+
+  @override
+  String get customerCancelled => 'Lemondott';
+
+  @override
+  String get customerNoShows => 'Meg nem jelent';
+
+  @override
+  String get customerSpent => 'Összes költés';
+
+  @override
+  String get customerNote => 'Belső megjegyzés';
+
+  @override
+  String get customerDepositExempt => 'Előleg alól mentesítve';
+
+  @override
+  String get customerNoShowFlag => 'Figyelmeztetés: többször nem jelent meg';
+
+  @override
+  String get billingTitle => 'Számlázási adatok';
+
+  @override
+  String get billingPostCode => 'Irányítószám';
+
+  @override
+  String get billingCity => 'Település';
+
+  @override
+  String get billingTaxNumber => 'Adószám';
+
+  @override
+  String get billingEmail => 'Számlázási e-mail';
+
+  @override
+  String get loyaltyTitleOwner => 'Hűségpontok';
+
+  @override
+  String get loyaltyAdjust => 'Pontok módosítása';
+
+  @override
+  String get loyaltyAdjustPoints => 'Pont (negatív is lehet)';
+
+  @override
+  String get loyaltyRedeem => 'Jutalom beváltása';
+
+  @override
+  String loyaltyRedeemed(String discount) {
+    return 'Beváltva: $discount kedvezmény';
+  }
+
+  @override
+  String get loyaltyNoReward => 'Nincs elég pont a jutalomhoz.';
+
+  @override
+  String get loyaltyHistory => 'Előzmények';
 }
