@@ -76,3 +76,13 @@ Vállalkozás megnyitása azonosítóval / linkkel / **QR-kóddal**; foglalás (
 **bérlet- és ajándékutalvány-vásárlás** (Stripe Checkout böngészőben), előleg fizetése PaymentSheettel, foglalás kezelése (áthelyezés, lemondás, **mentés az eszköz naptárába**),
 **értékelés** a levélből (`/velemeny/{token}`), Fiókom (profil, hűségpont, bérletek, hozzájárulások, fióktörlés), push, biometrikus zár, Google/Apple belépés.
 Engedélyek: kamera (QR), naptár (mentés) – Android `CAMERA`, iOS `NSCameraUsageDescription` / `NSCalendars…UsageDescription`.
+
+## Tesztek
+```bash
+flutter test      # 63 teszt: modellek, ViewModel-ek, az app indulása (widget-tesztek)
+flutter analyze
+```
+- `test/model` – JSON-értelmezés, verzió-összehasonlítás, `SlotQuery` egyenlőség, nyitvatartás/számla/foglalás modellek.
+- `test/viewmodel` – `ActionNotifier`, hét/fül ViewModel-ek, linkek értelmezése, alkalmazászár (türelmi idő, feloldás, bekapcsolás), ügyfél-munkamenet és belépés (kód, beillesztett link, Google/Apple, fióktörlés), foglalási űrlap és várólista.
+- `test/app_smoke_test.dart` – az app elindul magyar felülettel: fülek belépés előtt/után, közösségi gombok a szerver jelzése szerint, zárképernyő, kötelező frissítés.
+- `test/support` – fake repository-k, token-tár, alkalmazászár és push (a hálózat, a Keychain, a biometria és a Firebase nélkül futnak).

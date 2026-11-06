@@ -40,6 +40,8 @@ class AppLockViewModel extends AsyncNotifier<AppLockState> {
 
   DateTime? _backgroundedAt;
 
+  DateTime _now() => ref.read(appLockClockProvider)();
+
   @override
   Future<AppLockState> build() async {
     final repository = ref.read(appLockRepositoryProvider);
@@ -57,7 +59,7 @@ class AppLockViewModel extends AsyncNotifier<AppLockState> {
   }
 
   /// Az app a háttérbe került.
-  void onBackgrounded() => _backgroundedAt = DateTime.now();
+  void onBackgrounded() => _backgroundedAt = _now();
 
   /// Az app visszatért a háttérből: a türelmi idő letelte után zárol.
   Future<void> onResumed() async {
@@ -66,7 +68,7 @@ class AppLockViewModel extends AsyncNotifier<AppLockState> {
     _backgroundedAt = null;
     if (current == null || since == null || !current.enabled || !current.supported || current.locked) return;
 
-    if (DateTime.now().difference(since) >= gracePeriod && await _hasSession()) {
+    if (_now().difference(since) >= gracePeriod && await _hasSession()) {
       state = AsyncData(current.copyWith(locked: true, failed: false));
     }
   }
@@ -107,3 +109,6 @@ class AppLockViewModel extends AsyncNotifier<AppLockState> {
 }
 
 final appLockProvider = AsyncNotifierProvider<AppLockViewModel, AppLockState>(AppLockViewModel.new);
+
+/// Az óra az alkalmazászár türelmi idejéhez (tesztben cserélhető).
+final appLockClockProvider = Provider<DateTime Function()>((ref) => DateTime.now);
