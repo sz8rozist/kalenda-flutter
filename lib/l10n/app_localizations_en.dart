@@ -2351,4 +2351,22 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get mapDirections => 'Directions';
+
+  @override
+  String get ownerQr => 'QR poster';
+
+  @override
+  String get qrPosterTitle => 'Book an appointment online';
+
+  @override
+  String get qrPosterHint => 'Scan with your phone camera';
+
+  @override
+  String get qrShareImage => 'Share as image';
+
+  @override
+  String get qrCopyLink => 'Copy link';
+
+  @override
+  String get qrLinkCopied => 'The booking link is on the clipboard.';
 }

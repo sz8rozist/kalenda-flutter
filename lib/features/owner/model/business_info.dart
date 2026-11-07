@@ -12,6 +12,7 @@ class BusinessInfo {
     required this.groupSessionsEnabled,
     required this.rentalsEnabled,
     this.slug,
+    this.bookingUrl,
     this.trialDaysLeft,
     this.trialEndsAt,
     this.documentType,
@@ -32,6 +33,9 @@ class BusinessInfo {
   final int id;
   final String name;
   final String? slug;
+
+  /// A nyilvános foglalási oldal címe (a QR-plakát ezt kódolja).
+  final String? bookingUrl;
 
   /// `trial` | `basic` | `professional`.
   final String plan;
@@ -75,6 +79,7 @@ class BusinessInfo {
       id: (j['id'] as num).toInt(),
       name: j['name'] as String? ?? '',
       slug: j['slug'] as String?,
+      bookingUrl: j['booking_url'] as String?,
       plan: j['plan'] as String? ?? (subscription['plan'] as String? ?? 'trial'),
       planFeatures: {
         for (final e in features.entries)

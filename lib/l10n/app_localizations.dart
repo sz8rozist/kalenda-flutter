@@ -4429,6 +4429,42 @@ abstract class AppLocalizations {
   /// In hu, this message translates to:
   /// **'Útvonal'**
   String get mapDirections;
+
+  /// No description provided for @ownerQr.
+  ///
+  /// In hu, this message translates to:
+  /// **'QR-plakát'**
+  String get ownerQr;
+
+  /// No description provided for @qrPosterTitle.
+  ///
+  /// In hu, this message translates to:
+  /// **'Foglalj időpontot online'**
+  String get qrPosterTitle;
+
+  /// No description provided for @qrPosterHint.
+  ///
+  /// In hu, this message translates to:
+  /// **'Olvasd be a telefon kamerájával'**
+  String get qrPosterHint;
+
+  /// No description provided for @qrShareImage.
+  ///
+  /// In hu, this message translates to:
+  /// **'Megosztás képként'**
+  String get qrShareImage;
+
+  /// No description provided for @qrCopyLink.
+  ///
+  /// In hu, this message translates to:
+  /// **'Link másolása'**
+  String get qrCopyLink;
+
+  /// No description provided for @qrLinkCopied.
+  ///
+  /// In hu, this message translates to:
+  /// **'A foglalási link a vágólapon van.'**
+  String get qrLinkCopied;
 }
 
 class _AppLocalizationsDelegate

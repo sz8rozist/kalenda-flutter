@@ -792,5 +792,11 @@
   "languageSystem": "System",
   "rebook": "Book again",
   "mapOpen": "Map",
-  "mapDirections": "Directions"
+  "mapDirections": "Directions",
+  "ownerQr": "QR poster",
+  "qrPosterTitle": "Book an appointment online",
+  "qrPosterHint": "Scan with your phone camera",
+  "qrShareImage": "Share as image",
+  "qrCopyLink": "Copy link",
+  "qrLinkCopied": "The booking link is on the clipboard."
 }

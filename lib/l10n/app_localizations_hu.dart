@@ -2352,4 +2352,22 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get mapDirections => 'Útvonal';
+
+  @override
+  String get ownerQr => 'QR-plakát';
+
+  @override
+  String get qrPosterTitle => 'Foglalj időpontot online';
+
+  @override
+  String get qrPosterHint => 'Olvasd be a telefon kamerájával';
+
+  @override
+  String get qrShareImage => 'Megosztás képként';
+
+  @override
+  String get qrCopyLink => 'Link másolása';
+
+  @override
+  String get qrLinkCopied => 'A foglalási link a vágólapon van.';
 }

@@ -792,5 +792,11 @@
   "languageSystem": "Rendszer",
   "rebook": "Újra foglalok",
   "mapOpen": "Térkép",
-  "mapDirections": "Útvonal"
+  "mapDirections": "Útvonal",
+  "ownerQr": "QR-plakát",
+  "qrPosterTitle": "Foglalj időpontot online",
+  "qrPosterHint": "Olvasd be a telefon kamerájával",
+  "qrShareImage": "Megosztás képként",
+  "qrCopyLink": "Link másolása",
+  "qrLinkCopied": "A foglalási link a vágólapon van."
 }

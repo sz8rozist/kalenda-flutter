@@ -26,6 +26,7 @@ import '../features/owner/view/owner_extras_pages.dart';
 import '../features/owner/view/owner_finance_pages.dart';
 import '../features/owner/view/owner_misc_pages.dart';
 import '../features/owner/view/owner_more_page.dart';
+import '../features/owner/view/owner_qr_page.dart';
 import '../features/owner/view/owner_settings_page.dart';
 import '../features/owner/view/owner_operations_pages.dart';
 import '../features/owner/view/owner_register_page.dart';
@@ -66,6 +67,7 @@ final routerProvider = Provider<GoRouter>((ref) {
       ),
       GoRoute(path: '/owner/staff/new', builder: (_, _) => const OwnerStaffFormPage()),
       GoRoute(path: '/owner/more', builder: (_, _) => const OwnerMorePage()),
+      GoRoute(path: '/owner/qr', builder: (_, _) => const OwnerQrPage()),
       GoRoute(path: '/owner/time-off', builder: (_, _) => const OwnerTimeOffPage()),
       GoRoute(path: '/owner/notifications', builder: (_, _) => const OwnerNotificationsPage()),
       GoRoute(path: '/owner/payouts', builder: (_, _) => const OwnerPayoutsPage()),
