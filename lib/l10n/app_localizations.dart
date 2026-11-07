@@ -4560,6 +4560,18 @@ abstract class AppLocalizations {
   /// In hu, this message translates to:
   /// **'Időpontod a(z) {business} helyen'**
   String msgEmailSubject(String business);
+
+  /// No description provided for @firstFreeSlot.
+  ///
+  /// In hu, this message translates to:
+  /// **'Első szabad időpont'**
+  String get firstFreeSlot;
+
+  /// No description provided for @noFreeSlotsTwoWeeks.
+  ///
+  /// In hu, this message translates to:
+  /// **'Nincs szabad időpont a következő két hétben.'**
+  String get noFreeSlotsTwoWeeks;
 }
 
 class _AppLocalizationsDelegate

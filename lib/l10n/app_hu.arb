@@ -818,5 +818,7 @@
   "msgSendSms": "SMS küldése",
   "msgSendEmail": "E-mail küldése",
   "msgEmailSubject": "Időpontod a(z) {business} helyen",
-  "@msgEmailSubject": { "placeholders": { "business": { "type": "String" } } }
+  "@msgEmailSubject": { "placeholders": { "business": { "type": "String" } } },
+  "firstFreeSlot": "Első szabad időpont",
+  "noFreeSlotsTwoWeeks": "Nincs szabad időpont a következő két hétben."
 }

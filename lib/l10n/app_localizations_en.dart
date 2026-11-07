@@ -2434,4 +2434,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String msgEmailSubject(String business) {
     return 'Your appointment at $business';
   }
+
+  @override
+  String get firstFreeSlot => 'First free slot';
+
+  @override
+  String get noFreeSlotsTwoWeeks => 'No free slots in the next two weeks.';
 }

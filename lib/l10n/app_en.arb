@@ -818,5 +818,7 @@
   "msgSendSms": "Send SMS",
   "msgSendEmail": "Send email",
   "msgEmailSubject": "Your appointment at {business}",
-  "@msgEmailSubject": { "placeholders": { "business": { "type": "String" } } }
+  "@msgEmailSubject": { "placeholders": { "business": { "type": "String" } } },
+  "firstFreeSlot": "First free slot",
+  "noFreeSlotsTwoWeeks": "No free slots in the next two weeks."
 }

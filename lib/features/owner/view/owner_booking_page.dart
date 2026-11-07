@@ -5,7 +5,7 @@ import 'package:go_router/go_router.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../../shared/async_view.dart';
 import '../../../shared/flash.dart';
-import '../../../shared/format.dart';
+import '../../../shared/ui/day_strip.dart';
 import '../../../shared/ui/app_alerts.dart';
 import '../../booking/model/booking_models.dart';
 import '../../booking/viewmodel/business_viewmodels.dart';
@@ -120,7 +120,7 @@ class _FormState extends ConsumerState<_Form> {
             initialValue: state.serviceId,
             decoration: InputDecoration(labelText: l10n.serviceLabel),
             items: [for (final s in business.services) DropdownMenuItem(value: s.id, child: Text(s.name))],
-            onChanged: viewModel.selectService,
+            onChanged: (id) => viewModel.selectService(id, staffIds: id == null ? const [] : [for (final s in business.staffFor(id)) s.id]),
           ),
           const SizedBox(height: 12),
           DropdownButtonFormField<int>(
@@ -131,11 +131,19 @@ class _FormState extends ConsumerState<_Form> {
             onChanged: viewModel.selectStaff,
           ),
           const SizedBox(height: 12),
-          OutlinedButton.icon(
-            onPressed: _pickDate,
-            icon: const Icon(Icons.event),
-            label: Text(state.date == null ? l10n.pickDate : formatDate(context, state.date!)),
-          ),
+          DayStrip(selected: state.date, onSelected: viewModel.pickDate, onPickOther: _pickDate),
+          if (state.serviceId != null && state.staffId != null)
+            Align(
+              alignment: Alignment.centerLeft,
+              child: TextButton.icon(
+                icon: const Icon(Icons.bolt_rounded),
+                label: Text(l10n.firstFreeSlot),
+                onPressed: () async {
+                  final found = await viewModel.findFirstFreeSlot();
+                  if (!found && context.mounted) showToast(context, l10n.noFreeSlotsTwoWeeks, kind: AlertKind.warning);
+                },
+              ),
+            ),
           if (query != null) ...[const SizedBox(height: 12), _Slots(query: query, selected: state.time, onSelected: viewModel.selectTime)],
           const SizedBox(height: 24),
           Text(l10n.ownerCustomerLabel, style: theme.textTheme.titleMedium),

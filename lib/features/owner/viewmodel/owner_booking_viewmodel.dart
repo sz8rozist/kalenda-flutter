@@ -15,8 +15,9 @@ class CustomerOptionsViewModel extends AsyncNotifier<List<CustomerOption>> {
   Future<List<CustomerOption>> build() => ref.watch(ownerRepositoryProvider).customerOptions(businessId);
 }
 
-final customerOptionsProvider =
-    AsyncNotifierProvider.autoDispose.family<CustomerOptionsViewModel, List<CustomerOption>, int>(CustomerOptionsViewModel.new);
+final customerOptionsProvider = AsyncNotifierProvider.autoDispose.family<CustomerOptionsViewModel, List<CustomerOption>, int>(
+  CustomerOptionsViewModel.new,
+);
 
 /// Egy nap időpont-rácsa a vállalkozói felvitelhez.
 typedef OwnerSlotQuery = ({int businessId, int serviceId, int staffId, DateTime date});
@@ -32,8 +33,9 @@ class OwnerSlotsViewModel extends AsyncNotifier<List<TimeSlot>> {
       .availableSlots(query.businessId, serviceId: query.serviceId, staffId: query.staffId, date: query.date);
 }
 
-final ownerSlotsProvider =
-    AsyncNotifierProvider.autoDispose.family<OwnerSlotsViewModel, List<TimeSlot>, OwnerSlotQuery>(OwnerSlotsViewModel.new);
+final ownerSlotsProvider = AsyncNotifierProvider.autoDispose.family<OwnerSlotsViewModel, List<TimeSlot>, OwnerSlotQuery>(
+  OwnerSlotsViewModel.new,
+);
 
 /// A foglalás-felvitel űrlapjának állapota.
 class OwnerBookingState {
@@ -78,19 +80,18 @@ class OwnerBookingState {
     Object? error,
     bool clearError = false,
     bool? created,
-  }) =>
-      OwnerBookingState(
-        serviceId: serviceId ?? this.serviceId,
-        staffId: clearStaff ? null : (staffId ?? this.staffId),
-        date: date ?? this.date,
-        time: clearTime ? null : (time ?? this.time),
-        customerId: clearCustomer ? null : (customerId ?? this.customerId),
-        sendEmail: sendEmail ?? this.sendEmail,
-        busy: busy ?? this.busy,
-        incomplete: incomplete ?? this.incomplete,
-        error: clearError ? null : (error ?? this.error),
-        created: created ?? this.created,
-      );
+  }) => OwnerBookingState(
+    serviceId: serviceId ?? this.serviceId,
+    staffId: clearStaff ? null : (staffId ?? this.staffId),
+    date: date ?? this.date,
+    time: clearTime ? null : (time ?? this.time),
+    customerId: clearCustomer ? null : (customerId ?? this.customerId),
+    sendEmail: sendEmail ?? this.sendEmail,
+    busy: busy ?? this.busy,
+    incomplete: incomplete ?? this.incomplete,
+    error: clearError ? null : (error ?? this.error),
+    created: created ?? this.created,
+  );
 }
 
 /// A vállalkozó által felvitt foglalás ViewModel-je (View: OwnerBookingPage); a kulcs a vállalkozás azonosítója.
@@ -100,7 +101,11 @@ class OwnerBookingViewModel extends Notifier<OwnerBookingState> {
   final int businessId;
 
   @override
-  OwnerBookingState build() => const OwnerBookingState();
+  OwnerBookingState build() {
+    // Telefonálás közben a legtöbb foglalás mára vagy a közeli napokra szól: a mai nap előre ki van választva.
+    final now = DateTime.now();
+    return OwnerBookingState(date: DateTime(now.year, now.month, now.day));
+  }
 
   /// A rács lekérdezése; amíg a szolgáltatás, a munkatárs vagy a nap hiányzik, null.
   OwnerSlotQuery? get slotQuery {
@@ -110,13 +115,40 @@ class OwnerBookingViewModel extends Notifier<OwnerBookingState> {
   }
 
   /// Szolgáltatásváltáskor a munkatárs és az időpont újraválasztandó (más munkatársak végzik).
-  void selectService(int? id) => state = state.copyWith(serviceId: id, clearStaff: true, clearTime: true);
+  /// Ha a szolgáltatást csak egy munkatárs végzi (`staffIds`), őt rögtön kiválasztjuk.
+  void selectService(int? id, {List<int> staffIds = const []}) {
+    state = state.copyWith(serviceId: id, clearStaff: true, clearTime: true);
+    if (staffIds.length == 1) state = state.copyWith(staffId: staffIds.first);
+  }
 
   void selectStaff(int? id) => state = state.copyWith(staffId: id, clearStaff: id == null, clearTime: true);
 
   void pickDate(DateTime date) => state = state.copyWith(date: date, clearTime: true);
 
   void selectTime(String time) => state = state.copyWith(time: time);
+
+  /// Az első szabad időpont keresése a mai naptól a következő `days` napban; megtalálás esetén a nap és az idő be van állítva.
+  /// Hamis, ha a szolgáltatás vagy a munkatárs hiányzik, illetve ha nincs szabad időpont.
+  Future<bool> findFirstFreeSlot({int days = 14}) async {
+    final s = state;
+    if (s.serviceId == null || s.staffId == null) return false;
+    final today = DateTime.now();
+    final repository = ref.read(ownerRepositoryProvider);
+    for (var i = 0; i < days; i++) {
+      final date = DateTime(today.year, today.month, today.day + i);
+      try {
+        final slots = await repository.availableSlots(businessId, serviceId: s.serviceId!, staffId: s.staffId!, date: date);
+        final free = slots.where((t) => t.available).firstOrNull;
+        if (free != null) {
+          if (ref.mounted) state = state.copyWith(date: date, time: free.time);
+          return true;
+        }
+      } catch (_) {
+        return false;
+      }
+    }
+    return false;
+  }
 
   void selectCustomer(int? id) => state = state.copyWith(customerId: id, clearCustomer: id == null);
 
@@ -131,7 +163,9 @@ class OwnerBookingViewModel extends Notifier<OwnerBookingState> {
 
     state = s.copyWith(busy: true, incomplete: false, clearError: true);
     try {
-      await ref.read(ownerRepositoryProvider).createAppointment(
+      await ref
+          .read(ownerRepositoryProvider)
+          .createAppointment(
             businessId,
             OwnerBookingRequest(
               serviceId: s.serviceId!,
@@ -155,5 +189,4 @@ class OwnerBookingViewModel extends Notifier<OwnerBookingState> {
   }
 }
 
-final ownerBookingProvider =
-    NotifierProvider.autoDispose.family<OwnerBookingViewModel, OwnerBookingState, int>(OwnerBookingViewModel.new);
+final ownerBookingProvider = NotifierProvider.autoDispose.family<OwnerBookingViewModel, OwnerBookingState, int>(OwnerBookingViewModel.new);

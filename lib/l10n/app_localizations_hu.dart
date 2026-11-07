@@ -2435,4 +2435,11 @@ class AppLocalizationsHu extends AppLocalizations {
   String msgEmailSubject(String business) {
     return 'Időpontod a(z) $business helyen';
   }
+
+  @override
+  String get firstFreeSlot => 'Első szabad időpont';
+
+  @override
+  String get noFreeSlotsTwoWeeks =>
+      'Nincs szabad időpont a következő két hétben.';
 }
