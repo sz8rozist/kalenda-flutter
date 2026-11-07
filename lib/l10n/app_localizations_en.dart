@@ -2378,4 +2378,60 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get themeDark => 'Dark';
+
+  @override
+  String msgReminder(
+    String name,
+    String service,
+    String when,
+    String business,
+  ) {
+    return 'Hi $name! Reminder: your $service appointment is $when at $business. See you soon!';
+  }
+
+  @override
+  String msgRunningLate(String name, String business) {
+    return 'Hi $name! We\'re running a little late at $business. Thanks for your patience!';
+  }
+
+  @override
+  String msgReschedule(
+    String name,
+    String service,
+    String when,
+    String business,
+  ) {
+    return 'Hi $name! Could we move your $service appointment ($when)? Please let us know what time would suit you. $business';
+  }
+
+  @override
+  String msgThanks(String name, String business) {
+    return 'Hi $name! Thanks for visiting us! If you enjoyed it, we\'d love a review. $business';
+  }
+
+  @override
+  String get messageCustomer => 'Message the customer';
+
+  @override
+  String get msgTemplateReminder => 'Reminder';
+
+  @override
+  String get msgTemplateLate => 'Running late';
+
+  @override
+  String get msgTemplateReschedule => 'Reschedule';
+
+  @override
+  String get msgTemplateThanks => 'Thanks';
+
+  @override
+  String get msgSendSms => 'Send SMS';
+
+  @override
+  String get msgSendEmail => 'Send email';
+
+  @override
+  String msgEmailSubject(String business) {
+    return 'Your appointment at $business';
+  }
 }

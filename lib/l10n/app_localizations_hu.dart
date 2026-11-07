@@ -2379,4 +2379,60 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get themeDark => 'Sötét';
+
+  @override
+  String msgReminder(
+    String name,
+    String service,
+    String when,
+    String business,
+  ) {
+    return 'Szia $name! Emlékeztető: $service időpontod $when lesz a(z) $business helyen. Várunk szeretettel!';
+  }
+
+  @override
+  String msgRunningLate(String name, String business) {
+    return 'Szia $name! Sajnos kicsit késésben vagyunk a(z) $business helyen. Pár perc türelmedet kérjük, köszönjük a megértést!';
+  }
+
+  @override
+  String msgReschedule(
+    String name,
+    String service,
+    String when,
+    String business,
+  ) {
+    return 'Szia $name! Át tudnánk beszélni a(z) $service időpontodat ($when)? Dolgozunk egy új időponton – kérjük, jelezd, mikor lenne jó. $business';
+  }
+
+  @override
+  String msgThanks(String name, String business) {
+    return 'Szia $name! Köszönjük, hogy nálunk jártál! Ha elégedett voltál, örülnénk egy értékelésnek. $business';
+  }
+
+  @override
+  String get messageCustomer => 'Üzenet az ügyfélnek';
+
+  @override
+  String get msgTemplateReminder => 'Emlékeztető';
+
+  @override
+  String get msgTemplateLate => 'Késünk';
+
+  @override
+  String get msgTemplateReschedule => 'Áthelyezés';
+
+  @override
+  String get msgTemplateThanks => 'Köszönet';
+
+  @override
+  String get msgSendSms => 'SMS küldése';
+
+  @override
+  String get msgSendEmail => 'E-mail küldése';
+
+  @override
+  String msgEmailSubject(String business) {
+    return 'Időpontod a(z) $business helyen';
+  }
 }

@@ -4483,6 +4483,83 @@ abstract class AppLocalizations {
   /// In hu, this message translates to:
   /// **'Sötét'**
   String get themeDark;
+
+  /// No description provided for @msgReminder.
+  ///
+  /// In hu, this message translates to:
+  /// **'Szia {name}! Emlékeztető: {service} időpontod {when} lesz a(z) {business} helyen. Várunk szeretettel!'**
+  String msgReminder(String name, String service, String when, String business);
+
+  /// No description provided for @msgRunningLate.
+  ///
+  /// In hu, this message translates to:
+  /// **'Szia {name}! Sajnos kicsit késésben vagyunk a(z) {business} helyen. Pár perc türelmedet kérjük, köszönjük a megértést!'**
+  String msgRunningLate(String name, String business);
+
+  /// No description provided for @msgReschedule.
+  ///
+  /// In hu, this message translates to:
+  /// **'Szia {name}! Át tudnánk beszélni a(z) {service} időpontodat ({when})? Dolgozunk egy új időponton – kérjük, jelezd, mikor lenne jó. {business}'**
+  String msgReschedule(
+    String name,
+    String service,
+    String when,
+    String business,
+  );
+
+  /// No description provided for @msgThanks.
+  ///
+  /// In hu, this message translates to:
+  /// **'Szia {name}! Köszönjük, hogy nálunk jártál! Ha elégedett voltál, örülnénk egy értékelésnek. {business}'**
+  String msgThanks(String name, String business);
+
+  /// No description provided for @messageCustomer.
+  ///
+  /// In hu, this message translates to:
+  /// **'Üzenet az ügyfélnek'**
+  String get messageCustomer;
+
+  /// No description provided for @msgTemplateReminder.
+  ///
+  /// In hu, this message translates to:
+  /// **'Emlékeztető'**
+  String get msgTemplateReminder;
+
+  /// No description provided for @msgTemplateLate.
+  ///
+  /// In hu, this message translates to:
+  /// **'Késünk'**
+  String get msgTemplateLate;
+
+  /// No description provided for @msgTemplateReschedule.
+  ///
+  /// In hu, this message translates to:
+  /// **'Áthelyezés'**
+  String get msgTemplateReschedule;
+
+  /// No description provided for @msgTemplateThanks.
+  ///
+  /// In hu, this message translates to:
+  /// **'Köszönet'**
+  String get msgTemplateThanks;
+
+  /// No description provided for @msgSendSms.
+  ///
+  /// In hu, this message translates to:
+  /// **'SMS küldése'**
+  String get msgSendSms;
+
+  /// No description provided for @msgSendEmail.
+  ///
+  /// In hu, this message translates to:
+  /// **'E-mail küldése'**
+  String get msgSendEmail;
+
+  /// No description provided for @msgEmailSubject.
+  ///
+  /// In hu, this message translates to:
+  /// **'Időpontod a(z) {business} helyen'**
+  String msgEmailSubject(String business);
 }
 
 class _AppLocalizationsDelegate

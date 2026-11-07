@@ -801,5 +801,22 @@
   "qrLinkCopied": "The booking link is on the clipboard.",
   "themeTitle": "Appearance",
   "themeLight": "Light",
-  "themeDark": "Dark"
+  "themeDark": "Dark",
+  "msgReminder": "Hi {name}! Reminder: your {service} appointment is {when} at {business}. See you soon!",
+  "@msgReminder": { "placeholders": { "name": { "type": "String" }, "service": { "type": "String" }, "when": { "type": "String" }, "business": { "type": "String" } } },
+  "msgRunningLate": "Hi {name}! We're running a little late at {business}. Thanks for your patience!",
+  "@msgRunningLate": { "placeholders": { "name": { "type": "String" }, "business": { "type": "String" } } },
+  "msgReschedule": "Hi {name}! Could we move your {service} appointment ({when})? Please let us know what time would suit you. {business}",
+  "@msgReschedule": { "placeholders": { "name": { "type": "String" }, "service": { "type": "String" }, "when": { "type": "String" }, "business": { "type": "String" } } },
+  "msgThanks": "Hi {name}! Thanks for visiting us! If you enjoyed it, we'd love a review. {business}",
+  "@msgThanks": { "placeholders": { "name": { "type": "String" }, "business": { "type": "String" } } },
+  "messageCustomer": "Message the customer",
+  "msgTemplateReminder": "Reminder",
+  "msgTemplateLate": "Running late",
+  "msgTemplateReschedule": "Reschedule",
+  "msgTemplateThanks": "Thanks",
+  "msgSendSms": "Send SMS",
+  "msgSendEmail": "Send email",
+  "msgEmailSubject": "Your appointment at {business}",
+  "@msgEmailSubject": { "placeholders": { "business": { "type": "String" } } }
 }

@@ -12,6 +12,7 @@ import '../../../shared/ui/app_alerts.dart';
 import '../../../shared/ui/status_chip.dart';
 import '../../staff/viewmodel/staff_session_viewmodel.dart';
 import '../model/appointment_detail.dart';
+import 'customer_message_sheet.dart';
 import '../viewmodel/owner_tools_viewmodels.dart';
 
 String paymentMethodLabel(AppLocalizations l10n, String? method) => switch (method) {
@@ -175,13 +176,30 @@ class _BodyState extends ConsumerState<_Body> {
                       [if (d.customerEmail != null) d.customerEmail!, if (d.customerPhone != null) d.customerPhone!].join('\n'),
                     ),
                     isThreeLine: d.customerEmail != null && d.customerPhone != null,
-                    trailing: d.customerPhone == null || d.customerPhone!.isEmpty
-                        ? null
-                        : IconButton(
+                    trailing: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        IconButton(
+                          tooltip: l10n.messageCustomer,
+                          icon: const Icon(Icons.chat_bubble_outline_rounded),
+                          onPressed: () => showCustomerMessageSheet(
+                            context,
+                            customerName: d.customerName ?? '',
+                            serviceName: d.serviceName,
+                            startsAt: d.startsAt,
+                            businessName: ref.read(staffSessionProvider).value?.businessName ?? '',
+                            phone: d.customerPhone,
+                            email: d.customerEmail,
+                          ),
+                        ),
+                        if (d.customerPhone != null && d.customerPhone!.isNotEmpty)
+                          IconButton(
                             tooltip: l10n.call,
                             icon: const Icon(Icons.phone_outlined),
                             onPressed: () => launchUrl(Uri(scheme: 'tel', path: d.customerPhone)),
                           ),
+                      ],
+                    ),
                     onTap: d.customerId == null ? null : () => context.push('/owner/customers/${d.customerId}'),
                   ),
                 ),

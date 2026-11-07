@@ -801,5 +801,22 @@
   "qrLinkCopied": "A foglalási link a vágólapon van.",
   "themeTitle": "Megjelenés",
   "themeLight": "Világos",
-  "themeDark": "Sötét"
+  "themeDark": "Sötét",
+  "msgReminder": "Szia {name}! Emlékeztető: {service} időpontod {when} lesz a(z) {business} helyen. Várunk szeretettel!",
+  "@msgReminder": { "placeholders": { "name": { "type": "String" }, "service": { "type": "String" }, "when": { "type": "String" }, "business": { "type": "String" } } },
+  "msgRunningLate": "Szia {name}! Sajnos kicsit késésben vagyunk a(z) {business} helyen. Pár perc türelmedet kérjük, köszönjük a megértést!",
+  "@msgRunningLate": { "placeholders": { "name": { "type": "String" }, "business": { "type": "String" } } },
+  "msgReschedule": "Szia {name}! Át tudnánk beszélni a(z) {service} időpontodat ({when})? Dolgozunk egy új időponton – kérjük, jelezd, mikor lenne jó. {business}",
+  "@msgReschedule": { "placeholders": { "name": { "type": "String" }, "service": { "type": "String" }, "when": { "type": "String" }, "business": { "type": "String" } } },
+  "msgThanks": "Szia {name}! Köszönjük, hogy nálunk jártál! Ha elégedett voltál, örülnénk egy értékelésnek. {business}",
+  "@msgThanks": { "placeholders": { "name": { "type": "String" }, "business": { "type": "String" } } },
+  "messageCustomer": "Üzenet az ügyfélnek",
+  "msgTemplateReminder": "Emlékeztető",
+  "msgTemplateLate": "Késünk",
+  "msgTemplateReschedule": "Áthelyezés",
+  "msgTemplateThanks": "Köszönet",
+  "msgSendSms": "SMS küldése",
+  "msgSendEmail": "E-mail küldése",
+  "msgEmailSubject": "Időpontod a(z) {business} helyen",
+  "@msgEmailSubject": { "placeholders": { "business": { "type": "String" } } }
 }
