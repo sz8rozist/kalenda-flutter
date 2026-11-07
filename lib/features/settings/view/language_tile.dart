@@ -18,11 +18,13 @@ class LanguageTile extends ConsumerWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Row(children: [
-            const Icon(Icons.language_rounded),
-            const SizedBox(width: 12),
-            Text(l10n.languageTitle, style: Theme.of(context).textTheme.titleSmall),
-          ]),
+          Row(
+            children: [
+              const Icon(Icons.language_rounded),
+              const SizedBox(width: 12),
+              Text(l10n.languageTitle, style: Theme.of(context).textTheme.titleSmall),
+            ],
+          ),
           const SizedBox(height: 10),
           SizedBox(
             width: double.infinity,

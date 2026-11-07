@@ -798,5 +798,8 @@
   "qrPosterHint": "Scan with your phone camera",
   "qrShareImage": "Share as image",
   "qrCopyLink": "Copy link",
-  "qrLinkCopied": "The booking link is on the clipboard."
+  "qrLinkCopied": "The booking link is on the clipboard.",
+  "themeTitle": "Appearance",
+  "themeLight": "Light",
+  "themeDark": "Dark"
 }

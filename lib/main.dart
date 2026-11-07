@@ -10,6 +10,7 @@ import 'features/app_lock/view/app_lock_gate.dart';
 import 'features/connectivity/view/offline_banner.dart';
 import 'features/onboarding/view/onboarding_page.dart';
 import 'features/settings/viewmodel/locale_viewmodel.dart';
+import 'features/settings/viewmodel/theme_mode_viewmodel.dart';
 import 'features/splash/view/splash_gate.dart';
 import 'l10n/app_localizations.dart';
 
@@ -30,7 +31,7 @@ class KalendaApp extends ConsumerWidget {
       routerConfig: ref.watch(routerProvider),
       theme: buildAppTheme(Brightness.light),
       darkTheme: buildAppTheme(Brightness.dark),
-      themeMode: ThemeMode.system,
+      themeMode: ref.watch(themeModeProvider),
       locale: ref.watch(localeProvider),
       localizationsDelegates: const [
         AppLocalizations.delegate,

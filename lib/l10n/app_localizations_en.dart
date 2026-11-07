@@ -2369,4 +2369,13 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get qrLinkCopied => 'The booking link is on the clipboard.';
+
+  @override
+  String get themeTitle => 'Appearance';
+
+  @override
+  String get themeLight => 'Light';
+
+  @override
+  String get themeDark => 'Dark';
 }

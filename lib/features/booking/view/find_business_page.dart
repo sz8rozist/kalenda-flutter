@@ -10,6 +10,7 @@ import '../../favorites/model/saved_business.dart';
 import '../../favorites/viewmodel/saved_businesses_viewmodel.dart';
 import '../viewmodel/business_viewmodels.dart';
 import '../../settings/view/language_tile.dart';
+import '../../settings/view/theme_mode_tile.dart';
 import '../../account/model/account_models.dart';
 import '../../account/viewmodel/account_viewmodel.dart';
 import '../../auth/viewmodel/customer_session_viewmodel.dart';
@@ -75,7 +76,12 @@ class _FindBusinessPageState extends ConsumerState<FindBusinessPage> {
                       onPressed: () => showModalBottomSheet<void>(
                         context: context,
                         showDragHandle: true,
-                        builder: (_) => const SafeArea(child: Padding(padding: EdgeInsets.fromLTRB(16, 0, 16, 16), child: LanguageTile())),
+                        builder: (_) => const SafeArea(
+                          child: Padding(
+                            padding: EdgeInsets.fromLTRB(16, 0, 16, 16),
+                            child: Column(mainAxisSize: MainAxisSize.min, children: [LanguageTile(), ThemeModeTile()]),
+                          ),
+                        ),
                       ),
                     ),
                     IconButton.filledTonal(

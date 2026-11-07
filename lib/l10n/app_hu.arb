@@ -798,5 +798,8 @@
   "qrPosterHint": "Olvasd be a telefon kamerájával",
   "qrShareImage": "Megosztás képként",
   "qrCopyLink": "Link másolása",
-  "qrLinkCopied": "A foglalási link a vágólapon van."
+  "qrLinkCopied": "A foglalási link a vágólapon van.",
+  "themeTitle": "Megjelenés",
+  "themeLight": "Világos",
+  "themeDark": "Sötét"
 }

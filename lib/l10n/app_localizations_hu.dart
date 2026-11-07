@@ -2370,4 +2370,13 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get qrLinkCopied => 'A foglalási link a vágólapon van.';
+
+  @override
+  String get themeTitle => 'Megjelenés';
+
+  @override
+  String get themeLight => 'Világos';
+
+  @override
+  String get themeDark => 'Sötét';
 }

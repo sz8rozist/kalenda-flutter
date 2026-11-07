@@ -11,6 +11,7 @@ import '../../../shared/ui/empty_state.dart';
 import '../../../shared/ui/status_chip.dart';
 import '../../app_lock/view/app_lock_settings.dart';
 import '../../settings/view/language_tile.dart';
+import '../../settings/view/theme_mode_tile.dart';
 import '../../auth/viewmodel/customer_session_viewmodel.dart';
 import '../model/account_models.dart';
 import '../viewmodel/account_viewmodel.dart';
@@ -64,6 +65,7 @@ class AccountPage extends ConsumerWidget {
               ],
               const SizedBox(height: 24),
               const LanguageTile(),
+              const ThemeModeTile(),
               const AppLockTile(),
               const SizedBox(height: 8),
               TextButton.icon(

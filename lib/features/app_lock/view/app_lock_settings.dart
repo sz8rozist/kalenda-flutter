@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../../l10n/app_localizations.dart';
 import '../../settings/view/language_tile.dart';
+import '../../settings/view/theme_mode_tile.dart';
 import '../viewmodel/app_lock_viewmodel.dart';
 
 /// Kapcsoló az alkalmazászár (biometrikus azonosítás) be- és kikapcsolására (View-komponens).
@@ -44,6 +45,7 @@ Future<void> showSettingsSheet(BuildContext context) {
             Text(AppLocalizations.of(context).settingsTitle, style: Theme.of(context).textTheme.titleLarge),
             const SizedBox(height: 8),
             const LanguageTile(),
+            const ThemeModeTile(),
             const AppLockTile(),
             ListTile(
               contentPadding: EdgeInsets.zero,
