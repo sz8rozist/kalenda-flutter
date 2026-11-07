@@ -4,6 +4,10 @@
 	<dict>
 		<key>CADisableMinimumFrameDurationOnPhone</key>
 		<true/>
+		<key>UIBackgroundModes</key>
+		<array>
+			<string>remote-notification</string>
+		</array>
 		<key>NSCameraUsageDescription</key>
 		<string>A kamerát a vállalkozások foglalási QR-kódjának beolvasásához használjuk.</string>
 		<key>NSPhotoLibraryUsageDescription</key>

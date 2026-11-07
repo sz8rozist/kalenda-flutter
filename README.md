@@ -26,10 +26,12 @@ Az iOS-build Windowson nem megy (Xcode): felhős CI (Codemagic / GitHub Actions 
 
 ## Push értesítések (Firebase)
 Az app Firebase-konfiguráció nélkül is épül és fut (a push ilyenkor ki van kapcsolva). Bekapcsolás:
-1. Firebase-projekt létrehozása, Android- és iOS-alkalmazás felvétele (`hu.kalenda.kalenda_mobile`).
+1. Firebase-projekt létrehozása, majd két alkalmazás felvétele – **a két platform csomagneve nem azonos**:
+   Android: `hu.kalenda.kalenda_mobile`, iOS (bundle ID): `hu.kalenda.kalendaMobile`.
 2. `dart pub global activate flutterfire_cli`, majd `flutterfire configure` – ez felveszi a `google-services.json` / `GoogleService-Info.plist` fájlokat és a Gradle/Xcode beállítást.
-3. iOS-hez: APNs-hitelesítési kulcs feltöltése a Firebase-projektben.
-4. A backenden `FCM_CREDENTIALS_FILE` a Firebase service account JSON útvonalával (ld. a backend `env.docker.example`).
+3. **iOS előfeltételek** (Apple Developer fiók – 99 USD/év): az App ID-n a *Push Notifications* képesség bekapcsolása, APNs-hitelesítési kulcs (`.p8`) létrehozása és feltöltése a Firebase-projekt Cloud Messaging beállításaiba (Key ID + Team ID).
+   A projekt már tartalmazza az iOS-oldali beállítást: `Runner/Runner.entitlements` (Debug/Profile: `aps-environment = development`), `Runner/RunnerRelease.entitlements` (Release: `production`) és a `UIBackgroundModes → remote-notification` az `Info.plist`-ben. A `GoogleService-Info.plist`-et az Xcode-ban a Runner target erőforrásai közé kell venni (a `flutterfire configure` ezt megteszi). Az iOS-t csak Macen vagy felhős buildben (pl. Codemagic) lehet fordítani; push csak valódi eszközön megy.
+4. A backenden `FCM_CREDENTIALS_FILE` a Firebase service account JSON útvonalával (ld. a backend `env.docker.example`); a kulcs titok, nem kerül git-be.
 Az értesítés-engedélyt az app az első foglalás után kéri; belépés után az eszköz-token a `/customer/devices` végponton regisztrálódik.
 
 ## Architektúra: Riverpod + MVVM
