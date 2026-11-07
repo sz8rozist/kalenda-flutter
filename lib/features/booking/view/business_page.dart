@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../../../core/maps/map_links.dart';
 import '../../../core/theme/app_theme.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../../shared/async_view.dart';
@@ -228,9 +229,23 @@ class _ContactCard extends StatelessWidget {
             ListTile(
               leading: const _IconTile(Icons.place_outlined),
               title: Text(business.fullAddress),
-              onTap: () => launchUrl(
-                Uri.https('www.google.com', '/maps/search/', {'api': '1', 'query': business.fullAddress}),
-                mode: LaunchMode.externalApplication,
+              subtitle: Padding(
+                padding: const EdgeInsets.only(top: 8),
+                child: Wrap(
+                  spacing: 8,
+                  children: [
+                    ActionChip(
+                      avatar: const Icon(Icons.map_outlined, size: 18),
+                      label: Text(AppLocalizations.of(context).mapOpen),
+                      onPressed: () => launchUrl(MapLinks.search(business.fullAddress), mode: LaunchMode.externalApplication),
+                    ),
+                    ActionChip(
+                      avatar: const Icon(Icons.directions_rounded, size: 18),
+                      label: Text(AppLocalizations.of(context).mapDirections),
+                      onPressed: () => launchUrl(MapLinks.directions(business.fullAddress), mode: LaunchMode.externalApplication),
+                    ),
+                  ],
+                ),
               ),
             ),
           if (hasAddress && hasPhone) const Divider(indent: 16, endIndent: 16),

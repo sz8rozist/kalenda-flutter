@@ -2346,4 +2346,10 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get rebook => 'Újra foglalok';
+
+  @override
+  String get mapOpen => 'Térkép';
+
+  @override
+  String get mapDirections => 'Útvonal';
 }

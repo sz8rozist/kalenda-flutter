@@ -2345,4 +2345,10 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get rebook => 'Book again';
+
+  @override
+  String get mapOpen => 'Map';
+
+  @override
+  String get mapDirections => 'Directions';
 }

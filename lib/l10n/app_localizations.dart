@@ -4417,6 +4417,18 @@ abstract class AppLocalizations {
   /// In hu, this message translates to:
   /// **'Újra foglalok'**
   String get rebook;
+
+  /// No description provided for @mapOpen.
+  ///
+  /// In hu, this message translates to:
+  /// **'Térkép'**
+  String get mapOpen;
+
+  /// No description provided for @mapDirections.
+  ///
+  /// In hu, this message translates to:
+  /// **'Útvonal'**
+  String get mapDirections;
 }
 
 class _AppLocalizationsDelegate

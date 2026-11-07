@@ -790,5 +790,7 @@
   "nextAppointmentLabel": "Your next appointment",
   "languageTitle": "Language",
   "languageSystem": "System",
-  "rebook": "Book again"
+  "rebook": "Book again",
+  "mapOpen": "Map",
+  "mapDirections": "Directions"
 }

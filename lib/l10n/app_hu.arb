@@ -790,5 +790,7 @@
   "nextAppointmentLabel": "Következő időpontod",
   "languageTitle": "Nyelv",
   "languageSystem": "Rendszer",
-  "rebook": "Újra foglalok"
+  "rebook": "Újra foglalok",
+  "mapOpen": "Térkép",
+  "mapDirections": "Útvonal"
 }
