@@ -23,6 +23,11 @@ final bookingPageProvider = FutureProvider.autoDispose.family<BookingPageSetting
   (ref, businessId) => ref.watch(settingsRepositoryProvider).bookingPage(businessId),
 );
 
+/// Be van-e kapcsolva a reggeli napi összefoglaló push.
+final dailySummaryProvider = FutureProvider.autoDispose.family<bool, int>(
+  (ref, businessId) => ref.watch(settingsRepositoryProvider).dailySummary(businessId),
+);
+
 /// A beállítások műveletei: minden szakasz mentése, Stripe-kapcsolat, naptár-hivatkozás újragenerálása, képek.
 class SettingsActionsViewModel extends ActionNotifier {
   SettingsRepository get _repo => ref.read(settingsRepositoryProvider);
@@ -38,9 +43,12 @@ class SettingsActionsViewModel extends ActionNotifier {
       ref.invalidate(invoicingSettingsProvider(businessId));
       ref.invalidate(calendarFeedsProvider(businessId));
       ref.invalidate(bookingPageProvider(businessId));
+      ref.invalidate(dailySummaryProvider(businessId));
     }
     return ok;
   }
+
+  Future<bool> setDailySummary(int businessId, bool enabled) => _run(businessId, () => _repo.setDailySummary(businessId, enabled));
 
   Future<bool> updateBusiness(
     int businessId, {

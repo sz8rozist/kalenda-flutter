@@ -2440,4 +2440,66 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get noFreeSlotsTwoWeeks => 'No free slots in the next two weeks.';
+
+  @override
+  String get ownerQuotes => 'Quotes';
+
+  @override
+  String get newQuote => 'New quote';
+
+  @override
+  String get editQuote => 'Edit quote';
+
+  @override
+  String get quoteDraft => 'Draft';
+
+  @override
+  String get quoteSent => 'Sent';
+
+  @override
+  String get quoteAccepted => 'Accepted';
+
+  @override
+  String get quoteConverted => 'Invoiced';
+
+  @override
+  String get quoteValidUntil => 'Valid until';
+
+  @override
+  String get quoteNoDate => 'No expiry';
+
+  @override
+  String get quoteMarkSent => 'Mark as sent';
+
+  @override
+  String get quoteMarkAccepted => 'Mark as accepted';
+
+  @override
+  String get quoteConvert => 'Convert to invoice';
+
+  @override
+  String get quoteConvertConfirm =>
+      'Convert this quote to an invoice? This issues the document permanently.';
+
+  @override
+  String get quoteDeleteConfirm => 'Delete this quote?';
+
+  @override
+  String get quoteSave => 'Save quote';
+
+  @override
+  String get quoteEmpty => 'No quotes yet';
+
+  @override
+  String get quoteEmptyHint => 'Create one for your next customer.';
+
+  @override
+  String get settingsNotifications => 'Notifications';
+
+  @override
+  String get dailySummaryTitle => 'Morning daily summary';
+
+  @override
+  String get dailySummaryHint =>
+      'Every morning you get a notification with how many appointments you have that day.';
 }

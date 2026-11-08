@@ -154,6 +154,16 @@ class SettingsRepository {
     return CalendarFeeds.fromJson(response.data as Map<String, dynamic>);
   }
 
+  // ─── Napi összefoglaló push ───────────────────────────────────
+
+  Future<bool> dailySummary(int businessId) async {
+    final response = await _api.call((d) => d.get('/businesses/$businessId/daily-summary'));
+    return (response.data as Map<String, dynamic>)['enabled'] as bool? ?? true;
+  }
+
+  Future<void> setDailySummary(int businessId, bool enabled) =>
+      _api.call((d) => d.put('/businesses/$businessId/daily-summary', data: {'enabled': enabled}));
+
   // ─── Foglalási oldal ──────────────────────────────────────────
 
   Future<BookingPageSettings> bookingPage(int businessId) async {

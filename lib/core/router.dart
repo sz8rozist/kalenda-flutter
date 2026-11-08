@@ -20,6 +20,8 @@ import '../features/owner/view/owner_service_form_page.dart';
 import '../features/owner/view/owner_services_page.dart';
 import '../features/owner/view/owner_appointment_page.dart';
 import '../features/owner/view/owner_invoice_form_page.dart';
+import '../features/owner/view/owner_quotes_pages.dart';
+import '../features/owner/model/quote_models.dart';
 import '../features/owner/view/owner_inventory_pages.dart';
 import '../features/owner/view/owner_marketing_pages.dart';
 import '../features/owner/view/owner_extras_pages.dart';
@@ -87,6 +89,9 @@ final routerProvider = Provider<GoRouter>((ref) {
       GoRoute(path: '/owner/purchasing', builder: (_, _) => const OwnerPurchasingPage()),
       GoRoute(path: '/owner/register', builder: (_, _) => const OwnerRegisterPage()),
       GoRoute(path: '/owner/invoices/new', builder: (_, _) => const OwnerInvoiceFormPage()),
+      GoRoute(path: '/owner/quotes', builder: (_, _) => const OwnerQuotesPage()),
+      GoRoute(path: '/owner/quotes/new', builder: (_, _) => const OwnerQuoteFormPage()),
+      GoRoute(path: '/owner/quotes/edit', builder: (_, state) => OwnerQuoteFormPage(quote: state.extra as Quote?)),
       GoRoute(
         path: '/owner/appointments/:id',
         builder: (_, state) => OwnerAppointmentPage(appointmentId: int.parse(state.pathParameters['id']!)),

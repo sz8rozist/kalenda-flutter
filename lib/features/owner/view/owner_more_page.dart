@@ -50,6 +50,7 @@ final ownerMenu = <OwnerMenuGroup>[
     OwnerMenuItem('/owner/register', Icons.point_of_sale_outlined, (l) => l.ownerRegister, feature: 'register'),
     OwnerMenuItem('/owner/expenses', Icons.receipt_long_outlined, (l) => l.ownerExpenses, feature: 'expenses'),
     OwnerMenuItem('/owner/payouts', Icons.account_balance_outlined, (l) => l.ownerPayouts),
+    OwnerMenuItem('/owner/quotes', Icons.request_quote_outlined, (l) => l.ownerQuotes, feature: 'standalone_invoicing'),
     OwnerMenuItem('/owner/missing-documents', Icons.report_gmailerrorred_outlined, (l) => l.ownerMissingDocuments, feature: 'own_invoicing'),
   ]),
   OwnerMenuGroup((l) => l.menuGroupOperations, [

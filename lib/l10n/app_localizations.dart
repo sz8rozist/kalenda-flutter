@@ -4572,6 +4572,126 @@ abstract class AppLocalizations {
   /// In hu, this message translates to:
   /// **'Nincs szabad időpont a következő két hétben.'**
   String get noFreeSlotsTwoWeeks;
+
+  /// No description provided for @ownerQuotes.
+  ///
+  /// In hu, this message translates to:
+  /// **'Ajánlatok'**
+  String get ownerQuotes;
+
+  /// No description provided for @newQuote.
+  ///
+  /// In hu, this message translates to:
+  /// **'Új ajánlat'**
+  String get newQuote;
+
+  /// No description provided for @editQuote.
+  ///
+  /// In hu, this message translates to:
+  /// **'Ajánlat szerkesztése'**
+  String get editQuote;
+
+  /// No description provided for @quoteDraft.
+  ///
+  /// In hu, this message translates to:
+  /// **'Piszkozat'**
+  String get quoteDraft;
+
+  /// No description provided for @quoteSent.
+  ///
+  /// In hu, this message translates to:
+  /// **'Elküldve'**
+  String get quoteSent;
+
+  /// No description provided for @quoteAccepted.
+  ///
+  /// In hu, this message translates to:
+  /// **'Elfogadva'**
+  String get quoteAccepted;
+
+  /// No description provided for @quoteConverted.
+  ///
+  /// In hu, this message translates to:
+  /// **'Számlázva'**
+  String get quoteConverted;
+
+  /// No description provided for @quoteValidUntil.
+  ///
+  /// In hu, this message translates to:
+  /// **'Érvényes eddig'**
+  String get quoteValidUntil;
+
+  /// No description provided for @quoteNoDate.
+  ///
+  /// In hu, this message translates to:
+  /// **'Nincs lejárat'**
+  String get quoteNoDate;
+
+  /// No description provided for @quoteMarkSent.
+  ///
+  /// In hu, this message translates to:
+  /// **'Megjelölés elküldöttként'**
+  String get quoteMarkSent;
+
+  /// No description provided for @quoteMarkAccepted.
+  ///
+  /// In hu, this message translates to:
+  /// **'Megjelölés elfogadottként'**
+  String get quoteMarkAccepted;
+
+  /// No description provided for @quoteConvert.
+  ///
+  /// In hu, this message translates to:
+  /// **'Számlává alakítás'**
+  String get quoteConvert;
+
+  /// No description provided for @quoteConvertConfirm.
+  ///
+  /// In hu, this message translates to:
+  /// **'Biztosan számlává alakítod ezt az ajánlatot? Ez véglegesen kiállítja a bizonylatot.'**
+  String get quoteConvertConfirm;
+
+  /// No description provided for @quoteDeleteConfirm.
+  ///
+  /// In hu, this message translates to:
+  /// **'Biztosan törölni szeretnéd ezt az ajánlatot?'**
+  String get quoteDeleteConfirm;
+
+  /// No description provided for @quoteSave.
+  ///
+  /// In hu, this message translates to:
+  /// **'Ajánlat mentése'**
+  String get quoteSave;
+
+  /// No description provided for @quoteEmpty.
+  ///
+  /// In hu, this message translates to:
+  /// **'Még nincs ajánlatod'**
+  String get quoteEmpty;
+
+  /// No description provided for @quoteEmptyHint.
+  ///
+  /// In hu, this message translates to:
+  /// **'Készíts egyet a következő vevődnek.'**
+  String get quoteEmptyHint;
+
+  /// No description provided for @settingsNotifications.
+  ///
+  /// In hu, this message translates to:
+  /// **'Értesítések'**
+  String get settingsNotifications;
+
+  /// No description provided for @dailySummaryTitle.
+  ///
+  /// In hu, this message translates to:
+  /// **'Reggeli napi összefoglaló'**
+  String get dailySummaryTitle;
+
+  /// No description provided for @dailySummaryHint.
+  ///
+  /// In hu, this message translates to:
+  /// **'Minden reggel értesítést kapsz arról, hány időpontod van aznap.'**
+  String get dailySummaryHint;
 }
 
 class _AppLocalizationsDelegate

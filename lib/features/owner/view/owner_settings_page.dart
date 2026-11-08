@@ -57,6 +57,11 @@ class OwnerSettingsPage extends ConsumerWidget {
                     icon: Icons.payments_outlined,
                     child: _PaymentsForm(businessId: businessId),
                   ),
+                  _Section(
+                    title: l10n.settingsNotifications,
+                    icon: Icons.notifications_active_outlined,
+                    child: _DailySummaryTile(businessId: businessId),
+                  ),
                   if (info.hasFeature('own_invoicing'))
                     _Section(
                       title: l10n.settingsInvoicing,
@@ -72,6 +77,31 @@ class OwnerSettingsPage extends ConsumerWidget {
                 ],
               ),
             ),
+    );
+  }
+}
+
+/// A reggeli napi összefoglaló push kapcsolója: azonnal ment.
+class _DailySummaryTile extends ConsumerWidget {
+  const _DailySummaryTile({required this.businessId});
+
+  final int businessId;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context);
+    final enabled = ref.watch(dailySummaryProvider(businessId));
+
+    return enabled.when(
+      loading: () => const Padding(padding: EdgeInsets.all(8), child: LinearProgressIndicator()),
+      error: (_, _) => TextButton(onPressed: () => ref.invalidate(dailySummaryProvider(businessId)), child: Text(l10n.retry)),
+      data: (value) => SwitchListTile(
+        contentPadding: EdgeInsets.zero,
+        title: Text(l10n.dailySummaryTitle),
+        subtitle: Text(l10n.dailySummaryHint),
+        value: value,
+        onChanged: (v) => ref.read(settingsActionsProvider.notifier).setDailySummary(businessId, v),
+      ),
     );
   }
 }

@@ -2442,4 +2442,67 @@ class AppLocalizationsHu extends AppLocalizations {
   @override
   String get noFreeSlotsTwoWeeks =>
       'Nincs szabad időpont a következő két hétben.';
+
+  @override
+  String get ownerQuotes => 'Ajánlatok';
+
+  @override
+  String get newQuote => 'Új ajánlat';
+
+  @override
+  String get editQuote => 'Ajánlat szerkesztése';
+
+  @override
+  String get quoteDraft => 'Piszkozat';
+
+  @override
+  String get quoteSent => 'Elküldve';
+
+  @override
+  String get quoteAccepted => 'Elfogadva';
+
+  @override
+  String get quoteConverted => 'Számlázva';
+
+  @override
+  String get quoteValidUntil => 'Érvényes eddig';
+
+  @override
+  String get quoteNoDate => 'Nincs lejárat';
+
+  @override
+  String get quoteMarkSent => 'Megjelölés elküldöttként';
+
+  @override
+  String get quoteMarkAccepted => 'Megjelölés elfogadottként';
+
+  @override
+  String get quoteConvert => 'Számlává alakítás';
+
+  @override
+  String get quoteConvertConfirm =>
+      'Biztosan számlává alakítod ezt az ajánlatot? Ez véglegesen kiállítja a bizonylatot.';
+
+  @override
+  String get quoteDeleteConfirm =>
+      'Biztosan törölni szeretnéd ezt az ajánlatot?';
+
+  @override
+  String get quoteSave => 'Ajánlat mentése';
+
+  @override
+  String get quoteEmpty => 'Még nincs ajánlatod';
+
+  @override
+  String get quoteEmptyHint => 'Készíts egyet a következő vevődnek.';
+
+  @override
+  String get settingsNotifications => 'Értesítések';
+
+  @override
+  String get dailySummaryTitle => 'Reggeli napi összefoglaló';
+
+  @override
+  String get dailySummaryHint =>
+      'Minden reggel értesítést kapsz arról, hány időpontod van aznap.';
 }
