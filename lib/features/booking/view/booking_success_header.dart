@@ -41,17 +41,20 @@ class _BookingSuccessHeaderState extends ConsumerState<BookingSuccessHeader> wit
 
     return Semantics(
       liveRegion: true,
-      child: Padding(
-        padding: const EdgeInsets.only(bottom: 20),
+      child: Container(
+        width: double.infinity,
+        margin: const EdgeInsets.only(bottom: 20),
+        padding: const EdgeInsets.fromLTRB(24, 28, 24, 28),
+        decoration: BoxDecoration(color: AppColors.brand, borderRadius: BorderRadius.circular(AppDimens.radiusLarge)),
         child: Column(
           children: [
             ScaleTransition(
               scale: CurvedAnimation(parent: _controller, curve: Curves.elasticOut),
               child: Container(
-                width: 88,
-                height: 88,
-                decoration: BoxDecoration(color: AppColors.success.withValues(alpha: 0.12), shape: BoxShape.circle),
-                child: const Icon(Icons.check_circle_rounded, size: 56, color: AppColors.success),
+                width: 68,
+                height: 68,
+                decoration: const BoxDecoration(color: Colors.white, shape: BoxShape.circle),
+                child: const Icon(Icons.check_rounded, size: 38, color: AppColors.brand),
               ),
             ),
             const SizedBox(height: 16),
@@ -59,11 +62,15 @@ class _BookingSuccessHeaderState extends ConsumerState<BookingSuccessHeader> wit
               opacity: CurvedAnimation(parent: _controller, curve: const Interval(0.4, 1)),
               child: Column(
                 children: [
-                  Text(l10n.bookingDoneTitle, style: theme.textTheme.headlineSmall, textAlign: TextAlign.center),
+                  Text(
+                    l10n.bookingDoneTitle,
+                    style: theme.textTheme.headlineMedium?.copyWith(color: Colors.white),
+                    textAlign: TextAlign.center,
+                  ),
                   const SizedBox(height: 8),
                   Text(
                     l10n.bookingDoneText,
-                    style: theme.textTheme.bodyMedium?.copyWith(color: theme.colorScheme.onSurfaceVariant),
+                    style: theme.textTheme.bodyMedium?.copyWith(color: AppColors.blueSoft),
                     textAlign: TextAlign.center,
                   ),
                 ],

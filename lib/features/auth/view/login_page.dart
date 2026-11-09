@@ -42,100 +42,122 @@ class _LoginPageState extends ConsumerState<LoginPage> {
     final gateway = ref.read(socialSignInGatewayProvider);
 
     return Scaffold(
-      body: SafeArea(
-        child: ListView(
-          padding: const EdgeInsets.all(AppDimens.pagePadding),
-          children: [
-            const SizedBox(height: 24),
-            const Center(child: AppLogo(size: 72)),
-            const SizedBox(height: 24),
-            Text(l10n.loginTitle, style: theme.textTheme.headlineMedium, textAlign: TextAlign.center),
-            const SizedBox(height: 8),
-            Text(
-              l10n.loginIntro,
-              style: theme.textTheme.bodyLarge?.copyWith(color: theme.colorScheme.onSurfaceVariant),
-              textAlign: TextAlign.center,
+      backgroundColor: AppColors.brand,
+      body: Column(
+        children: [
+          // A design szerint: márkaszínű fejléc a logóval, alatta lekerekített panel az űrlappal.
+          Padding(
+            padding: EdgeInsets.fromLTRB(24, MediaQuery.paddingOf(context).top + 36, 24, 40),
+            child: Align(
+              alignment: Alignment.centerLeft,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const AppLogo(size: 52, onBrand: true),
+                  const SizedBox(height: 18),
+                  Text('Kalenda', style: theme.textTheme.headlineLarge?.copyWith(color: Colors.white)),
+                  const SizedBox(height: 6),
+                  Text(l10n.loginIntro, style: theme.textTheme.bodyLarge?.copyWith(color: AppColors.onBrandMuted)),
+                ],
+              ),
             ),
-            const SizedBox(height: 28),
-            TextField(
-              controller: _email,
-              keyboardType: TextInputType.emailAddress,
-              autofillHints: const [AutofillHints.email],
-              decoration: InputDecoration(labelText: l10n.email, prefixIcon: const Icon(Icons.mail_outline_rounded)),
-            ),
-            const SizedBox(height: 12),
-            FilledButton(
-              onPressed: state.busy ? null : () => viewModel.requestLink(_email.text),
-              child: state.busy && !state.linkSent
-                  ? const SizedBox(height: 22, width: 22, child: CircularProgressIndicator(strokeWidth: 2.5, color: Colors.white))
-                  : Text(l10n.sendLink),
-            ),
-            if (state.linkSent) ...[
-              const SizedBox(height: 20),
-              Container(
-                padding: const EdgeInsets.all(14),
-                decoration: BoxDecoration(
-                  color: AppColors.success.withValues(alpha: 0.10),
-                  borderRadius: BorderRadius.circular(AppDimens.radiusSmall),
-                ),
-                child: Row(
+          ),
+          Expanded(
+            child: Container(
+              width: double.infinity,
+              decoration: BoxDecoration(
+                color: theme.scaffoldBackgroundColor,
+                borderRadius: const BorderRadius.vertical(top: Radius.circular(AppDimens.radiusLarge)),
+              ),
+              child: SafeArea(
+                top: false,
+                child: ListView(
+                  padding: const EdgeInsets.fromLTRB(24, 28, 24, 16),
                   children: [
-                    const Icon(Icons.mark_email_read_outlined, color: AppColors.success),
-                    const SizedBox(width: 12),
-                    Expanded(child: Text(l10n.linkSent)),
+                    Text(l10n.loginTitle, style: theme.textTheme.headlineSmall),
+                    const SizedBox(height: 28),
+                    TextField(
+                      controller: _email,
+                      keyboardType: TextInputType.emailAddress,
+                      autofillHints: const [AutofillHints.email],
+                      decoration: InputDecoration(labelText: l10n.email, prefixIcon: const Icon(Icons.mail_outline_rounded)),
+                    ),
+                    const SizedBox(height: 12),
+                    FilledButton(
+                      onPressed: state.busy ? null : () => viewModel.requestLink(_email.text),
+                      child: state.busy && !state.linkSent
+                          ? const SizedBox(height: 22, width: 22, child: CircularProgressIndicator(strokeWidth: 2.5, color: Colors.white))
+                          : Text(l10n.sendLink),
+                    ),
+                    if (state.linkSent) ...[
+                      const SizedBox(height: 20),
+                      Container(
+                        padding: const EdgeInsets.all(14),
+                        decoration: BoxDecoration(
+                          color: AppColors.success.withValues(alpha: 0.10),
+                          borderRadius: BorderRadius.circular(AppDimens.radiusSmall),
+                        ),
+                        child: Row(
+                          children: [
+                            const Icon(Icons.mark_email_read_outlined, color: AppColors.success),
+                            const SizedBox(width: 12),
+                            Expanded(child: Text(l10n.linkSent)),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(height: 16),
+                      TextField(
+                        controller: _code,
+                        decoration: InputDecoration(
+                          labelText: l10n.tokenLabel,
+                          helperText: l10n.tokenHelp,
+                          helperMaxLines: 3,
+                          prefixIcon: const Icon(Icons.key_rounded),
+                        ),
+                      ),
+                      const SizedBox(height: 12),
+                      FilledButton.tonal(onPressed: state.busy ? null : () => viewModel.signIn(_code.text), child: Text(l10n.signIn)),
+                    ],
+                    if (config.googleLogin || (config.appleLogin && gateway.appleSupported)) ...[
+                      const SizedBox(height: 28),
+                      Row(
+                        children: [
+                          const Expanded(child: Divider()),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 12),
+                            child: Text(l10n.orSignInWith, style: theme.textTheme.bodySmall),
+                          ),
+                          const Expanded(child: Divider()),
+                        ],
+                      ),
+                      const SizedBox(height: 16),
+                      if (config.appleLogin && gateway.appleSupported)
+                        OutlinedButton.icon(
+                          icon: const Icon(Icons.apple),
+                          label: Text(l10n.continueWithApple),
+                          onPressed: state.busy ? null : viewModel.signInWithApple,
+                        ),
+                      if (config.googleLogin) ...[
+                        const SizedBox(height: 10),
+                        OutlinedButton.icon(
+                          icon: const Icon(Icons.g_mobiledata, size: 28),
+                          label: Text(l10n.continueWithGoogle),
+                          onPressed: state.busy ? null : viewModel.signInWithGoogle,
+                        ),
+                      ],
+                    ],
+                    const SizedBox(height: 24),
+                    TextButton.icon(
+                      onPressed: () => context.push('/staff'),
+                      icon: const Icon(Icons.badge_outlined),
+                      label: Text(l10n.staffLoginLink),
+                    ),
                   ],
                 ),
               ),
-              const SizedBox(height: 16),
-              TextField(
-                controller: _code,
-                decoration: InputDecoration(
-                  labelText: l10n.tokenLabel,
-                  helperText: l10n.tokenHelp,
-                  helperMaxLines: 3,
-                  prefixIcon: const Icon(Icons.key_rounded),
-                ),
-              ),
-              const SizedBox(height: 12),
-              FilledButton.tonal(
-                onPressed: state.busy ? null : () => viewModel.signIn(_code.text),
-                child: Text(l10n.signIn),
-              ),
-            ],
-            if (config.googleLogin || (config.appleLogin && gateway.appleSupported)) ...[
-              const SizedBox(height: 28),
-              Row(children: [
-                const Expanded(child: Divider()),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 12),
-                  child: Text(l10n.orSignInWith, style: theme.textTheme.bodySmall),
-                ),
-                const Expanded(child: Divider()),
-              ]),
-              const SizedBox(height: 16),
-              if (config.appleLogin && gateway.appleSupported)
-                OutlinedButton.icon(
-                  icon: const Icon(Icons.apple),
-                  label: Text(l10n.continueWithApple),
-                  onPressed: state.busy ? null : viewModel.signInWithApple,
-                ),
-              if (config.googleLogin) ...[
-                const SizedBox(height: 10),
-                OutlinedButton.icon(
-                  icon: const Icon(Icons.g_mobiledata, size: 28),
-                  label: Text(l10n.continueWithGoogle),
-                  onPressed: state.busy ? null : viewModel.signInWithGoogle,
-                ),
-              ],
-            ],
-            const SizedBox(height: 24),
-            TextButton.icon(
-              onPressed: () => context.push('/staff'),
-              icon: const Icon(Icons.badge_outlined),
-              label: Text(l10n.staffLoginLink),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
