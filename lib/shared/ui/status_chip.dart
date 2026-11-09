@@ -17,18 +17,30 @@ class StatusChip extends StatelessWidget {
     'confirmed' || 'approved' || 'paid' || 'completed' => AppColors.success,
     'pending' || 'unpaid' => AppColors.warning,
     'cancelled' || 'no_show' || 'rejected' || 'overdue' => AppColors.danger,
-    _ => AppColors.neutral,
+    _ => AppColors.brandDark,
+  };
+
+  /// A jelvény halvány háttere a design szerint (zöld, borostyán, rózsa, halványkék).
+  static Color backgroundOf(String status) => switch (status) {
+    'confirmed' || 'approved' || 'paid' || 'completed' => AppColors.greenSoft,
+    'pending' || 'unpaid' => AppColors.amberSoft,
+    'cancelled' || 'no_show' || 'rejected' || 'overdue' => AppColors.roseSoft,
+    _ => AppColors.blueSoft,
   };
 
   @override
   Widget build(BuildContext context) {
+    final dark = Theme.of(context).brightness == Brightness.dark;
     final color = colorOf(status);
+    // Sötét módban a halvány háttér helyett átlátszó színes alap, világosabb szöveggel.
+    final foreground = dark ? Color.lerp(color, Colors.white, 0.55)! : color;
+    final background = dark ? color.withValues(alpha: 0.28) : backgroundOf(status);
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
-      decoration: BoxDecoration(color: color.withValues(alpha: 0.12), borderRadius: BorderRadius.circular(999)),
+      decoration: BoxDecoration(color: background, borderRadius: BorderRadius.circular(999)),
       child: Text(
         label ?? statusLabel(context, status),
-        style: Theme.of(context).textTheme.labelSmall?.copyWith(color: color, fontWeight: FontWeight.w700),
+        style: Theme.of(context).textTheme.labelSmall?.copyWith(color: foreground, fontWeight: FontWeight.w700, fontSize: 11),
       ),
     );
   }
@@ -52,15 +64,26 @@ class DateBadge extends StatelessWidget {
         child: Container(
           width: 52,
           padding: const EdgeInsets.symmetric(vertical: 8),
-          decoration: BoxDecoration(color: theme.colorScheme.primary.withValues(alpha: 0.10), borderRadius: BorderRadius.circular(14)),
+          decoration: BoxDecoration(color: theme.colorScheme.primaryContainer, borderRadius: BorderRadius.circular(12)),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
               Text(
                 '${date.day}',
-                style: theme.textTheme.titleMedium?.copyWith(color: theme.colorScheme.primary, fontWeight: FontWeight.w800),
+                style: theme.textTheme.titleMedium?.copyWith(
+                  color: theme.colorScheme.onPrimaryContainer,
+                  fontWeight: FontWeight.w800,
+                  height: 1.1,
+                ),
               ),
-              Text(month, style: theme.textTheme.labelSmall?.copyWith(color: theme.colorScheme.primary)),
+              Text(
+                month.toUpperCase(),
+                style: theme.textTheme.labelSmall?.copyWith(
+                  color: theme.colorScheme.onPrimaryContainer,
+                  fontWeight: FontWeight.w700,
+                  fontSize: 11,
+                ),
+              ),
             ],
           ),
         ),

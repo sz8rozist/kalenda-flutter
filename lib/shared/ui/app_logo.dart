@@ -1,14 +1,19 @@
 import 'package:flutter/material.dart';
 
-/// A Kalenda márkajele (naptár pipával) – a `branding/profile.svg` vektoros mása, így élesen skálázódik és
+import '../../core/theme/app_theme.dart';
+
+/// A Kalenda márkajele a webes designból: naptár pipával, lekerekített négyzetben. Vektoros, így élesen skálázódik és
 /// kép-állomány nélkül is rajzolható (splash, fejlécek, ikon-generálás).
 class AppLogo extends StatelessWidget {
-  const AppLogo({super.key, this.size = 96, this.markOnly = false});
+  const AppLogo({super.key, this.size = 96, this.markOnly = false, this.onBrand = false});
 
   final double size;
 
-  /// Csak a naptár-jel (kék négyzet nélkül): kék háttérre, pl. adaptív ikonhoz.
+  /// Csak a naptár-jel (négyzet nélkül): az adaptív ikon előteréhez, márkaszínű háttérre.
   final bool markOnly;
+
+  /// Márkaszínű háttéren (fejléc) fehér négyzet, márkaszínű jellel; egyébként márkaszínű négyzet, fehér jellel.
+  final bool onBrand;
 
   @override
   Widget build(BuildContext context) => Semantics(
@@ -17,71 +22,63 @@ class AppLogo extends StatelessWidget {
     child: ExcludeSemantics(
       child: CustomPaint(
         size: Size.square(size),
-        painter: LogoPainter(markOnly: markOnly),
+        painter: LogoPainter(markOnly: markOnly, onBrand: onBrand),
       ),
     ),
   );
 }
 
 class LogoPainter extends CustomPainter {
-  const LogoPainter({this.markOnly = false});
+  const LogoPainter({this.markOnly = false, this.onBrand = false});
 
   final bool markOnly;
+  final bool onBrand;
 
   @override
   void paint(Canvas canvas, Size size) {
-    final s = size.width / 64; // az SVG 64×64-es koordináta-rendszere
+    final s = size.width / 64; // 64×64-es koordináta-rendszer
     canvas.save();
     canvas.scale(s);
 
-    RRect rr(double x, double y, double w, double h, double r) => RRect.fromRectAndRadius(Rect.fromLTWH(x, y, w, h), Radius.circular(r));
+    final glyphColor = markOnly || !onBrand ? Colors.white : AppColors.brand;
 
     if (!markOnly) {
-      final background = Paint()
-        ..shader = const LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          colors: [Color(0xFF2563EB), Color(0xFF1E40AF)],
-        ).createShader(const Rect.fromLTWH(4, 4, 56, 56));
-      canvas.drawRRect(rr(4, 4, 56, 56, 16), background);
+      canvas.drawRRect(
+        RRect.fromRectAndRadius(const Rect.fromLTWH(2, 2, 60, 60), const Radius.circular(17)),
+        Paint()..color = onBrand ? Colors.white : AppColors.brand,
+      );
     }
 
-    final pins = Paint()..color = const Color(0xFF1E3A8A);
-    canvas.drawRRect(rr(17, 0, 6, 13, 3), pins);
-    canvas.drawRRect(rr(41, 0, 6, 13, 3), pins);
+    // A jel a webes design 24×24-es ikonja (naptár pipával), a négyzet közepére skálázva.
+    const scale = 1.5;
+    canvas.translate((64 - 24 * scale) / 2, (64 - 24 * scale) / 2);
+    canvas.scale(scale);
 
-    canvas.drawRRect(rr(11, 15, 42, 38, 8), Paint()..color = Colors.white);
+    final stroke = Paint()
+      ..color = glyphColor
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = 2.1
+      ..strokeCap = StrokeCap.round
+      ..strokeJoin = StrokeJoin.round;
 
-    // A naptár fejléce: felül lekerekített sáv.
-    final header = Path()
-      ..moveTo(11, 23)
-      ..arcToPoint(const Offset(19, 15), radius: const Radius.circular(8))
-      ..lineTo(45, 15)
-      ..arcToPoint(const Offset(53, 23), radius: const Radius.circular(8))
-      ..lineTo(53, 29)
-      ..lineTo(11, 29)
-      ..close();
-    canvas.drawPath(header, Paint()..color = const Color(0xFF1D4ED8));
-
-    canvas.drawCircle(const Offset(42, 41), 5.5, Paint()..color = const Color(0xFFBFDBFE));
-
-    final check = Path()
-      ..moveTo(18, 34.5)
-      ..lineTo(28, 44.5)
-      ..lineTo(46, 24);
+    canvas.drawRRect(RRect.fromRectAndRadius(const Rect.fromLTWH(3, 5, 18, 16), const Radius.circular(3)), stroke);
     canvas.drawPath(
-      check,
-      Paint()
-        ..color = const Color(0xFF2563EB)
-        ..style = PaintingStyle.stroke
-        ..strokeWidth = 5
-        ..strokeCap = StrokeCap.round
-        ..strokeJoin = StrokeJoin.round,
+      Path()
+        ..moveTo(8, 3)
+        ..lineTo(8, 7)
+        ..moveTo(16, 3)
+        ..lineTo(16, 7)
+        ..moveTo(3, 10)
+        ..lineTo(21, 10)
+        ..moveTo(9, 15)
+        ..lineTo(11, 17)
+        ..lineTo(15, 13),
+      stroke,
     );
 
     canvas.restore();
   }
 
   @override
-  bool shouldRepaint(LogoPainter oldDelegate) => oldDelegate.markOnly != markOnly;
+  bool shouldRepaint(LogoPainter oldDelegate) => oldDelegate.markOnly != markOnly || oldDelegate.onBrand != onBrand;
 }

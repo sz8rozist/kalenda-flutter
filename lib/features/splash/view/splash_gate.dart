@@ -63,7 +63,7 @@ class _SplashContent extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
     final dark = Theme.of(context).brightness == Brightness.dark;
-    final background = dark ? const Color(0xFF0B1220) : AppColors.tint;
+    final background = dark ? const Color(0xFF06222F) : AppColors.tint;
     final fade = CurvedAnimation(parent: animation, curve: const Interval(0.35, 1, curve: Curves.easeOut));
 
     return Material(

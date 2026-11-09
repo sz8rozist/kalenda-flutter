@@ -65,7 +65,7 @@ class _FindBusinessPageState extends ConsumerState<FindBusinessPage> {
               children: [
                 Row(
                   children: [
-                    const AppLogo(size: 36),
+                    const AppLogo(size: 36, onBrand: true),
                     const SizedBox(width: 10),
                     Text('Kalenda', style: theme.textTheme.titleMedium?.copyWith(color: Colors.white)),
                     const Spacer(),
@@ -111,7 +111,7 @@ class _FindBusinessPageState extends ConsumerState<FindBusinessPage> {
                           keyboardType: TextInputType.url,
                           textInputAction: TextInputAction.go,
                           onSubmitted: (_) => _open(),
-                          style: const TextStyle(color: Color(0xFF111827)),
+                          style: const TextStyle(color: AppColors.navy),
                           decoration: InputDecoration(
                             hintText: l10n.businessSlug,
                             prefixIcon: const Icon(Icons.search_rounded),
@@ -150,7 +150,7 @@ class _FindBusinessPageState extends ConsumerState<FindBusinessPage> {
                   icon: Icons.event_note_rounded,
                   label: signedIn ? l10n.myAppointments : l10n.signIn,
                   background: AppColors.indigoSoft,
-                  foreground: AppColors.indigo,
+                  foreground: AppColors.brandDark,
                   onTap: () => ref.read(homeTabProvider.notifier).select(1),
                 ),
                 _QuickTile(
@@ -188,9 +188,8 @@ class _NextAppointmentCard extends StatelessWidget {
       color: Colors.transparent,
       child: Ink(
         decoration: BoxDecoration(
-          gradient: const LinearGradient(colors: [AppColors.indigo, AppColors.brand]),
+          color: AppColors.brand,
           borderRadius: BorderRadius.circular(AppDimens.radius),
-          boxShadow: const [BoxShadow(color: Color(0x334F46E5), blurRadius: 18, offset: Offset(0, 8))],
         ),
         child: InkWell(
           borderRadius: BorderRadius.circular(AppDimens.radius),

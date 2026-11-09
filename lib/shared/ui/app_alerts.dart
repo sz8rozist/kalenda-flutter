@@ -123,7 +123,7 @@ void showToast(BuildContext context, String message, {AlertKind kind = AlertKind
       SnackBar(
         duration: const Duration(seconds: 3),
         margin: const EdgeInsets.fromLTRB(16, 0, 16, 16),
-        backgroundColor: Theme.of(context).brightness == Brightness.dark ? const Color(0xFF1E293B) : const Color(0xFF0F172A),
+        backgroundColor: Theme.of(context).brightness == Brightness.dark ? const Color(0xFF0E3C53) : const Color(0xFF0A3D57),
         content: Row(
           children: [
             Icon(kind.icon, color: kind.color),

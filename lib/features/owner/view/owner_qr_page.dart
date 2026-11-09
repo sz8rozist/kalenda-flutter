@@ -113,7 +113,7 @@ class _Poster extends StatelessWidget {
             decoration: const BoxDecoration(gradient: AppColors.heroGradient),
             child: Column(
               children: [
-                const AppLogo(size: 40),
+                const AppLogo(size: 40, onBrand: true),
                 const SizedBox(height: 12),
                 Text(
                   name,
@@ -137,7 +137,7 @@ class _Poster extends StatelessWidget {
                   dataModuleStyle: const QrDataModuleStyle(dataModuleShape: QrDataModuleShape.circle, color: AppColors.navy),
                 ),
                 const SizedBox(height: 12),
-                Text(l10n.qrPosterHint, style: const TextStyle(color: Color(0xFF475569), fontSize: 13)),
+                Text(l10n.qrPosterHint, style: const TextStyle(color: AppColors.muted, fontSize: 13)),
                 const SizedBox(height: 6),
                 Text(
                   url,

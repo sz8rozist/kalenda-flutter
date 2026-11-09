@@ -2502,4 +2502,14 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get dailySummaryHint =>
       'Every morning you get a notification with how many appointments you have that day.';
+
+  @override
+  String kpiPendingApproval(int count) {
+    return '$count awaiting approval';
+  }
+
+  @override
+  String kpiOpenInvoices(int count) {
+    return '$count open invoices';
+  }
 }

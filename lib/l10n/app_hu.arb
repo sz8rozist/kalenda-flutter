@@ -840,5 +840,9 @@
   "quoteEmptyHint": "Készíts egyet a következő vevődnek.",
   "settingsNotifications": "Értesítések",
   "dailySummaryTitle": "Reggeli napi összefoglaló",
-  "dailySummaryHint": "Minden reggel értesítést kapsz arról, hány időpontod van aznap."
+  "dailySummaryHint": "Minden reggel értesítést kapsz arról, hány időpontod van aznap.",
+  "kpiPendingApproval": "{count} jóváhagyásra vár",
+  "@kpiPendingApproval": { "placeholders": { "count": { "type": "int" } } },
+  "kpiOpenInvoices": "{count} nyitott számla",
+  "@kpiOpenInvoices": { "placeholders": { "count": { "type": "int" } } }
 }

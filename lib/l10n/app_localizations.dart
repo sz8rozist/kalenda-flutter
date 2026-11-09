@@ -4692,6 +4692,18 @@ abstract class AppLocalizations {
   /// In hu, this message translates to:
   /// **'Minden reggel értesítést kapsz arról, hány időpontod van aznap.'**
   String get dailySummaryHint;
+
+  /// No description provided for @kpiPendingApproval.
+  ///
+  /// In hu, this message translates to:
+  /// **'{count} jóváhagyásra vár'**
+  String kpiPendingApproval(int count);
+
+  /// No description provided for @kpiOpenInvoices.
+  ///
+  /// In hu, this message translates to:
+  /// **'{count} nyitott számla'**
+  String kpiOpenInvoices(int count);
 }
 
 class _AppLocalizationsDelegate

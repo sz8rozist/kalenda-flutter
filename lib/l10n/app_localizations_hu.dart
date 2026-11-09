@@ -2505,4 +2505,14 @@ class AppLocalizationsHu extends AppLocalizations {
   @override
   String get dailySummaryHint =>
       'Minden reggel értesítést kapsz arról, hány időpontod van aznap.';
+
+  @override
+  String kpiPendingApproval(int count) {
+    return '$count jóváhagyásra vár';
+  }
+
+  @override
+  String kpiOpenInvoices(int count) {
+    return '$count nyitott számla';
+  }
 }

@@ -840,5 +840,9 @@
   "quoteEmptyHint": "Create one for your next customer.",
   "settingsNotifications": "Notifications",
   "dailySummaryTitle": "Morning daily summary",
-  "dailySummaryHint": "Every morning you get a notification with how many appointments you have that day."
+  "dailySummaryHint": "Every morning you get a notification with how many appointments you have that day.",
+  "kpiPendingApproval": "{count} awaiting approval",
+  "@kpiPendingApproval": { "placeholders": { "count": { "type": "int" } } },
+  "kpiOpenInvoices": "{count} open invoices",
+  "@kpiOpenInvoices": { "placeholders": { "count": { "type": "int" } } }
 }

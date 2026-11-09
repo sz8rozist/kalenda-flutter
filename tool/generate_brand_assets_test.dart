@@ -35,18 +35,9 @@ void main() {
       c.restore();
     });
 
-    // iOS: alfa nélküli, teljes felületű négyzet a márka-gradienssel, középen a jel.
+    // iOS: alfa nélküli, teljes felületű, lapos márkaszínű négyzet (a webes design), középen a jel.
     await _write('assets/brand/icon_ios.png', 1024, (c, s) {
-      final rect = Rect.fromLTWH(0, 0, s, s);
-      c.drawRect(
-        rect,
-        Paint()
-          ..shader = const LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            colors: [Color(0xFF2563EB), Color(0xFF1E40AF)],
-          ).createShader(rect),
-      );
+      c.drawRect(Rect.fromLTWH(0, 0, s, s), Paint()..color = const Color(0xFF086288));
       c.save();
       c.translate(s * 0.17, s * 0.17);
       const LogoPainter(markOnly: true).paint(c, Size.square(s * 0.66));

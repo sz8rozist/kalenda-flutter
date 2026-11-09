@@ -85,11 +85,14 @@ flutter:
   assets:
     - assets/brand/
 
-  # Inter (SIL OFL, ld. assets/fonts/OFL.txt) – változó betűtípus, a súlyokat a wght tengely adja.
+  # A webes design betűi (SIL OFL, ld. assets/fonts/OFL-*.txt) – változó betűtípusok, a súlyokat a wght tengely adja.
   fonts:
-    - family: Inter
+    - family: Figtree
       fonts:
-        - asset: assets/fonts/Inter.ttf
+        - asset: assets/fonts/Figtree.ttf
+    - family: BricolageGrotesque
+      fonts:
+        - asset: assets/fonts/BricolageGrotesque.ttf
 
 # A márka-ikonok és a splash a vektoros logóból generálódnak (ld. tool/generate_brand_assets_test.dart):
 #   dart run flutter_launcher_icons
@@ -100,17 +103,17 @@ flutter_launcher_icons:
   image_path: assets/brand/logo.png
   image_path_ios: assets/brand/icon_ios.png
   remove_alpha_ios: true
-  adaptive_icon_background: "#2563EB"
+  adaptive_icon_background: "#086288"
   adaptive_icon_foreground: assets/brand/icon_foreground.png
 
 flutter_native_splash:
-  color: "#EFF6FF"
+  color: "#F2F9FF"
   image: assets/brand/logo.png
-  color_dark: "#0B1220"
+  color_dark: "#06222F"
   image_dark: assets/brand/logo.png
   android_12:
-    color: "#EFF6FF"
-    color_dark: "#0B1220"
+    color: "#F2F9FF"
+    color_dark: "#06222F"
     image: assets/brand/icon_foreground.png
-    icon_background_color: "#2563EB"
-    icon_background_color_dark: "#2563EB"
+    icon_background_color: "#086288"
+    icon_background_color_dark: "#086288"

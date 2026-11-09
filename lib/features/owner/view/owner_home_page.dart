@@ -115,60 +115,56 @@ class _OverviewTab extends ConsumerWidget {
           child: ListView(
             padding: const EdgeInsets.all(16),
             children: [
-              Container(
-                margin: const EdgeInsets.only(bottom: AppDimens.gap),
-                padding: const EdgeInsets.all(20),
-                decoration: BoxDecoration(gradient: AppColors.heroGradient, borderRadius: BorderRadius.circular(AppDimens.radius)),
-                child: DefaultTextStyle.merge(
-                  style: const TextStyle(color: Colors.white),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(l10n.weekRevenueTitle, style: theme.textTheme.titleSmall?.copyWith(color: Colors.white70)),
-                      const SizedBox(height: 6),
-                      Text(
-                        formatHuf(context, data.weekRevenue.total),
-                        style: theme.textTheme.headlineMedium?.copyWith(color: Colors.white),
-                      ),
-                      const SizedBox(height: 4),
-                      Text(l10n.weekRevenueSoFar(formatHuf(context, data.weekRevenue.toDateTotal))),
-                      if (change != null)
-                        Padding(
-                          padding: const EdgeInsets.only(top: 8),
-                          child: Row(
-                            children: [
-                              Icon(change >= 0 ? Icons.trending_up_rounded : Icons.trending_down_rounded, size: 18, color: Colors.white),
-                              const SizedBox(width: 6),
-                              Text(l10n.weekRevenueChange(change.toStringAsFixed(0))),
-                            ],
-                          ),
-                        ),
-                    ],
-                  ),
+              Padding(
+                padding: const EdgeInsets.only(bottom: 14),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      formatDate(context, DateTime.now()),
+                      style: theme.textTheme.bodySmall?.copyWith(color: theme.colorScheme.onSurfaceVariant),
+                    ),
+                    Text(l10n.ownerOverview, style: theme.textTheme.headlineMedium),
+                  ],
                 ),
               ),
-              if (data.receivables.outstandingCount > 0 || data.receivables.overdueCount > 0)
-                Card(
-                  child: Padding(
-                    padding: const EdgeInsets.all(16),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(l10n.receivablesTitle, style: theme.textTheme.titleSmall),
-                        Text(
-                          l10n.receivablesOutstanding(
-                            formatHuf(context, data.receivables.outstandingHuf),
-                            data.receivables.outstandingCount,
-                          ),
-                        ),
-                        if (data.receivables.overdueCount > 0)
-                          Text(
-                            l10n.receivablesOverdue(formatHuf(context, data.receivables.overdueHuf), data.receivables.overdueCount),
-                            style: TextStyle(color: theme.colorScheme.error),
-                          ),
-                      ],
+              IntrinsicHeight(
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  spacing: 10,
+                  children: [
+                    Expanded(
+                      child: _KpiCard(
+                        label: l10n.todaysBookings,
+                        value: '${data.appointmentsToday}',
+                        note: data.today.where((a) => a.status == 'pending').isEmpty
+                            ? null
+                            : l10n.kpiPendingApproval(data.today.where((a) => a.status == 'pending').length),
+                        noteColor: AppColors.warning,
+                      ),
                     ),
-                  ),
+                    Expanded(
+                      child: _KpiCard(
+                        label: l10n.weekRevenueTitle,
+                        value: formatHuf(context, data.weekRevenue.total),
+                        note: change == null
+                            ? l10n.weekRevenueSoFar(formatHuf(context, data.weekRevenue.toDateTotal))
+                            : l10n.weekRevenueChange(change.toStringAsFixed(0)),
+                        noteColor: change == null ? null : (change >= 0 ? AppColors.success : AppColors.danger),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(height: 10),
+              if (data.receivables.outstandingCount > 0 || data.receivables.overdueCount > 0)
+                _KpiCard(
+                  label: l10n.receivablesTitle,
+                  value: formatHuf(context, data.receivables.outstandingHuf),
+                  note: data.receivables.overdueCount > 0
+                      ? l10n.receivablesOverdue(formatHuf(context, data.receivables.overdueHuf), data.receivables.overdueCount)
+                      : l10n.kpiOpenInvoices(data.receivables.outstandingCount),
+                  noteColor: data.receivables.overdueCount > 0 ? AppColors.warning : null,
                 ),
               if (data.lowStockCount > 0)
                 Card(
@@ -311,6 +307,50 @@ class _CustomersTabState extends ConsumerState<_CustomersTab> {
           ),
         ),
       ],
+    );
+  }
+}
+
+/// Egy kulcsszám-kártya az áttekintésen (design: fehér, keretes; címke, nagy érték, színes megjegyzés).
+class _KpiCard extends StatelessWidget {
+  const _KpiCard({required this.label, required this.value, this.note, this.noteColor});
+
+  final String label;
+  final String value;
+  final String? note;
+  final Color? noteColor;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final muted = theme.colorScheme.onSurfaceVariant;
+
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
+      decoration: BoxDecoration(
+        color: theme.colorScheme.surface,
+        borderRadius: BorderRadius.circular(AppDimens.radiusSmall),
+        border: Border.all(color: theme.dividerColor),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(label, style: theme.textTheme.labelMedium?.copyWith(color: muted)),
+          const SizedBox(height: 2),
+          Text(
+            value,
+            style: theme.textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w800, fontSize: 22),
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+          ),
+          if (note != null)
+            Text(
+              note!,
+              style: theme.textTheme.labelMedium?.copyWith(color: noteColor ?? muted, fontWeight: FontWeight.w600),
+            ),
+        ],
+      ),
     );
   }
 }
